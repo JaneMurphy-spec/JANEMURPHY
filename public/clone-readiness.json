@@ -1,0 +1,57 @@
+{
+  "score": 60,
+  "status": "blocked",
+  "selfContainedPercent": 85,
+  "functionalCloneReadinessPercent": 54,
+  "dimensions": {
+    "assetIntegrityPercent": 85,
+    "routeCoveragePercent": 100,
+    "runtimeStabilityPercent": 0,
+    "resourceHealthPercent": 0,
+    "visualFidelityPercent": 97
+  },
+  "assetReadiness": {
+    "score": 85,
+    "status": "blocked"
+  },
+  "functionalValidation": {
+    "status": "partial",
+    "routesValidated": 1,
+    "routesPassed": 1,
+    "cloneRuntimeErrors": 2,
+    "ignoredCloneRuntimeErrors": 0,
+    "cloneResourceFailures": 13,
+    "ignoredCloneResourceFailures": 9,
+    "visualComparisons": 2,
+    "visualComparisonsPassed": 2
+  },
+  "externalDependencies": [],
+  "missingLocalReferences": [
+    "assets/js/firebasejs/10-12-0/firebase-app-compat-299a1b25.js -> firebase-app-compat.js.map",
+    "assets/js/firebasejs/10-12-0/firebase-auth-compat-77ea2cd0.js -> firebase-auth-compat.js.map",
+    "assets/js/firebasejs/10-12-0/firebase-firestore-compat-8b9c1587.js -> firebase-firestore-compat.js.map",
+    "assets/js/firebasejs/10-12-0/firebase-messaging-compat-7bb5d6df.js -> firebase-messaging-compat.js.map"
+  ],
+  "failedAssets": [
+    "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js.map",
+    "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js.map",
+    "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js.map",
+    "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js.map"
+  ],
+  "dynamicHtmlEndpoints": [],
+  "smokeTest": {
+    "passed": true,
+    "checkedFiles": 36,
+    "missingFiles": []
+  },
+  "checks": {
+    "pages": 1,
+    "assetsDownloaded": 35,
+    "assetsFailed": 4,
+    "localReferences": 47,
+    "externalAssetReferences": 0,
+    "missingLocalReferences": 4,
+    "dynamicHtmlDocuments": 0,
+    "dynamicHtmlEntrypointsConnected": 0
+  }
+}

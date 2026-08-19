@@ -1,0 +1,34 @@
+[
+  {
+    "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js.map",
+    "bytes": 0,
+    "status": 200,
+    "error": "Asset redirect left the authorized origin.",
+    "failureKind": "network",
+    "failureStage": "download"
+  },
+  {
+    "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js.map",
+    "bytes": 0,
+    "status": 200,
+    "error": "Asset redirect left the authorized origin.",
+    "failureKind": "network",
+    "failureStage": "download"
+  },
+  {
+    "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js.map",
+    "bytes": 0,
+    "status": 200,
+    "error": "Asset redirect left the authorized origin.",
+    "failureKind": "network",
+    "failureStage": "download"
+  },
+  {
+    "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js.map",
+    "bytes": 0,
+    "status": 200,
+    "error": "Asset redirect left the authorized origin.",
+    "failureKind": "network",
+    "failureStage": "download"
+  }
+]

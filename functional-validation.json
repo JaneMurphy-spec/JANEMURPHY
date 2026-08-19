@@ -1,0 +1,360 @@
+{
+  "score": 54,
+  "status": "partial",
+  "dimensions": {
+    "routeCoveragePercent": 100,
+    "runtimeStabilityPercent": 0,
+    "resourceHealthPercent": 0,
+    "visualFidelityPercent": 97
+  },
+  "routes": [
+    {
+      "route": "/",
+      "expectedFile": "index.html",
+      "resolution": "exact",
+      "status": 200,
+      "passed": true,
+      "bodyVisible": true,
+      "runtimeErrors": 2,
+      "failedResources": 13,
+      "ignoredResources": 9
+    }
+  ],
+  "runtimeErrors": [
+    {
+      "phase": "source",
+      "page": "https://reywkwk.web.id/",
+      "kind": "console",
+      "message": "[2026-08-04T07:20:12.626Z]  @firebase/firestore: Firestore (10.12.0): Could not reach Cloud Firestore backend. Connection failed 1 times. Most recent error: FirebaseError: [code=unavailable]: The operation could not be completed\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.",
+      "source": "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js",
+      "line": 0,
+      "column": 6301
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "kind": "console",
+      "message": "[2026-08-04T07:20:21.983Z]  @firebase/firestore: Firestore (10.12.0): Could not reach Cloud Firestore backend. Connection failed 1 times. Most recent error: FirebaseError: [code=unavailable]: The operation could not be completed\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.",
+      "source": "http://127.0.0.1:33641/assets/js/firebasejs/10-12-0/firebase-firestore-compat-8b9c1587.js",
+      "line": 0,
+      "column": 6301,
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "kind": "console",
+      "message": "[2026-08-04T07:20:25.820Z]  @firebase/firestore: Firestore (10.12.0): Could not reach Cloud Firestore backend. Connection failed 1 times. Most recent error: FirebaseError: [code=unavailable]: The operation could not be completed\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.",
+      "source": "http://127.0.0.1:33641/assets/js/firebasejs/10-12-0/firebase-firestore-compat-8b9c1587.js",
+      "line": 0,
+      "column": 6301,
+      "affectsReadiness": true
+    }
+  ],
+  "failedResources": [
+    {
+      "phase": "download",
+      "page": "https://reywkwk.web.id/",
+      "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js.map",
+      "kind": "network",
+      "message": "Asset redirect left the authorized origin.",
+      "status": 200
+    },
+    {
+      "phase": "download",
+      "page": "https://reywkwk.web.id/",
+      "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js.map",
+      "kind": "network",
+      "message": "Asset redirect left the authorized origin.",
+      "status": 200
+    },
+    {
+      "phase": "download",
+      "page": "https://reywkwk.web.id/",
+      "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js.map",
+      "kind": "network",
+      "message": "Asset redirect left the authorized origin.",
+      "status": 200
+    },
+    {
+      "phase": "download",
+      "page": "https://reywkwk.web.id/",
+      "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js.map",
+      "kind": "network",
+      "message": "Asset redirect left the authorized origin.",
+      "status": 200
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://freeimage.host/i/CCg5JQS",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://files.catbox.moe/c3h6bz.jpg",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://files.catbox.moe/v44zev.jpg",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://files.catbox.moe/9n442m.png",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://files.catbox.moe/eh3l4l.jpg",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=55289&CVER=22&X-HTTP-Session-Id=REDACTED&zx=r5xzavqg70dv&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=REDACTED",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=y94kpqx009pv",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=71291&CVER=22&X-HTTP-Session-Id=REDACTED&zx=if08dreh7f5e&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=1wzodnxajsfb",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=59916&CVER=22&X-HTTP-Session-Id=REDACTED&zx=7fr0v5d67s04&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=dv2ktxo4n1j8",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Write/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=90300&CVER=22&X-HTTP-Session-Id=REDACTED&zx=lb0pct1f7pfl&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=14815&CVER=22&X-HTTP-Session-Id=REDACTED&zx=ef7nz99o75dg&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=ufftd7oab3l6",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=j2d1klrf5spa",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Write/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=22447&CVER=22&X-HTTP-Session-Id=REDACTED&zx=f5e30wdjepr5&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=s6tz5xxcna9y",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=25943&CVER=22&X-HTTP-Session-Id=REDACTED&zx=17iv0lexego9&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=g1roopqsbwtb",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?VER=8&database=projects%2Frey-market-52cb3%2Fdatabases%2F%28default%29&RID=32670&CVER=22&X-HTTP-Session-Id=REDACTED&zx=hrlqsnv90gp7&t=1",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "fetch",
+      "affectsReadiness": false,
+      "ignoredReason": "Optional external runtime request was intentionally blocked during offline validation; the clone remained visually stable."
+    },
+    {
+      "phase": "clone",
+      "page": "http://127.0.0.1:33641/",
+      "route": "/",
+      "url": "https://www.google.com/images/cleardot.gif?zx=x5kkm4t0pw5f",
+      "kind": "external",
+      "message": "net::ERR_BLOCKED_BY_CLIENT.Inspector",
+      "resourceType": "image",
+      "affectsReadiness": true
+    }
+  ],
+  "visualComparisons": [
+    {
+      "page": "https://reywkwk.web.id/",
+      "route": "/",
+      "viewport": "desktop",
+      "baseline": "screenshots/baseline/desktop/home.png",
+      "actual": "screenshots/validation/desktop/home.png",
+      "diff": "screenshots/diff/desktop/home.png",
+      "similarityPercent": 95.5,
+      "differentPixels": 58339,
+      "totalPixels": 1296000,
+      "passed": true
+    },
+    {
+      "page": "https://reywkwk.web.id/",
+      "route": "/",
+      "viewport": "mobile",
+      "baseline": "screenshots/baseline/mobile/home.png",
+      "actual": "screenshots/validation/mobile/home.png",
+      "diff": "screenshots/diff/mobile/home.png",
+      "similarityPercent": 98.54,
+      "differentPixels": 4803,
+      "totalPixels": 329160,
+      "passed": true
+    }
+  ],
+  "checks": {
+    "routesDiscovered": 1,
+    "routesValidated": 1,
+    "routesPassed": 1,
+    "spaFallbacksValidated": 0,
+    "sourceRuntimeErrors": 1,
+    "cloneRuntimeErrors": 2,
+    "ignoredCloneRuntimeErrors": 0,
+    "corsFailures": 0,
+    "forbiddenFailures": 0,
+    "cloneResourceFailures": 13,
+    "ignoredCloneResourceFailures": 9,
+    "visualComparisons": 2,
+    "visualComparisonsPassed": 2
+  }
+}

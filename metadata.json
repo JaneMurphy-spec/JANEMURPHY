@@ -1,0 +1,8 @@
+{
+  "name": "JaneMarket",
+  "description": "JaneMarket - Platform Aplikasi Premium",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

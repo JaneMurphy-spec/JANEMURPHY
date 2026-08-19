@@ -1,0 +1,287 @@
+[
+  {
+    "url": "https://reywkwk.web.id/",
+    "localPath": "index.html",
+    "title": "ReyMarket - Platform Aplikasi Premium",
+    "status": 200,
+    "loadMs": 7398,
+    "headers": {
+      "cache-control": "max-age=600",
+      "content-length": "87794",
+      "content-type": "text/html; charset=utf-8",
+      "last-modified": "Fri, 24 Jul 2026 23:14:47 GMT",
+      "server": "GitHub.com"
+    },
+    "internalLinks": [],
+    "externalLinks": [],
+    "headings": [
+      {
+        "level": "h2",
+        "text": "Selamat Datang di ReyMarket"
+      },
+      {
+        "level": "h3",
+        "text": "Detail Produk"
+      },
+      {
+        "level": "h4",
+        "text": "⭐ Ulasan Pelanggan"
+      },
+      {
+        "level": "h3",
+        "text": "Riwayat Pesanan"
+      },
+      {
+        "level": "h3",
+        "text": "Semua Testimoni"
+      },
+      {
+        "level": "h3",
+        "text": "Beri Testimoni"
+      },
+      {
+        "level": "h3",
+        "text": "Manajemen Reseller"
+      },
+      {
+        "level": "h3",
+        "text": "Kelola Harga Reseller"
+      },
+      {
+        "level": "h3",
+        "text": "Admin Dashboard"
+      },
+      {
+        "level": "h4",
+        "text": "📊 Statistik"
+      },
+      {
+        "level": "h3",
+        "text": "Total Pesanan"
+      },
+      {
+        "level": "h3",
+        "text": "Total Pendapatan"
+      },
+      {
+        "level": "h3",
+        "text": "Total Produk"
+      },
+      {
+        "level": "h3",
+        "text": "Testimoni"
+      },
+      {
+        "level": "h4",
+        "text": "📦 Manajemen Produk"
+      },
+      {
+        "level": "h4",
+        "text": "⭐ Kelola Testimoni"
+      }
+    ],
+    "meta": {
+      "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+      "theme-color": "#0066ff",
+      "apple-mobile-web-app-capable": "yes",
+      "apple-mobile-web-app-status-bar-style": "black-translucent",
+      "apple-mobile-web-app-title": "ReyMarket"
+    },
+    "structuredData": [],
+    "network": [
+      {
+        "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js",
+        "contentType": "text/javascript; charset=UTF-8",
+        "status": 200
+      },
+      {
+        "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js",
+        "contentType": "text/javascript; charset=UTF-8",
+        "status": 200
+      },
+      {
+        "url": "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js",
+        "contentType": "text/javascript; charset=UTF-8",
+        "status": 200
+      },
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+        "contentType": "text/css; charset=utf-8",
+        "status": 200
+      },
+      {
+        "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+        "contentType": "text/css; charset=utf-8",
+        "status": 200
+      },
+      {
+        "url": "https://files.catbox.moe/bb7cnu.png",
+        "contentType": "image/png",
+        "status": 200
+      },
+      {
+        "url": "https://files.catbox.moe/ulwahh.jpg",
+        "contentType": "image/jpeg",
+        "status": 200
+      },
+      {
+        "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-regular-400.woff2",
+        "contentType": "application/octet-stream; charset=utf-8",
+        "status": 200
+      },
+      {
+        "url": "https://files.catbox.moe/n8gjj4.png",
+        "contentType": "image/png",
+        "status": 200
+      },
+      {
+        "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2",
+        "contentType": "application/octet-stream; charset=utf-8",
+        "status": 200
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuDyYMZg.ttf",
+        "contentType": "font/ttf",
+        "status": 200
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+        "contentType": "font/ttf",
+        "status": 200
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf",
+        "contentType": "font/ttf",
+        "status": 200
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf",
+        "contentType": "font/ttf",
+        "status": 200
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf",
+        "contentType": "font/ttf",
+        "status": 200
+      },
+      {
+        "url": "https://files.catbox.moe/v44zev.jpg",
+        "contentType": "image/jpeg",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=ttp3r7sgnfuk",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=32rxjd7ezxzh",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://files.catbox.moe/9n442m.png",
+        "contentType": "image/png",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=gyfc4nt4nev1",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=arucxo3tpxku",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=16cpdoq755ex",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=vr6b925m9sp5",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=f8gnbhe2tk4n",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://files.catbox.moe/c3h6bz.jpg",
+        "contentType": "image/jpeg",
+        "status": 200
+      },
+      {
+        "url": "https://files.catbox.moe/eh3l4l.jpg",
+        "contentType": "image/jpeg",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=vtaibqvxvzhm",
+        "contentType": "image/gif",
+        "status": 200
+      },
+      {
+        "url": "https://www.google.com/images/cleardot.gif?zx=zb6ym4nwc4xo",
+        "contentType": "image/gif",
+        "status": 200
+      }
+    ],
+    "assetCandidates": [
+      "https://files.catbox.moe/bb7cnu.png",
+      "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js",
+      "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js",
+      "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js",
+      "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js",
+      "https://files.catbox.moe/ulwahh.jpg",
+      "https://files.catbox.moe/n8gjj4.png",
+      "https://freeimage.host/i/CCg5JQS",
+      "https://files.catbox.moe/c3h6bz.jpg",
+      "https://files.catbox.moe/v44zev.jpg",
+      "https://files.catbox.moe/9n442m.png",
+      "https://files.catbox.moe/eh3l4l.jpg",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-regular-400.woff2",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2",
+      "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuDyYMZg.ttf",
+      "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+      "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf",
+      "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf",
+      "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf",
+      "https://www.google.com/images/cleardot.gif?zx=ttp3r7sgnfuk",
+      "https://www.google.com/images/cleardot.gif?zx=32rxjd7ezxzh",
+      "https://www.google.com/images/cleardot.gif?zx=gyfc4nt4nev1",
+      "https://www.google.com/images/cleardot.gif?zx=arucxo3tpxku",
+      "https://www.google.com/images/cleardot.gif?zx=16cpdoq755ex",
+      "https://www.google.com/images/cleardot.gif?zx=vr6b925m9sp5",
+      "https://www.google.com/images/cleardot.gif?zx=f8gnbhe2tk4n",
+      "https://www.google.com/images/cleardot.gif?zx=vtaibqvxvzhm"
+    ],
+    "bytes": 461484,
+    "screenshots": [
+      "screenshots/desktop/home.png",
+      "screenshots/mobile/home.png"
+    ],
+    "baselineScreenshots": {
+      "desktop": "screenshots/baseline/desktop/home.png",
+      "mobile": "screenshots/baseline/mobile/home.png"
+    },
+    "runtimeErrors": [
+      {
+        "phase": "source",
+        "page": "https://reywkwk.web.id/",
+        "kind": "console",
+        "message": "[2026-08-04T07:20:12.626Z]  @firebase/firestore: Firestore (10.12.0): Could not reach Cloud Firestore backend. Connection failed 1 times. Most recent error: FirebaseError: [code=unavailable]: The operation could not be completed\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.",
+        "source": "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js",
+        "line": 0,
+        "column": 6301
+      }
+    ],
+    "resourceFailures": [],
+    "redirects": []
+  }
+]
