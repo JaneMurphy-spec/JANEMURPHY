@@ -46,11 +46,11 @@
     body {
       background-color: var(--bg-primary);
       background-image: 
-        radial-gradient(circle at 10% 12%, rgba(24, 68, 150, 0.45) 0%, transparent 44%),
-        radial-gradient(circle at 90% 18%, rgba(18, 55, 135, 0.40) 0%, transparent 42%),
-        radial-gradient(circle at 50% 50%, rgba(14, 45, 110, 0.32) 0%, transparent 48%),
-        radial-gradient(circle at 15% 82%, rgba(20, 60, 140, 0.38) 0%, transparent 44%),
-        radial-gradient(circle at 85% 88%, rgba(26, 75, 160, 0.42) 0%, transparent 45%);
+        radial-gradient(circle at 12% 15%, rgba(20, 60, 150, 0.40) 0%, transparent 45%),
+        radial-gradient(circle at 88% 20%, rgba(15, 48, 130, 0.35) 0%, transparent 42%),
+        radial-gradient(circle at 50% 55%, rgba(12, 40, 105, 0.28) 0%, transparent 50%),
+        radial-gradient(circle at 18% 85%, rgba(18, 55, 135, 0.32) 0%, transparent 45%),
+        radial-gradient(circle at 82% 90%, rgba(24, 70, 155, 0.36) 0%, transparent 46%);
       background-attachment: fixed;
       background-repeat: no-repeat;
       background-size: cover;
@@ -78,30 +78,15 @@
       background: #3f3f46;
     }
 
-    /* Top Announcement Bar */
-    .top-announcement {
-      background-color: #ffffff;
-      color: #000000;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 6px 16px;
-      text-align: center;
-      letter-spacing: 0.3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    /* Navbar */
+    /* Navbar - Clean Sticky Header */
     .navbar {
-      background-color: rgba(9, 9, 11, 0.95);
+      background-color: rgba(9, 9, 11, 0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 50;
-      padding: 12px 18px;
+      padding: 10px 18px;
     }
     .navbar-container {
       max-width: 1440px;
@@ -119,35 +104,54 @@
       color: #ffffff;
     }
     .brand-icon {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       background: #ffffff;
       color: #000000;
-      border-radius: 10px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 18px;
+      font-size: 17px;
       font-family: 'Space Grotesk', sans-serif;
     }
     .brand-text h1 {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.5px;
     }
     .brand-text p {
-      font-size: 10px;
+      font-size: 9.5px;
       color: var(--text-muted);
       letter-spacing: 0.8px;
       text-transform: uppercase;
       font-weight: 700;
     }
 
+    .nav-center-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     /* Buttons */
@@ -155,10 +159,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 9px 18px;
-      border-radius: 10px;
-      font-size: 13px;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 9px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -204,7 +208,7 @@
       transform: translateY(-1px);
     }
     .btn-sm {
-      padding: 7px 14px;
+      padding: 6px 12px;
       font-size: 12px;
     }
     .btn-danger {
@@ -217,107 +221,119 @@
 
     /* Hero Section - Clean, Spacious & Impactful */
     .hero-section {
-      padding: 42px 16px 28px;
+      padding: 38px 16px 20px;
       text-align: center;
-      max-width: 1400px;
+      max-width: 960px;
       margin: 0 auto;
     }
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #131316;
-      border: 1px solid #27272a;
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 20px;
-    }
-    .hero-title {
-      font-size: clamp(30px, 4.5vw, 42px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.25;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
       margin-bottom: 16px;
     }
+    .hero-title {
+      font-size: clamp(26px, 3.8vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
     .hero-title span {
-      background: #ffffff;
-      color: #000000;
-      padding: 2px 10px;
-      border-radius: 6px;
+      background: transparent;
+      color: #60a5fa;
+      padding: 0;
+      border-radius: 0;
     }
     .hero-desc {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-secondary);
-      max-width: 900px;
-      margin: 0 auto 28px;
-      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto 6px;
+      line-height: 1.65;
     }
 
-    /* Search & Filter Bar - Spacious Full Width */
+    /* Search & Filter Bar - Spacious & Clean */
     .search-filter-wrapper {
-      max-width: 1400px;
-      margin: 0 auto 24px;
+      max-width: 1440px;
+      margin: 0 auto 20px;
       padding: 0 16px;
       width: 100%;
     }
+    .filter-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
     .search-box-container {
       display: flex;
-      gap: 12px;
-      background: #131316;
+      gap: 10px;
+      background: #111114;
       border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 8px 10px 8px 18px;
+      border-radius: 12px;
+      padding: 6px 10px 6px 14px;
       align-items: center;
       transition: all 0.2s;
+      flex: 1;
+      min-width: 240px;
     }
     .search-box-container:focus-within {
-      border-color: #ffffff;
-      box-shadow: 0 0 0 1px #ffffff;
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 1px #60a5fa;
     }
     .search-box-container i {
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 14px;
     }
     .search-input {
       background: transparent;
       border: none;
       outline: none;
       color: #ffffff;
-      font-size: 14px;
+      font-size: 13.5px;
       width: 100%;
     }
     .search-input::placeholder {
       color: var(--text-muted);
+      font-size: 13px;
     }
 
     /* Category Navigation - Generous Pills */
     .category-tabs {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       overflow-x: auto;
-      padding-bottom: 6px;
-      margin-top: 16px;
+      padding-bottom: 4px;
+      margin-top: 10px;
       scrollbar-width: none;
     }
     .category-tabs::-webkit-scrollbar {
       display: none;
     }
     .category-btn {
-      background: #131316;
+      background: #111114;
       color: var(--text-secondary);
       border: 1px solid var(--border-color);
-      padding: 9px 18px;
-      border-radius: 30px;
-      font-size: 13px;
+      padding: 7px 15px;
+      border-radius: 20px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       transition: all 0.2s;
     }
     .category-btn:hover {
@@ -332,9 +348,9 @@
     }
     .category-count {
       background: rgba(0, 0, 0, 0.2);
-      padding: 2px 7px;
-      border-radius: 12px;
-      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 10.5px;
     }
     .category-btn.active .category-count {
       background: rgba(0, 0, 0, 0.15);
@@ -603,6 +619,116 @@
       color: #000000;
     }
 
+    /* Stock Status Real-Time Pills */
+    .stock-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+    .stock-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .stock-ready {
+      color: #4ade80;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+    }
+    .stock-ready .stock-dot {
+      background: #22c55e;
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.7);
+    }
+    .stock-limited {
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.10);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+    .stock-limited .stock-dot {
+      background: #f59e0b;
+      box-shadow: 0 0 6px rgba(245, 158, 11, 0.7);
+    }
+    .stock-preorder {
+      color: #60a5fa;
+      background: rgba(59, 130, 246, 0.10);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+    .stock-preorder .stock-dot {
+      background: #3b82f6;
+      box-shadow: 0 0 6px rgba(59, 130, 246, 0.7);
+    }
+
+    /* Interactive Quick Checkout Payment & Copy Box */
+    .checkout-payment-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .checkout-payment-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .checkout-payment-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .checkout-payment-detail {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .checkout-acc-number {
+      font-family: monospace;
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.6px;
+    }
+    .checkout-acc-owner {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .checkout-pay-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .detail-share-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
     /* Product Detail Modal Styles */
     .detail-grid {
       display: grid;
@@ -737,52 +863,61 @@
       color: #ffffff;
     }
 
-    /* Middle Advertisement / Promo Banner (Item #5) */
+    /* Middle Advertisement / Promo Banner (Item #5) - Clean & Integrated */
     .middle-banner {
       max-width: 1440px;
-      margin: 20px auto 36px;
+      margin: 16px auto 32px;
       padding: 0 16px;
       width: 100%;
     }
     .banner-card {
-      background: #ffffff;
-      color: #000000;
-      border-radius: 16px;
-      padding: 28px 24px;
+      background: linear-gradient(135deg, #18181c 0%, #111114 100%);
+      color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 22px 26px;
       display: flex;
-      flex-direction: column;
-      md-flex-direction: row;
+      flex-direction: row;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+    }
+    [data-theme="light"] .banner-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      color: #09090b;
+      border-color: #cbd5e1;
     }
     .banner-content {
       flex: 1;
     }
     .banner-badge {
       display: inline-block;
-      background: #000000;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-bottom: 10px;
+      background: rgba(234, 179, 8, 0.12);
+      color: #eab308;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .banner-title {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 6px;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+    [data-theme="light"] .banner-title {
+      color: #09090b;
     }
     .banner-subtitle {
-      font-size: 13px;
-      color: #3f3f46;
+      font-size: 12.5px;
+      color: var(--text-secondary);
       line-height: 1.5;
     }
     .banner-cta {
@@ -1940,10 +2075,10 @@
        LIGHT THEME STYLING ([data-theme="light"])
        ======================================================== */
     [data-theme="light"] {
-      --bg-primary: #f1f5f9;
+      --bg-primary: #f8fafc;
       --bg-secondary: #ffffff;
       --bg-card: #ffffff;
-      --bg-card-hover: #f8fafc;
+      --bg-card-hover: #f1f5f9;
       --border-color: #e2e8f0;
       --border-light: #cbd5e1;
       --text-primary: #09090b;
@@ -1957,18 +2092,19 @@
 
     [data-theme="light"] body {
       background-color: var(--bg-primary);
-      background-image: 
-        radial-gradient(circle at 10% 12%, rgba(186, 215, 255, 0.7) 0%, transparent 45%),
-        radial-gradient(circle at 90% 18%, rgba(205, 228, 255, 0.65) 0%, transparent 42%),
-        radial-gradient(circle at 50% 50%, rgba(219, 234, 254, 0.55) 0%, transparent 50%),
-        radial-gradient(circle at 15% 82%, rgba(199, 210, 254, 0.6) 0%, transparent 44%),
-        radial-gradient(circle at 85% 88%, rgba(191, 219, 254, 0.65) 0%, transparent 45%);
+      background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
       color: var(--text-primary);
     }
 
     [data-theme="light"] .navbar {
       background-color: rgba(255, 255, 255, 0.94);
       border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .nav-link {
+      color: #64748b;
+    }
+    [data-theme="light"] .nav-link:hover {
+      color: #09090b;
     }
     [data-theme="light"] .brand-logo {
       color: #09090b;
@@ -1977,19 +2113,22 @@
       background: #09090b;
       color: #ffffff;
     }
-    [data-theme="light"] .top-announcement {
-      background-color: #09090b;
-      color: #ffffff;
-    }
     [data-theme="light"] .hero-tag {
-      background: #ffffff;
+      background: rgba(0, 0, 0, 0.03);
       border-color: #e2e8f0;
+      color: #475569;
+    }
+    [data-theme="light"] .hero-tag strong {
       color: #09090b;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    [data-theme="light"] .hero-title {
+      color: #09090b;
     }
     [data-theme="light"] .hero-title span {
-      background: #09090b;
-      color: #ffffff;
+      color: #2563eb;
+    }
+    [data-theme="light"] .hero-desc {
+      color: #64748b;
     }
     [data-theme="light"] .search-box-container {
       background: #ffffff;
@@ -2199,9 +2338,19 @@
     [data-theme="light"] .detail-perk-item,
     [data-theme="light"] .variant-radio-label,
     [data-theme="light"] .stat-card,
-    [data-theme="light"] .payment-item {
+    [data-theme="light"] .payment-item,
+    [data-theme="light"] .checkout-payment-box,
+    [data-theme="light"] .detail-share-strip {
       background: #f8fafc;
       border-color: #e2e8f0;
+      color: #09090b;
+    }
+    [data-theme="light"] .checkout-payment-detail {
+      background: #ffffff;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .checkout-payment-title,
+    [data-theme="light"] .checkout-acc-number {
       color: #09090b;
     }
     [data-theme="light"] .detail-perk-item {
@@ -2340,12 +2489,6 @@
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <div class="top-announcement" id="topAnnouncement">
-    <i class="fa-solid fa-bolt"></i>
-    <span id="announcementText">⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS & E-Wallet Lengkap</span>
-  </div>
-
   <!-- Navbar -->
   <header class="navbar">
     <div class="navbar-container">
@@ -2353,9 +2496,17 @@
         <div class="brand-icon">JM</div>
         <div class="brand-text">
           <h1 id="navStoreName">JaneMarket</h1>
-          <p id="navStoreTagline">PREMIUM STORE</p>
+          <p id="navStoreTagline">OFFICIAL STORE</p>
         </div>
       </a>
+
+      <!-- Center Navigation Links (Desktop) -->
+      <nav class="nav-center-links nav-desktop-only">
+        <a href="#productGrid" class="nav-link" onclick="resetFilter()"><i class="fa-solid fa-layer-group"></i> Katalog</a>
+        <a href="#middleBannerSection" class="nav-link"><i class="fa-solid fa-tag"></i> Promo</a>
+        <a href="#testimonialsSection" class="nav-link"><i class="fa-solid fa-star"></i> Testimoni</a>
+        <a href="#faqSection" class="nav-link"><i class="fa-solid fa-circle-question"></i> Bantuan</a>
+      </nav>
 
       <div class="nav-actions">
         <!-- Theme Toggle Button (Dark / Light Mode) -->
@@ -2386,12 +2537,6 @@
           <span>Dashboard</span>
         </button>
 
-        <!-- Tombol Login / Portal Admin -->
-        <button class="btn btn-outline btn-sm nav-desktop-only" onclick="handleAdminBtnClick()" id="btnAdminNav" title="Buka Portal Admin">
-          <i class="fa-solid fa-shield-halved"></i>
-          <span id="adminNavText">Portal Admin</span>
-        </button>
-
         <!-- Tombol Garis Tiga / Side Drawer Menu -->
         <button class="btn btn-outline btn-sm" onclick="toggleSideMenu()" id="btnHamburgerNav" title="Buka Menu & Navigasi" style="font-weight: 700;">
           <i class="fa-solid fa-bars"></i>
@@ -2401,29 +2546,27 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section - Clean & Minimalist -->
   <section class="hero-section">
     <div class="hero-tag">
-      <i class="fa-solid fa-circle-check" style="color: #22c55e;"></i>
-      <span>Official Store Terpercaya Sejak 2023</span>
+      <i class="fa-solid fa-shield-halved" style="color: #22c55e;"></i>
+      <span>Official Store Terpercaya • <strong>Garansi Resmi 100%</strong></span>
     </div>
     <h2 class="hero-title">
-      Pusat Aplikasi Premium, Topup Game & <span>Jasa Desain</span>
+      Pusat Aplikasi Premium & Topup Game <span>Terlengkap</span>
     </h2>
     <p class="hero-desc" id="heroDesc">
-      Nikmati kemudahan berlangganan aplikasi premium legal, topup diamond game instan hitungan menit, serta jasa pembuatan poster profesional bergaransi resmi.
+      Nikmati kemudahan berlangganan aplikasi premium legal, topup diamond game instan, serta jasa pembuatan poster profesional bergaransi resmi.
     </p>
   </section>
 
   <!-- Search & Category Bar (Requirements #2 & #6) -->
   <div class="search-filter-wrapper">
-    <div class="search-box-container">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" class="search-input" placeholder="Cari aplikasi premium, game topup, atau jasa desain poster..." oninput="handleSearch(this.value)">
-      <button class="btn btn-white btn-sm" onclick="document.getElementById('searchInput').focus()">
+    <div class="filter-header-bar">
+      <div class="search-box-container">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <span>Cari</span>
-      </button>
+        <input type="text" id="searchInput" class="search-input" placeholder="Cari aplikasi premium, game topup, atau jasa desain poster..." oninput="handleSearch(this.value)">
+      </div>
     </div>
 
     <!-- Category Tabs Filter (Requirement #2) -->
@@ -2511,7 +2654,7 @@
   </section>
 
   <!-- Customer Reviews & Testimonials Section -->
-  <section class="section-wrapper">
+  <section class="section-wrapper" id="testimonialsSection">
     <div class="section-header">
       <h3 class="section-title">
         <i class="fa-solid fa-star" style="color: #eab308;"></i>
@@ -2599,7 +2742,7 @@
   </section>
 
   <!-- FAQ Section -->
-  <section class="section-wrapper">
+  <section class="section-wrapper" id="faqSection">
     <div class="section-header">
       <h3 class="section-title">
         <i class="fa-solid fa-circle-question" style="color: #ffffff;"></i>
@@ -3023,6 +3166,7 @@
                   <tr>
                     <th>Produk</th>
                     <th>Kategori</th>
+                    <th>Status Stok</th>
                     <th>Harga Mulai</th>
                     <th>Terjual</th>
                     <th>Garansi / Badge</th>
@@ -3175,6 +3319,21 @@
           </div>
         </div>
 
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Status Stok Real-Time *</label>
+            <select id="prodFormStockStatus" class="form-select" onchange="toggleStockCountInput(this.value)">
+              <option value="ready">Ready Stock (Hijau)</option>
+              <option value="limited">Slot Terbatas / Tersisa (Kuning)</option>
+              <option value="preorder">Pre-Order (Biru)</option>
+            </select>
+          </div>
+          <div class="form-group" id="prodStockCountGroup">
+            <label class="form-label">Jumlah Slot / Stok (Opsional)</label>
+            <input type="number" id="prodFormStockCount" class="form-input" placeholder="contoh: 3 / 5 (kosongkan jika unlimited)">
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label" id="prodImageLabel">URL Gambar / Foto Produk * (Opsional untuk Topup)</label>
           <input type="text" id="prodFormImage" class="form-input" placeholder="https://images.unsplash.com/...">
@@ -3264,6 +3423,7 @@
             <div class="detail-tag-row">
               <span class="detail-tag-badge" id="detailBadge">BEST SELLER</span>
               <span class="detail-tag-category" id="detailCategory">Aplikasi Premium</span>
+              <span id="detailStockBadge"></span>
             </div>
 
             <h3 class="detail-title-text" id="detailName">-</h3>
@@ -3281,6 +3441,21 @@
               <span class="detail-price-val" id="detailPrice">Rp 0</span>
               <span class="detail-price-orig" id="detailOrigPrice">Rp 0</span>
               <span class="detail-discount-badge" id="detailDiscount">HEMAT 30%</span>
+            </div>
+
+            <!-- Share & Copy Link Strip (Feature #5) -->
+            <div class="detail-share-strip">
+              <span style="font-size: 11.5px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-share-nodes" style="color: #60a5fa;"></i> Bagikan Produk:
+              </span>
+              <div style="display: flex; gap: 6px;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="copyCurrentProductLink()" title="Salin Tautan Produk">
+                  <i class="fa-solid fa-link"></i> Salin Link
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="shareCurrentProduct()" title="Bagikan ke WhatsApp/Media Sosial">
+                  <i class="fa-brands fa-whatsapp"></i> Share
+                </button>
+              </div>
             </div>
 
             <!-- Full Description -->
@@ -3374,8 +3549,8 @@
           </div>
           <div class="form-group">
             <label class="form-label">Metode Pembayaran</label>
-            <select id="orderPaymentMethod" class="form-select">
-              <option value="QRIS All Payment">QRIS All Payment</option>
+            <select id="orderPaymentMethod" class="form-select" onchange="updateCheckoutPaymentInfo()">
+              <option value="QRIS All Payment">QRIS All Payment (BCA/Mandiri/E-Wallet)</option>
               <option value="DANA">DANA</option>
               <option value="GoPay">GoPay</option>
               <option value="OVO">OVO</option>
@@ -3385,6 +3560,11 @@
               <option value="SeaBank">SeaBank</option>
             </select>
           </div>
+        </div>
+
+        <!-- Dynamic Quick Payment & Salin Rekening Box (Feature #3) -->
+        <div class="checkout-payment-box" id="checkoutPaymentBox">
+          <!-- Injected via JS based on selected payment method -->
         </div>
 
         <div class="form-group">
@@ -3515,6 +3695,8 @@
           soldCount: 428,
           rating: 4.9,
           badge: "BEST SELLER",
+          stockStatus: "limited",
+          stockCount: 4,
           warranty: "Garansi 30 Hari",
           description: "Akun Netflix Premium kualitas Ultra HD 4K. Anti on-hold, anti screen limit. Support Android, iOS, Smart TV, Laptop/PC.",
           variants: [
@@ -3534,6 +3716,7 @@
           soldCount: 356,
           rating: 4.9,
           badge: "POPULER",
+          stockStatus: "ready",
           warranty: "Garansi Full",
           description: "Dengarkan musik tanpa iklan, download lagu offline unlimited, kualitas audio tertinggi (320kbps). Bisa di akun pribadi atau akun baru.",
           variants: [
@@ -3553,6 +3736,7 @@
           soldCount: 512,
           rating: 5,
           badge: "HOT PROMO",
+          stockStatus: "ready",
           warranty: "Garansi 1 Tahun / Lifetime",
           description: "Upgrade Canva Pro langsung di email pribadi. Akses 100+ juta foto, template, hapus background 1-klik, Brand Kit, magic resize.",
           variants: [
@@ -3572,6 +3756,7 @@
           soldCount: 289,
           rating: 4.8,
           badge: "GARANSI",
+          stockStatus: "ready",
           warranty: "Garansi Full",
           description: "Nonton video YouTube tanpa jeda iklan, pemutaran di latar belakang saat layar mati, serta akses gratis YouTube Music Premium.",
           variants: [
@@ -3591,6 +3776,8 @@
           soldCount: 194,
           rating: 4.9,
           badge: "AI PRO",
+          stockStatus: "limited",
+          stockCount: 2,
           warranty: "Garansi 30 Hari",
           description: "Akses GPT-4o, DALL-E 3, Browsing, Advanced Data Analysis, pembuatan Custom GPTs tanpa batas kuota gratis.",
           variants: [
@@ -3610,6 +3797,7 @@
           soldCount: 220,
           rating: 4.9,
           badge: "EDITOR CHOICE",
+          stockStatus: "ready",
           warranty: "Garansi Full",
           description: "Buka semua efek pro, transisi viral, auto-caption AI, cloud storage 100GB, dan ekspor 4K 60FPS tanpa watermark.",
           variants: [
@@ -3628,6 +3816,7 @@
           soldCount: 840,
           rating: 5,
           badge: "INSTAN 1 MENIT",
+          stockStatus: "ready",
           warranty: "100% Legal & Aman",
           description: "Top Up Diamond Mobile Legends Resmi, Cukup Masukkan User ID dan Zone ID. Proses kilat 1-5 menit langsung masuk!",
           variants: [
@@ -3650,6 +3839,7 @@
           soldCount: 670,
           rating: 4.9,
           badge: "MURAH",
+          stockStatus: "ready",
           warranty: "100% Legal",
           description: "Top Up Diamond Free Fire termurah & terpercaya. Cukup cantumkan Player ID Free Fire Anda.",
           variants: [
@@ -3672,6 +3862,7 @@
           soldCount: 310,
           rating: 4.9,
           badge: "RIOT OFFICIAL",
+          stockStatus: "ready",
           warranty: "100% Legal",
           description: "Topup Valorant Points (Riot ID: Username#TAG) region Indonesia/Asia Pacific. Siap borong Night Market!",
           variants: [
@@ -3692,6 +3883,7 @@
           soldCount: 165,
           rating: 5,
           badge: "KREATIF",
+          stockStatus: "ready",
           warranty: "Revisi Sampai Puas",
           description: "Desain poster profesional untuk konser, festival kampus, seminar, workshop, webinar, dan acara komersial.",
           variants: [
@@ -3711,6 +3903,7 @@
           soldCount: 210,
           rating: 4.9,
           badge: "BRANDING",
+          stockStatus: "ready",
           warranty: "Revisi Cepat",
           description: "Desain banner jualan, spanduk toko, flyer brosur, menu makanan/minuman, banner marketplace Tokopedia/Shopee.",
           variants: [
@@ -3730,6 +3923,7 @@
           soldCount: 180,
           rating: 5,
           badge: "ESTETIK",
+          stockStatus: "ready",
           warranty: "Revisi Siap",
           description: "Desain konten media sosial aesthetic & profesional. Meningkatkan engagement dan kepercayaan customer olshop/personal branding.",
           variants: [
