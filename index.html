@@ -17,20 +17,33 @@
 
   <style>
     :root {
-      --bg-primary: #09090b;
-      --bg-secondary: #121215;
-      --bg-card: #18181b;
-      --bg-card-hover: #222226;
-      --border-color: #27272a;
-      --border-light: #3f3f46;
+      --bg-primary: #0a0b14;
+      --bg-secondary: #101222;
+      --bg-card: #15182e;
+      --bg-card-hover: #1d2140;
+      --border-color: #262b4d;
+      --border-light: #3d457a;
       --text-primary: #ffffff;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
+      --text-secondary: #a5b4fc;
+      --text-muted: #7986b8;
       --accent-white: #ffffff;
       --accent-black: #000000;
-      --badge-bg: #27272a;
+      
+      /* Vibrant Core Palette */
+      --brand-primary: #6366f1;
+      --brand-hover: #4f46e5;
+      --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      --accent-indigo: #6366f1;
+      --accent-purple: #a855f7;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --accent-sky: #38bdf8;
+
+      --badge-bg: #262b4d;
       --badge-text: #ffffff;
-      --success-green: #22c55e;
+      --success-green: #10b981;
       --wa-color: #25d366;
     }
 
@@ -42,15 +55,15 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Ambient Radiant Dark Blue Mesh Glow Background */
+    /* Ambient Radiant Colorful Mesh Glow Background */
     body {
       background-color: var(--bg-primary);
       background-image: 
-        radial-gradient(circle at 12% 15%, rgba(20, 60, 150, 0.40) 0%, transparent 45%),
-        radial-gradient(circle at 88% 20%, rgba(15, 48, 130, 0.35) 0%, transparent 42%),
-        radial-gradient(circle at 50% 55%, rgba(12, 40, 105, 0.28) 0%, transparent 50%),
-        radial-gradient(circle at 18% 85%, rgba(18, 55, 135, 0.32) 0%, transparent 45%),
-        radial-gradient(circle at 82% 90%, rgba(24, 70, 155, 0.36) 0%, transparent 46%);
+        radial-gradient(circle at 12% 12%, rgba(99, 102, 241, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at 88% 16%, rgba(168, 85, 247, 0.24) 0%, transparent 42%),
+        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 18% 85%, rgba(236, 72, 153, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 82% 90%, rgba(99, 102, 241, 0.26) 0%, transparent 46%);
       background-attachment: fixed;
       background-repeat: no-repeat;
       background-size: cover;
@@ -68,19 +81,19 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #09090b;
+      background: #0a0b14;
     }
     ::-webkit-scrollbar-thumb {
-      background: #27272a;
+      background: #262b4d;
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #3f3f46;
+      background: #3d457a;
     }
 
     /* Navbar - Clean Sticky Header */
     .navbar {
-      background-color: rgba(9, 9, 11, 0.92);
+      background-color: rgba(10, 11, 20, 0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
@@ -106,24 +119,28 @@
     .brand-icon {
       width: 38px;
       height: 38px;
-      background: #ffffff;
-      color: #000000;
-      border-radius: 9px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      color: #ffffff;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
       font-size: 17px;
       font-family: 'Space Grotesk', sans-serif;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.45);
     }
     .brand-text h1 {
       font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 60%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .brand-text p {
       font-size: 9.5px;
-      color: var(--text-muted);
+      color: #818cf8;
       letter-spacing: 0.8px;
       text-transform: uppercase;
       font-weight: 700;
@@ -171,23 +188,26 @@
       border: 1px solid transparent;
     }
     .btn-white {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      color: #ffffff;
+      border-color: #818cf8;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
     }
     .btn-white:hover {
-      background: #e4e4e7;
-      border-color: #e4e4e7;
+      background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+      border-color: #a5b4fc;
       transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
     }
     .btn-outline {
-      background: transparent;
+      background: rgba(21, 24, 46, 0.6);
       color: #ffffff;
       border-color: var(--border-color);
     }
     .btn-outline:hover {
       background: var(--bg-card);
-      border-color: var(--border-light);
+      border-color: #6366f1;
+      color: #ffffff;
     }
     .btn-dark {
       background: var(--bg-card);
@@ -196,16 +216,18 @@
     }
     .btn-dark:hover {
       background: var(--bg-card-hover);
-      border-color: var(--border-light);
+      border-color: #6366f1;
     }
     .btn-wa {
       background: #25d366;
       color: #000000;
       font-weight: 700;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
     }
     .btn-wa:hover {
       background: #1eb956;
       transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
     }
     .btn-sm {
       padding: 6px 12px;
@@ -221,7 +243,7 @@
 
     /* Hero Section - Clean, Spacious & Impactful */
     .hero-section {
-      padding: 38px 16px 20px;
+      padding: 36px 16px 20px;
       text-align: center;
       max-width: 960px;
       margin: 0 auto;
@@ -230,17 +252,18 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-color);
-      padding: 5px 14px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.38);
+      padding: 6px 16px;
       border-radius: 20px;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: #c7d2fe;
       margin-bottom: 16px;
+      box-shadow: 0 0 16px rgba(99, 102, 241, 0.15);
     }
     .hero-title {
-      font-size: clamp(26px, 3.8vw, 36px);
+      font-size: clamp(26px, 3.8vw, 38px);
       font-weight: 800;
       letter-spacing: -0.6px;
       line-height: 1.25;
@@ -248,8 +271,9 @@
       color: #ffffff;
     }
     .hero-title span {
-      background: transparent;
-      color: #60a5fa;
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       padding: 0;
       border-radius: 0;
     }
@@ -260,6 +284,58 @@
       margin: 0 auto 6px;
       line-height: 1.65;
     }
+
+    /* Trust Features Grid - Colorful 4-Pillars */
+    .trust-features-grid {
+      max-width: 1440px;
+      margin: 8px auto 22px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .trust-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .trust-features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .trust-feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+    .trust-feature-card:hover {
+      transform: translateY(-2px);
+      border-color: #6366f1;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+    }
+    .feat-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .icon-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
+    .icon-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); }
+    .icon-cyan  { background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.35); }
+    .icon-purple{ background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35); }
+    .feat-text h4 { font-size: 12.5px; font-weight: 700; color: #ffffff; margin-bottom: 2px; }
+    .feat-text p { font-size: 11px; color: var(--text-muted); }
 
     /* Search & Filter Bar - Spacious & Clean */
     .search-filter-wrapper {
@@ -279,21 +355,21 @@
     .search-box-container {
       display: flex;
       gap: 10px;
-      background: #111114;
+      background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 6px 10px 6px 14px;
+      padding: 8px 12px 8px 16px;
       align-items: center;
       transition: all 0.2s;
       flex: 1;
       min-width: 240px;
     }
     .search-box-container:focus-within {
-      border-color: #60a5fa;
-      box-shadow: 0 0 0 1px #60a5fa;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.35);
     }
     .search-box-container i {
-      color: var(--text-muted);
+      color: #818cf8;
       font-size: 14px;
     }
     .search-input {
@@ -322,10 +398,10 @@
       display: none;
     }
     .category-btn {
-      background: #111114;
+      background: var(--bg-secondary);
       color: var(--text-secondary);
       border: 1px solid var(--border-color);
-      padding: 7px 15px;
+      padding: 8px 16px;
       border-radius: 20px;
       font-size: 12.5px;
       font-weight: 600;
@@ -333,28 +409,31 @@
       white-space: nowrap;
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
       transition: all 0.2s;
     }
     .category-btn:hover {
-      border-color: var(--border-light);
+      border-color: #6366f1;
       color: #ffffff;
+      background: var(--bg-card);
     }
     .category-btn.active {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #ffffff;
+      border-color: #818cf8;
       font-weight: 700;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
     }
     .category-count {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 1px 6px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1px 7px;
       border-radius: 10px;
       font-size: 10.5px;
+      color: #c7d2fe;
     }
     .category-btn.active .category-count {
-      background: rgba(0, 0, 0, 0.15);
-      color: #000000;
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
     }
 
     /* Product Grid - Wide & Uncramped */
@@ -377,6 +456,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      color: #ffffff;
+    }
+    .section-title i {
+      color: #f59e0b;
     }
 
     .product-grid {
@@ -393,8 +476,8 @@
 
     /* Product Card - Clean Modern Box */
     .product-card {
-      background: #131316;
-      border: 1px solid #222226;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
       overflow: hidden;
       display: flex;
@@ -406,20 +489,20 @@
       will-change: transform;
     }
     .product-card:hover {
-      border-color: #ffffff;
+      border-color: #6366f1;
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.22), 0 4px 16px rgba(0, 0, 0, 0.6);
     }
     .product-card:active,
     .product-card.card-clicked {
       transform: scale(0.95) !important;
-      border-color: #60a5fa !important;
-      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.35), 0 6px 18px rgba(0, 0, 0, 0.8) !important;
+      border-color: #818cf8 !important;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.4), 0 6px 18px rgba(0, 0, 0, 0.8) !important;
     }
     .product-card .card-ripple {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, rgba(96, 165, 250, 0.25) 60%, transparent 80%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, rgba(99, 102, 241, 0.35) 60%, transparent 80%);
       transform: scale(0);
       animation: cardRippleEffect 0.5s ease-out forwards;
       pointer-events: none;
@@ -439,7 +522,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
-      background: #18181b;
+      background: #111222;
       overflow: hidden;
     }
     .card-img {
@@ -455,27 +538,45 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      background: #ffffff;
-      color: #000000;
-      font-size: 9px;
+      background: linear-gradient(135deg, #f43f5e 0%, #a855f7 100%);
+      color: #ffffff;
+      font-size: 9.5px;
       font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 5px;
+      padding: 3px 9px;
+      border-radius: 6px;
       letter-spacing: 0.5px;
       text-transform: uppercase;
       z-index: 2;
+      box-shadow: 0 4px 10px rgba(244, 63, 94, 0.4);
     }
+    .card-badge.badge-game {
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      box-shadow: 0 4px 10px rgba(6, 182, 212, 0.4);
+    }
+    .card-badge.badge-design {
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+    }
+    .card-badge.badge-app {
+      background: linear-gradient(135deg, #f43f5e 0%, #a855f7 100%);
+      box-shadow: 0 4px 10px rgba(244, 63, 94, 0.4);
+    }
+    .card-badge.badge-general {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+    }
+
     .card-rating {
       position: absolute;
       bottom: 10px;
       right: 10px;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(4px);
-      border: 1px solid var(--border-color);
+      background: rgba(10, 11, 20, 0.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #ffffff;
       font-size: 10px;
       font-weight: 700;
-      padding: 3px 7px;
+      padding: 3px 8px;
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -483,14 +584,14 @@
       z-index: 2;
     }
     .card-rating i {
-      color: #eab308;
+      color: #fbbf24;
     }
 
     /* Game Topup Icon Header */
     .topup-header-box {
       width: 100%;
       aspect-ratio: 1 / 1;
-      background: radial-gradient(circle at center, #222226 0%, #0d0d10 100%);
+      background: radial-gradient(circle at center, #1e1b4b 0%, #0b0c16 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -499,7 +600,7 @@
     .topup-icon-circle {
       width: 68px;
       height: 68px;
-      background: #000000;
+      background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
       border: 2px solid #ffffff;
       border-radius: 50%;
       display: flex;
@@ -507,7 +608,7 @@
       justify-content: center;
       font-size: 28px;
       color: #ffffff;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
     }
 
     .card-body {
@@ -519,8 +620,8 @@
       gap: 6px;
     }
     .card-category {
-      font-size: 10px;
-      color: var(--text-muted);
+      font-size: 10.5px;
+      color: #a5b4fc;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -551,24 +652,30 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      color: #ffffff;
+      color: #fed7aa;
       font-weight: 600;
       font-size: 11px;
+    }
+    .card-sold i {
+      color: #f97316;
     }
     .card-warranty {
       display: flex;
       align-items: center;
       gap: 4px;
-      color: var(--text-muted);
+      color: #86efac;
       font-size: 10px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 50%;
     }
+    .card-warranty i {
+      color: #22c55e;
+    }
     .card-desc {
-      font-size: 11px;
-      color: var(--text-secondary);
+      font-size: 11.5px;
+      color: var(--text-muted);
       line-height: 1.45;
       margin-bottom: 8px;
       display: -webkit-box;
@@ -598,25 +705,28 @@
     .current-price {
       font-size: 15px;
       font-weight: 800;
-      color: #ffffff;
+      color: #38bdf8;
     }
     .card-action-btn {
-      background: #ffffff;
-      color: #000000;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      color: #ffffff;
       font-size: 11px;
       font-weight: 700;
       padding: 6px 12px;
       border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 4px;
-      border: 1px solid #ffffff;
+      gap: 5px;
+      border: 1px solid #818cf8;
       transition: all 0.2s;
+      box-shadow: 0 3px 10px rgba(99, 102, 241, 0.3);
     }
+    .card-action-btn:hover,
     .product-card:hover .card-action-btn {
       background: #25d366;
       border-color: #25d366;
       color: #000000;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
     }
 
     /* Stock Status Real-Time Pills */
@@ -626,7 +736,7 @@
       gap: 5px;
       font-size: 10px;
       font-weight: 700;
-      padding: 2px 7px;
+      padding: 2px 8px;
       border-radius: 6px;
       letter-spacing: 0.2px;
       white-space: nowrap;
@@ -640,8 +750,8 @@
     }
     .stock-ready {
       color: #4ade80;
-      background: rgba(34, 197, 94, 0.10);
-      border: 1px solid rgba(34, 197, 94, 0.25);
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
     }
     .stock-ready .stock-dot {
       background: #22c55e;
@@ -649,8 +759,8 @@
     }
     .stock-limited {
       color: #fbbf24;
-      background: rgba(245, 158, 11, 0.10);
-      border: 1px solid rgba(245, 158, 11, 0.25);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
     }
     .stock-limited .stock-dot {
       background: #f59e0b;
@@ -658,8 +768,8 @@
     }
     .stock-preorder {
       color: #60a5fa;
-      background: rgba(59, 130, 246, 0.10);
-      border: 1px solid rgba(59, 130, 246, 0.25);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.35);
     }
     .stock-preorder .stock-dot {
       background: #3b82f6;
@@ -871,11 +981,11 @@
       width: 100%;
     }
     .banner-card {
-      background: linear-gradient(135deg, #18181c 0%, #111114 100%);
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(124, 58, 237, 0.15) 50%, rgba(244, 63, 94, 0.1) 100%), #121320;
       color: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 22px 26px;
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 16px;
+      padding: 24px 28px;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -883,42 +993,52 @@
       gap: 20px;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     [data-theme="light"] .banner-card {
-      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(244, 63, 94, 0.06) 100%), #ffffff;
       color: #09090b;
       border-color: #cbd5e1;
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.08);
     }
     .banner-content {
       flex: 1;
     }
     .banner-badge {
       display: inline-block;
-      background: rgba(234, 179, 8, 0.12);
-      color: #eab308;
-      border: 1px solid rgba(234, 179, 8, 0.3);
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+      color: #ffffff;
       font-size: 10.5px;
-      font-weight: 700;
-      padding: 3px 8px;
+      font-weight: 800;
+      padding: 3px 10px;
       border-radius: 6px;
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
     }
     .banner-title {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       line-height: 1.3;
       margin-bottom: 4px;
       color: #ffffff;
+      background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     [data-theme="light"] .banner-title {
       color: #09090b;
+      -webkit-text-fill-color: #09090b;
+      background: none;
     }
     .banner-subtitle {
       font-size: 12.5px;
-      color: var(--text-secondary);
+      color: #a5b4fc;
       line-height: 1.5;
+    }
+    [data-theme="light"] .banner-subtitle {
+      color: #475569;
     }
     .banner-cta {
       display: flex;
@@ -1397,27 +1517,25 @@
 
     /* AI Chat Widget (Item #9) */
     .ai-floating-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #ffffff;
-      color: #000000;
-      border: none;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #ffffff;
+      border: 1px solid #a5b4fc;
       border-radius: 50px;
-      padding: 12px 20px;
+      padding: 11px 18px;
       font-size: 13px;
       font-weight: 800;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
       cursor: pointer;
-      z-index: 40;
       transition: all 0.25s ease;
+      position: relative;
     }
     .ai-floating-btn:hover {
-      transform: scale(1.05);
-      background: #e4e4e7;
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      box-shadow: 0 14px 30px rgba(99, 102, 241, 0.55);
     }
     .ai-pulse-dot {
       width: 8px;
@@ -1447,7 +1565,7 @@
       display: none;
       flex-direction: column;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-      z-index: 45;
+      z-index: 100;
       overflow: hidden;
       animation: modalFade 0.2s ease;
     }
@@ -1456,8 +1574,8 @@
     }
     .ai-header {
       padding: 14px 16px;
-      background: #ffffff;
-      color: #000000;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1473,7 +1591,7 @@
       background: transparent;
       border: none;
       font-size: 16px;
-      color: #000000;
+      color: #ffffff;
       cursor: pointer;
       padding: 2px 6px;
     }
@@ -1501,10 +1619,11 @@
     }
     .ai-msg.user {
       align-self: flex-end;
-      background: #ffffff;
-      color: #000000;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      color: #ffffff;
       font-weight: 500;
       border-bottom-right-radius: 2px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
     .ai-quick-chips {
       padding: 8px 12px;
@@ -1515,19 +1634,21 @@
       background: var(--bg-card);
     }
     .ai-chip {
-      background: #09090b;
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
+      background: #0e1020;
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      color: #c7d2fe;
       padding: 4px 10px;
       border-radius: 14px;
       font-size: 11px;
       font-weight: 600;
       white-space: nowrap;
       cursor: pointer;
+      transition: all 0.2s;
     }
     .ai-chip:hover {
       color: #ffffff;
-      border-color: #ffffff;
+      border-color: #818cf8;
+      background: #1e1b4b;
     }
     .ai-input-area {
       padding: 10px 12px;
@@ -1551,13 +1672,14 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: #ffffff;
-      color: #000000;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #ffffff;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
     }
 
     /* Toast Notification */
@@ -1566,8 +1688,9 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%) translateY(-100px);
-      background: #ffffff;
-      color: #000000;
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      color: #ffffff;
+      border: 1px solid #818cf8;
       padding: 10px 20px;
       border-radius: 30px;
       font-size: 13px;
@@ -1575,7 +1698,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 102, 241, 0.4);
       z-index: 200;
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -1597,7 +1720,7 @@
       display: none;
     }
     .sort-chip {
-      background: #18181b;
+      background: #111322;
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
       font-size: 11px;
@@ -1612,14 +1735,15 @@
       transition: all 0.2s;
     }
     .sort-chip:hover {
-      border-color: #ffffff;
+      border-color: #6366f1;
       color: #ffffff;
     }
     .sort-chip.active {
-      background: #27272a;
-      border-color: #ffffff;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.25) 100%);
+      border-color: #818cf8;
       color: #ffffff;
       font-weight: 700;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
     }
 
     /* Live Sales Social Proof Toast (Bottom-Left) */
@@ -1627,15 +1751,15 @@
       position: fixed;
       bottom: 24px;
       left: 20px;
-      background: rgba(18, 18, 21, 0.95);
+      background: rgba(15, 17, 30, 0.95);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
+      border: 1px solid rgba(129, 140, 248, 0.35);
       padding: 10px 14px;
       border-radius: 12px;
       display: flex;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.7), 0 0 15px rgba(99, 102, 241, 0.15);
       z-index: 90;
       max-width: 320px;
       transform: translateY(120px);
@@ -1650,14 +1774,15 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: #27272a;
-      border: 1px solid #ffffff;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      border: 1px solid #a5b4fc;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 14px;
       color: #ffffff;
       flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
     }
     .sales-toast-content {
       font-size: 11px;
@@ -1668,11 +1793,11 @@
       color: #ffffff;
     }
     .sales-toast-product {
-      color: #a1a1aa;
+      color: #c7d2fe;
     }
     .sales-toast-time {
       font-size: 9px;
-      color: var(--wa-color);
+      color: #4ade80;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -1693,7 +1818,7 @@
       margin-top: 20px;
     }
     .review-card {
-      background: #131316;
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 20px;
@@ -1703,9 +1828,9 @@
       transition: all 0.25s ease;
     }
     .review-card:hover {
-      border-color: #ffffff;
+      border-color: #818cf8;
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.18), 0 4px 12px rgba(0, 0, 0, 0.5);
     }
     .review-header {
       display: flex;
@@ -1722,14 +1847,15 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 13px;
       font-weight: 800;
       color: #ffffff;
+      box-shadow: 0 3px 8px rgba(59, 130, 246, 0.35);
     }
     .review-name {
       font-size: 14px;
@@ -1738,13 +1864,13 @@
     }
     .review-badge {
       font-size: 10px;
-      color: var(--wa-color);
+      color: #4ade80;
       display: flex;
       align-items: center;
       gap: 4px;
     }
     .review-stars {
-      color: #eab308;
+      color: #fbbf24;
       font-size: 12px;
       display: flex;
       gap: 3px;
@@ -1758,11 +1884,11 @@
     .review-product-tag {
       font-size: 11px;
       font-weight: 600;
-      color: #ffffff;
-      background: #1c1c21;
+      color: #c7d2fe;
+      background: rgba(99, 102, 241, 0.15);
       padding: 5px 10px;
       border-radius: 8px;
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(129, 140, 248, 0.3);
       align-self: flex-start;
     }
 
@@ -1774,14 +1900,14 @@
       margin-top: 20px;
     }
     .faq-item {
-      background: #131316;
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 14px;
       overflow: hidden;
       transition: all 0.2s ease;
     }
     .faq-item:hover {
-      border-color: var(--border-light);
+      border-color: #818cf8;
     }
     .faq-question {
       padding: 16px 20px;
@@ -1796,11 +1922,11 @@
     }
     .faq-question i {
       transition: transform 0.25s ease;
-      color: var(--text-muted);
+      color: #a5b4fc;
     }
     .faq-item.active .faq-question i {
       transform: rotate(180deg);
-      color: #ffffff;
+      color: #38bdf8;
     }
     .faq-answer {
       max-height: 0;
@@ -2004,20 +2130,31 @@
         padding: 28px 12px;
       }
       .live-sales-toast {
-        bottom: 20px;
+        bottom: 74px;
         left: 10px;
         right: 10px;
         max-width: none;
       }
-      .ai-floating-btn {
-        bottom: 20px;
-        right: 12px;
+      .floating-widgets-group {
+        bottom: 14px;
+        right: 10px;
+        gap: 6px;
       }
+      .livechat-floating-btn,
+      .ai-floating-btn {
+        padding: 8px 12px;
+        font-size: 11.5px;
+        gap: 5px;
+      }
+      .customer-chat-window,
       .ai-chat-window {
-        bottom: 78px;
+        bottom: 64px;
         right: 10px;
         left: 10px;
         width: auto;
+        max-width: none;
+        height: calc(100vh - 90px);
+        max-height: 520px;
       }
     }
 
@@ -2423,13 +2560,40 @@
       color: #09090b;
       border-color: #cbd5e1;
     }
-    [data-theme="light"] .ai-floating-btn {
+    [data-theme="light"] .livechat-floating-btn {
       background: #09090b;
       color: #ffffff;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      border-color: #27272a;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    [data-theme="light"] .livechat-floating-btn:hover {
+      background: #18181b;
+      border-color: #52525b;
+    }
+    [data-theme="light"] .ai-floating-btn {
+      background: #ffffff;
+      color: #09090b;
+      border-color: #cbd5e1;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     [data-theme="light"] .ai-floating-btn:hover {
-      background: #27272a;
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    [data-theme="light"] .customer-chat-window {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    [data-theme="light"] .customer-chat-header {
+      background: #09090b;
+      color: #ffffff;
+    }
+    [data-theme="light"] .customer-chat-setup-box {
+      background: #ffffff;
+    }
+    [data-theme="light"] .customer-chat-messages-box {
+      background: #f8fafc;
     }
     [data-theme="light"] .ai-chat-window {
       background: #ffffff;
@@ -2478,6 +2642,546 @@
       background: #09090b;
       color: #ffffff;
     }
+    /* ========================================================
+       LIVE CHAT ENGINE (Web Chat Admin & Customer Thread Blocks)
+       ======================================================== */
+    /* Floating Chat Widgets Container */
+    .floating-widgets-group {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 95;
+    }
+    .livechat-floating-btn {
+      background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+      color: #ffffff;
+      border: 1px solid #6ee7b7;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 13.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 10px 25px rgba(5, 150, 105, 0.4);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .livechat-floating-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.55);
+    }
+    .livechat-pulse-dot {
+      width: 9px;
+      height: 9px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ffffff;
+      animation: pulse 1.5s infinite;
+    }
+    .livechat-badge-counter {
+      position: absolute;
+      top: -6px;
+      right: -4px;
+      background: #f43f5e;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 12px;
+      border: 2px solid #000000;
+      box-shadow: 0 2px 6px rgba(244, 63, 94, 0.5);
+    }
+
+    /* Customer Live Chat Window */
+    .customer-chat-window {
+      position: fixed;
+      bottom: 84px;
+      right: 24px;
+      width: 380px;
+      max-width: calc(100vw - 32px);
+      height: 520px;
+      max-height: calc(100vh - 120px);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+      z-index: 100;
+      overflow: hidden;
+      animation: modalFade 0.2s ease;
+    }
+    .customer-chat-window.active {
+      display: flex;
+    }
+    .customer-chat-header {
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+      border-bottom: 1px solid rgba(110, 231, 183, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .customer-chat-header-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .customer-chat-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #047857;
+      border: 1px solid #6ee7b7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      position: relative;
+    }
+    .customer-chat-avatar .online-indicator {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border: 2px solid #111114;
+      border-radius: 50%;
+    }
+    .customer-chat-title-box h5 {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .customer-chat-title-box p {
+      font-size: 11px;
+      color: #22c55e;
+      margin: 2px 0 0;
+      font-weight: 600;
+    }
+    .customer-chat-name-tag {
+      background: #18181c;
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 14px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .customer-chat-name-tag strong {
+      color: #ffffff;
+    }
+    .customer-chat-name-tag a {
+      color: #60a5fa;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Customer Name Setup Form Screen */
+    .customer-chat-setup-box {
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      background: #111114;
+      gap: 16px;
+    }
+    .customer-chat-setup-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #1c1c21;
+      border: 1px solid #3f3f46;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+
+    /* Customer Messages Flow */
+    .customer-chat-messages-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #0e0e11;
+    }
+    .chat-bubble {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      word-break: break-word;
+    }
+    .chat-bubble.customer-side {
+      align-self: flex-end;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 500;
+      border-bottom-right-radius: 3px;
+    }
+    .chat-bubble.admin-side {
+      align-self: flex-start;
+      background: #1c1c21;
+      border: 1px solid #27272a;
+      color: #ffffff;
+      border-bottom-left-radius: 3px;
+    }
+    .chat-bubble-sender {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chat-bubble.admin-side .chat-bubble-sender {
+      color: #60a5fa;
+    }
+    .chat-bubble.customer-side .chat-bubble-sender {
+      color: #52525b;
+    }
+    .chat-bubble-time {
+      font-size: 10px;
+      align-self: flex-end;
+      margin-top: 2px;
+      opacity: 0.75;
+    }
+
+    /* Admin Live Chat Dashboard Grid */
+    .admin-chat-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      height: 580px;
+      max-height: 70vh;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111114;
+      border: 1px solid var(--border-color);
+    }
+    @media (max-width: 880px) {
+      .admin-chat-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .admin-chat-threads-sidebar {
+        max-height: 260px;
+      }
+    }
+    .admin-chat-threads-sidebar {
+      background: #16161a;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .admin-threads-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      background: #18181d;
+    }
+    .admin-threads-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* CUSTOMER SEPARATE BLOCK (Kartu Blok Customer) */
+    .admin-customer-thread-card {
+      background: #1c1c21;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+    .admin-customer-thread-card:hover {
+      background: #24242b;
+      border-color: #3f3f46;
+      transform: translateY(-1px);
+    }
+    .admin-customer-thread-card.active {
+      background: #27272f;
+      border-color: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+    /* Nama Customer di Atas Blok */
+    .admin-customer-thread-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .admin-customer-name-label {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .admin-customer-initial-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #3b82f6;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .admin-customer-thread-time {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .admin-customer-thread-snippet {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.35;
+    }
+    .admin-customer-thread-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+    .admin-customer-unread-badge {
+      background: #ef4444;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+    .admin-customer-status-tag {
+      font-size: 10px;
+      font-weight: 600;
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Admin Chat Room (Kolom Kanan) */
+    .admin-chat-main-room {
+      display: flex;
+      flex-direction: column;
+      background: #0f0f12;
+      overflow: hidden;
+    }
+    .admin-chat-room-header {
+      padding: 14px 18px;
+      background: #16161a;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .admin-chat-room-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-chat-messages-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: #0d0d10;
+    }
+    .admin-quick-reply-bar {
+      padding: 8px 14px;
+      background: #141418;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .admin-quick-reply-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .admin-quick-reply-chip {
+      background: #1f1f26;
+      border: 1px solid #33333d;
+      color: var(--text-secondary);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 16px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .admin-quick-reply-chip:hover {
+      background: #2a2a35;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+    .admin-chat-input-area {
+      padding: 12px 16px;
+      background: #16161a;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .admin-chat-input {
+      flex: 1;
+      background: #111114;
+      border: 1px solid var(--border-color);
+      border-radius: 22px;
+      padding: 10px 18px;
+      color: #ffffff;
+      font-size: 13.5px;
+      outline: none;
+    }
+    .admin-chat-input:focus {
+      border-color: #ffffff;
+    }
+
+    /* Light Theme Adjustments for Chat Engine */
+    [data-theme="light"] .livechat-floating-btn {
+      background: #ffffff;
+      color: #09090b;
+      border-color: #cbd5e1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    [data-theme="light"] .customer-chat-window {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+    }
+    [data-theme="light"] .customer-chat-header,
+    [data-theme="light"] .customer-chat-name-tag {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .customer-chat-title-box h5,
+    [data-theme="light"] .customer-chat-name-tag strong {
+      color: #09090b;
+    }
+    [data-theme="light"] .customer-chat-setup-box {
+      background: #ffffff;
+    }
+    [data-theme="light"] .customer-chat-setup-icon {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #09090b;
+    }
+    [data-theme="light"] .customer-chat-messages-box {
+      background: #f8fafc;
+    }
+    [data-theme="light"] .chat-bubble.customer-side {
+      background: #09090b;
+      color: #ffffff;
+    }
+    [data-theme="light"] .chat-bubble.admin-side {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      color: #09090b;
+    }
+    [data-theme="light"] .admin-chat-grid {
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .admin-chat-threads-sidebar,
+    [data-theme="light"] .admin-threads-header,
+    [data-theme="light"] .admin-chat-room-header,
+    [data-theme="light"] .admin-chat-input-area {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .admin-customer-thread-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .admin-customer-thread-card:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .admin-customer-thread-card.active {
+      background: #f1f5f9;
+      border-color: #09090b;
+    }
+    [data-theme="light"] .admin-customer-name-label,
+    [data-theme="light"] .admin-chat-room-title {
+      color: #09090b;
+    }
+    [data-theme="light"] .admin-chat-main-room,
+    [data-theme="light"] .admin-chat-messages-box {
+      background: #ffffff;
+    }
+    [data-theme="light"] .admin-quick-reply-bar {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .admin-quick-reply-chip {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+    [data-theme="light"] .admin-quick-reply-chip:hover {
+      background: #09090b;
+      color: #ffffff;
+      border-color: #09090b;
+    }
+    [data-theme="light"] .admin-chat-input {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #09090b;
+    }
+
     [data-theme="light"] .footer {
       background: #ffffff;
       border-color: #e2e8f0;
@@ -2970,25 +3674,124 @@
     </aside>
   </div>
 
-  <!-- Floating AI Assistant Button (Requirement #9) -->
-  <button class="ai-floating-btn" onclick="toggleAIChat()" id="aiFloatingBtn">
-    <div class="ai-pulse-dot"></div>
-    <i class="fa-solid fa-robot"></i>
-    <span>JaneMarket AI</span>
-  </button>
+  <!-- Floating Chat Widgets Group (Customer Live Chat + AI Assistant) -->
+  <div class="floating-widgets-group" id="floatingWidgetsGroup">
+    <!-- Live Chat Admin Button -->
+    <button class="livechat-floating-btn" onclick="toggleCustomerLiveChat()" id="liveChatFloatingBtn" title="Chat Langsung dengan Admin JaneMarket">
+      <div class="livechat-pulse-dot"></div>
+      <i class="fa-solid fa-comments"></i>
+      <span>Chat Admin</span>
+      <span class="livechat-badge-counter" id="customerUnreadBadge" style="display: none;">0</span>
+    </button>
 
-  <!-- AI Chat Window (Requirement #9) -->
+    <!-- Floating AI Assistant Button -->
+    <button class="ai-floating-btn" onclick="toggleAIChat()" id="aiFloatingBtn" title="Tanya JaneMarket AI Assistant">
+      <i class="fa-solid fa-robot"></i>
+      <span>JaneMarket AI</span>
+    </button>
+  </div>
+
+  <!-- Customer Live Chat Window (Web-Based Admin Live Chat) -->
+  <div class="customer-chat-window" id="customerLiveChatWindow">
+    <!-- Header -->
+    <div class="customer-chat-header">
+      <div class="customer-chat-header-info">
+        <div class="customer-chat-avatar">
+          JM
+          <div class="online-indicator"></div>
+        </div>
+        <div class="customer-chat-title-box">
+          <h5><i class="fa-solid fa-shield-halved" style="color: #60a5fa;"></i> Admin JaneMarket</h5>
+          <p><i class="fa-solid fa-circle" style="font-size: 7px;"></i> Online • Siap Membalas</p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <button type="button" class="btn btn-outline btn-sm" onclick="switchToAIChatFromLive()" title="Tanya AI Assistant" style="padding: 4px 8px; font-size: 11px;">
+          <i class="fa-solid fa-robot"></i> AI
+        </button>
+        <button class="ai-header-close" onclick="toggleCustomerLiveChat()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+
+    <!-- Active Customer Name Tag (di atas percakapan) -->
+    <div class="customer-chat-name-tag" id="customerChatNameTag" style="display: none;">
+      <span><i class="fa-solid fa-user-check" style="color: #22c55e;"></i> Chat sebagai: <strong id="customerDisplayName">Tamu</strong></span>
+      <a onclick="promptChangeCustomerName()"><i class="fa-solid fa-pen"></i> Ganti Nama</a>
+    </div>
+
+    <!-- Screen 1: Name Setup (Ketika customer baru pertama kali mau chat) -->
+    <div class="customer-chat-setup-box" id="customerChatSetupScreen">
+      <div class="customer-chat-setup-icon">
+        <i class="fa-solid fa-headset"></i>
+      </div>
+      <div>
+        <h4 style="font-size: 16px; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+          Live Chat Admin JaneMarket
+        </h4>
+        <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+          Males buka WhatsApp? Hubungi admin kami langsung di web ini. Masukkan nama Anda untuk memulai percakapan:
+        </p>
+      </div>
+
+      <form onsubmit="startCustomerChatSession(event)" style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
+        <div style="text-align: left;">
+          <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; display: block;">
+            Nama Lengkap / Panggilan Anda *
+          </label>
+          <input type="text" id="customerNameInput" class="form-input" placeholder="contoh: Rian Pratama / Siti" required style="font-size: 13.5px; border-radius: 10px;">
+        </div>
+
+        <button type="submit" class="btn btn-white" style="width: 100%; justify-content: center; padding: 12px; font-size: 13.5px;">
+          <i class="fa-solid fa-comments"></i> Mulai Chat Sekarang
+        </button>
+      </form>
+      <p style="font-size: 10.5px; color: var(--text-muted); margin: 0;">
+        🛡️ Chat terpisah aman & langsung dijawab admin secara real-time
+      </p>
+    </div>
+
+    <!-- Screen 2: Active Chat Room -->
+    <div id="customerChatRoomScreen" style="display: none; flex: 1; flex-direction: column; overflow: hidden;">
+      <!-- Messages List Container -->
+      <div class="customer-chat-messages-box" id="customerChatMessagesBox">
+        <!-- Messages Injected via JS -->
+      </div>
+
+      <!-- Customer Quick Chips -->
+      <div class="ai-quick-chips">
+        <span class="ai-chip" onclick="sendCustomerQuickChat('Halo Admin, apakah akun Netflix 4K UHD ready stock?')">🍿 Netflix Ready?</span>
+        <span class="ai-chip" onclick="sendCustomerQuickChat('Halo kak, cara pembayaran via QRIS All Payment bagaimana ya?')">💳 Cara Bayar QRIS</span>
+        <span class="ai-chip" onclick="sendCustomerQuickChat('Halo kak, proses pengiriman berapa menit ya?')">⚡ Berapa Lama?</span>
+        <span class="ai-chip" onclick="sendCustomerQuickChat('Halo Admin, saya mau topup Diamond game.')">🎮 Topup Game</span>
+      </div>
+
+      <!-- Input Area -->
+      <div class="ai-input-area">
+        <input type="text" id="customerChatInput" class="ai-input" placeholder="Ketik pesan untuk Admin di sini..." onkeydown="if(event.key==='Enter') sendCustomerLiveChatMessage()">
+        <button class="ai-send-btn" onclick="sendCustomerLiveChatMessage()" id="customerChatSendBtn" title="Kirim Pesan">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Chat Window (JaneMarket AI Assistant) -->
   <div class="ai-chat-window" id="aiChatWindow">
     <div class="ai-header">
       <div class="ai-header-title">
         <i class="fa-solid fa-robot"></i>
         <span>JaneMarket AI Assistant</span>
       </div>
-      <button class="ai-header-close" onclick="toggleAIChat()"><i class="fa-solid fa-xmark"></i></button>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <button type="button" class="btn btn-outline btn-sm" onclick="switchToLiveChatFromAI()" title="Beralih ke Chat Admin Manusia" style="padding: 4px 8px; font-size: 11px;">
+          <i class="fa-solid fa-headset"></i> CS Admin
+        </button>
+        <button class="ai-header-close" onclick="toggleAIChat()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
     </div>
     <div class="ai-messages-box" id="aiMessagesBox">
       <div class="ai-msg bot">
-        Halo kak! 👋 Selamat datang di JaneMarket. Ada yang bisa saya bantu terkait Aplikasi Premium, Topup Game kilat, atau Jasa Desain Poster?
+        Halo kak! 👋 Selamat datang di JaneMarket. Ada yang bisa saya bantu terkait Rekomendasi Aplikasi Premium, Topup Game kilat, atau Jasa Desain Poster?
       </div>
     </div>
     <div class="ai-quick-chips">
@@ -3081,6 +3884,13 @@
                   <span>Log Pesanan WA</span>
                 </div>
                 <span class="admin-tab-badge" id="adminSidebarOrderCount">0</span>
+              </button>
+              <button class="admin-tab-btn" onclick="switchAdminTab('tab-livechat', this)" id="adminSidebarLiveChatBtn">
+                <div class="admin-tab-btn-left">
+                  <i class="fa-solid fa-comments"></i>
+                  <span>Live Chat Web</span>
+                </div>
+                <span class="admin-tab-badge" id="adminSidebarChatCount" style="background: #ef4444; color: #ffffff; display: none;">0</span>
               </button>
             </div>
           </div>
@@ -3270,6 +4080,77 @@
                   <!-- Injected via JS -->
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          <!-- Admin Tab 5: Live Chat Web (Terpisah per Blok Customer) -->
+          <div class="admin-tab-content" id="tab-livechat">
+            <div class="admin-chat-grid">
+              <!-- Left Sidebar: Customer Blocks List -->
+              <div class="admin-chat-threads-sidebar">
+                <div class="admin-threads-header">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.5px;">
+                      <i class="fa-solid fa-user-group" style="color: #60a5fa;"></i> Blok Customer (<span id="adminThreadTotalCount">0</span>)
+                    </span>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="loadAdminChatThreads(true)" title="Segarkan Percakapan" style="padding: 3px 8px; font-size: 11px;">
+                      <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                  </div>
+                  <input type="text" id="adminChatSearchInput" class="form-input" placeholder="🔍 Cari nama customer..." oninput="filterAdminThreads()" style="font-size: 12px; padding: 7px 12px; border-radius: 8px;">
+                </div>
+                
+                <div class="admin-threads-list" id="adminChatThreadsList">
+                  <!-- Customer blocks injected via JS -->
+                </div>
+              </div>
+
+              <!-- Right Main Room: Selected Customer Conversation -->
+              <div class="admin-chat-main-room" id="adminChatRoom">
+                <div class="admin-chat-room-header">
+                  <div>
+                    <div class="admin-chat-room-title" id="adminActiveCustomerTitle">
+                      <i class="fa-solid fa-comment-dots" style="color: #60a5fa;"></i> Pilih Customer untuk Membalas
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;" id="adminActiveSessionMeta">
+                      Klik salah satu blok customer di sebelah kiri untuk melihat pesan
+                    </div>
+                  </div>
+                  <div id="adminChatHeaderActions" style="display: none; align-items: center; gap: 6px;">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="markActiveThreadRead()" title="Tandai Sudah Dibaca">
+                      <i class="fa-solid fa-check-double"></i> Tandai Dibaca
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteActiveThread()" title="Hapus Percakapan Ini">
+                      <i class="fa-solid fa-trash"></i> Hapus
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Messages History Box -->
+                <div class="admin-chat-messages-box" id="adminChatMessagesBox">
+                  <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin: auto; padding: 30px;">
+                    <i class="fa-solid fa-comments" style="font-size: 38px; color: #27272a; margin-bottom: 12px; display: block;"></i>
+                    Silakan pilih salah satu blok customer di kolom kiri untuk membaca & membalas chat secara terpisah.
+                  </div>
+                </div>
+
+                <!-- Quick Reply Suggestions -->
+                <div class="admin-quick-reply-bar" id="adminQuickReplyBar" style="display: none;">
+                  <span class="admin-quick-reply-chip" onclick="insertAdminQuickReply('Halo kak! Produk ini ready stock ya, mau diorder sekarang?')">⚡ Ready Stock</span>
+                  <span class="admin-quick-reply-chip" onclick="insertAdminQuickReply('Bisa langsung transfer via QRIS All Payment (BCA/Mandiri/E-Wallet) kak.')">💳 Info QRIS</span>
+                  <span class="admin-quick-reply-chip" onclick="insertAdminQuickReply('Akun sudah kami kirimkan ya kak, silakan dicek dan dicoba login.')">✅ Akun Dikirim</span>
+                  <span class="admin-quick-reply-chip" onclick="insertAdminQuickReply('Boleh kirimkan User ID & Zone ID akun game kakak untuk kami proses?')">🎮 Minta ID Game</span>
+                  <span class="admin-quick-reply-chip" onclick="insertAdminQuickReply('Terima kasih banyak sudah berbelanja di JaneMarket! 🙏')">🙏 Terimakasih</span>
+                </div>
+
+                <!-- Admin Input Area -->
+                <div class="admin-chat-input-area" id="adminChatInputArea" style="display: none;">
+                  <input type="text" id="adminReplyInput" class="admin-chat-input" placeholder="Ketik balasan untuk customer ini... (Tekan Enter)" onkeydown="if(event.key==='Enter') sendAdminReply()">
+                  <button type="button" class="btn btn-white" onclick="sendAdminReply()" style="border-radius: 20px; padding: 8px 18px;">
+                    <i class="fa-solid fa-paper-plane"></i> Balas
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </main>
@@ -4097,6 +4978,9 @@
       await fetchStoreData();
       trackVisitor();
       initSalesTicker();
+      initProductDeepLink();
+      initChatEngine();
+      window.addEventListener('hashchange', initProductDeepLink);
 
       // Check persistent admin login session (Can edit anytime without logging in every time)
       try {
@@ -4307,6 +5191,18 @@
         const formattedOrig = product.originalPrice ? `Rp ${Number(product.originalPrice).toLocaleString('id-ID')}` : '';
         const soldText = product.soldCount !== undefined ? product.soldCount : 0;
         
+        // Real-Time Stock Status Badge (Feature #4)
+        const stockStatus = product.stockStatus || 'ready';
+        let stockBadgeHtml = '';
+        if (stockStatus === 'ready') {
+          stockBadgeHtml = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock</span>`;
+        } else if (stockStatus === 'limited') {
+          const countLabel = product.stockCount ? `Sisa ${product.stockCount} Slot` : 'Slot Terbatas';
+          stockBadgeHtml = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> ${countLabel}</span>`;
+        } else if (stockStatus === 'preorder') {
+          stockBadgeHtml = `<span class="stock-pill stock-preorder"><span class="stock-dot"></span> Pre-Order</span>`;
+        }
+
         let headerMedia = '';
         if (product.image && (!isTopup || product.image.startsWith('http'))) {
           headerMedia = `
@@ -4332,7 +5228,10 @@
             ${headerMedia}
             <div class="card-body">
               <div>
-                <span class="card-category">${product.category}</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 4px;">
+                  <span class="card-category">${product.category}</span>
+                  ${stockBadgeHtml}
+                </div>
                 <h3 class="card-title">${product.name}</h3>
                 
                 <div class="card-meta-row">
@@ -4411,6 +5310,13 @@
       currentDetailProductId = prod.id;
       const isTopup = prod.category === 'Topup Game';
 
+      // Update URL hash without jumping page (Feature #5)
+      try {
+        if (history.replaceState) {
+          history.replaceState(null, null, `#prod-${prod.id}`);
+        }
+      } catch (e) {}
+
       // Media Box
       const mediaBox = document.getElementById('detailMediaContainer');
       if (prod.image && (!isTopup || prod.image.startsWith('http'))) {
@@ -4429,9 +5335,23 @@
         `;
       }
 
-      // Title & Tags
+      // Title & Tags & Stock Status (Feature #4)
       document.getElementById('detailBadge').textContent = prod.badge || 'PROMO RESMI';
       document.getElementById('detailCategory').textContent = prod.category || 'Katalog';
+      
+      const stockBadgeBox = document.getElementById('detailStockBadge');
+      if (stockBadgeBox) {
+        const sStatus = prod.stockStatus || 'ready';
+        if (sStatus === 'ready') {
+          stockBadgeBox.innerHTML = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock</span>`;
+        } else if (sStatus === 'limited') {
+          const sCount = prod.stockCount ? `Sisa ${prod.stockCount} Slot` : 'Slot Terbatas';
+          stockBadgeBox.innerHTML = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> ${sCount}</span>`;
+        } else if (sStatus === 'preorder') {
+          stockBadgeBox.innerHTML = `<span class="stock-pill stock-preorder"><span class="stock-dot"></span> Pre-Order</span>`;
+        }
+      }
+
       document.getElementById('detailName').textContent = prod.name;
       document.getElementById('detailRating').textContent = prod.rating || '5.0';
       document.getElementById('detailSold').textContent = prod.soldCount !== undefined ? prod.soldCount : 0;
@@ -4517,6 +5437,179 @@
         document.body.removeChild(ta);
         showToast(`${title}: ${text} berhasil disalin!`);
       });
+    }
+
+    // Share & Copy Product Link (Feature #5)
+    function copyCurrentProductLink() {
+      if (!currentDetailProductId) return;
+      const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : '';
+      const path = window.location.pathname || '';
+      const shareUrl = `${origin}${path}#prod-${currentDetailProductId}`;
+      copyToClipboard(shareUrl, "Link Produk");
+    }
+
+    function shareCurrentProduct() {
+      if (!currentDetailProductId) return;
+      const prod = storeState.products.find(p => String(p.id) === String(currentDetailProductId));
+      if (!prod) return;
+      const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : '';
+      const path = window.location.pathname || '';
+      const shareUrl = `${origin}${path}#prod-${currentDetailProductId}`;
+      const shareText = `Halo! Cek produk *${prod.name}* (Mulai Rp ${Number(prod.price || 0).toLocaleString('id-ID')}) di JaneMarket:\n${shareUrl}`;
+      const waUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+      window.open(waUrl, '_blank');
+    }
+
+    function initProductDeepLink() {
+      try {
+        let targetId = null;
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#prod-')) {
+          targetId = hash.replace('#prod-', '');
+        } else if (hash && hash.startsWith('#product=')) {
+          targetId = hash.replace('#product=', '');
+        } else {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('product')) {
+            targetId = params.get('product');
+          }
+        }
+
+        if (targetId) {
+          setTimeout(() => {
+            const exists = storeState.products.some(p => String(p.id) === String(targetId));
+            if (exists) {
+              openProductDetailModal(targetId);
+            }
+          }, 350);
+        }
+      } catch (e) {
+        console.warn("Deep link notice:", e);
+      }
+    }
+
+    // Quick Payment Box Engine (Feature #3)
+    const defaultPaymentDetails = {
+      'QRIS All Payment': {
+        type: 'qris',
+        title: 'QRIS All Payment & E-Wallet',
+        number: 'Scan QRIS JaneMarket',
+        owner: 'JaneMarket Official',
+        badge: 'INSTAN 1 DETIK',
+        note: 'Bisa di-scan via BCA Mobile, Livin, GoPay, OVO, DANA, ShopeePay & Semua Bank'
+      },
+      'DANA': {
+        type: 'ewallet',
+        title: 'DANA Official',
+        number: '081234567890',
+        owner: 'JaneMarket Official',
+        badge: 'BEBAS ADMIN',
+        note: 'Transfer saldo DANA ke nomor terdaftar di atas'
+      },
+      'GoPay': {
+        type: 'ewallet',
+        title: 'GoPay Official',
+        number: '081234567890',
+        owner: 'JaneMarket Official',
+        badge: 'BEBAS ADMIN',
+        note: 'Transfer saldo GoPay ke nomor terdaftar di atas'
+      },
+      'OVO': {
+        type: 'ewallet',
+        title: 'OVO Premier',
+        number: '081234567890',
+        owner: 'JaneMarket Official',
+        badge: 'PROSES KILAT',
+        note: 'Transfer OVO ke nomor terdaftar di atas'
+      },
+      'ShopeePay': {
+        type: 'ewallet',
+        title: 'ShopeePay',
+        number: '081234567890',
+        owner: 'JaneMarket Official',
+        badge: 'PROSES KILAT',
+        note: 'Transfer saldo ShopeePay ke nomor terdaftar di atas'
+      },
+      'Transfer BCA': {
+        type: 'bank',
+        title: 'Bank Central Asia (BCA)',
+        number: '8720192831',
+        owner: 'JaneMarket Official',
+        badge: 'VERIFIKASI OTOMATIS',
+        note: 'Transfer via BCA Mobile, ATM, atau KlikBCA'
+      },
+      'Transfer Mandiri': {
+        type: 'bank',
+        title: 'Bank Mandiri',
+        number: '1370019283741',
+        owner: 'JaneMarket Official',
+        badge: 'VERIFIKASI OTOMATIS',
+        note: 'Transfer via Livin by Mandiri atau ATM'
+      }
+    };
+
+    function getSelectedCheckoutPrice() {
+      let price = selectedVariantPrice;
+      if (activeVoucher) {
+        if (activeVoucher.type === 'fixed') price = Math.max(0, price - activeVoucher.value);
+        else if (activeVoucher.type === 'percent') price = Math.max(0, price - Math.round((price * activeVoucher.value) / 100));
+      }
+      return price;
+    }
+
+    function updateCheckoutPaymentInfo() {
+      const methodSelect = document.getElementById('orderPaymentMethod');
+      const container = document.getElementById('checkoutPaymentBox');
+      if (!methodSelect || !container) return;
+
+      const rawMethod = methodSelect.value;
+      let lookupKey = 'QRIS All Payment';
+      if (rawMethod.includes('DANA')) lookupKey = 'DANA';
+      else if (rawMethod.includes('GoPay')) lookupKey = 'GoPay';
+      else if (rawMethod.includes('OVO')) lookupKey = 'OVO';
+      else if (rawMethod.includes('ShopeePay')) lookupKey = 'ShopeePay';
+      else if (rawMethod.includes('BCA')) lookupKey = 'Transfer BCA';
+      else if (rawMethod.includes('Mandiri')) lookupKey = 'Transfer Mandiri';
+      else lookupKey = 'QRIS All Payment';
+
+      const info = defaultPaymentDetails[lookupKey] || defaultPaymentDetails['QRIS All Payment'];
+      const finalPrice = getSelectedCheckoutPrice();
+      const isQris = info.type === 'qris';
+
+      container.innerHTML = `
+        <div class="checkout-payment-header">
+          <span class="checkout-payment-title">
+            <i class="${isQris ? 'fa-solid fa-qrcode' : (info.type === 'bank' ? 'fa-solid fa-building-columns' : 'fa-solid fa-wallet')}" style="color: #60a5fa;"></i>
+            ${info.title}
+          </span>
+          <span style="font-size: 10px; font-weight: 700; background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); padding: 2px 6px; border-radius: 4px;">
+            ${info.badge}
+          </span>
+        </div>
+        <div class="checkout-payment-detail">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px;">
+            <span style="font-size: 11px; color: var(--text-muted);">${isQris ? 'Metode:' : 'No. Rekening / E-Wallet:'}</span>
+            <span class="checkout-acc-number">${info.number}</span>
+          </div>
+          <div class="checkout-acc-owner">
+            Atas Nama: <strong style="color: var(--text-primary);">${info.owner}</strong> • <em>${info.note}</em>
+          </div>
+          <div class="checkout-pay-actions">
+            ${!isQris ? `
+              <button type="button" class="btn btn-outline btn-sm" onclick="copyToClipboard('${info.number}', '${info.title}')">
+                <i class="fa-solid fa-copy"></i> Salin Nomor
+              </button>
+            ` : `
+              <button type="button" class="btn btn-outline btn-sm" onclick="openPaymentModal(true)">
+                <i class="fa-solid fa-qrcode"></i> Lihat QRIS Toko
+              </button>
+            `}
+            <button type="button" class="btn btn-outline btn-sm" onclick="copyToClipboard('Rp ${finalPrice.toLocaleString('id-ID')}', 'Total Tagihan')">
+              <i class="fa-solid fa-receipt"></i> Salin Total (Rp ${finalPrice.toLocaleString('id-ID')})
+            </button>
+          </div>
+        </div>
+      `;
     }
 
     function showToast(msg) {
@@ -4670,9 +5763,10 @@
       if (summaryPrice) {
         summaryPrice.textContent = `Rp ${finalPrice.toLocaleString('id-ID')}`;
       }
+      updateCheckoutPaymentInfo();
     }
 
-    // Checkout Flow (Requirement #8)
+    // Checkout Flow (Requirement #8 & Feature #3)
     function openCheckoutModal(productId) {
       const prod = storeState.products.find(p => String(p.id) === String(productId));
       if (!prod) return;
@@ -5003,6 +6097,7 @@
       populateAdminProductsTable();
       populateAdminSettingsForm();
       populateAdminOrdersTable();
+      loadAdminChatThreads();
       openModal('adminDashboardModal');
     }
 
@@ -5017,11 +6112,16 @@
         'tab-stats': '<i class="fa-solid fa-chart-pie"></i> Ringkasan & Analisis Toko',
         'tab-products': '<i class="fa-solid fa-boxes-stacked"></i> Kelola Produk (Realtime)',
         'tab-settings': '<i class="fa-solid fa-sliders"></i> Pengaturan Toko (Settings)',
-        'tab-orders': '<i class="fa-solid fa-receipt"></i> Log Pesanan & Leads WA'
+        'tab-orders': '<i class="fa-solid fa-receipt"></i> Log Pesanan & Leads WA',
+        'tab-livechat': '<i class="fa-solid fa-comments"></i> Live Chat Customer (Terpisah Per Customer)'
       };
       const mainTitle = document.getElementById('adminMainTitle');
       if (mainTitle && titleMap[tabId]) {
         mainTitle.innerHTML = titleMap[tabId];
+      }
+
+      if (tabId === 'tab-livechat') {
+        loadAdminChatThreads();
       }
     }
 
@@ -5071,15 +6171,27 @@
     function populateAdminProductsTable() {
       const modalTbody = document.getElementById('adminProductsTableBody');
       const prods = storeState.products || [];
-      const emptyHtml = `<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:18px;">Belum ada produk.</td></tr>`;
+      const emptyHtml = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:18px;">Belum ada produk.</td></tr>`;
       
-      const rowsHtml = prods.length === 0 ? emptyHtml : prods.map(p => `
+      const rowsHtml = prods.length === 0 ? emptyHtml : prods.map(p => {
+        let stockLabel = 'Ready';
+        let stockStyle = 'background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3);';
+        if (p.stockStatus === 'limited') {
+          stockLabel = p.stockCount ? `Sisa ${p.stockCount} Slot` : 'Terbatas';
+          stockStyle = 'background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3);';
+        } else if (p.stockStatus === 'preorder') {
+          stockLabel = 'Pre-Order';
+          stockStyle = 'background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3);';
+        }
+
+        return `
         <tr>
           <td>
             <div style="font-weight: 700; color: #ffffff;">${p.name}</div>
             <div style="font-size: 11px; color: var(--text-muted);">${(p.variants || []).length} Pilihan Varian</div>
           </td>
           <td><span style="background: var(--bg-secondary); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 11px;">${p.category}</span></td>
+          <td><span style="padding: 2px 7px; border-radius: 4px; font-size: 10.5px; font-weight: 700; display: inline-block; ${stockStyle}">${stockLabel}</span></td>
           <td><span style="font-weight: 700;">Rp ${Number(p.price || 0).toLocaleString('id-ID')}</span></td>
           <td>${p.soldCount || 0}x</td>
           <td>${p.badge || '-'}</td>
@@ -5090,7 +6202,7 @@
             </div>
           </td>
         </tr>
-      `).join('');
+      `}).join('');
 
       if (modalTbody) modalTbody.innerHTML = rowsHtml;
     }
@@ -5185,12 +6297,22 @@
       document.getElementById('prodFormBadge').value = 'BEST SELLER';
       document.getElementById('prodFormPrice').value = '';
       document.getElementById('prodFormSold').value = '0';
+      document.getElementById('prodFormStockStatus').value = 'ready';
+      document.getElementById('prodFormStockCount').value = '';
+      toggleStockCountInput('ready');
       document.getElementById('prodFormImage').value = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80';
       document.getElementById('prodFormWarranty').value = 'Garansi Penuh';
       document.getElementById('prodFormDesc').value = '';
       document.getElementById('prodFormVariants').value = '1 Bulan|35000\n3 Bulan|95000';
       toggleImageRequirement('Aplikasi Premium');
       openModal('productFormModal');
+    }
+
+    function toggleStockCountInput(status) {
+      const group = document.getElementById('prodStockCountGroup');
+      if (group) {
+        group.style.display = status === 'limited' ? 'block' : 'none';
+      }
     }
 
     function toggleImageRequirement(cat) {
@@ -5211,6 +6333,9 @@
       document.getElementById('prodFormBadge').value = p.badge || '';
       document.getElementById('prodFormPrice').value = p.price || '';
       document.getElementById('prodFormSold').value = p.soldCount || '0';
+      document.getElementById('prodFormStockStatus').value = p.stockStatus || 'ready';
+      document.getElementById('prodFormStockCount').value = p.stockCount || '';
+      toggleStockCountInput(p.stockStatus || 'ready');
       document.getElementById('prodFormImage').value = p.image || '';
       document.getElementById('prodFormWarranty').value = p.warranty || '';
       document.getElementById('prodFormDesc').value = p.description || '';
@@ -5230,6 +6355,9 @@
       const badge = document.getElementById('prodFormBadge').value.trim();
       const price = Number(document.getElementById('prodFormPrice').value) || 0;
       const soldCount = Number(document.getElementById('prodFormSold').value) || 0;
+      const stockStatus = document.getElementById('prodFormStockStatus').value || 'ready';
+      const stockCountVal = document.getElementById('prodFormStockCount').value;
+      const stockCount = stockCountVal ? Number(stockCountVal) : undefined;
       let image = document.getElementById('prodFormImage').value.trim();
       const warranty = document.getElementById('prodFormWarranty').value.trim();
       const desc = document.getElementById('prodFormDesc').value.trim();
@@ -5267,6 +6395,8 @@
         price,
         originalPrice: Math.round(price * 1.35),
         soldCount,
+        stockStatus,
+        stockCount,
         image,
         warranty,
         description: desc,
@@ -5330,11 +6460,19 @@
 
     // AI Assistant Engine (Requirement #9)
     function toggleAIChat() {
+      const customerWindow = document.getElementById('customerLiveChatWindow');
+      if (customerWindow && customerWindow.classList.contains('active')) {
+        customerWindow.classList.remove('active');
+      }
       const windowEl = document.getElementById('aiChatWindow');
       if (windowEl) {
         windowEl.classList.toggle('active');
         if (windowEl.classList.contains('active')) {
-          document.getElementById('aiInput').focus();
+          playBeep('pop');
+          setTimeout(() => {
+            const input = document.getElementById('aiInput');
+            if (input) input.focus();
+          }, 150);
         }
       }
     }
@@ -5389,6 +6527,609 @@
       try {
         await fetch('/api/track-visit', { method: 'POST' });
       } catch (e) {}
+    }
+
+    // ========================================================
+    // LIVE CHAT ENGINE (Customer Live Chat & Admin Thread Blocks)
+    // ========================================================
+    let customerSessionId = null;
+    let customerChatName = null;
+    let adminChatThreads = [];
+    let adminActiveThreadSessionId = null;
+    let chatPollInterval = null;
+
+    function initChatEngine() {
+      try {
+        customerSessionId = localStorage.getItem('jm_chat_session_id');
+        customerChatName = localStorage.getItem('jm_chat_customer_name');
+      } catch (e) {}
+
+      if (!customerSessionId) {
+        customerSessionId = 'cust-' + Date.now().toString(36) + '-' + Math.random().toString(36).substring(2, 7);
+        try {
+          localStorage.setItem('jm_chat_session_id', customerSessionId);
+        } catch (e) {}
+      }
+
+      if (customerChatName) {
+        updateCustomerNameUI(customerChatName);
+      }
+
+      // Check initial unread status
+      pollChatUpdates();
+      // Start background polling every 3.5s
+      if (chatPollInterval) clearInterval(chatPollInterval);
+      chatPollInterval = setInterval(pollChatUpdates, 3500);
+    }
+
+    function formatChatTimestamp(isoString) {
+      if (!isoString) return '';
+      const date = new Date(isoString);
+      const now = new Date();
+      const diffSec = Math.floor((now - date) / 1000);
+
+      if (diffSec < 60) return 'Baru saja';
+      if (diffSec < 3600) return `${Math.floor(diffSec / 60)} mnt lalu`;
+      if (diffSec < 86400) {
+        const hours = String(date.getHours()).padStart(2, '0');
+        const mins = String(date.getMinutes()).padStart(2, '0');
+        return `${hours}:${mins}`;
+      }
+      const d = String(date.getDate()).padStart(2, '0');
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      return `${d}/${m}`;
+    }
+
+    function escapeChatHTML(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // --- Customer-Side Chat Functions ---
+    function toggleCustomerLiveChat() {
+      const windowEl = document.getElementById('customerLiveChatWindow');
+      const aiWindow = document.getElementById('aiChatWindow');
+      if (aiWindow && aiWindow.classList.contains('active')) {
+        aiWindow.classList.remove('active');
+      }
+
+      if (!windowEl) return;
+      windowEl.classList.toggle('active');
+
+      if (windowEl.classList.contains('active')) {
+        playBeep('pop');
+        if (customerChatName) {
+          showCustomerRoomScreen();
+          loadCustomerLiveChatMessages(true);
+        } else {
+          showCustomerSetupScreen();
+          setTimeout(() => {
+            const input = document.getElementById('customerNameInput');
+            if (input) input.focus();
+          }, 200);
+        }
+      }
+    }
+
+    function switchToAIChatFromLive() {
+      const liveWin = document.getElementById('customerLiveChatWindow');
+      if (liveWin) liveWin.classList.remove('active');
+      const aiWin = document.getElementById('aiChatWindow');
+      if (aiWin) {
+        aiWin.classList.add('active');
+        const input = document.getElementById('aiInput');
+        if (input) input.focus();
+      }
+    }
+
+    function switchToLiveChatFromAI() {
+      const aiWin = document.getElementById('aiChatWindow');
+      if (aiWin) aiWin.classList.remove('active');
+      toggleCustomerLiveChat();
+    }
+
+    function showCustomerSetupScreen() {
+      const setup = document.getElementById('customerChatSetupScreen');
+      const room = document.getElementById('customerChatRoomScreen');
+      const nameTag = document.getElementById('customerChatNameTag');
+      if (setup) setup.style.display = 'flex';
+      if (room) room.style.display = 'none';
+      if (nameTag) nameTag.style.display = 'none';
+    }
+
+    function showCustomerRoomScreen() {
+      const setup = document.getElementById('customerChatSetupScreen');
+      const room = document.getElementById('customerChatRoomScreen');
+      const nameTag = document.getElementById('customerChatNameTag');
+      if (setup) setup.style.display = 'none';
+      if (room) room.style.display = 'flex';
+      if (nameTag) nameTag.style.display = 'flex';
+      updateCustomerNameUI(customerChatName);
+    }
+
+    function updateCustomerNameUI(name) {
+      const el = document.getElementById('customerDisplayName');
+      if (el) el.textContent = name || 'Customer';
+    }
+
+    function startCustomerChatSession(event) {
+      event.preventDefault();
+      const input = document.getElementById('customerNameInput');
+      const name = input.value.trim();
+      if (!name) return;
+
+      customerChatName = name;
+      try {
+        localStorage.setItem('jm_chat_customer_name', name);
+      } catch (e) {}
+
+      showCustomerRoomScreen();
+      playBeep('success');
+      showToast(`Selamat datang ${name}! Anda terhubung dengan Admin.`);
+
+      // Send initial welcome/query if empty
+      loadCustomerLiveChatMessages(true);
+      setTimeout(() => {
+        const msgInput = document.getElementById('customerChatInput');
+        if (msgInput) msgInput.focus();
+      }, 200);
+    }
+
+    function promptChangeCustomerName() {
+      const current = customerChatName || '';
+      const newName = prompt("Ubah Nama Anda untuk Live Chat:", current);
+      if (newName && newName.trim()) {
+        customerChatName = newName.trim();
+        try {
+          localStorage.setItem('jm_chat_customer_name', customerChatName);
+        } catch (e) {}
+        updateCustomerNameUI(customerChatName);
+        showToast("Nama chat berhasil diperbarui!");
+        loadCustomerLiveChatMessages(false);
+      }
+    }
+
+    async function loadCustomerLiveChatMessages(shouldScroll = false) {
+      if (!customerSessionId) return;
+
+      try {
+        const res = await fetch(`/api/chat/messages?sessionId=${encodeURIComponent(customerSessionId)}`);
+        const data = await res.json();
+        const messages = Array.isArray(data.messages) ? data.messages : [];
+        const box = document.getElementById('customerChatMessagesBox');
+
+        if (!box) return;
+
+        if (messages.length === 0) {
+          box.innerHTML = `
+            <div class="chat-bubble admin-side">
+              <div class="chat-bubble-sender"><i class="fa-solid fa-shield-halved"></i> Admin JaneMarket</div>
+              <div>Halo kak <strong>${escapeChatHTML(customerChatName || 'Customer')}</strong>! 👋 Selamat datang di Live Chat JaneMarket.<br>Silakan tanyakan produk, cek stok, atau konfirmasi pesanan di sini. Admin kami akan langsung membalas di web ini.</div>
+              <span class="chat-bubble-time">Baru saja</span>
+            </div>
+          `;
+        } else {
+          box.innerHTML = messages.map(m => {
+            const isCustomer = m.sender === 'customer';
+            const senderLabel = isCustomer ? (m.customerName || 'Anda') : '🛡️ Admin JaneMarket';
+            return `
+              <div class="chat-bubble ${isCustomer ? 'customer-side' : 'admin-side'}">
+                <div class="chat-bubble-sender">${isCustomer ? '<i class="fa-solid fa-user"></i>' : '<i class="fa-solid fa-shield-halved"></i>'} ${escapeChatHTML(senderLabel)}</div>
+                <div>${escapeChatHTML(m.text).replace(/\n/g, '<br>')}</div>
+                <span class="chat-bubble-time">${formatChatTimestamp(m.timestamp)}</span>
+              </div>
+            `;
+          }).join('');
+        }
+
+        if (shouldScroll) {
+          box.scrollTop = box.scrollHeight;
+        }
+
+        // Mark as read by customer if window is active
+        const liveWin = document.getElementById('customerLiveChatWindow');
+        if (liveWin && liveWin.classList.contains('active')) {
+          await fetch('/api/chat/read', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sessionId: customerSessionId, role: 'customer' })
+          });
+          const badge = document.getElementById('customerUnreadBadge');
+          if (badge) badge.style.display = 'none';
+        }
+      } catch (e) {
+        console.warn("Load customer chat err:", e);
+      }
+    }
+
+    function sendCustomerQuickChat(text) {
+      const input = document.getElementById('customerChatInput');
+      if (input) {
+        input.value = text;
+        sendCustomerLiveChatMessage();
+      }
+    }
+
+    async function sendCustomerLiveChatMessage() {
+      const input = document.getElementById('customerChatInput');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      playBeep('click');
+
+      const box = document.getElementById('customerChatMessagesBox');
+      if (box) {
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble customer-side';
+        bubble.innerHTML = `
+          <div class="chat-bubble-sender"><i class="fa-solid fa-user"></i> ${escapeChatHTML(customerChatName || 'Anda')}</div>
+          <div>${escapeChatHTML(text).replace(/\n/g, '<br>')}</div>
+          <span class="chat-bubble-time">Baru saja</span>
+        `;
+        box.appendChild(bubble);
+        box.scrollTop = box.scrollHeight;
+      }
+
+      try {
+        await fetch('/api/chat/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId: customerSessionId,
+            customerName: customerChatName || 'Customer',
+            sender: 'customer',
+            text: text
+          })
+        });
+        loadCustomerLiveChatMessages(true);
+      } catch (e) {
+        console.warn("Send message err:", e);
+      }
+    }
+
+    // --- Admin-Side Live Chat Functions (Thread Blocks Per Customer) ---
+    async function loadAdminChatThreads(manual = false) {
+      if (!isAdminLoggedIn) return;
+
+      try {
+        const res = await fetch('/api/chat/threads');
+        const data = await res.json();
+        adminChatThreads = Array.isArray(data.threads) ? data.threads : [];
+
+        // Calculate total unread
+        const totalUnread = adminChatThreads.reduce((sum, t) => sum + (t.unreadCount || 0), 0);
+        const adminBadge = document.getElementById('adminSidebarChatCount');
+        if (adminBadge) {
+          if (totalUnread > 0) {
+            adminBadge.textContent = totalUnread;
+            adminBadge.style.display = 'inline-block';
+          } else {
+            adminBadge.style.display = 'none';
+          }
+        }
+
+        const totalCountEl = document.getElementById('adminThreadTotalCount');
+        if (totalCountEl) totalCountEl.textContent = adminChatThreads.length;
+
+        renderAdminThreadsList(adminChatThreads);
+
+        if (adminActiveThreadSessionId) {
+          loadAdminThreadMessages(adminActiveThreadSessionId, false);
+        }
+
+        if (manual) {
+          playBeep('pop');
+          showToast("Daftar percakapan customer diperbarui!");
+        }
+      } catch (e) {
+        console.warn("Load admin chat threads err:", e);
+      }
+    }
+
+    function renderAdminThreadsList(threads) {
+      const container = document.getElementById('adminChatThreadsList');
+      if (!container) return;
+
+      if (threads.length === 0) {
+        container.innerHTML = `
+          <div style="padding: 24px 12px; text-align: center; color: var(--text-muted); font-size: 12px;">
+            <i class="fa-regular fa-comment-dots" style="font-size: 24px; margin-bottom: 8px; display: block; opacity: 0.5;"></i>
+            Belum ada customer yang memulai chat di website.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = threads.map(t => {
+        const isActive = t.sessionId === adminActiveThreadSessionId;
+        const initial = (t.customerName || 'C').charAt(0).toUpperCase();
+        const snippet = t.lastSender === 'admin' ? `Anda: ${t.lastMessage}` : `Customer: ${t.lastMessage}`;
+        const hasUnread = (t.unreadCount || 0) > 0;
+
+        return `
+          <div class="admin-customer-thread-card ${isActive ? 'active' : ''}" onclick="selectAdminChatThread('${t.sessionId}')">
+            <!-- NAMA CUSTOMER DI BAGIAN ATAS BLOK -->
+            <div class="admin-customer-thread-top">
+              <div class="admin-customer-name-label">
+                <div class="admin-customer-initial-avatar">${initial}</div>
+                <span>${escapeChatHTML(t.customerName || 'Customer')}</span>
+              </div>
+              <span class="admin-customer-thread-time">${formatChatTimestamp(t.lastTimestamp)}</span>
+            </div>
+
+            <!-- Pesan Terakhir -->
+            <div class="admin-customer-thread-snippet">
+              ${escapeChatHTML(snippet)}
+            </div>
+
+            <!-- Footer Blok: Status & Badge Unread -->
+            <div class="admin-customer-thread-footer">
+              <span class="admin-customer-status-tag">
+                <i class="fa-solid fa-circle" style="font-size: 6px;"></i> Sesi Aktif
+              </span>
+              ${hasUnread ? `<span class="admin-customer-unread-badge">${t.unreadCount} Pesan Baru</span>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterAdminThreads() {
+      const input = document.getElementById('adminChatSearchInput');
+      const q = input ? input.value.trim().toLowerCase() : '';
+      if (!q) {
+        renderAdminThreadsList(adminChatThreads);
+        return;
+      }
+
+      const filtered = adminChatThreads.filter(t => 
+        (t.customerName && t.customerName.toLowerCase().includes(q)) ||
+        (t.lastMessage && t.lastMessage.toLowerCase().includes(q)) ||
+        (t.sessionId && t.sessionId.toLowerCase().includes(q))
+      );
+      renderAdminThreadsList(filtered);
+    }
+
+    async function selectAdminChatThread(sessionId) {
+      adminActiveThreadSessionId = sessionId;
+      renderAdminThreadsList(adminChatThreads);
+      playBeep('click');
+
+      const actions = document.getElementById('adminChatHeaderActions');
+      const quickBar = document.getElementById('adminQuickReplyBar');
+      const inputArea = document.getElementById('adminChatInputArea');
+
+      if (actions) actions.style.display = 'flex';
+      if (quickBar) quickBar.style.display = 'flex';
+      if (inputArea) inputArea.style.display = 'flex';
+
+      await loadAdminThreadMessages(sessionId, true);
+
+      // Mark thread as read
+      await fetch('/api/chat/read', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId: sessionId, role: 'admin' })
+      });
+
+      // Update thread badge locally
+      const thread = adminChatThreads.find(t => t.sessionId === sessionId);
+      if (thread) {
+        thread.unreadCount = 0;
+        renderAdminThreadsList(adminChatThreads);
+      }
+
+      setTimeout(() => {
+        const input = document.getElementById('adminReplyInput');
+        if (input) input.focus();
+      }, 150);
+    }
+
+    async function loadAdminThreadMessages(sessionId, shouldScroll = true) {
+      if (!sessionId) return;
+
+      try {
+        const res = await fetch(`/api/chat/messages?sessionId=${encodeURIComponent(sessionId)}`);
+        const data = await res.json();
+        const messages = Array.isArray(data.messages) ? data.messages : [];
+        const threadInfo = adminChatThreads.find(t => t.sessionId === sessionId);
+        const customerName = (threadInfo && threadInfo.customerName) || data.customerName || 'Customer';
+
+        const titleEl = document.getElementById('adminActiveCustomerTitle');
+        const metaEl = document.getElementById('adminActiveSessionMeta');
+        if (titleEl) {
+          titleEl.innerHTML = `<i class="fa-solid fa-comments" style="color: #60a5fa;"></i> Percakapan dengan: <strong style="color: #ffffff; margin-left: 4px;">${escapeChatHTML(customerName)}</strong>`;
+        }
+        if (metaEl) {
+          metaEl.textContent = `ID Sesi: ${sessionId} • Total ${messages.length} Pesan • Realtime Live Chat`;
+        }
+
+        const box = document.getElementById('adminChatMessagesBox');
+        if (!box) return;
+
+        if (messages.length === 0) {
+          box.innerHTML = `
+            <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin: auto; padding: 20px;">
+              Belum ada riwayat pesan pada sesi customer ini.
+            </div>
+          `;
+        } else {
+          box.innerHTML = messages.map(m => {
+            const isCustomer = m.sender === 'customer';
+            const senderLabel = isCustomer ? `${m.customerName || customerName} (Customer)` : '🛡️ Admin JaneMarket (Anda)';
+            return `
+              <div class="chat-bubble ${isCustomer ? 'customer-side' : 'admin-side'}" style="${isCustomer ? 'align-self: flex-start; background: #1f1f26; border: 1px solid #33333d; color: #ffffff;' : 'align-self: flex-end; background: #ffffff; color: #000000;'}">
+                <div class="chat-bubble-sender" style="color: ${isCustomer ? '#60a5fa' : '#52525b'};">
+                  ${isCustomer ? '<i class="fa-solid fa-user"></i>' : '<i class="fa-solid fa-shield-halved"></i>'} ${escapeChatHTML(senderLabel)}
+                </div>
+                <div>${escapeChatHTML(m.text).replace(/\n/g, '<br>')}</div>
+                <span class="chat-bubble-time">${formatChatTimestamp(m.timestamp)}</span>
+              </div>
+            `;
+          }).join('');
+        }
+
+        if (shouldScroll) {
+          box.scrollTop = box.scrollHeight;
+        }
+      } catch (e) {
+        console.warn("Load admin thread messages err:", e);
+      }
+    }
+
+    async function sendAdminReply() {
+      if (!adminActiveThreadSessionId) {
+        showToast("Pilih blok customer terlebih dahulu!");
+        return;
+      }
+      const input = document.getElementById('adminReplyInput');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      playBeep('click');
+
+      const thread = adminChatThreads.find(t => t.sessionId === adminActiveThreadSessionId);
+      const customerName = thread ? thread.customerName : 'Customer';
+
+      try {
+        await fetch('/api/chat/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId: adminActiveThreadSessionId,
+            customerName: customerName,
+            sender: 'admin',
+            text: text
+          })
+        });
+
+        await loadAdminThreadMessages(adminActiveThreadSessionId, true);
+        loadAdminChatThreads(false);
+        showToast("Balasan terkirim ke customer!");
+      } catch (e) {
+        console.warn("Send admin reply err:", e);
+      }
+    }
+
+    function insertAdminQuickReply(text) {
+      const input = document.getElementById('adminReplyInput');
+      if (input) {
+        input.value = text;
+        input.focus();
+      }
+    }
+
+    async function markActiveThreadRead() {
+      if (!adminActiveThreadSessionId) return;
+      try {
+        await fetch('/api/chat/read', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: adminActiveThreadSessionId, role: 'admin' })
+        });
+        showToast("Percakapan ditandai sudah dibaca");
+        loadAdminChatThreads(false);
+      } catch (e) {}
+    }
+
+    async function deleteActiveThread() {
+      if (!adminActiveThreadSessionId) return;
+      if (!confirm("Hapus seluruh riwayat percakapan sesi customer ini?")) return;
+
+      try {
+        await fetch(`/api/chat/threads/${encodeURIComponent(adminActiveThreadSessionId)}`, {
+          method: 'DELETE'
+        });
+        showToast("Percakapan berhasil dihapus");
+        adminActiveThreadSessionId = null;
+        const box = document.getElementById('adminChatMessagesBox');
+        if (box) {
+          box.innerHTML = `
+            <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin: auto; padding: 30px;">
+              <i class="fa-solid fa-comments" style="font-size: 38px; color: #27272a; margin-bottom: 12px; display: block;"></i>
+              Silakan pilih salah satu blok customer di kolom kiri untuk membaca & membalas chat secara terpisah.
+            </div>
+          `;
+        }
+        const titleEl = document.getElementById('adminActiveCustomerTitle');
+        if (titleEl) titleEl.innerHTML = '<i class="fa-solid fa-comment-dots" style="color: #60a5fa;"></i> Pilih Customer untuk Membalas';
+        const metaEl = document.getElementById('adminActiveSessionMeta');
+        if (metaEl) metaEl.textContent = 'Klik salah satu blok customer di sebelah kiri untuk melihat pesan';
+
+        const actions = document.getElementById('adminChatHeaderActions');
+        const quickBar = document.getElementById('adminQuickReplyBar');
+        const inputArea = document.getElementById('adminChatInputArea');
+        if (actions) actions.style.display = 'none';
+        if (quickBar) quickBar.style.display = 'none';
+        if (inputArea) inputArea.style.display = 'none';
+
+        loadAdminChatThreads(false);
+      } catch (e) {
+        console.warn("Delete thread err:", e);
+      }
+    }
+
+    // --- Background Polling Sync ---
+    async function pollChatUpdates() {
+      // 1. If admin is logged in and live chat tab is active
+      const adminLiveChatTab = document.getElementById('tab-livechat');
+      const adminModal = document.getElementById('adminDashboardModal');
+      if (isAdminLoggedIn && adminModal && adminModal.classList.contains('active') && adminLiveChatTab && adminLiveChatTab.classList.contains('active')) {
+        loadAdminChatThreads(false);
+      } else if (isAdminLoggedIn) {
+        // Just poll thread counts for badge
+        try {
+          const res = await fetch('/api/chat/threads');
+          const data = await res.json();
+          const threads = Array.isArray(data.threads) ? data.threads : [];
+          const totalUnread = threads.reduce((sum, t) => sum + (t.unreadCount || 0), 0);
+          const adminBadge = document.getElementById('adminSidebarChatCount');
+          if (adminBadge) {
+            if (totalUnread > 0) {
+              adminBadge.textContent = totalUnread;
+              adminBadge.style.display = 'inline-block';
+            } else {
+              adminBadge.style.display = 'none';
+            }
+          }
+        } catch (e) {}
+      }
+
+      // 2. Poll for customer live chat
+      if (customerSessionId) {
+        const liveWin = document.getElementById('customerLiveChatWindow');
+        const isLiveChatOpen = liveWin && liveWin.classList.contains('active');
+
+        if (isLiveChatOpen) {
+          loadCustomerLiveChatMessages(false);
+        } else {
+          // Check unread replies from admin
+          try {
+            const res = await fetch(`/api/chat/messages?sessionId=${encodeURIComponent(customerSessionId)}`);
+            const data = await res.json();
+            const msgs = Array.isArray(data.messages) ? data.messages : [];
+            const unreadAdminCount = msgs.filter(m => m.sender === 'admin' && !m.read).length;
+            const badge = document.getElementById('customerUnreadBadge');
+            if (badge) {
+              if (unreadAdminCount > 0) {
+                badge.textContent = unreadAdminCount;
+                badge.style.display = 'inline-block';
+              } else {
+                badge.style.display = 'none';
+              }
+            }
+          } catch (e) {}
+        }
+      }
     }
   </script>
 </body>
