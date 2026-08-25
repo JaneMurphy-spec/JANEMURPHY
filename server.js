@@ -383,16 +383,83 @@ const appHandler = async (request, response) => {
       store.stats.totalOrders = (store.stats.totalOrders || 0) + 1;
       store.stats.totalRevenue = (store.stats.totalRevenue || 0) + (newOrder.price || 0);
 
-      // Increment sold count for matching product
+      // Increment sold count automatically for matching product
       if (body.productId) {
         const prod = store.products.find(p => String(p.id) === String(body.productId));
         if (prod) {
-          prod.soldCount = (prod.soldCount || 0) + 1;
+          prod.soldCount = (Number(prod.soldCount) || 0) + 1;
         }
       }
 
       saveStoreData(store);
-      return sendJson(response, 201, { success: true, order: newOrder });
+      return sendJson(response, 201, { success: true, order: newOrder, products: store.products });
+    }
+
+    // 7b. POST /api/reviews (Add product review)
+    if (pathname === "/api/reviews" && method === "POST") {
+      const body = await parseBody(request);
+      const { productId, name, rating, comment } = body;
+
+      if (!productId || !comment || !comment.trim()) {
+        return sendJson(response, 400, { success: false, error: "ID produk dan ulasan harus diisi" });
+      }
+
+      const prod = store.products.find(p => String(p.id) === String(productId));
+      if (!prod) {
+        return sendJson(response, 404, { success: false, error: "Produk tidak ditemukan" });
+      }
+
+      if (!Array.isArray(prod.reviews)) {
+        prod.reviews = [];
+      }
+
+      const newReview = {
+        id: "rev-" + Date.now(),
+        name: (name && name.trim()) ? name.trim() : "Pembeli Terverifikasi",
+        rating: Math.max(1, Math.min(5, Number(rating) || 5)),
+        date: "Baru saja",
+        comment: comment.trim(),
+        verified: true,
+        timestamp: new Date().toISOString()
+      };
+
+      prod.reviews.unshift(newReview);
+
+      // Recalculate average rating
+      const sum = prod.reviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0);
+      prod.rating = Number((sum / prod.reviews.length).toFixed(1));
+
+      saveStoreData(store);
+      return sendJson(response, 201, { success: true, review: newReview, product: prod, message: "Ulasan berhasil dikirim!" });
+    }
+
+    // 7c. POST /api/auth/google & POST /api/auth/login
+    if ((pathname === "/api/auth/google" || pathname === "/api/auth/login") && method === "POST") {
+      const body = await parseBody(request);
+      const email = (body.email || "").toLowerCase().trim();
+      const name = body.name || email.split("@")[0] || "User";
+      const pin = body.pin || body.password || "";
+      const ownerEmail = (store.settings.ownerEmail || "ererex4youu@gmail.com").toLowerCase().trim();
+      const adminPin = String(store.settings.adminPin || "123456").trim();
+
+      // Check if user is owner / admin
+      let isAdmin = false;
+      if (email === ownerEmail || email === "ererex4youu@gmail.com") {
+        isAdmin = true;
+      } else if (pin && String(pin).trim() === adminPin) {
+        isAdmin = true;
+      }
+
+      const user = {
+        email: email || (isAdmin ? ownerEmail : "member@janemurphy.store"),
+        name: isAdmin ? (body.name || "Owner JaneMurphy (Admin)") : name,
+        picture: body.picture || "",
+        role: isAdmin ? "admin" : "customer",
+        isAdmin: isAdmin,
+        token: "tok-" + Date.now() + "-" + Math.random().toString(36).substring(2, 9)
+      };
+
+      return sendJson(response, 200, { success: true, user, message: isAdmin ? "Selamat datang Admin!" : "Berhasil masuk!" });
     }
 
     // 8. POST /api/chat-ai (Gemini AI Assistant)
@@ -535,20 +602,36 @@ Instruksi:
       }
 
       const allChats = getChatsData();
-      const newMsg = {
-        id: "msg-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
-        sessionId: String(sessionId).trim(),
-        customerName: customerName ? String(customerName).trim() : "Customer Web",
-        sender: sender === "admin" ? "admin" : "customer",
-        text: String(text).trim(),
-        timestamp: new Date().toISOString(),
-        read: sender === "admin" // if admin sends, it's already read by admin
-      };
+      const cleanSessionId = String(sessionId).trim();
+      const cleanSender = sender === "admin" ? "admin" : "customer";
+      const cleanText = String(text).trim();
 
-      allChats.push(newMsg);
-      saveChatsData(allChats);
+      // Guard against rapid duplicate clicks (within 1.5s for same session, sender, and text)
+      const now = Date.now();
+      const isDuplicate = allChats.some(m => 
+        m.sessionId === cleanSessionId &&
+        m.sender === cleanSender &&
+        m.text === cleanText &&
+        (now - new Date(m.timestamp).getTime() < 1500)
+      );
 
-      const sessionMessages = allChats.filter(m => m.sessionId === sessionId);
+      let newMsg = null;
+      if (!isDuplicate) {
+        newMsg = {
+          id: "msg-" + now + "-" + Math.floor(Math.random() * 1000),
+          sessionId: cleanSessionId,
+          customerName: customerName ? String(customerName).trim() : "Customer Web",
+          sender: cleanSender,
+          text: cleanText,
+          timestamp: new Date().toISOString(),
+          read: cleanSender === "admin"
+        };
+
+        allChats.push(newMsg);
+        saveChatsData(allChats);
+      }
+
+      const sessionMessages = allChats.filter(m => m.sessionId === cleanSessionId);
       return sendJson(response, 201, { success: true, message: newMsg, messages: sessionMessages });
     }
 

@@ -327,6 +327,89 @@ function saveStoreData(data) {
   return true;
 }
 
+let inMemoryChats = [
+  {
+    id: "msg-101",
+    sessionId: "cust-101",
+    customerName: "Rian Pratama",
+    sender: "customer",
+    text: "Halo min, akun Netflix Premium 4K yang 1 bulan ready stock?",
+    timestamp: new Date(Date.now() - 3600000).toISOString(),
+    read: true
+  },
+  {
+    id: "msg-102",
+    sessionId: "cust-101",
+    customerName: "Rian Pratama",
+    sender: "admin",
+    text: "Halo kak Rian! Ready stock ya kak, akun private profile 4K Ultra HD. Langsung kami kirim setelah verifikasi pembayaran.",
+    timestamp: new Date(Date.now() - 3500000).toISOString(),
+    read: true
+  },
+  {
+    id: "msg-103",
+    sessionId: "cust-101",
+    customerName: "Rian Pratama",
+    sender: "customer",
+    text: "Oke min, saya transfer via QRIS sekarang ya.",
+    timestamp: new Date(Date.now() - 1800000).toISOString(),
+    read: false
+  },
+  {
+    id: "msg-201",
+    sessionId: "cust-102",
+    customerName: "Dimas Setiawan",
+    sender: "customer",
+    text: "Malam min, mau tanya topup 296 Diamond MLBB proses berapa menit?",
+    timestamp: new Date(Date.now() - 7200000).toISOString(),
+    read: true
+  },
+  {
+    id: "msg-202",
+    sessionId: "cust-102",
+    customerName: "Dimas Setiawan",
+    sender: "admin",
+    text: "Malam kak Dimas! Proses kilat 1-3 menit langsung masuk ke akun MLBB kakak cukup cantumkan User ID dan Zone ID ya.",
+    timestamp: new Date(Date.now() - 7000000).toISOString(),
+    read: true
+  }
+];
+
+function getChatsData() {
+  const chatsPath = path.join(dataDir, "chats.json");
+  const tmpPath = path.join("/tmp", "chats.json");
+
+  try {
+    if (fs.existsSync(tmpPath)) {
+      const data = JSON.parse(fs.readFileSync(tmpPath, "utf8"));
+      if (Array.isArray(data) && data.length > 0) return data;
+    }
+    if (fs.existsSync(chatsPath)) {
+      const data = JSON.parse(fs.readFileSync(chatsPath, "utf8"));
+      if (Array.isArray(data) && data.length > 0) return data;
+    }
+  } catch (e) {}
+
+  return inMemoryChats;
+}
+
+function saveChatsData(data) {
+  inMemoryChats = data;
+  try {
+    const chatsPath = path.join(dataDir, "chats.json");
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    fs.writeFileSync(chatsPath, JSON.stringify(data, null, 2), "utf8");
+  } catch (e) {}
+
+  try {
+    fs.writeFileSync(path.join("/tmp", "chats.json"), JSON.stringify(data, null, 2), "utf8");
+  } catch (e) {}
+
+  return true;
+}
+
 // Lazy Gemini AI Client
 let aiClient = null;
 function getAIClient() {
@@ -498,12 +581,79 @@ module.exports = async (req, res) => {
     if (body.productId) {
       const prod = store.products.find(p => String(p.id) === String(body.productId));
       if (prod) {
-        prod.soldCount = (prod.soldCount || 0) + 1;
+        prod.soldCount = (Number(prod.soldCount) || 0) + 1;
       }
     }
 
     saveStoreData(store);
-    return sendJson(res, 201, { success: true, order: newOrder });
+    return sendJson(res, 201, { success: true, order: newOrder, products: store.products });
+  }
+
+  // 7b. POST /api/reviews
+  if ((pathname === "/api/reviews" || pathname === "/reviews") && method === "POST") {
+    const body = await parseBody(req);
+    const { productId, name, rating, comment } = body;
+
+    if (!productId || !comment || !comment.trim()) {
+      return sendJson(res, 400, { success: false, error: "ID produk dan ulasan harus diisi" });
+    }
+
+    const prod = store.products.find(p => String(p.id) === String(productId));
+    if (!prod) {
+      return sendJson(res, 404, { success: false, error: "Produk tidak ditemukan" });
+    }
+
+    if (!Array.isArray(prod.reviews)) {
+      prod.reviews = [];
+    }
+
+    const newReview = {
+      id: "rev-" + Date.now(),
+      name: (name && name.trim()) ? name.trim() : "Pembeli Terverifikasi",
+      rating: Math.max(1, Math.min(5, Number(rating) || 5)),
+      date: "Baru saja",
+      comment: comment.trim(),
+      verified: true,
+      timestamp: new Date().toISOString()
+    };
+
+    prod.reviews.unshift(newReview);
+
+    // Recalculate average rating
+    const sum = prod.reviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0);
+    prod.rating = Number((sum / prod.reviews.length).toFixed(1));
+
+    saveStoreData(store);
+    return sendJson(res, 201, { success: true, review: newReview, product: prod, message: "Ulasan berhasil dikirim!" });
+  }
+
+  // 7c. POST /api/auth/google & POST /api/auth/login
+  if ((pathname === "/api/auth/google" || pathname === "/api/auth/login" || pathname === "/auth/google" || pathname === "/auth/login") && method === "POST") {
+    const body = await parseBody(req);
+    const email = (body.email || "").toLowerCase().trim();
+    const name = body.name || email.split("@")[0] || "User";
+    const pin = body.pin || body.password || "";
+    const ownerEmail = (store.settings.ownerEmail || "ererex4youu@gmail.com").toLowerCase().trim();
+    const adminPin = String(store.settings.adminPin || "123456").trim();
+
+    // Check if user is owner / admin
+    let isAdmin = false;
+    if (email === ownerEmail || email === "ererex4youu@gmail.com") {
+      isAdmin = true;
+    } else if (pin && String(pin).trim() === adminPin) {
+      isAdmin = true;
+    }
+
+    const user = {
+      email: email || (isAdmin ? ownerEmail : "member@janemurphy.store"),
+      name: isAdmin ? (body.name || "Owner JaneMurphy (Admin)") : name,
+      picture: body.picture || "",
+      role: isAdmin ? "admin" : "customer",
+      isAdmin: isAdmin,
+      token: "tok-" + Date.now() + "-" + Math.random().toString(36).substring(2, 9)
+    };
+
+    return sendJson(res, 200, { success: true, user, message: isAdmin ? "Selamat datang Admin!" : "Berhasil masuk!" });
   }
 
   // 8. POST /api/chat-ai
@@ -577,6 +727,134 @@ Instruksi:
     }
 
     return sendJson(res, 200, { success: true, reply });
+  }
+
+  // 9. GET /api/chat/threads
+  if ((pathname === "/api/chat/threads" || pathname === "/chat/threads") && method === "GET") {
+    const allChats = getChatsData();
+    const threadMap = new Map();
+
+    for (const msg of allChats) {
+      const sId = msg.sessionId || "anonymous";
+      if (!threadMap.has(sId)) {
+        threadMap.set(sId, {
+          sessionId: sId,
+          customerName: msg.customerName || "Customer Web",
+          lastMessage: msg.text || "",
+          lastSender: msg.sender || "customer",
+          lastTimestamp: msg.timestamp || new Date().toISOString(),
+          unreadCount: 0,
+          totalMessages: 0
+        });
+      }
+
+      const thread = threadMap.get(sId);
+      thread.totalMessages += 1;
+      if (msg.customerName && msg.sender === "customer") {
+        thread.customerName = msg.customerName;
+      }
+      if (new Date(msg.timestamp) >= new Date(thread.lastTimestamp)) {
+        thread.lastMessage = msg.text;
+        thread.lastSender = msg.sender;
+        thread.lastTimestamp = msg.timestamp;
+      }
+      if (msg.sender === "customer" && !msg.read) {
+        thread.unreadCount += 1;
+      }
+    }
+
+    const threads = Array.from(threadMap.values()).sort((a, b) => 
+      new Date(b.lastTimestamp) - new Date(a.lastTimestamp)
+    );
+
+    return sendJson(res, 200, { success: true, threads });
+  }
+
+  // 10. GET /api/chat/messages
+  if ((pathname === "/api/chat/messages" || pathname === "/chat/messages") && method === "GET") {
+    const searchParams = new URLSearchParams(urlParts[1] || "");
+    const sessionId = searchParams.get("sessionId");
+
+    if (!sessionId) {
+      return sendJson(res, 400, { success: false, error: "sessionId diperlukan" });
+    }
+
+    const allChats = getChatsData();
+    const messages = allChats.filter(m => m.sessionId === sessionId);
+    return sendJson(res, 200, { success: true, messages });
+  }
+
+  // 11. POST /api/chat/send
+  if ((pathname === "/api/chat/send" || pathname === "/chat/send") && method === "POST") {
+    const body = await parseBody(req);
+    const { sessionId, customerName, sender, text } = body;
+
+    if (!sessionId || !text || !text.trim()) {
+      return sendJson(res, 400, { success: false, error: "sessionId dan text pesan harus diisi" });
+    }
+
+    const allChats = getChatsData();
+    const newMsg = {
+      id: "msg-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
+      sessionId: String(sessionId).trim(),
+      customerName: customerName ? String(customerName).trim() : "Customer Web",
+      sender: sender === "admin" ? "admin" : "customer",
+      text: String(text).trim(),
+      timestamp: new Date().toISOString(),
+      read: sender === "admin"
+    };
+
+    allChats.push(newMsg);
+    saveChatsData(allChats);
+
+    const sessionMessages = allChats.filter(m => m.sessionId === sessionId);
+    return sendJson(res, 201, { success: true, message: newMsg, messages: sessionMessages });
+  }
+
+  // 12. POST /api/chat/read
+  if ((pathname === "/api/chat/read" || pathname === "/chat/read") && method === "POST") {
+    const body = await parseBody(req);
+    const { sessionId, role } = body;
+
+    if (!sessionId) {
+      return sendJson(res, 400, { success: false, error: "sessionId diperlukan" });
+    }
+
+    const allChats = getChatsData();
+    let updated = false;
+
+    for (const msg of allChats) {
+      if (msg.sessionId === sessionId) {
+        if (role === "admin" && msg.sender === "customer" && !msg.read) {
+          msg.read = true;
+          updated = true;
+        } else if (role === "customer" && msg.sender === "admin" && !msg.read) {
+          msg.read = true;
+          updated = true;
+        }
+      }
+    }
+
+    if (updated) {
+      saveChatsData(allChats);
+    }
+
+    return sendJson(res, 200, { success: true, message: "Pesan telah ditandai dibaca" });
+  }
+
+  // 13. DELETE /api/chat/threads/:sessionId
+  if (pathname.includes("/chat/threads/") && method === "DELETE") {
+    const sessionId = pathname.split("/chat/threads/")[1];
+    let allChats = getChatsData();
+    const initialCount = allChats.length;
+    allChats = allChats.filter(m => m.sessionId !== sessionId);
+
+    if (allChats.length === initialCount) {
+      return sendJson(res, 404, { success: false, error: "Thread chat tidak ditemukan" });
+    }
+
+    saveChatsData(allChats);
+    return sendJson(res, 200, { success: true, message: "Percakapan customer berhasil dihapus!" });
   }
 
   // Fallback 404 for unknown api routes

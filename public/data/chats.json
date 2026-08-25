@@ -1,0 +1,47 @@
+[
+  {
+    "id": "msg-101",
+    "sessionId": "cust-101",
+    "customerName": "Rian Pratama",
+    "sender": "customer",
+    "text": "Halo min, akun Netflix Premium 4K yang 1 bulan ready stock?",
+    "timestamp": "2026-08-24T11:57:32.681Z",
+    "read": true
+  },
+  {
+    "id": "msg-102",
+    "sessionId": "cust-101",
+    "customerName": "Rian Pratama",
+    "sender": "admin",
+    "text": "Halo kak Rian! Ready stock ya kak, akun private profile 4K Ultra HD. Langsung kami kirim setelah verifikasi pembayaran.",
+    "timestamp": "2026-08-24T11:59:12.681Z",
+    "read": true
+  },
+  {
+    "id": "msg-103",
+    "sessionId": "cust-101",
+    "customerName": "Rian Pratama",
+    "sender": "customer",
+    "text": "Oke min, saya transfer via QRIS sekarang ya.",
+    "timestamp": "2026-08-24T12:27:32.681Z",
+    "read": false
+  },
+  {
+    "id": "msg-201",
+    "sessionId": "cust-102",
+    "customerName": "Dimas Setiawan",
+    "sender": "customer",
+    "text": "Malam min, mau tanya topup 296 Diamond MLBB proses berapa menit?",
+    "timestamp": "2026-08-24T10:57:32.681Z",
+    "read": true
+  },
+  {
+    "id": "msg-202",
+    "sessionId": "cust-102",
+    "customerName": "Dimas Setiawan",
+    "sender": "admin",
+    "text": "Malam kak Dimas! Proses kilat 1-3 menit langsung masuk ke akun MLBB kakak cukup cantumkan User ID dan Zone ID ya.",
+    "timestamp": "2026-08-24T11:00:52.681Z",
+    "read": true
+  }
+]

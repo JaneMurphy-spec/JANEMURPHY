@@ -1,17 +1,19 @@
 {
   "settings": {
-    "storeName": "JaneMarket",
-    "storeTagline": "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
+    "storeName": "JaneMurphy",
+    "storeTagline": "Premium Applications & Official Store",
+    "storeLogo": "LogoJM.jpg",
+    "ownerEmail": "ererex4youu@gmail.com",
     "whatsappNumber": "6281234567890",
     "adminPin": "123456",
     "qrisImage": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
-    "qrisMerchantName": "JANEMARKET OFFICIAL (QRIS ALL PAYMENT)",
+    "qrisMerchantName": "JANEMURPHY OFFICIAL (QRIS ALL PAYMENT)",
     "paymentMethods": [
       {
         "id": "dana",
         "name": "DANA",
         "number": "081234567890",
-        "owner": "Jane Market Admin",
+        "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-wallet"
       },
@@ -19,7 +21,7 @@
         "id": "gopay",
         "name": "GoPay",
         "number": "081234567890",
-        "owner": "Jane Market Admin",
+        "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-mobile-screen"
       },
@@ -27,7 +29,7 @@
         "id": "ovo",
         "name": "OVO",
         "number": "081234567890",
-        "owner": "Jane Market Admin",
+        "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-coins"
       },
@@ -35,7 +37,7 @@
         "id": "shopeepay",
         "name": "ShopeePay",
         "number": "081234567890",
-        "owner": "Jane Market Admin",
+        "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-bag-shopping"
       },
@@ -43,7 +45,7 @@
         "id": "bca",
         "name": "Bank BCA",
         "number": "8735091234",
-        "owner": "Jane Market Official",
+        "owner": "JaneMurphy Official",
         "active": true,
         "icon": "fa-solid fa-building-columns"
       },
@@ -51,7 +53,7 @@
         "id": "mandiri",
         "name": "Bank Mandiri",
         "number": "137001928374",
-        "owner": "Jane Market Official",
+        "owner": "JaneMurphy Official",
         "active": true,
         "icon": "fa-solid fa-building-columns"
       },
@@ -59,7 +61,7 @@
         "id": "seabank",
         "name": "SeaBank",
         "number": "90192837465",
-        "owner": "Jane Market Official",
+        "owner": "JaneMurphy Official",
         "active": true,
         "icon": "fa-solid fa-building-columns"
       }
@@ -74,7 +76,7 @@
     "announcement": "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS & E-Wallet Lengkap"
   },
   "stats": {
-    "totalVisitors": 1847,
+    "totalVisitors": 1856,
     "totalRevenue": 4850000,
     "totalOrders": 142
   },
@@ -124,6 +126,7 @@
       "soldCount": 428,
       "rating": 4.9,
       "badge": "BEST SELLER",
+      "stockStatus": "ready",
       "warranty": "Garansi 30 Hari",
       "description": "Akun Netflix Premium kualitas Ultra HD 4K. Anti on-hold, anti screen limit. Support Android, iOS, Smart TV, Laptop/PC.",
       "variants": [
@@ -157,6 +160,8 @@
       "soldCount": 356,
       "rating": 4.9,
       "badge": "POPULER",
+      "stockStatus": "limited",
+      "stockCount": 4,
       "warranty": "Garansi Full",
       "description": "Dengarkan musik tanpa iklan, download lagu offline unlimited, kualitas audio tertinggi (320kbps). Bisa di akun pribadi atau akun baru.",
       "variants": [
@@ -190,6 +195,7 @@
       "soldCount": 512,
       "rating": 5,
       "badge": "HOT PROMO",
+      "stockStatus": "ready",
       "warranty": "Garansi 1 Tahun / Lifetime",
       "description": "Upgrade Canva Pro langsung di email pribadi. Akses 100+ juta foto, template, hapus background 1-klik, Brand Kit, magic resize.",
       "variants": [
@@ -223,6 +229,7 @@
       "soldCount": 289,
       "rating": 4.8,
       "badge": "GARANSI",
+      "stockStatus": "ready",
       "warranty": "Garansi Full",
       "description": "Nonton video YouTube tanpa jeda iklan, pemutaran di latar belakang saat layar mati, serta akses gratis YouTube Music Premium.",
       "variants": [
@@ -256,6 +263,8 @@
       "soldCount": 194,
       "rating": 4.9,
       "badge": "AI PRO",
+      "stockStatus": "limited",
+      "stockCount": 2,
       "warranty": "Garansi 30 Hari",
       "description": "Akses GPT-4o, DALL-E 3, Browsing, Advanced Data Analysis, pembuatan Custom GPTs tanpa batas kuota gratis.",
       "variants": [
@@ -289,6 +298,7 @@
       "soldCount": 220,
       "rating": 4.9,
       "badge": "EDITOR CHOICE",
+      "stockStatus": "ready",
       "warranty": "Garansi Full",
       "description": "Buka semua efek pro, transisi viral, auto-caption AI, cloud storage 100GB, dan ekspor 4K 60FPS tanpa watermark.",
       "variants": [
@@ -318,6 +328,7 @@
       "soldCount": 840,
       "rating": 5,
       "badge": "INSTAN 1 MENIT",
+      "stockStatus": "ready",
       "warranty": "100% Legal & Aman",
       "description": "Top Up Diamond Mobile Legends Resmi, Cukup Masukkan User ID dan Zone ID. Proses kilat 1-5 menit langsung masuk!",
       "variants": [
@@ -363,6 +374,7 @@
       "soldCount": 670,
       "rating": 4.9,
       "badge": "MURAH",
+      "stockStatus": "ready",
       "warranty": "100% Legal",
       "description": "Top Up Diamond Free Fire termurah & terpercaya. Cukup cantumkan Player ID Free Fire Anda.",
       "variants": [
@@ -408,6 +420,7 @@
       "soldCount": 310,
       "rating": 4.9,
       "badge": "RIOT OFFICIAL",
+      "stockStatus": "preorder",
       "warranty": "100% Legal",
       "description": "Topup Valorant Points (Riot ID: Username#TAG) region Indonesia/Asia Pacific. Siap borong Night Market!",
       "variants": [
@@ -445,6 +458,7 @@
       "soldCount": 165,
       "rating": 5,
       "badge": "KREATIF",
+      "stockStatus": "ready",
       "warranty": "Revisi Sampai Puas",
       "description": "Desain poster profesional untuk konser, festival kampus, seminar, workshop, webinar, dan acara komersial.",
       "variants": [
@@ -478,6 +492,8 @@
       "soldCount": 210,
       "rating": 4.9,
       "badge": "BRANDING",
+      "stockStatus": "limited",
+      "stockCount": 3,
       "warranty": "Revisi Cepat",
       "description": "Desain banner jualan, spanduk toko, flyer brosur, menu makanan/minuman, banner marketplace Tokopedia/Shopee.",
       "variants": [
@@ -511,6 +527,7 @@
       "soldCount": 180,
       "rating": 5,
       "badge": "ESTETIK",
+      "stockStatus": "ready",
       "warranty": "Revisi Siap",
       "description": "Desain konten media sosial aesthetic & profesional. Meningkatkan engagement dan kepercayaan customer olshop/personal branding.",
       "variants": [

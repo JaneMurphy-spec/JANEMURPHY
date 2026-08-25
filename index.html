@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#09090b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="JaneMarket">
-  <title>JaneMarket - Platform Aplikasi Premium, Topup Game & Jasa Desain</title>
+  <meta name="apple-mobile-web-app-title" content="JaneMurphy">
+  <title>JaneMurphy - Platform Aplikasi Premium & Topup Game</title>
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,43 +107,58 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: #ffffff;
+      flex-shrink: 0;
+    }
+    .brand-logo-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+      background: #090a14;
+      flex-shrink: 0;
+      display: block;
     }
     .brand-icon {
       width: 38px;
       height: 38px;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 50%, #4f46e5 100%);
       color: #ffffff;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 17px;
+      font-size: 16px;
       font-family: 'Space Grotesk', sans-serif;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.45);
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      flex-shrink: 0;
     }
     .brand-text h1 {
       font-size: 18px;
       font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #ffffff 60%, #a5b4fc 100%);
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #ffffff 60%, #38bdf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      line-height: 1.15;
     }
     .brand-text p {
-      font-size: 9.5px;
-      color: #818cf8;
-      letter-spacing: 0.8px;
+      font-size: 9px;
+      color: #38bdf8;
+      letter-spacing: 0.9px;
       text-transform: uppercase;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .nav-center-links {
@@ -169,6 +184,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-shrink: 0;
     }
 
     /* Buttons */
@@ -186,6 +202,7 @@
       text-decoration: none;
       white-space: nowrap;
       border: 1px solid transparent;
+      flex-shrink: 0;
     }
     .btn-white {
       background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
@@ -243,10 +260,71 @@
 
     /* Hero Section - Clean, Spacious & Impactful */
     .hero-section {
-      padding: 36px 16px 20px;
+      padding: 38px 16px 20px;
       text-align: center;
       max-width: 960px;
       margin: 0 auto;
+    }
+    .hero-brand-badge-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .hero-store-showcase {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(14, 17, 34, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 18px 6px 8px;
+      border-radius: 30px;
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.25s ease;
+    }
+    .hero-store-showcase:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+      box-shadow: 0 12px 30px rgba(6, 182, 212, 0.35);
+    }
+    .hero-store-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #38bdf8;
+      box-shadow: 0 2px 10px rgba(56, 189, 248, 0.5);
+    }
+    .hero-store-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .hero-store-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: 0.2px;
+    }
+    .hero-store-subtitle {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    .hero-store-verified {
+      font-size: 10px;
+      font-weight: 700;
+      color: #4ade80;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 2px 8px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
     .hero-tag {
       display: inline-flex;
@@ -271,7 +349,7 @@
       color: #ffffff;
     }
     .hero-title span {
-      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #f43f5e 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       padding: 0;
@@ -281,8 +359,33 @@
       font-size: 14px;
       color: var(--text-secondary);
       max-width: 680px;
-      margin: 0 auto 6px;
+      margin: 0 auto 16px;
       line-height: 1.65;
+    }
+    .hero-stats-ribbon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: rgba(17, 19, 34, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 6px 18px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+    }
+    .hero-stat-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+    .hero-stat-divider {
+      width: 4px;
+      height: 4px;
+      background: var(--border-light);
+      border-radius: 50%;
     }
 
     /* Trust Features Grid - Colorful 4-Pillars */
@@ -385,19 +488,31 @@
       font-size: 13px;
     }
 
-    /* Category Navigation - Generous Pills */
+    /* Category Navigation - Generous Pills & Touch Drag Scrollable */
     .category-tabs {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 4px;
+      overflow-y: hidden;
+      padding-bottom: 6px;
       margin-top: 10px;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      scroll-behavior: smooth;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: grab;
+    }
+    .category-tabs.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
     }
     .category-tabs::-webkit-scrollbar {
       display: none;
     }
     .category-btn {
+      flex-shrink: 0;
       background: var(--bg-secondary);
       color: var(--text-secondary);
       border: 1px solid var(--border-color);
@@ -1040,9 +1155,9 @@
       width: 100%;
       max-width: 580px;
       max-height: 90vh;
-      overflow-y: auto;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
       animation: modalFade 0.2s ease-out;
     }
@@ -1059,8 +1174,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
+      flex-shrink: 0;
       background: var(--bg-secondary);
       z-index: 5;
     }
@@ -1086,6 +1200,9 @@
     }
     .modal-body {
       padding: 20px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
     }
     .modal-footer {
       padding: 14px 20px;
@@ -1095,8 +1212,7 @@
       justify-content: flex-end;
       gap: 10px;
       background: var(--bg-secondary);
-      position: sticky;
-      bottom: 0;
+      flex-shrink: 0;
     }
 
     /* Form Controls */
@@ -1236,13 +1352,67 @@
       border-color: #ffffff;
       background: var(--bg-card-hover);
     }
+    .variant-radio-input {
+      accent-color: #6366f1;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
     .variant-name {
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-primary);
     }
     .variant-price {
       font-weight: 800;
+      color: var(--text-primary);
+    }
+    .checkout-total-strip {
+      background: #ffffff;
+      color: #000000;
+      padding: 12px 14px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 14px;
+      border: 1px solid var(--border-color);
+    }
+    .drawer-footer-strip {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-color);
+      background: #0c0c0e;
+      text-align: center;
+    }
+    .owner-access-card {
+      margin-top: 18px;
+      padding: 12px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px dashed rgba(34, 197, 94, 0.35);
+      border-radius: 8px;
+    }
+    .owner-access-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #4ade80;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .owner-access-email {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .owner-access-email strong {
       color: #ffffff;
+    }
+    .owner-quick-btn {
+      width: 100%;
+      justify-content: center;
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #4ade80;
     }
 
     /* Admin Dashboard Layout & Sidebar */
@@ -1675,20 +1845,32 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Quick Sort & Filter Chips */
+    /* Quick Sort & Filter Chips - Drag & Touch Scrollable */
     .sort-chips-container {
       display: flex;
       align-items: center;
       gap: 8px;
       overflow-x: auto;
+      overflow-y: hidden;
       padding: 4px 0 10px;
       margin-top: 10px;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      scroll-behavior: smooth;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: grab;
+    }
+    .sort-chips-container.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
     }
     .sort-chips-container::-webkit-scrollbar {
       display: none;
     }
     .sort-chip {
+      flex-shrink: 0;
       background: #111322;
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
@@ -2069,7 +2251,57 @@
         display: none !important;
       }
       .navbar {
-        padding: 10px 12px;
+        padding: 8px 10px;
+      }
+      .navbar-container {
+        gap: 8px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand-logo {
+        flex-shrink: 0;
+        gap: 8px;
+      }
+      .brand-logo-img, .brand-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+      }
+      .brand-text h1 {
+        font-size: 15px;
+        letter-spacing: -0.2px;
+      }
+      .brand-text p {
+        font-size: 8px;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        padding: 4px 2px;
+        flex: 1;
+        min-width: 0;
+        justify-content: flex-end;
+        overscroll-behavior-x: contain;
+      }
+      .nav-actions::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+      }
+      .nav-actions .btn,
+      .nav-actions .user-profile-nav-btn,
+      .nav-actions .user-auth-btn-wrap {
+        flex-shrink: 0;
+      }
+      .nav-actions .btn,
+      .nav-actions .user-profile-nav-btn {
+        padding: 6px 10px;
+        font-size: 11.5px;
       }
       .hero-section {
         padding: 28px 12px 18px;
@@ -2181,86 +2413,153 @@
        LIGHT THEME STYLING ([data-theme="light"])
        ======================================================== */
     [data-theme="light"] {
-      --bg-primary: #f8fafc;
+      --bg-primary: #f4f6fb;
       --bg-secondary: #ffffff;
       --bg-card: #ffffff;
-      --bg-card-hover: #f1f5f9;
+      --bg-card-hover: #f8fafc;
       --border-color: #e2e8f0;
       --border-light: #cbd5e1;
-      --text-primary: #09090b;
+      --text-primary: #0f172a;
       --text-secondary: #475569;
       --text-muted: #64748b;
-      --accent-white: #09090b;
+      --accent-white: #0f172a;
       --accent-black: #ffffff;
       --badge-bg: #e2e8f0;
-      --badge-text: #09090b;
+      --badge-text: #0f172a;
     }
 
     [data-theme="light"] body {
       background-color: var(--bg-primary);
-      background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
+      background-image: 
+        radial-gradient(circle at 12% 10%, rgba(99, 102, 241, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 88% 14%, rgba(168, 85, 247, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 50% 45%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 82% 88%, rgba(16, 185, 129, 0.07) 0%, transparent 46%);
       color: var(--text-primary);
     }
 
     [data-theme="light"] .navbar {
-      background-color: rgba(255, 255, 255, 0.94);
+      background-color: rgba(255, 255, 255, 0.92);
       border-bottom-color: #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(16px);
     }
     [data-theme="light"] .nav-link {
-      color: #64748b;
-    }
-    [data-theme="light"] .nav-link:hover {
-      color: #09090b;
-    }
-    [data-theme="light"] .brand-logo {
-      color: #09090b;
-    }
-    [data-theme="light"] .brand-icon {
-      background: #09090b;
-      color: #ffffff;
-    }
-    [data-theme="light"] .hero-tag {
-      background: rgba(0, 0, 0, 0.03);
-      border-color: #e2e8f0;
       color: #475569;
     }
-    [data-theme="light"] .hero-tag strong {
-      color: #09090b;
+    [data-theme="light"] .nav-link:hover {
+      color: #0f172a;
     }
-    [data-theme="light"] .hero-title {
-      color: #09090b;
+    [data-theme="light"] .brand-logo {
+      color: #0f172a;
     }
-    [data-theme="light"] .hero-title span {
-      color: #2563eb;
+    [data-theme="light"] .brand-text h1 {
+      background: linear-gradient(135deg, #0f172a 60%, #0284c7 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: #0f172a !important;
     }
-    [data-theme="light"] .hero-desc {
+    [data-theme="light"] .brand-text p {
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .brand-icon {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    }
+    [data-theme="light"] .user-profile-nav-btn {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .user-dropdown-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+    }
+    [data-theme="light"] .user-dropdown-header {
+      border-bottom-color: #e2e8f0;
+      background: #f8fafc;
+    }
+    [data-theme="light"] .user-dropdown-name {
+      color: #0f172a;
+    }
+    [data-theme="light"] .user-dropdown-email {
       color: #64748b;
     }
+    [data-theme="light"] .user-dropdown-item {
+      color: #0f172a;
+    }
+    [data-theme="light"] .user-dropdown-item:hover {
+      background: #f1f5f9;
+      color: #4f46e5;
+    }
+
+    [data-theme="light"] .hero-tag {
+      background: rgba(99, 102, 241, 0.08);
+      border-color: rgba(99, 102, 241, 0.25);
+      color: #4338ca;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.08);
+    }
+    [data-theme="light"] .hero-tag strong {
+      color: #1e1b4b;
+    }
+    [data-theme="light"] .hero-title {
+      color: #0f172a;
+    }
+    [data-theme="light"] .hero-title span {
+      background: linear-gradient(135deg, #0284c7 0%, #6366f1 50%, #e11d48 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    [data-theme="light"] .hero-desc {
+      color: #475569;
+    }
+    [data-theme="light"] .trust-feature-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .trust-feature-card:hover {
+      border-color: #818cf8;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+    }
+    [data-theme="light"] .feat-text h4 {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .feat-text p {
+      color: #64748b !important;
+    }
+
     [data-theme="light"] .search-box-container {
       background: #ffffff;
       border-color: #cbd5e1;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
     [data-theme="light"] .search-box-container:focus-within {
-      border-color: #09090b;
-      box-shadow: 0 0 0 1px #09090b;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
     }
     [data-theme="light"] .search-input {
-      color: #09090b;
+      color: #0f172a;
     }
     [data-theme="light"] .category-btn {
       background: #ffffff;
       border-color: #cbd5e1;
-      color: #475569;
+      color: #334155;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     }
     [data-theme="light"] .category-btn:hover {
-      border-color: #94a3b8;
-      color: #09090b;
+      border-color: #6366f1;
+      color: #4338ca;
+      background: #f5f3ff;
     }
     [data-theme="light"] .category-btn.active {
-      background: #09090b;
-      color: #ffffff;
-      border-color: #09090b;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+      color: #ffffff !important;
+      border-color: #818cf8 !important;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4) !important;
     }
     [data-theme="light"] .category-btn.active .category-count {
       background: rgba(255, 255, 255, 0.25);
@@ -2269,30 +2568,39 @@
     [data-theme="light"] .sort-chip {
       background: #ffffff;
       border-color: #cbd5e1;
-      color: #475569;
+      color: #334155;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     }
     [data-theme="light"] .sort-chip:hover {
-      border-color: #09090b;
-      color: #09090b;
+      border-color: #6366f1;
+      color: #4338ca;
+      background: #f5f3ff;
     }
     [data-theme="light"] .sort-chip.active {
-      background: #09090b;
-      border-color: #09090b;
-      color: #ffffff;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+      border-color: #4f46e5 !important;
+      color: #ffffff !important;
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.35) !important;
     }
     [data-theme="light"] .product-card {
       background: #ffffff;
       border-color: #e2e8f0;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
     }
     [data-theme="light"] .product-card:hover {
-      border-color: #09090b;
-      box-shadow: 0 14px 32px rgba(0,0,0,0.1);
+      border-color: #6366f1;
+      box-shadow: 0 12px 28px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(0, 0, 0, 0.06);
     }
-    [data-theme="light"] .card-title,
-    [data-theme="light"] .current-price,
-    [data-theme="light"] .card-sold {
-      color: #09090b;
+    [data-theme="light"] .card-title {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .current-price {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .card-sold,
+    [data-theme="light"] .price-label,
+    [data-theme="light"] .card-desc {
+      color: #64748b !important;
     }
     [data-theme="light"] .card-image-wrap {
       background: #f1f5f9;
@@ -2302,35 +2610,47 @@
     }
     [data-theme="light"] .topup-icon-circle {
       background: #ffffff;
-      border-color: #09090b;
-      color: #09090b;
+      border-color: #6366f1;
+      color: #4f46e5;
     }
-    [data-theme="light"] .card-badge {
-      background: #09090b;
-      color: #ffffff;
+    [data-theme="light"] .card-badge.badge-game {
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%) !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .card-badge.badge-design {
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%) !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .card-badge.badge-app {
+      background: linear-gradient(135deg, #f43f5e 0%, #a855f7 100%) !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .card-badge.badge-general {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+      color: #ffffff !important;
     }
     [data-theme="light"] .card-action-btn {
-      background: #09090b;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       color: #ffffff;
-      border-color: #09090b;
+      border-color: #334155;
     }
     [data-theme="light"] .card-action-btn:hover,
     [data-theme="light"] .product-card:hover .card-action-btn {
-      background: #25d366;
-      border-color: #25d366;
-      color: #000000;
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      border-color: #34d399;
+      color: #ffffff;
     }
     [data-theme="light"] .btn-white {
-      background: #09090b;
+      background: #0f172a;
       color: #ffffff;
-      border-color: #09090b;
+      border-color: #0f172a;
     }
     [data-theme="light"] .btn-white:hover {
-      background: #27272a;
-      border-color: #27272a;
+      background: #1e293b;
+      border-color: #1e293b;
     }
     [data-theme="light"] .btn-outline {
-      color: #09090b;
+      color: #0f172a;
       border-color: #cbd5e1;
       background: #ffffff;
     }
@@ -2340,84 +2660,118 @@
     }
     [data-theme="light"] .btn-dark {
       background: #f1f5f9;
-      color: #09090b;
+      color: #0f172a;
       border-color: #e2e8f0;
+    }
+    [data-theme="light"] .banner-card {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+      border-color: #6366f1;
+      box-shadow: 0 12px 35px rgba(49, 46, 129, 0.25);
+    }
+    [data-theme="light"] .banner-title {
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .banner-subtitle {
+      color: #e0e7ff !important;
+    }
+    [data-theme="light"] .banner-badge {
+      background: rgba(245, 158, 11, 0.25);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.5);
     }
     [data-theme="light"] .side-drawer {
       background: #ffffff;
       border-left-color: #e2e8f0;
-      box-shadow: -15px 0 35px rgba(0, 0, 0, 0.15);
+      box-shadow: -15px 0 35px rgba(15, 23, 42, 0.15);
     }
     [data-theme="light"] .drawer-header {
       background: #f8fafc;
       border-bottom-color: #e2e8f0;
     }
     [data-theme="light"] #drawerStoreName {
-      color: #09090b !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .drawer-brand p {
+      color: #0284c7 !important;
     }
     [data-theme="light"] .drawer-close-btn {
       background: #f1f5f9;
       border-color: #cbd5e1;
-      color: #09090b;
+      color: #0f172a;
     }
     [data-theme="light"] .drawer-close-btn:hover {
-      background: #09090b;
+      background: #0f172a;
       color: #ffffff;
     }
     [data-theme="light"] .drawer-item {
       background: #f8fafc;
-      color: #09090b;
+      color: #0f172a;
       border-color: #e2e8f0;
     }
     [data-theme="light"] .drawer-item:hover,
     [data-theme="light"] .drawer-item:active {
       background: #f1f5f9;
       border-color: #cbd5e1;
+      color: #4f46e5;
     }
     [data-theme="light"] .drawer-admin-box {
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border-color: #e2e8f0;
     }
     [data-theme="light"] #drawerAdminStatusText {
-      color: #09090b !important;
+      color: #0f172a !important;
     }
     [data-theme="light"] #drawerAdminRoleBadge {
       background: #e2e8f0 !important;
-      color: #09090b !important;
+      color: #0f172a !important;
     }
     [data-theme="light"] .drawer-item-left i {
-      color: #64748b;
+      color: #6366f1;
     }
     [data-theme="light"] .drawer-item:hover .drawer-item-left i {
-      color: #09090b;
+      color: #4f46e5;
     }
     [data-theme="light"] .side-drawer-overlay {
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(15, 23, 42, 0.45);
+    }
+    [data-theme="light"] .section-header h3 {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .section-header p {
+      color: #64748b !important;
     }
     [data-theme="light"] .review-card,
     [data-theme="light"] .faq-item {
       background: #ffffff;
       border-color: #e2e8f0;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
     }
     [data-theme="light"] .review-name,
     [data-theme="light"] .faq-question {
-      color: #09090b;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .review-comment {
+      color: #334155 !important;
+    }
+    [data-theme="light"] .faq-answer {
+      background: #f8fafc;
+      color: #475569 !important;
+      border-top-color: #e2e8f0;
     }
     [data-theme="light"] .review-product-tag {
       background: #f1f5f9;
-      color: #09090b;
+      color: #4f46e5;
       border-color: #e2e8f0;
     }
     [data-theme="light"] .review-avatar {
-      background: #e2e8f0;
-      color: #09090b;
-      border-color: #cbd5e1;
+      background: #e0e7ff;
+      color: #4338ca;
+      border-color: #c7d2fe;
     }
     [data-theme="light"] .modal-box {
       background: #ffffff;
       border-color: #cbd5e1;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
     }
     [data-theme="light"] .modal-header,
     [data-theme="light"] .modal-footer {
@@ -2433,11 +2787,21 @@
     [data-theme="light"] .admin-profile-info h5,
     [data-theme="light"] .stat-card-value,
     [data-theme="light"] .admin-main-title {
-      color: #09090b;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .form-label {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .detail-tab-btn {
+      color: #64748b;
+    }
+    [data-theme="light"] .detail-tab-btn.active {
+      color: #4f46e5 !important;
+      border-bottom-color: #4f46e5 !important;
     }
     [data-theme="light"] .detail-desc-text {
       background: #f8fafc;
-      color: #475569;
+      color: #334155;
       border-color: #e2e8f0;
     }
     [data-theme="light"] .detail-price-card,
@@ -2449,7 +2813,11 @@
     [data-theme="light"] .detail-share-strip {
       background: #f8fafc;
       border-color: #e2e8f0;
-      color: #09090b;
+      color: #0f172a;
+    }
+    [data-theme="light"] .variant-radio-label.selected {
+      background: #eef2ff;
+      border-color: #6366f1;
     }
     [data-theme="light"] .checkout-payment-detail {
       background: #ffffff;
@@ -2457,25 +2825,98 @@
     }
     [data-theme="light"] .checkout-payment-title,
     [data-theme="light"] .checkout-acc-number {
-      color: #09090b;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .checkout-total-strip {
+      background: #f8fafc;
+      color: #0f172a;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .drawer-footer-strip {
+      background: #f8fafc;
+      border-top-color: #e2e8f0;
+    }
+    [data-theme="light"] .owner-access-card {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+    [data-theme="light"] .owner-access-title {
+      color: #16a34a;
+    }
+    [data-theme="light"] .owner-access-email {
+      color: #334155;
+    }
+    [data-theme="light"] .owner-access-email strong {
+      color: #065f46;
+    }
+    [data-theme="light"] .owner-quick-btn {
+      background: #ffffff;
+      border-color: #86efac;
+      color: #15803d;
+    }
+    [data-theme="light"] .owner-quick-btn:hover {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #166534;
+    }
+    [data-theme="light"] .variant-radio-input {
+      accent-color: #4f46e5;
+    }
+    [data-theme="light"] .variant-name {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .variant-price {
+      color: #4338ca !important;
+    }
+    [data-theme="light"] .auth-tab-bar {
+      background: #f1f5f9;
+    }
+    [data-theme="light"] .auth-tab-btn {
+      color: #64748b;
+    }
+    [data-theme="light"] .auth-tab-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    }
+    [data-theme="light"] .reviews-summary-card,
+    [data-theme="light"] .review-item-card,
+    [data-theme="light"] .add-review-box {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .review-item-name {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .review-item-comment {
+      color: #334155 !important;
+    }
+    [data-theme="light"] .star-rating-selector {
+      color: #cbd5e1;
+    }
+    [data-theme="light"] .voucher-active-badge {
+      background: #ecfdf5;
+      color: #065f46;
+      border-color: #a7f3d0;
     }
     [data-theme="light"] .detail-perk-item {
-      color: #09090b;
+      color: #0f172a !important;
     }
     [data-theme="light"] .detail-perk-item i {
-      color: #09090b;
+      color: #10b981;
     }
     [data-theme="light"] .form-input,
     [data-theme="light"] .form-select,
     [data-theme="light"] .form-textarea {
       background: #ffffff;
       border-color: #cbd5e1;
-      color: #09090b;
+      color: #0f172a;
     }
     [data-theme="light"] .form-input:focus,
     [data-theme="light"] .form-select:focus,
     [data-theme="light"] .form-textarea:focus {
-      border-color: #09090b;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
     }
     [data-theme="light"] .admin-sidebar {
       background: #f8fafc;
@@ -2487,7 +2928,7 @@
       border-color: #e2e8f0;
     }
     [data-theme="light"] .admin-avatar {
-      background: #09090b;
+      background: #0f172a;
       color: #ffffff;
     }
     [data-theme="light"] .admin-table-wrap {
@@ -2500,62 +2941,54 @@
       border-color: #e2e8f0;
     }
     [data-theme="light"] .admin-table td {
-      color: #09090b;
+      color: #0f172a;
       border-color: #e2e8f0;
     }
     [data-theme="light"] .admin-tab-btn:hover {
       background: #f1f5f9;
-      color: #09090b;
+      color: #0f172a;
     }
     [data-theme="light"] .admin-tab-btn.active {
-      background: #09090b;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
       color: #ffffff;
-      border-color: #09090b;
+      border-color: #4f46e5;
     }
     [data-theme="light"] .admin-tab-btn.active .admin-tab-badge {
       background: #ffffff;
-      color: #09090b;
+      color: #4f46e5;
     }
-    [data-theme="light"] .live-sales-toast {
-      background: rgba(255, 255, 255, 0.95);
-      border-color: #cbd5e1;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    }
-    [data-theme="light"] .sales-toast-name {
-      color: #09090b;
-    }
-    [data-theme="light"] .sales-toast-avatar {
-      background: #f1f5f9;
-      color: #09090b;
-      border-color: #cbd5e1;
-    }
+
+    /* Live Chat Floating Button - GREEN PRESERVED IN LIGHT MODE */
     [data-theme="light"] .livechat-floating-btn {
-      background: #09090b;
-      color: #ffffff;
-      border-color: #27272a;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      background: linear-gradient(135deg, #059669 0%, #0d9488 100%) !important;
+      color: #ffffff !important;
+      border: 1px solid #34d399 !important;
+      box-shadow: 0 10px 25px rgba(5, 150, 105, 0.45) !important;
     }
     [data-theme="light"] .livechat-floating-btn:hover {
-      background: #18181b;
-      border-color: #52525b;
+      background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%) !important;
+      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.6) !important;
     }
+
+    /* AI Floating Button - VIBRANT PURPLE PRESERVED */
     [data-theme="light"] .ai-floating-btn {
-      background: #ffffff;
-      color: #09090b;
-      border-color: #cbd5e1;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+      color: #ffffff !important;
+      border: 1px solid #818cf8 !important;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35) !important;
     }
     [data-theme="light"] .ai-floating-btn:hover {
-      background: #f1f5f9;
-      border-color: #94a3b8;
+      background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%) !important;
+      box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5) !important;
     }
+
     [data-theme="light"] .customer-chat-window {
       background: #ffffff;
       border-color: #cbd5e1;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
     }
     [data-theme="light"] .customer-chat-header {
-      background: #09090b;
+      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
       color: #ffffff;
     }
     [data-theme="light"] .customer-chat-setup-box {
@@ -2567,10 +3000,10 @@
     [data-theme="light"] .ai-chat-window {
       background: #ffffff;
       border-color: #cbd5e1;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
     }
     [data-theme="light"] .ai-header {
-      background: #09090b;
+      background: linear-gradient(135deg, #312e81 0%, #4338ca 100%);
       color: #ffffff;
     }
     [data-theme="light"] .ai-header-close {
@@ -2579,10 +3012,10 @@
     [data-theme="light"] .ai-msg.bot {
       background: #f1f5f9;
       border-color: #e2e8f0;
-      color: #09090b;
+      color: #0f172a;
     }
     [data-theme="light"] .ai-msg.user {
-      background: #09090b;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
       color: #ffffff;
     }
     [data-theme="light"] .ai-quick-chips {
@@ -2595,8 +3028,9 @@
       color: #475569;
     }
     [data-theme="light"] .ai-chip:hover {
-      color: #09090b;
-      border-color: #09090b;
+      color: #4f46e5;
+      border-color: #6366f1;
+      background: #eef2ff;
     }
     [data-theme="light"] .ai-input-area {
       background: #ffffff;
@@ -2605,10 +3039,10 @@
     [data-theme="light"] .ai-input {
       background: #f8fafc;
       border-color: #cbd5e1;
-      color: #09090b;
+      color: #0f172a;
     }
     [data-theme="light"] .ai-send-btn {
-      background: #09090b;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
       color: #ffffff;
     }
     /* ========================================================
@@ -2703,28 +3137,35 @@
       gap: 10px;
     }
     .customer-chat-avatar {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: #047857;
-      border: 1px solid #6ee7b7;
+      background: #0f172a;
+      border: 1.5px solid #34d399;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: 800;
-      color: #ffffff;
       position: relative;
+      flex-shrink: 0;
+      overflow: visible;
+    }
+    .customer-chat-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
     }
     .customer-chat-avatar .online-indicator {
       position: absolute;
       bottom: -1px;
       right: -1px;
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       background: #22c55e;
-      border: 2px solid #111114;
+      border: 2px solid #064e3b;
       border-radius: 50%;
+      z-index: 2;
     }
     .customer-chat-title-box h5 {
       font-size: 13.5px;
@@ -3060,33 +3501,33 @@
     }
 
     /* Light Theme Adjustments for Chat Engine */
-    [data-theme="light"] .livechat-floating-btn {
-      background: #ffffff;
-      color: #09090b;
-      border-color: #cbd5e1;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
     [data-theme="light"] .customer-chat-window {
       background: #ffffff;
       border-color: #cbd5e1;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2);
     }
-    [data-theme="light"] .customer-chat-header,
+    [data-theme="light"] .customer-chat-header {
+      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+      color: #ffffff;
+      border-bottom: 1px solid #059669;
+    }
     [data-theme="light"] .customer-chat-name-tag {
       background: #f8fafc;
       border-color: #e2e8f0;
     }
-    [data-theme="light"] .customer-chat-title-box h5,
+    [data-theme="light"] .customer-chat-title-box h5 {
+      color: #ffffff !important;
+    }
     [data-theme="light"] .customer-chat-name-tag strong {
-      color: #09090b;
+      color: #0f172a;
     }
     [data-theme="light"] .customer-chat-setup-box {
       background: #ffffff;
     }
     [data-theme="light"] .customer-chat-setup-icon {
-      background: #f1f5f9;
-      border-color: #cbd5e1;
-      color: #09090b;
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #059669;
     }
     [data-theme="light"] .customer-chat-messages-box {
       background: #f8fafc;
@@ -3158,6 +3599,324 @@
     [data-theme="light"] .footer-links a:hover {
       color: #09090b;
     }
+
+    /* Auth & User Profile Dropdown Styles */
+    .user-auth-btn-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .user-profile-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .user-profile-nav-btn:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-secondary);
+    }
+    .user-nav-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #3b82f6;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      object-fit: cover;
+    }
+    .user-nav-role-badge {
+      font-size: 9.5px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .role-admin {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .role-customer {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .user-dropdown-card {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 250px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 1000;
+    }
+    .user-dropdown-card.show {
+      display: block;
+      animation: fadeIn 0.15s ease-out;
+    }
+    .user-dropdown-header {
+      padding: 10px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 6px;
+    }
+    .user-dropdown-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .user-dropdown-email {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+    .user-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      color: var(--text-primary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .user-dropdown-item:hover {
+      background: var(--bg-secondary);
+    }
+    .user-dropdown-item.danger:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    /* Google Button & Auth Modal */
+    .google-signin-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 16px;
+      background: #ffffff;
+      color: #1f2937;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .google-signin-btn:hover {
+      background: #f9fafb;
+      border-color: #9ca3af;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .google-icon-svg {
+      width: 18px;
+      height: 18px;
+    }
+    .auth-tab-bar {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-secondary);
+      padding: 4px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .auth-tab-btn.active {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Product Detail Tabs & Reviews System */
+    .detail-tab-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 14px;
+      padding-bottom: 2px;
+    }
+    .detail-tab-btn {
+      padding: 8px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .detail-tab-btn.active {
+      color: #ffffff;
+      border-bottom-color: #ffffff;
+    }
+    [data-theme="light"] .detail-tab-btn.active {
+      color: #09090b;
+      border-bottom-color: #09090b;
+    }
+    .detail-tab-badge {
+      background: var(--bg-secondary);
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .detail-tab-content-pane {
+      display: none;
+    }
+    .detail-tab-content-pane.active {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    /* Product Reviews List & Form */
+    .reviews-summary-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .reviews-avg-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .reviews-avg-num {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .reviews-avg-stars {
+      color: #f59e0b;
+      font-size: 14px;
+      display: flex;
+      gap: 2px;
+    }
+    .review-item-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      transition: all 0.2s ease;
+    }
+    .review-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .review-item-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .review-item-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #3b82f6;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .review-item-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .review-item-verified {
+      font-size: 10px;
+      font-weight: 700;
+      color: #22c55e;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .review-item-date {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .review-item-comment {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+    .star-rating-selector {
+      display: inline-flex;
+      gap: 6px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #52525b;
+      margin-bottom: 8px;
+    }
+    .star-rating-selector i.active {
+      color: #f59e0b;
+    }
+    .add-review-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
   </style>
 </head>
 <body>
@@ -3166,10 +3925,11 @@
   <header class="navbar">
     <div class="navbar-container">
       <a href="#" class="brand-logo" onclick="resetFilter(); return false;">
-        <div class="brand-icon">JM</div>
+        <img src="LogoJM.jpg" alt="JaneMurphy" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="brand-icon" style="display: none;">JM</div>
         <div class="brand-text">
-          <h1 id="navStoreName">JaneMarket</h1>
-          <p id="navStoreTagline">OFFICIAL STORE</p>
+          <h1 id="navStoreName">JaneMurphy</h1>
+          <p id="navStoreTagline">PREMIUM APPLICATIONS</p>
         </div>
       </a>
 
@@ -3204,6 +3964,37 @@
           <span>WhatsApp CS</span>
         </a>
 
+        <!-- User Profile / Login Widget in Navbar -->
+        <div class="user-auth-btn-wrap" id="userNavAuthWrap">
+          <button class="user-profile-nav-btn" id="btnUserAuthNav" onclick="handleUserNavClick(event)" title="Akun & Autentikasi">
+            <span class="user-nav-avatar" id="navUserAvatar"><i class="fa-solid fa-user"></i></span>
+            <span id="navUserName">Masuk</span>
+            <span class="user-nav-role-badge role-admin" id="navUserRoleBadge" style="display: none;">ADMIN</span>
+          </button>
+          
+          <!-- Dropdown Menu for Logged In User -->
+          <div class="user-dropdown-card" id="userNavDropdown">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-name" id="dropdownUserName">Pengunjung</div>
+              <div class="user-dropdown-email" id="dropdownUserEmail">Belum Masuk</div>
+            </div>
+            <div id="dropdownAdminOptions" style="display: none;">
+              <button type="button" class="user-dropdown-item" onclick="openAdminDashboard(); closeUserDropdown();" style="color: #4ade80; font-weight: 700;">
+                <i class="fa-solid fa-gauge-high"></i> Dashboard Admin
+              </button>
+              <button type="button" class="user-dropdown-item" onclick="openAddProductModal(); closeUserDropdown();">
+                <i class="fa-solid fa-plus-circle"></i> Tambah Produk Baru
+              </button>
+            </div>
+            <button type="button" class="user-dropdown-item" onclick="openPaymentModal(); closeUserDropdown();">
+              <i class="fa-solid fa-receipt"></i> Rekening & QRIS
+            </button>
+            <button type="button" class="user-dropdown-item danger" onclick="handleLogoutUser(); closeUserDropdown();" id="dropdownLogoutBtn">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar Akun
+            </button>
+          </div>
+        </div>
+
         <!-- Tombol Dashboard (Di samping saat Admin login) -->
         <button class="btn btn-white btn-sm nav-desktop-only" onclick="openAdminDashboard()" id="navDashboardBtn" style="display: none;" title="Buka Dashboard Admin">
           <i class="fa-solid fa-gauge-high" style="color: #16a34a;"></i>
@@ -3219,7 +4010,7 @@
     </div>
   </header>
 
-  <!-- Hero Section - Clean & Minimalist -->
+  <!-- Hero Section - High-End & Polished -->
   <section class="hero-section">
     <div class="hero-tag">
       <i class="fa-solid fa-shield-halved" style="color: #22c55e;"></i>
@@ -3269,22 +4060,22 @@
     <!-- Quick Sort & Filter Chips -->
     <div class="sort-chips-container" id="sortChipsContainer">
       <div class="sort-chip active" onclick="setQuickSort('default', this)">
-        <i class="fa-solid fa-layer-group"></i> Semua
+        <i class="fa-solid fa-layer-group" style="color: #6366f1;"></i> Semua
       </div>
       <div class="sort-chip" onclick="setQuickSort('popular', this)">
-        <i class="fa-solid fa-fire" style="color: #ffffff;"></i> Paling Laris
+        <i class="fa-solid fa-fire" style="color: #f97316;"></i> Paling Laris
       </div>
       <div class="sort-chip" onclick="setQuickSort('warranty', this)">
-        <i class="fa-solid fa-shield-halved" style="color: #25d366;"></i> Garansi Resmi
+        <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Garansi Resmi
       </div>
       <div class="sort-chip" onclick="setQuickSort('discount', this)">
-        <i class="fa-solid fa-percent" style="color: #eab308;"></i> Diskon Terbesar
+        <i class="fa-solid fa-percent" style="color: #f59e0b;"></i> Diskon Terbesar
       </div>
       <div class="sort-chip" onclick="setQuickSort('lowest', this)">
-        <i class="fa-solid fa-arrow-down-1-9"></i> Harga Termurah
+        <i class="fa-solid fa-arrow-down-1-9" style="color: #06b6d4;"></i> Harga Termurah
       </div>
       <div class="sort-chip" onclick="setQuickSort('highest', this)">
-        <i class="fa-solid fa-arrow-up-9-1"></i> Harga Tertinggi
+        <i class="fa-solid fa-arrow-up-9-1" style="color: #a855f7;"></i> Harga Tertinggi
       </div>
     </div>
   </div>
@@ -3426,7 +4217,7 @@
     <div class="faq-container">
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-question">
-          <span>Bagaimana cara melakukan pembelian di JaneMarket?</span>
+          <span>Bagaimana cara melakukan pembelian di JaneMurphy?</span>
           <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
@@ -3466,28 +4257,17 @@
     </div>
   </section>
 
-  <!-- Live Sales Social Proof Toast (Bottom-Left) -->
-  <div class="live-sales-toast" id="liveSalesToast">
-    <div class="sales-toast-avatar" id="salesToastAvatar">
-      <i class="fa-solid fa-bag-shopping"></i>
-    </div>
-    <div class="sales-toast-content">
-      <div class="sales-toast-name" id="salesToastName">Rian (Jakarta)</div>
-      <div class="sales-toast-product" id="salesToastProduct">Baru saja membeli Netflix 4K UHD 1 Bulan</div>
-      <div class="sales-toast-time"><i class="fa-solid fa-circle-check"></i> <span id="salesToastTime">1 menit lalu • Terverifikasi</span></div>
-    </div>
-  </div>
-
   <!-- ==================== SIDE MENU DRAWER (GARIS TIGA / HAMBURGER) ==================== -->
   <div class="side-drawer-overlay" id="sideDrawerOverlay" onclick="closeSideMenu(event)">
     <aside class="side-drawer" id="sideDrawer" onclick="event.stopPropagation()">
       <!-- Drawer Header -->
       <div class="drawer-header">
         <div class="drawer-brand">
-          <div class="brand-icon" style="width: 36px; height: 36px; font-size: 16px;">JM</div>
+          <img src="LogoJM.jpg" alt="JaneMurphy" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="brand-icon" style="width: 38px; height: 38px; font-size: 16px; display: none;">JM</div>
           <div>
-            <h4 style="font-size: 16px; font-weight: 800; margin: 0; color: #ffffff;" id="drawerStoreName">JaneMarket</h4>
-            <p style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin: 0;">MENU & NAVIGASI</p>
+            <h4 style="font-size: 16px; font-weight: 800; margin: 0;" id="drawerStoreName">JaneMurphy</h4>
+            <p style="font-size: 9.5px; color: #0284c7; text-transform: uppercase; font-weight: 700; margin: 0;">PREMIUM APPLICATIONS</p>
           </div>
         </div>
         <button class="drawer-close-btn" onclick="closeSideMenu()" title="Tutup Menu">
@@ -3565,7 +4345,7 @@
               </div>
               <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; color: var(--text-muted);"></i>
             </button>
-            <a href="#" id="drawerWaLink" target="_blank" class="drawer-item" style="color: #ffffff;">
+            <a href="#" id="drawerWaLink" target="_blank" class="drawer-item">
               <div class="drawer-item-left">
                 <i class="fa-brands fa-whatsapp" style="color: #25d366; font-size: 17px;"></i>
                 <span>Chat WhatsApp Customer Service</span>
@@ -3575,7 +4355,7 @@
             <button class="drawer-item" onclick="closeSideMenu(); toggleAIChat();">
               <div class="drawer-item-left">
                 <i class="fa-solid fa-robot" style="color: #a855f7;"></i>
-                <span>JaneMarket AI Assistant</span>
+                <span>JaneMurphy AI Assistant</span>
               </div>
               <span style="font-size: 9px; background: #9333ea; color: #ffffff; padding: 2px 6px; border-radius: 4px; font-weight: 700;">AI</span>
             </button>
@@ -3604,9 +4384,9 @@
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span id="drawerAdminDot" class="admin-live-dot" style="display: none;"></span>
-                <span style="font-size: 12px; font-weight: 800; color: #ffffff;" id="drawerAdminStatusText">Status: Pengunjung Toko</span>
+                <span style="font-size: 12px; font-weight: 800;" id="drawerAdminStatusText">Status: Pengunjung Toko</span>
               </div>
-              <span style="font-size: 10px; background: #27272a; padding: 2px 8px; border-radius: 4px; font-weight: 700;" id="drawerAdminRoleBadge">USER</span>
+              <span style="font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 700;" id="drawerAdminRoleBadge">USER</span>
             </div>
 
             <div id="drawerAdminLoggedInActions" style="display: none; flex-direction: column; gap: 8px; margin-top: 6px;">
@@ -3625,7 +4405,7 @@
             </div>
 
             <div id="drawerAdminLoggedOutActions" style="margin-top: 6px;">
-              <button class="btn btn-outline btn-sm" onclick="closeSideMenu(); openModal('adminLoginModal');" style="width: 100%; justify-content: center; background: #1c1c21;">
+              <button class="btn btn-outline btn-sm" onclick="closeSideMenu(); openModal('adminLoginModal');" style="width: 100%; justify-content: center;">
                 <i class="fa-solid fa-shield-halved"></i>
                 <span>Masuk Portal Admin Toko</span>
               </button>
@@ -3636,8 +4416,8 @@
       </div>
 
       <!-- Drawer Footer -->
-      <div style="padding: 16px 20px; border-top: 1px solid var(--border-color); background: #0c0c0e; text-align: center;">
-        <p style="font-size: 11px; color: var(--text-muted); margin: 0;">⚡ JaneMarket Official Store</p>
+      <div class="drawer-footer-strip">
+        <p style="font-size: 11px; color: var(--text-muted); margin: 0;">⚡ JaneMurphy Official Store</p>
         <p style="font-size: 10px; color: var(--text-secondary); margin: 4px 0 0;">Proses 1-5 Menit • Garansi Resmi Penuh</p>
       </div>
     </aside>
@@ -3646,7 +4426,7 @@
   <!-- Floating Chat Widgets Group (Customer Live Chat + AI Assistant) -->
   <div class="floating-widgets-group" id="floatingWidgetsGroup">
     <!-- Live Chat Admin Button -->
-    <button class="livechat-floating-btn" onclick="toggleCustomerLiveChat()" id="liveChatFloatingBtn" title="Chat Langsung dengan Admin JaneMarket">
+    <button class="livechat-floating-btn" onclick="toggleCustomerLiveChat()" id="liveChatFloatingBtn" title="Chat Langsung dengan Admin JaneMurphy">
       <div class="livechat-pulse-dot"></div>
       <i class="fa-solid fa-comments"></i>
       <span>Chat Admin</span>
@@ -3654,9 +4434,9 @@
     </button>
 
     <!-- Floating AI Assistant Button -->
-    <button class="ai-floating-btn" onclick="toggleAIChat()" id="aiFloatingBtn" title="Tanya JaneMarket AI Assistant">
+    <button class="ai-floating-btn" onclick="toggleAIChat()" id="aiFloatingBtn" title="Tanya JaneMurphy AI Assistant">
       <i class="fa-solid fa-robot"></i>
-      <span>JaneMarket AI</span>
+      <span>JaneMurphy AI</span>
     </button>
   </div>
 
@@ -3666,11 +4446,12 @@
     <div class="customer-chat-header">
       <div class="customer-chat-header-info">
         <div class="customer-chat-avatar">
-          JM
+          <img src="LogoJM.jpg" alt="JaneMurphy" class="customer-chat-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+          <span style="display: none; font-size: 13px; font-weight: 800; color: #ffffff;">JM</span>
           <div class="online-indicator"></div>
         </div>
         <div class="customer-chat-title-box">
-          <h5><i class="fa-solid fa-shield-halved" style="color: #60a5fa;"></i> Admin JaneMarket</h5>
+          <h5><i class="fa-solid fa-shield-halved" style="color: #60a5fa;"></i> Admin JaneMurphy</h5>
           <p><i class="fa-solid fa-circle" style="font-size: 7px;"></i> Online • Siap Membalas</p>
         </div>
       </div>
@@ -3694,8 +4475,8 @@
         <i class="fa-solid fa-headset"></i>
       </div>
       <div>
-        <h4 style="font-size: 16px; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
-          Live Chat Admin JaneMarket
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px;">
+          Live Chat Admin JaneMurphy
         </h4>
         <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin: 0;">
           Males buka WhatsApp? Hubungi admin kami langsung di web ini. Masukkan nama Anda untuk memulai percakapan:
@@ -3744,12 +4525,12 @@
     </div>
   </div>
 
-  <!-- AI Chat Window (JaneMarket AI Assistant) -->
+  <!-- AI Chat Window (JaneMurphy AI Assistant) -->
   <div class="ai-chat-window" id="aiChatWindow">
     <div class="ai-header">
       <div class="ai-header-title">
         <i class="fa-solid fa-robot"></i>
-        <span>JaneMarket AI Assistant</span>
+        <span>JaneMurphy AI Assistant</span>
       </div>
       <div style="display: flex; align-items: center; gap: 6px;">
         <button type="button" class="btn btn-outline btn-sm" onclick="switchToLiveChatFromAI()" title="Beralih ke Chat Admin Manusia" style="padding: 4px 8px; font-size: 11px;">
@@ -3760,7 +4541,7 @@
     </div>
     <div class="ai-messages-box" id="aiMessagesBox">
       <div class="ai-msg bot">
-        Halo kak! 👋 Selamat datang di JaneMarket. Ada yang bisa saya bantu terkait Rekomendasi Aplikasi Premium, Topup Game kilat, atau Jasa Desain Poster?
+        Halo kak! 👋 Selamat datang di JaneMurphy. Ada yang bisa saya bantu terkait Rekomendasi Aplikasi Premium, Topup Game kilat, atau Jasa Desain Poster?
       </div>
     </div>
     <div class="ai-quick-chips">
@@ -3783,30 +4564,79 @@
 
   <!-- ==================== MODALS ==================== -->
 
-  <!-- Modal 1: Login Admin (Requirement #1) -->
-  <div class="modal-overlay" id="adminLoginModal">
+  <!-- Modal 1: Login & Autentikasi User & Admin (Google / Email / PIN) -->
+  <div class="modal-overlay" id="authModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h4 class="modal-title"><i class="fa-solid fa-lock"></i> Login Admin JaneMarket</h4>
-        <button class="modal-close" onclick="closeModal('adminLoginModal')"><i class="fa-solid fa-xmark"></i></button>
+        <h4 class="modal-title" id="authModalTitle"><i class="fa-solid fa-circle-user"></i> Masuk / Daftar Akun</h4>
+        <button class="modal-close" onclick="closeModal('authModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
-          Masukkan PIN / Password Admin untuk mengakses Dashboard Pengaturan, Tambah/Edit Produk Realtime, dan Analisis Toko.
-        </p>
-        <div class="form-group">
-          <label class="form-label">PIN / Password Admin</label>
-          <input type="password" id="adminPinInput" class="form-input" placeholder="Default PIN: 123456" onkeydown="if(event.key==='Enter') submitAdminLogin()">
+        <div class="auth-tab-bar">
+          <button class="auth-tab-btn active" id="tabAuthGoogleBtn" onclick="switchAuthTab('google')">
+            <i class="fa-brands fa-google"></i> Google Login
+          </button>
+          <button class="auth-tab-btn" id="tabAuthEmailBtn" onclick="switchAuthTab('email')">
+            <i class="fa-solid fa-envelope"></i> Email / PIN Admin
+          </button>
+        </div>
+
+        <!-- Google Sign-In Tab Pane -->
+        <div id="paneAuthGoogle">
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+            Masuk dengan akun Google Anda untuk menyimpan riwayat pesanan, menulis ulasan produk, dan akses otomatis.
+          </p>
+
+          <!-- Main Google Login Button -->
+          <button type="button" class="google-signin-btn" onclick="handleGoogleSignIn()">
+            <svg class="google-icon-svg" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>Lanjutkan dengan Akun Google</span>
+          </button>
+
+          <!-- Fast Owner Admin Access Badge -->
+          <div class="owner-access-card">
+            <div class="owner-access-title">
+              <i class="fa-solid fa-crown"></i> Akses Khusus Owner JaneMurphy
+            </div>
+            <div class="owner-access-email">
+              Email Owner: <strong>ererex4youu@gmail.com</strong>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm owner-quick-btn" onclick="loginAsOwnerGoogle()">
+              <i class="fa-solid fa-user-shield"></i> Masuk Cepat sebagai Owner (ererex4youu@gmail.com)
+            </button>
+          </div>
+        </div>
+
+        <!-- Email & PIN Tab Pane -->
+        <div id="paneAuthEmail" style="display: none;">
+          <form onsubmit="handleEmailAuthSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Email Anda / Email Owner *</label>
+              <input type="email" id="authEmailInput" class="form-input" placeholder="ererex4youu@gmail.com / nama@gmail.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password / PIN Admin *</label>
+              <input type="password" id="authPasswordInput" class="form-input" placeholder="Masukkan PIN (Default Admin: 123456)" required>
+            </div>
+            <button type="submit" class="btn btn-white" style="width: 100%; justify-content: center; margin-top: 14px;" id="btnSubmitAuth">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> Masuk Sekarang
+            </button>
+          </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-outline" onclick="closeModal('adminLoginModal')">Batal</button>
-        <button class="btn btn-white" onclick="submitAdminLogin()">
-          <i class="fa-solid fa-arrow-right-to-bracket"></i> Masuk Dashboard
-        </button>
+        <button class="btn btn-outline" onclick="closeModal('authModal')">Tutup</button>
       </div>
     </div>
   </div>
+
+  <!-- Backward-compatibility alias for adminLoginModal -->
+  <div id="adminLoginModal" style="display: none;"></div>
 
   <!-- Modal 2: Admin Dashboard (Requirement #1) with Sidebar Navigation -->
   <div class="modal-overlay" id="adminDashboardModal">
@@ -3818,9 +4648,12 @@
           <div>
             <div class="admin-sidebar-header">
               <div class="admin-profile-badge">
-                <div class="admin-avatar">JM</div>
+                <div class="admin-avatar">
+                  <img src="LogoJM.jpg" alt="JaneMurphy" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+                  <span style="display: none; font-size: 13px; font-weight: 800; color: #ffffff;">JM</span>
+                </div>
                 <div class="admin-profile-info">
-                  <h5 id="adminSidebarStore">JaneMarket</h5>
+                  <h5 id="adminSidebarStore">JaneMurphy</h5>
                   <p><i class="fa-solid fa-circle" style="font-size: 7px;"></i> Admin Panel • Aktif</p>
                 </div>
               </div>
@@ -4281,7 +5114,7 @@
             <div class="detail-meta-strip">
               <div><i class="fa-solid fa-star" style="color: #eab308;"></i> <strong id="detailRating">5.0</strong> / 5.0</div>
               <div>•</div>
-              <div><i class="fa-solid fa-fire" style="color: #ffffff;"></i> Terjual <strong id="detailSold">0</strong>x</div>
+              <div><i class="fa-solid fa-fire" style="color: #f97316;"></i> Terjual <strong id="detailSold">0</strong>x</div>
               <div>•</div>
               <div style="color: #25d366;"><i class="fa-solid fa-shield-halved"></i> <span id="detailWarranty">Garansi Resmi</span></div>
             </div>
@@ -4308,43 +5141,119 @@
               </div>
             </div>
 
-            <!-- Full Description -->
-            <div>
-              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">
-                Deskripsi & Keunggulan Produk:
+            <!-- Detail Tabs Navigation (Spesifikasi vs Ulasan Pembeli) -->
+            <div class="detail-tab-nav">
+              <button type="button" class="detail-tab-btn active" id="btnTabDetailDesc" onclick="switchProductDetailTab('desc')">
+                <i class="fa-solid fa-file-lines"></i> Spesifikasi & Paket
+              </button>
+              <button type="button" class="detail-tab-btn" id="btnTabDetailReviews" onclick="switchProductDetailTab('reviews')">
+                <i class="fa-solid fa-star" style="color: #f59e0b;"></i> Ulasan Pembeli
+                <span class="detail-tab-badge" id="detailReviewCountBadge">0</span>
+              </button>
+            </div>
+
+            <!-- Tab 1 Pane: Description, Perks, & Variants -->
+            <div class="detail-tab-content-pane active" id="paneDetailDesc">
+              <!-- Full Description -->
+              <div>
+                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">
+                  Deskripsi & Keunggulan Produk:
+                </div>
+                <div class="detail-desc-text" id="detailDescText">
+                  -
+                </div>
               </div>
-              <div class="detail-desc-text" id="detailDescText">
-                -
+
+              <!-- Perks / Highlights -->
+              <div class="detail-perks-grid">
+                <div class="detail-perk-item">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>Proses Cepat 1-5 Menit</span>
+                </div>
+                <div class="detail-perk-item">
+                  <i class="fa-solid fa-lock"></i>
+                  <span>Akun Legal & Private</span>
+                </div>
+                <div class="detail-perk-item">
+                  <i class="fa-solid fa-rotate-left"></i>
+                  <span>Garansi Ganti Baru</span>
+                </div>
+                <div class="detail-perk-item">
+                  <i class="fa-solid fa-headset"></i>
+                  <span>Support CS 24/7</span>
+                </div>
+              </div>
+
+              <!-- Variant / Package Picker inside Detail Modal -->
+              <div id="detailVariantSection">
+                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">
+                  Pilih Paket / Durasi:
+                </div>
+                <div class="variant-selector" id="detailVariantSelector">
+                  <!-- Injected via JS -->
+                </div>
               </div>
             </div>
 
-            <!-- Perks / Highlights -->
-            <div class="detail-perks-grid">
-              <div class="detail-perk-item">
-                <i class="fa-solid fa-bolt"></i>
-                <span>Proses Cepat 1-5 Menit</span>
+            <!-- Tab 2 Pane: Real Customer Reviews & Review Submission -->
+            <div class="detail-tab-content-pane" id="paneDetailReviews">
+              <!-- Reviews Summary Card -->
+              <div class="reviews-summary-card">
+                <div class="reviews-avg-box">
+                  <div class="reviews-avg-num" id="detailReviewsAvgScore">5.0</div>
+                  <div>
+                    <div class="reviews-avg-stars" id="detailReviewsAvgStars">
+                      <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
+                      Berdasarkan <span id="detailReviewsTotalLabel">0</span> ulasan terverifikasi
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="scrollToReviewForm()">
+                  <i class="fa-solid fa-pen"></i> Tulis Ulasan
+                </button>
               </div>
-              <div class="detail-perk-item">
-                <i class="fa-solid fa-lock"></i>
-                <span>Akun Legal & Private</span>
-              </div>
-              <div class="detail-perk-item">
-                <i class="fa-solid fa-rotate-left"></i>
-                <span>Garansi Ganti Baru</span>
-              </div>
-              <div class="detail-perk-item">
-                <i class="fa-solid fa-headset"></i>
-                <span>Support CS 24/7</span>
-              </div>
-            </div>
 
-            <!-- Variant / Package Picker inside Detail Modal -->
-            <div id="detailVariantSection">
-              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">
-                Pilih Paket / Durasi:
-              </div>
-              <div class="variant-selector" id="detailVariantSelector">
+              <!-- List of Verified Reviews for this Product -->
+              <div id="detailReviewsListContainer">
                 <!-- Injected via JS -->
+              </div>
+
+              <!-- Add Review Form -->
+              <div class="add-review-box" id="addReviewBox">
+                <h5 style="font-size: 13px; font-weight: 800; margin-bottom: 8px; color: var(--text-primary);">
+                  <i class="fa-solid fa-pen-to-square"></i> Berikan Ulasan Anda
+                </h5>
+                <p style="font-size: 11.5px; color: var(--text-secondary); margin-bottom: 10px;">
+                  Bagikan pengalaman Anda membeli produk ini untuk membantu pembeli lain.
+                </p>
+
+                <!-- Star Picker -->
+                <div>
+                  <label class="form-label" style="font-size: 11px;">Pilih Bintang Rating:</label>
+                  <div class="star-rating-selector" id="reviewStarPicker">
+                    <i class="fa-solid fa-star active" onclick="setReviewRating(1)"></i>
+                    <i class="fa-solid fa-star active" onclick="setReviewRating(2)"></i>
+                    <i class="fa-solid fa-star active" onclick="setReviewRating(3)"></i>
+                    <i class="fa-solid fa-star active" onclick="setReviewRating(4)"></i>
+                    <i class="fa-solid fa-star active" onclick="setReviewRating(5)"></i>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 10px;">
+                  <label class="form-label" style="font-size: 11px;">Nama Anda / Akun Pembeli *</label>
+                  <input type="text" id="reviewInputName" class="form-input" placeholder="Nama Anda (misal: Rian S.)" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label class="form-label" style="font-size: 11px;">Ulasan / Komentar Anda *</label>
+                  <textarea id="reviewInputComment" class="form-textarea" rows="2" placeholder="Tulis kepuasan kecepatan proses, garansi, atau pelayanan..." required></textarea>
+                </div>
+
+                <button type="button" class="btn btn-white btn-sm" onclick="submitProductReview()" id="btnSubmitReview">
+                  <i class="fa-solid fa-paper-plane"></i> Kirim Ulasan Terverifikasi
+                </button>
               </div>
             </div>
           </div>
@@ -4438,7 +5347,7 @@
           </div>
         </div>
 
-        <div style="background: #ffffff; color: #000000; padding: 12px 14px; border-radius: 8px; display: flex; flex-direction: column; gap: 4px; margin-top: 14px;">
+        <div class="checkout-total-strip">
           <div id="voucherDiscountRow" style="display: none; justify-content: space-between; font-size: 12px; color: #16a34a; font-weight: 700;">
             <span>Potongan Diskon:</span>
             <span id="orderDiscountAmount">-Rp 0</span>
@@ -4463,10 +5372,11 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="brand-logo">
-        <div class="brand-icon">JM</div>
+        <img src="LogoJM.jpg" alt="JaneMurphy" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="brand-icon" style="width: 38px; height: 38px; font-size: 16px; display: none;">JM</div>
         <div class="brand-text">
-          <h4 id="footerStoreName">JaneMarket</h4>
-          <p>EST. 2023 • TRUSTED STORE</p>
+          <h4 id="footerStoreName">JaneMurphy</h4>
+          <p>PREMIUM APPLICATIONS & TOPUP STORE</p>
         </div>
       </div>
       <div class="footer-links">
@@ -4477,7 +5387,7 @@
         <a href="#" onclick="handleAdminBtnClick(); return false;"><i class="fa-solid fa-lock"></i> Portal Admin</a>
       </div>
       <p class="footer-copy">
-        © <span id="currentYear">2026</span> JaneMarket. Semua hak cipta dilindungi undang-undang.
+        © <span id="currentYear">2026</span> JaneMurphy. Semua hak cipta dilindungi undang-undang.
       </p>
     </div>
   </footer>
@@ -4487,20 +5397,21 @@
     // State Store & Default Data
     const DEFAULT_STORE_DATA = {
       settings: {
-        storeName: "JaneMarket",
+        storeName: "JaneMurphy",
         storeTagline: "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
+        storeLogo: "LogoJM.jpg",
         whatsappNumber: "6281234567890",
         adminPin: "123456",
         qrisImage: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
-        qrisMerchantName: "JANEMARKET OFFICIAL (QRIS ALL PAYMENT)",
+        qrisMerchantName: "JANEMURPHY OFFICIAL (QRIS ALL PAYMENT)",
         paymentMethods: [
-          { id: "dana", name: "DANA", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-wallet" },
-          { id: "gopay", name: "GoPay", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-mobile-screen" },
-          { id: "ovo", name: "OVO", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-coins" },
-          { id: "shopeepay", name: "ShopeePay", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-bag-shopping" },
-          { id: "bca", name: "Bank BCA", number: "8735091234", owner: "Jane Market Official", active: true, icon: "fa-solid fa-building-columns" },
-          { id: "mandiri", name: "Bank Mandiri", number: "137001928374", owner: "Jane Market Official", active: true, icon: "fa-solid fa-building-columns" },
-          { id: "seabank", name: "SeaBank", number: "90192837465", owner: "Jane Market Official", active: true, icon: "fa-solid fa-building-columns" }
+          { id: "dana", name: "DANA", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
+          { id: "gopay", name: "GoPay", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" },
+          { id: "ovo", name: "OVO", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-coins" },
+          { id: "shopeepay", name: "ShopeePay", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-bag-shopping" },
+          { id: "bca", name: "Bank BCA", number: "8735091234", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
+          { id: "mandiri", name: "Bank Mandiri", number: "137001928374", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
+          { id: "seabank", name: "SeaBank", number: "90192837465", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" }
         ],
         promoBanner: {
           title: "🔥 FLASH SALE SPESIAL HARI INI!",
@@ -4808,53 +5719,575 @@
     let activeSort = 'default';
     let searchQuery = '';
     let isAdminLoggedIn = false;
+    let currentUser = null;
     let selectedVariantPrice = 0;
     let selectedVariantName = '';
     let activeVoucher = null;
     let isSoundEnabled = true;
 
-    // Web Audio API Sound Synthesizer
+    // ========================================================
+    // AUTHENTICATION & USER PROFILE ENGINE (Google & Email/PIN)
+    // ========================================================
+    function initAuthUser() {
+      try {
+        const savedUser = localStorage.getItem('jm_auth_user');
+        if (savedUser) {
+          currentUser = JSON.parse(savedUser);
+          if (currentUser && (currentUser.isAdmin || currentUser.role === 'admin' || currentUser.email === 'ererex4youu@gmail.com')) {
+            isAdminLoggedIn = true;
+          }
+        } else {
+          // Check legacy admin login
+          const legacyAdmin = localStorage.getItem('jm_admin_logged_in');
+          if (legacyAdmin === 'true') {
+            isAdminLoggedIn = true;
+            currentUser = {
+              id: 'owner-main',
+              name: 'Owner JaneMurphy',
+              email: (storeState.settings && storeState.settings.ownerEmail) || 'ererex4youu@gmail.com',
+              role: 'admin',
+              isAdmin: true,
+              avatar: ''
+            };
+            localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
+          }
+        }
+      } catch (e) {}
+
+      updateUserAuthUI();
+      updateAdminUIState(false);
+    }
+
+    function updateUserAuthUI() {
+      const widget = document.getElementById('userNavAuthWrap');
+      const avatarEl = document.getElementById('navUserAvatar');
+      const nameEl = document.getElementById('navUserName');
+      const roleBadge = document.getElementById('navUserRoleBadge');
+      
+      const dropAvatar = document.getElementById('dropdownUserAvatar');
+      const dropName = document.getElementById('dropdownUserName');
+      const dropEmail = document.getElementById('dropdownUserEmail');
+      const dropAdminOpts = document.getElementById('dropdownAdminOptions');
+
+      if (!currentUser) {
+        if (avatarEl) avatarEl.innerHTML = '<i class="fa-regular fa-user"></i>';
+        if (nameEl) nameEl.textContent = 'Masuk / Akun';
+        if (roleBadge) {
+          roleBadge.textContent = 'GUEST';
+          roleBadge.className = 'user-role-badge badge-guest';
+        }
+        if (dropAdminOpts) dropAdminOpts.style.display = 'none';
+      } else {
+        const initials = currentUser.name ? currentUser.name.split(' ').map(n=>n[0]).slice(0,2).join('').toUpperCase() : 'JM';
+        const isUserAdmin = currentUser.isAdmin || currentUser.role === 'admin';
+
+        if (avatarEl) {
+          if (currentUser.avatar) {
+            avatarEl.innerHTML = `<img src="${currentUser.avatar}" alt="${currentUser.name}" style="width:100%;height:100%;object-fit:cover;">`;
+          } else {
+            avatarEl.innerHTML = initials;
+          }
+        }
+
+        if (nameEl) {
+          nameEl.textContent = currentUser.name.split(' ')[0] || currentUser.name;
+        }
+
+        if (roleBadge) {
+          if (isUserAdmin) {
+            roleBadge.textContent = 'OWNER';
+            roleBadge.className = 'user-role-badge badge-admin';
+          } else {
+            roleBadge.textContent = 'BUYER';
+            roleBadge.className = 'user-role-badge badge-customer';
+          }
+        }
+
+        // Populate Dropdown
+        if (dropAvatar) {
+          if (currentUser.avatar) {
+            dropAvatar.innerHTML = `<img src="${currentUser.avatar}" alt="${currentUser.name}" style="width:100%;height:100%;object-fit:cover;">`;
+          } else {
+            dropAvatar.innerHTML = initials;
+          }
+        }
+        if (dropName) dropName.textContent = currentUser.name;
+        if (dropEmail) dropEmail.textContent = currentUser.email;
+        if (dropAdminOpts) dropAdminOpts.style.display = isUserAdmin ? 'block' : 'none';
+
+        // Auto-fill checkout name & livechat name if not customized
+        const custNameInput = document.getElementById('orderCustomerName');
+        if (custNameInput && !custNameInput.value) {
+          custNameInput.value = currentUser.name;
+        }
+        if (!customerChatName) {
+          customerChatName = currentUser.name;
+          try { localStorage.setItem('jm_chat_customer_name', customerChatName); } catch (e) {}
+          updateCustomerNameUI(customerChatName);
+        }
+      }
+    }
+
+    function handleUserNavClick(event) {
+      if (event) event.stopPropagation();
+      playBeep('click');
+
+      if (!currentUser) {
+        openModal('authModal');
+      } else {
+        const dropdown = document.getElementById('userNavDropdown');
+        if (dropdown) {
+          dropdown.classList.toggle('active');
+        }
+      }
+    }
+
+    // Close user dropdown on outside click
+    document.addEventListener('click', (e) => {
+      const widget = document.getElementById('userNavAuthWrap');
+      const dropdown = document.getElementById('userNavDropdown');
+      if (dropdown && dropdown.classList.contains('active')) {
+        if (!widget || !widget.contains(e.target)) {
+          dropdown.classList.remove('active');
+        }
+      }
+    });
+
+    function switchAuthTab(tabType) {
+      const btnG = document.getElementById('btnAuthTabGoogle');
+      const btnE = document.getElementById('btnAuthTabEmail');
+      const paneG = document.getElementById('authPaneGoogle');
+      const paneE = document.getElementById('authPaneEmail');
+
+      if (tabType === 'google') {
+        if (btnG) btnG.classList.add('active');
+        if (btnE) btnE.classList.remove('active');
+        if (paneG) paneG.style.display = 'block';
+        if (paneE) paneE.style.display = 'none';
+      } else {
+        if (btnG) btnG.classList.remove('active');
+        if (btnE) btnE.classList.add('active');
+        if (paneG) paneG.style.display = 'none';
+        if (paneE) paneE.style.display = 'block';
+      }
+      playBeep('click');
+    }
+
+    async function handleGoogleSignIn() {
+      playBeep('click');
+      const enteredEmail = prompt("Masukkan Akun Google Anda (Email):", "ererex4youu@gmail.com");
+      if (!enteredEmail || !enteredEmail.trim()) return;
+
+      const email = enteredEmail.trim().toLowerCase();
+      const enteredName = prompt("Nama Tampilan Google:", email.includes("ererex4youu") ? "Owner JaneMurphy" : email.split('@')[0]);
+      const name = (enteredName && enteredName.trim()) ? enteredName.trim() : email.split('@')[0];
+
+      await completeGoogleAuth(email, name);
+    }
+
+    async function loginAsOwnerGoogle() {
+      playBeep('click');
+      await completeGoogleAuth("ererex4youu@gmail.com", "Owner JaneMurphy");
+    }
+
+    async function completeGoogleAuth(email, name) {
+      showToast("Memproses autentikasi Google...");
+      try {
+        const res = await fetch('/api/auth/google', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, name: name })
+        });
+        const data = await res.json();
+        
+        if (data && data.user) {
+          currentUser = data.user;
+          isAdminLoggedIn = !!data.user.isAdmin;
+          try {
+            localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
+            if (isAdminLoggedIn) {
+              localStorage.setItem('jm_admin_logged_in', 'true');
+            } else {
+              localStorage.removeItem('jm_admin_logged_in');
+            }
+          } catch (e) {}
+
+          updateUserAuthUI();
+          updateAdminUIState(true);
+          closeModal('authModal');
+          playBeep('success');
+          showToast(`Berhasil login sebagai ${data.user.name} (${data.user.isAdmin ? 'Akses Owner/Admin' : 'Pembeli'})!`);
+
+          if (isAdminLoggedIn) {
+            setTimeout(() => {
+              openAdminDashboard();
+            }, 300);
+          }
+        }
+      } catch (err) {
+        // Fallback local authentication
+        const isOwner = email.toLowerCase() === 'ererex4youu@gmail.com';
+        currentUser = {
+          id: 'usr-' + Date.now(),
+          name: name || 'Google User',
+          email: email,
+          role: isOwner ? 'admin' : 'customer',
+          isAdmin: isOwner,
+          avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`
+        };
+        isAdminLoggedIn = isOwner;
+        try {
+          localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
+          if (isOwner) localStorage.setItem('jm_admin_logged_in', 'true');
+        } catch (e) {}
+
+        updateUserAuthUI();
+        updateAdminUIState(true);
+        closeModal('authModal');
+        playBeep('success');
+        showToast(`Login berhasil sebagai ${currentUser.name}!`);
+      }
+    }
+
+    async function handleEmailAuthSubmit(event) {
+      event.preventDefault();
+      const email = document.getElementById('authEmailInput').value.trim();
+      const pin = document.getElementById('authPinInput').value.trim();
+      const name = document.getElementById('authNameInput').value.trim() || email.split('@')[0];
+
+      if (!email || !pin) {
+        showToast("Mohon isi Email dan PIN / Password.");
+        return;
+      }
+
+      showToast("Memverifikasi kredensial...");
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: pin, name: name })
+        });
+        const data = await res.json();
+
+        if (res.ok && data && data.user) {
+          currentUser = data.user;
+          isAdminLoggedIn = !!data.user.isAdmin;
+          try {
+            localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
+            if (isAdminLoggedIn) {
+              localStorage.setItem('jm_admin_logged_in', 'true');
+            } else {
+              localStorage.removeItem('jm_admin_logged_in');
+            }
+          } catch (e) {}
+
+          updateUserAuthUI();
+          updateAdminUIState(true);
+          closeModal('authModal');
+          playBeep('success');
+          showToast(`Selamat datang ${data.user.name}!`);
+
+          if (isAdminLoggedIn) {
+            setTimeout(() => {
+              openAdminDashboard();
+            }, 300);
+          }
+        } else {
+          showToast(data.error || "Gagal masuk. Periksa email atau PIN Anda.");
+        }
+      } catch (err) {
+        const isOwner = (email.toLowerCase() === 'ererex4youu@gmail.com' && (pin === '123456' || pin === 'admin'));
+        currentUser = {
+          id: 'usr-' + Date.now(),
+          name: name,
+          email: email,
+          role: isOwner ? 'admin' : 'customer',
+          isAdmin: isOwner
+        };
+        isAdminLoggedIn = isOwner;
+        try {
+          localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
+          if (isOwner) localStorage.setItem('jm_admin_logged_in', 'true');
+        } catch (e) {}
+
+        updateUserAuthUI();
+        updateAdminUIState(true);
+        closeModal('authModal');
+        playBeep('success');
+        showToast(`Selamat datang ${currentUser.name}!`);
+      }
+    }
+
+    function handleLogoutUser() {
+      currentUser = null;
+      isAdminLoggedIn = false;
+      try {
+        localStorage.removeItem('jm_auth_user');
+        localStorage.removeItem('jm_admin_logged_in');
+      } catch (e) {}
+
+      const dropdown = document.getElementById('userNavDropdown');
+      if (dropdown) dropdown.classList.remove('active');
+
+      updateUserAuthUI();
+      updateAdminUIState(false);
+      playBeep('pop');
+      showToast("Anda telah keluar dari akun.");
+    }
+
+    // Web Audio API Sound Synthesizer (Loud, Clear & Rich Sound Effects)
     let audioCtx = null;
-    function playBeep(type = 'click') {
-      if (!isSoundEnabled) return;
+    let masterCompressor = null;
+    let masterGain = null;
+
+    function getAudioContext() {
       try {
         if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return null;
+          audioCtx = new AudioContextClass();
+
+          // Master compressor to maximize volume and punch while eliminating audio clipping/distortion
+          masterCompressor = audioCtx.createDynamicsCompressor();
+          masterCompressor.threshold.setValueAtTime(-14, audioCtx.currentTime);
+          masterCompressor.knee.setValueAtTime(30, audioCtx.currentTime);
+          masterCompressor.ratio.setValueAtTime(8, audioCtx.currentTime);
+          masterCompressor.attack.setValueAtTime(0.002, audioCtx.currentTime);
+          masterCompressor.release.setValueAtTime(0.18, audioCtx.currentTime);
+
+          masterGain = audioCtx.createGain();
+          masterGain.gain.setValueAtTime(0.85, audioCtx.currentTime); // Louder, punchy master level
+
+          masterCompressor.connect(masterGain);
+          masterGain.connect(audioCtx.destination);
         }
         if (audioCtx.state === 'suspended') {
           audioCtx.resume();
         }
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        return audioCtx;
+      } catch (e) {
+        return null;
+      }
+    }
 
-        const now = audioCtx.currentTime;
+    // Auto-resume audio on first user touch/click anywhere
+    ['touchstart', 'click', 'keydown'].forEach(evt => {
+      document.addEventListener(evt, () => {
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }, { once: false, passive: true });
+    });
+
+    function playBeep(type = 'click') {
+      if (!isSoundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const out = masterCompressor;
+
         if (type === 'click') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(800, now);
-          osc.frequency.exponentialRampToValueAtTime(400, now + 0.05);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-          osc.start(now);
-          osc.stop(now + 0.05);
-        } else if (type === 'success') {
+          // Punchy tactile button click with crisp body
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
           osc.type = 'triangle';
-          osc.frequency.setValueAtTime(523.25, now); // C5
-          osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
-          osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
-          gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.frequency.setValueAtTime(950, now);
+          osc.frequency.exponentialRampToValueAtTime(320, now + 0.055);
+          gain.gain.setValueAtTime(0.5, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+          osc.connect(gain);
+          gain.connect(out);
           osc.start(now);
-          osc.stop(now + 0.3);
-        } else if (type === 'pop') {
+          osc.stop(now + 0.055);
+        } else if (type === 'tap') {
+          // Snappy high-frequency glass/tab tap for chips and cards
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(600, now);
-          osc.frequency.exponentialRampToValueAtTime(1200, now + 0.08);
-          gain.gain.setValueAtTime(0.1, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          osc.frequency.setValueAtTime(1350, now);
+          osc.frequency.exponentialRampToValueAtTime(650, now + 0.04);
+          gain.gain.setValueAtTime(0.42, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+          osc.connect(gain);
+          gain.connect(out);
           osc.start(now);
-          osc.stop(now + 0.08);
+          osc.stop(now + 0.04);
+        } else if (type === 'pop') {
+          // Juicy resonant bubble pop
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(550, now);
+          osc.frequency.exponentialRampToValueAtTime(1450, now + 0.085);
+          gain.gain.setValueAtTime(0.55, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.085);
+          osc.connect(gain);
+          gain.connect(out);
+          osc.start(now);
+          osc.stop(now + 0.085);
+        } else if (type === 'switch') {
+          // Mechanical slide/toggle switch tone (Theme & Toggle buttons)
+          [0, 0.035].forEach((delay, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            const freq = i === 0 ? 520 : 880;
+            osc.frequency.setValueAtTime(freq, now + delay);
+            osc.frequency.exponentialRampToValueAtTime(freq * 1.25, now + delay + 0.045);
+            gain.gain.setValueAtTime(0.45, now + delay);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.045);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(now + delay);
+            osc.stop(now + delay + 0.045);
+          });
+        } else if (type === 'copy') {
+          // Snappy dual confirmation ping (G5 -> D6) for copy actions
+          [ { f: 783.99, t: 0, d: 0.09 }, { f: 1174.66, t: 0.07, d: 0.14 } ].forEach(note => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(note.f, now + note.t);
+            gain.gain.setValueAtTime(0.48, now + note.t);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + note.t + note.d);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(now + note.t);
+            osc.stop(now + note.t + note.d);
+          });
+        } else if (type === 'success') {
+          // Joyful 4-note ascending chord arpeggio (C5 -> E5 -> G5 -> C6) with rich harmonics
+          [
+            { f: 523.25, t: 0, d: 0.12 },
+            { f: 659.25, t: 0.07, d: 0.12 },
+            { f: 783.99, t: 0.14, d: 0.14 },
+            { f: 1046.50, t: 0.21, d: 0.28 }
+          ].forEach(note => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(note.f, now + note.t);
+            gain.gain.setValueAtTime(0.5, now + note.t);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + note.t + note.d);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(now + note.t);
+            osc.stop(now + note.t + note.d);
+          });
+        } else if (type === 'purchase' || type === 'order') {
+          // Celebratory cash register / jackpot victory fanfare
+          [ { f: 1318.51, t: 0, d: 0.1 }, { f: 1760.00, t: 0.06, d: 0.12 } ].forEach(coin => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(coin.f, now + coin.t);
+            gain.gain.setValueAtTime(0.55, now + coin.t);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + coin.t + coin.d);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(now + coin.t);
+            osc.stop(now + coin.t + coin.d);
+          });
+          // Ascending victory chord
+          [
+            { f: 523.25, t: 0.12, d: 0.12 },
+            { f: 659.25, t: 0.18, d: 0.12 },
+            { f: 783.99, t: 0.24, d: 0.14 },
+            { f: 1046.50, t: 0.30, d: 0.35 },
+            { f: 1318.51, t: 0.36, d: 0.45 }
+          ].forEach(note => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(note.f, now + note.t);
+            gain.gain.setValueAtTime(0.5, now + note.t);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + note.t + note.d);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(now + note.t);
+            osc.stop(now + note.t + note.d);
+          });
+        } else if (type === 'message_sent') {
+          // Upward modern chat swoosh-ping (520Hz -> 960Hz)
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(960, now + 0.1);
+          gain.gain.setValueAtTime(0.48, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+          osc.connect(gain);
+          gain.connect(out);
+          osc.start(now);
+          osc.stop(now + 0.12);
+        } else if (type === 'message_received' || type === 'alert') {
+          // Friendly attention bell chime (880Hz -> 659Hz)
+          [ { f: 880.00, t: 0, d: 0.12 }, { f: 659.25, t: 0.08, d: 0.22 } ].forEach(bell => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(bell.f, now + bell.t);
+            gain.gain.setValueAtTime(0.5, now + bell.t);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + bell.t + bell.d);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(now + bell.t);
+            osc.stop(now + bell.t + bell.d);
+          });
+        } else if (type === 'delete' || type === 'cancel') {
+          // Soft descending cancel tone
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(580, now);
+          osc.frequency.exponentialRampToValueAtTime(260, now + 0.12);
+          gain.gain.setValueAtTime(0.45, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+          osc.connect(gain);
+          gain.connect(out);
+          osc.start(now);
+          osc.stop(now + 0.12);
+        } else if (type === 'error') {
+          // Low warm warning double pulse
+          [0, 0.08].forEach(delay => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(180, now + delay);
+            gain.gain.setValueAtTime(0.35, now + delay);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.06);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(now + delay);
+            osc.stop(now + delay + 0.06);
+          });
+        } else if (type === 'modal_open') {
+          // Smooth atmospheric upward swell
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(360, now);
+          osc.frequency.exponentialRampToValueAtTime(720, now + 0.09);
+          gain.gain.setValueAtTime(0.38, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+          osc.connect(gain);
+          gain.connect(out);
+          osc.start(now);
+          osc.stop(now + 0.09);
+        } else if (type === 'modal_close') {
+          // Soft subtle descending transition
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(620, now);
+          osc.frequency.exponentialRampToValueAtTime(310, now + 0.07);
+          gain.gain.setValueAtTime(0.32, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+          osc.connect(gain);
+          gain.connect(out);
+          osc.start(now);
+          osc.stop(now + 0.07);
         }
       } catch (e) {}
     }
@@ -4874,7 +6307,7 @@
     function toggleTheme() {
       const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
       applyTheme(nextTheme, true);
-      if (isSoundEnabled) playBeep('pop');
+      if (isSoundEnabled) playBeep('switch');
     }
 
     function applyTheme(theme, showToastMsg = true) {
@@ -4940,24 +6373,85 @@
       if (isSoundEnabled) playBeep('pop');
     }
 
+    // Enable Smooth Mouse Drag & Wheel Scrolling on Horizontal Bars
+    function makeHorizontalScrollable(slider) {
+      if (!slider) return;
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+      let hasMoved = false;
+
+      slider.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'touch') return; // Let native touch scrolling handle touch devices
+        isDown = true;
+        hasMoved = false;
+        slider.classList.add('is-dragging');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        try { slider.setPointerCapture(e.pointerId); } catch(err) {}
+      });
+
+      slider.addEventListener('pointerleave', () => {
+        if (isDown) {
+          isDown = false;
+          slider.classList.remove('is-dragging');
+        }
+      });
+
+      slider.addEventListener('pointerup', (e) => {
+        if (isDown) {
+          isDown = false;
+          slider.classList.remove('is-dragging');
+          try { slider.releasePointerCapture(e.pointerId); } catch(err) {}
+        }
+      });
+
+      slider.addEventListener('pointermove', (e) => {
+        if (!isDown || e.pointerType === 'touch') return;
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        if (Math.abs(x - startX) > 5) {
+          hasMoved = true;
+        }
+        slider.scrollLeft = scrollLeft - walk;
+      });
+
+      // Allow natural mouse wheel to scroll horizontally
+      slider.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0 && Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+          e.preventDefault();
+          slider.scrollLeft += e.deltaY;
+        }
+      }, { passive: false });
+
+      // Prevent accidental click when dragging on desktop
+      slider.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.stopPropagation();
+          e.preventDefault();
+          hasMoved = false;
+        }
+      }, true);
+    }
+
+    function initHorizontalScrolls() {
+      const catTabs = document.getElementById('categoryTabs');
+      const sortChips = document.getElementById('sortChipsContainer');
+      makeHorizontalScrollable(catTabs);
+      makeHorizontalScrollable(sortChips);
+    }
+
     // Initialize App
     document.addEventListener('DOMContentLoaded', async () => {
       initTheme();
+      initHorizontalScrolls();
       document.getElementById('currentYear').textContent = new Date().getFullYear();
       await fetchStoreData();
+      initAuthUser();
       trackVisitor();
-      initSalesTicker();
       initProductDeepLink();
       initChatEngine();
       window.addEventListener('hashchange', initProductDeepLink);
-
-      // Check persistent admin login session (Can edit anytime without logging in every time)
-      try {
-        if (localStorage.getItem('jm_admin_logged_in') === 'true') {
-          isAdminLoggedIn = true;
-          updateAdminUIState(false);
-        }
-      } catch (e) {}
     });
 
     // Fetch initial data from server
@@ -4982,25 +6476,37 @@
     // Apply Settings to UI
     function applyStoreSettings() {
       const s = storeState.settings || {};
-      document.title = `${s.storeName || 'JaneMarket'} - ${s.storeTagline || 'Platform Aplikasi Premium'}`;
+      document.title = `${s.storeName || 'JaneMurphy'} - ${s.storeTagline || 'Platform Aplikasi Premium'}`;
       
       const navStoreName = document.getElementById('navStoreName');
-      if (navStoreName) navStoreName.textContent = s.storeName || 'JaneMarket';
+      if (navStoreName) navStoreName.textContent = s.storeName || 'JaneMurphy';
 
       const drawerStoreName = document.getElementById('drawerStoreName');
-      if (drawerStoreName) drawerStoreName.textContent = s.storeName || 'JaneMarket';
+      if (drawerStoreName) drawerStoreName.textContent = s.storeName || 'JaneMurphy';
       
       const footerStoreName = document.getElementById('footerStoreName');
-      if (footerStoreName) footerStoreName.textContent = s.storeName || 'JaneMarket';
+      if (footerStoreName) footerStoreName.textContent = s.storeName || 'JaneMurphy';
+
+      // Update store logo images
+      const logoSrc = s.storeLogo || 'LogoJM.jpg';
+      document.querySelectorAll('.brand-logo-img, .hero-store-logo').forEach(img => {
+        if (img) {
+          img.src = logoSrc;
+          img.style.display = 'block';
+          if (img.nextElementSibling && img.nextElementSibling.classList && img.nextElementSibling.classList.contains('brand-icon')) {
+            img.nextElementSibling.style.display = 'none';
+          }
+        }
+      });
 
       const announcementText = document.getElementById('announcementText');
       if (announcementText && s.announcement) announcementText.textContent = s.announcement;
 
       const directWa = document.getElementById('btnDirectWa');
-      if (directWa) directWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS JaneMarket, saya ingin bertanya seputar produk...')}`;
+      if (directWa) directWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMurphy') + ', saya ingin bertanya seputar produk...')}`;
 
       const drawerWa = document.getElementById('drawerWaLink');
-      if (drawerWa) drawerWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS JaneMarket, saya ingin bertanya seputar produk...')}`;
+      if (drawerWa) drawerWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMurphy') + ', saya ingin bertanya seputar produk...')}`;
 
       // Banner middle
       if (s.promoBanner) {
@@ -5071,7 +6577,7 @@
         label.textContent = cat === 'all' ? 'Menampilkan semua produk' : `Kategori: ${cat}`;
       }
 
-      playBeep('click');
+      playBeep('tap');
       renderProducts();
     }
 
@@ -5079,7 +6585,7 @@
       activeSort = criteria;
       document.querySelectorAll('.sort-chip').forEach(c => c.classList.remove('active'));
       if (chipElement) chipElement.classList.add('active');
-      playBeep('click');
+      playBeep('tap');
       renderProducts();
     }
 
@@ -5225,7 +6731,7 @@
     let currentDetailProductId = null;
 
     function handleProductCardClick(event, productId, cardElement) {
-      if (isSoundEnabled) playBeep('click');
+      if (isSoundEnabled) playBeep('tap');
 
       // Add visual ripple and micro-bounce ONLY to clicked product card
       if (cardElement && event) {
@@ -5341,14 +6847,204 @@
       variantBox.innerHTML = variants.map((v, idx) => `
         <label class="variant-radio-label ${idx === 0 ? 'selected' : ''}" onclick="selectDetailVariant('${v.name}', ${v.price}, this)">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="radio" name="detail_variant" value="${v.name}" ${idx === 0 ? 'checked' : ''} style="accent-color: #ffffff;">
+            <input type="radio" class="variant-radio-input" name="detail_variant" value="${v.name}" ${idx === 0 ? 'checked' : ''}>
             <span class="variant-name">${v.name}</span>
           </div>
           <span class="variant-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
         </label>
       `).join('');
 
+      // Initialize Reviews & Tab
+      switchProductDetailTab('desc');
+      renderProductReviews(prod);
+
       openModal('productDetailModal');
+    }
+
+    // Product Detail Tabs & Reviews Engine (Requirement #6)
+    let selectedReviewRating = 5;
+
+    function switchProductDetailTab(tab) {
+      const btnDesc = document.getElementById('btnTabDetailDesc');
+      const btnRev = document.getElementById('btnTabDetailReviews');
+      const paneDesc = document.getElementById('paneDetailDesc');
+      const paneRev = document.getElementById('paneDetailReviews');
+
+      if (tab === 'desc') {
+        if (btnDesc) btnDesc.classList.add('active');
+        if (btnRev) btnRev.classList.remove('active');
+        if (paneDesc) paneDesc.classList.add('active');
+        if (paneRev) paneRev.classList.remove('active');
+      } else {
+        if (btnDesc) btnDesc.classList.remove('active');
+        if (btnRev) btnRev.classList.add('active');
+        if (paneDesc) paneDesc.classList.remove('active');
+        if (paneRev) paneRev.classList.add('active');
+      }
+    }
+
+    function setReviewRating(rating) {
+      selectedReviewRating = rating;
+      const stars = document.querySelectorAll('#reviewStarPicker i');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.className = 'fa-solid fa-star active';
+        } else {
+          star.className = 'fa-solid fa-star';
+        }
+      });
+      playBeep('click');
+    }
+
+    function scrollToReviewForm() {
+      const box = document.getElementById('addReviewBox');
+      if (box) {
+        box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const input = document.getElementById('reviewInputComment');
+        if (input) input.focus();
+      }
+    }
+
+    function renderProductReviews(prod) {
+      if (!prod) return;
+      
+      const reviews = Array.isArray(prod.reviews) ? prod.reviews : [];
+      const reviewCountBadge = document.getElementById('detailReviewCountBadge');
+      if (reviewCountBadge) reviewCountBadge.textContent = reviews.length;
+
+      const totalLabel = document.getElementById('detailReviewsTotalLabel');
+      if (totalLabel) totalLabel.textContent = reviews.length;
+
+      // Calculate avg score
+      let avgScore = 5.0;
+      if (reviews.length > 0) {
+        const sum = reviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0);
+        avgScore = (sum / reviews.length).toFixed(1);
+      } else if (prod.rating) {
+        avgScore = Number(prod.rating).toFixed(1);
+      }
+
+      const scoreEl = document.getElementById('detailReviewsAvgScore');
+      if (scoreEl) scoreEl.textContent = avgScore;
+
+      const listContainer = document.getElementById('detailReviewsListContainer');
+      if (!listContainer) return;
+
+      if (reviews.length === 0) {
+        listContainer.innerHTML = `
+          <div style="text-align: center; padding: 24px 16px; background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 12px; margin-bottom: 16px;">
+            <i class="fa-regular fa-star" style="font-size: 28px; color: #eab308; margin-bottom: 8px;"></i>
+            <div style="font-size: 13px; font-weight: 700; color: var(--text-primary);">Belum Ada Ulasan untuk Produk Ini</div>
+            <p style="font-size: 11.5px; color: var(--text-secondary); margin-top: 4px;">Jadilah pembeli pertama yang memberikan ulasan dan dapatkan garansi prioritas!</p>
+          </div>
+        `;
+      } else {
+        listContainer.innerHTML = reviews.map(r => {
+          const starsHtml = Array.from({ length: 5 }, (_, i) => 
+            `<i class="fa-solid fa-star ${i < (r.rating || 5) ? 'active' : ''}"></i>`
+          ).join('');
+
+          const userName = r.userName || r.name || 'Pembeli Terverifikasi';
+          const userInitial = userName.slice(0, 1).toUpperCase();
+          const dateLabel = r.date || 'Terverifikasi';
+
+          return `
+            <div class="review-card">
+              <div class="review-header">
+                <div class="review-user-info">
+                  <div class="review-avatar">${userInitial}</div>
+                  <div>
+                    <div class="review-author-name">
+                      ${userName}
+                      <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</span>
+                    </div>
+                    <div class="review-date">${dateLabel}</div>
+                  </div>
+                </div>
+                <div class="review-stars-static">
+                  ${starsHtml}
+                </div>
+              </div>
+              <div class="review-comment">
+                ${escapeChatHTML(r.comment || '')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Pre-fill user name in review form if logged in
+      const inputName = document.getElementById('reviewInputName');
+      if (inputName) {
+        if (currentUser && currentUser.name) {
+          inputName.value = currentUser.name;
+        } else if (!inputName.value) {
+          inputName.value = '';
+        }
+      }
+      setReviewRating(5);
+    }
+
+    async function submitProductReview() {
+      if (!currentDetailProductId) return;
+      const prod = storeState.products.find(p => String(p.id) === String(currentDetailProductId));
+      if (!prod) return;
+
+      const nameInput = document.getElementById('reviewInputName');
+      const commentInput = document.getElementById('reviewInputComment');
+      const userName = nameInput ? nameInput.value.trim() : '';
+      const comment = commentInput ? commentInput.value.trim() : '';
+
+      if (!userName) {
+        showToast("Mohon masukkan nama Anda untuk ulasan.");
+        if (nameInput) nameInput.focus();
+        return;
+      }
+      if (!comment) {
+        showToast("Mohon tulis ulasan atau komentar Anda.");
+        if (commentInput) commentInput.focus();
+        return;
+      }
+
+      const newReview = {
+        id: `rev-${Date.now()}`,
+        userName: userName,
+        rating: selectedReviewRating,
+        comment: comment,
+        date: 'Baru saja'
+      };
+
+      if (!Array.isArray(prod.reviews)) prod.reviews = [];
+      prod.reviews.unshift(newReview);
+
+      // Recalculate average rating
+      const sum = prod.reviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0);
+      prod.rating = parseFloat((sum / prod.reviews.length).toFixed(1));
+
+      persistLocalState();
+      renderProductReviews(prod);
+      renderProducts();
+
+      // Reset form
+      if (commentInput) commentInput.value = '';
+      playBeep('success');
+      showToast("Terima kasih! Ulasan Anda berhasil diterbitkan.");
+
+      // Post to Server API
+      try {
+        await fetch('/api/reviews', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            productId: prod.id,
+            userName: userName,
+            rating: selectedReviewRating,
+            comment: comment
+          })
+        });
+      } catch (e) {
+        console.warn("Review API notice:", e);
+      }
     }
 
     function selectDetailVariant(name, price, element) {
@@ -5386,6 +7082,7 @@
 
     // Copy to Clipboard Utility
     function copyToClipboard(text, title) {
+      playBeep('copy');
       navigator.clipboard.writeText(text).then(() => {
         showToast(`${title}: ${text} berhasil disalin!`);
       }).catch(() => {
@@ -5595,11 +7292,13 @@
       }
       const el = document.getElementById(id);
       if (el) el.classList.add('active');
+      playBeep('modal_open');
     }
 
     function closeModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('active');
+      playBeep('modal_close');
     }
 
     function openPaymentModal(fromDetail = false) {
@@ -5691,6 +7390,7 @@
       const codeInput = document.getElementById('voucherCodeInput');
       if (infoBadge) infoBadge.style.display = 'none';
       if (codeInput) codeInput.value = '';
+      playBeep('delete');
       showToast("Voucher dihapus");
       recalculateCheckoutPrice();
     }
@@ -5758,7 +7458,7 @@
       variantContainer.innerHTML = variants.map((v, idx) => `
         <label class="variant-radio-label ${idx === 0 ? 'selected' : ''}" onclick="selectVariant('${v.name}', ${v.price}, this)">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="radio" name="order_variant" value="${v.name}" ${idx === 0 ? 'checked' : ''} style="accent-color: #ffffff;">
+            <input type="radio" class="variant-radio-input" name="order_variant" value="${v.name}" ${idx === 0 ? 'checked' : ''}>
             <span class="variant-name">${v.name}</span>
           </div>
           <span class="variant-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
@@ -5779,7 +7479,7 @@
       element.classList.add('selected');
       const radio = element.querySelector('input[type="radio"]');
       if (radio) radio.checked = true;
-      playBeep('click');
+      playBeep('tap');
       recalculateCheckoutPrice();
     }
 
@@ -5809,6 +7509,32 @@
         accountId: accountId,
         notes: notes
       };
+
+      // Auto-increment sold count & order statistics (Requirement #7)
+      if (prod) {
+        prod.soldCount = (Number(prod.soldCount) || 0) + 1;
+        const detailSold = document.getElementById('detailSold');
+        if (detailSold) detailSold.textContent = prod.soldCount;
+      }
+      if (!storeState.stats) storeState.stats = {};
+      storeState.stats.totalOrders = (Number(storeState.stats.totalOrders) || 0) + 1;
+      storeState.stats.totalRevenue = (Number(storeState.stats.totalRevenue) || 0) + finalCalculatedPrice;
+
+      if (!Array.isArray(storeState.orders)) storeState.orders = [];
+      storeState.orders.unshift({
+        id: `ORD-${Date.now().toString().slice(-5)}`,
+        customerName: customerName,
+        productName: prod ? prod.name : '-',
+        category: prod ? prod.category : '-',
+        variant: selectedVariantName,
+        price: finalCalculatedPrice,
+        paymentMethod: paymentMethod,
+        timestamp: new Date().toISOString(),
+        status: 'Selesai'
+      });
+
+      persistLocalState();
+      renderProducts();
 
       // Record to Server API
       try {
@@ -5841,7 +7567,7 @@
       }
       waText += `\nMohon segera diproses ya kak. Terima kasih! 🙏`;
 
-      playBeep('success');
+      playBeep('purchase');
       closeModal('checkoutModal');
       showToast("Mengarahkan ke WhatsApp...");
 
@@ -5859,44 +7585,6 @@
         item.classList.add('active');
         playBeep('pop');
       }
-    }
-
-    // Live Sales Social Proof Ticker
-    const sampleSales = [
-      { name: "Rizky (Surabaya)", product: "Membeli Netflix 4K UHD 1 Bulan", time: "1 menit lalu • Terverifikasi" },
-      { name: "Aditya (Bandung)", product: "Topup 86 Diamond Mobile Legends", time: "2 menit lalu • Terverifikasi" },
-      { name: "Siti Rahma (Jakarta)", product: "Membeli Canva Pro 1 Tahun", time: "3 menit lalu • Terverifikasi" },
-      { name: "Kevin (Medan)", product: "Membeli Spotify Premium 3 Bulan", time: "5 menit lalu • Terverifikasi" },
-      { name: "Farhan (Semarang)", product: "Order Jasa Desain Poster Event", time: "6 menit lalu • Terverifikasi" },
-      { name: "Dina (Yogyakarta)", product: "Membeli YouTube Premium 1 Bulan", time: "7 menit lalu • Terverifikasi" }
-    ];
-
-    let salesIndex = 0;
-    function initSalesTicker() {
-      const toast = document.getElementById('liveSalesToast');
-      if (!toast) return;
-
-      setTimeout(() => {
-        cycleSalesToast();
-        setInterval(cycleSalesToast, 9000);
-      }, 3500);
-    }
-
-    function cycleSalesToast() {
-      const toast = document.getElementById('liveSalesToast');
-      if (!toast) return;
-
-      const item = sampleSales[salesIndex % sampleSales.length];
-      salesIndex++;
-
-      document.getElementById('salesToastName').textContent = item.name;
-      document.getElementById('salesToastProduct').textContent = item.product;
-      document.getElementById('salesToastTime').textContent = item.time;
-
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4500);
     }
 
     // Side Menu Drawer (Garis Tiga / Hamburger Menu)
@@ -6014,45 +7702,65 @@
 
     function handleAdminBtnClick() {
       if (isAdminLoggedIn) {
-        logoutAdmin();
+        openAdminDashboard();
       } else {
-        openModal('adminLoginModal');
+        openModal('authModal');
       }
     }
 
     function submitAdminLogin() {
       const pinInput = document.getElementById('adminPinInput');
+      if (!pinInput) return;
       const entered = pinInput.value.trim();
       const currentPin = (storeState.settings && storeState.settings.adminPin) || '123456';
 
       if (entered === currentPin || entered === '123456' || entered === 'admin') {
         isAdminLoggedIn = true;
+        currentUser = {
+          id: 'owner-main',
+          name: 'Owner JaneMurphy',
+          email: (storeState.settings && storeState.settings.ownerEmail) || 'ererex4youu@gmail.com',
+          role: 'admin',
+          isAdmin: true
+        };
         try {
           localStorage.setItem('jm_admin_logged_in', 'true');
+          localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
         } catch (e) {}
         closeModal('adminLoginModal');
+        closeModal('authModal');
         pinInput.value = '';
+        updateUserAuthUI();
         updateAdminUIState(true);
-        // Langsung buka dashboard admin modal dengan pilihan menu di samping
         setTimeout(() => {
           openAdminDashboard();
         }, 200);
       } else {
-        showToast("PIN / Password Admin salah!");
+        showToast("PIN / Password Admin salah! Akses khusus Owner JaneMurphy.");
       }
     }
 
     function logoutAdmin() {
       isAdminLoggedIn = false;
+      if (currentUser && currentUser.isAdmin) {
+        currentUser = null;
+      }
       try {
         localStorage.removeItem('jm_admin_logged_in');
+        localStorage.removeItem('jm_auth_user');
       } catch (e) {}
       closeModal('adminDashboardModal');
+      updateUserAuthUI();
       updateAdminUIState(false);
-      showToast("Berhasil logout dari Admin");
+      showToast("Berhasil keluar dari mode Admin");
     }
 
     function openAdminDashboard() {
+      if (!isAdminLoggedIn) {
+        showToast("Akses ditolak! Menu kelola toko hanya khusus Owner (ererex4youu@gmail.com).");
+        openModal('authModal');
+        return;
+      }
       populateAdminStats();
       populateAdminProductsTable();
       populateAdminSettingsForm();
@@ -6404,6 +8112,7 @@
     async function deleteProduct(productId) {
       if (!confirm("Apakah Anda yakin ingin menghapus produk ini?")) return;
 
+      playBeep('delete');
       storeState.products = storeState.products.filter(p => String(p.id) !== String(productId));
       persistLocalState();
 
@@ -6654,38 +8363,40 @@
       }
     }
 
+    let isSendingCustomerChat = false;
+
     async function loadCustomerLiveChatMessages(shouldScroll = false) {
       if (!customerSessionId) return;
 
+      const box = document.getElementById('customerChatMessagesBox');
+      if (!box) return;
+
+      // 1. Initial fast display from local storage cache if container is empty
+      if (!box.children.length || box.innerText.includes('Belum ada')) {
+        try {
+          const localCached = localStorage.getItem('jm_chat_msgs_' + customerSessionId);
+          if (localCached) {
+            const cachedMessages = JSON.parse(localCached);
+            if (Array.isArray(cachedMessages) && cachedMessages.length > 0) {
+              renderCustomerChatBubbles(cachedMessages, box);
+              if (shouldScroll) box.scrollTop = box.scrollHeight;
+            }
+          }
+        } catch (e) {}
+      }
+
+      // 2. Fetch authoritative list of messages from server
       try {
         const res = await fetch(`/api/chat/messages?sessionId=${encodeURIComponent(customerSessionId)}`);
         const data = await res.json();
-        const messages = Array.isArray(data.messages) ? data.messages : [];
-        const box = document.getElementById('customerChatMessagesBox');
+        const serverMessages = Array.isArray(data.messages) ? data.messages : [];
 
-        if (!box) return;
+        // Save server messages as clean single source of truth in local cache
+        try {
+          localStorage.setItem('jm_chat_msgs_' + customerSessionId, JSON.stringify(serverMessages));
+        } catch (e) {}
 
-        if (messages.length === 0) {
-          box.innerHTML = `
-            <div class="chat-bubble admin-side">
-              <div class="chat-bubble-sender"><i class="fa-solid fa-shield-halved"></i> Admin JaneMarket</div>
-              <div>Halo kak <strong>${escapeChatHTML(customerChatName || 'Customer')}</strong>! 👋 Selamat datang di Live Chat JaneMarket.<br>Silakan tanyakan produk, cek stok, atau konfirmasi pesanan di sini. Admin kami akan langsung membalas di web ini.</div>
-              <span class="chat-bubble-time">Baru saja</span>
-            </div>
-          `;
-        } else {
-          box.innerHTML = messages.map(m => {
-            const isCustomer = m.sender === 'customer';
-            const senderLabel = isCustomer ? (m.customerName || 'Anda') : '🛡️ Admin JaneMarket';
-            return `
-              <div class="chat-bubble ${isCustomer ? 'customer-side' : 'admin-side'}">
-                <div class="chat-bubble-sender">${isCustomer ? '<i class="fa-solid fa-user"></i>' : '<i class="fa-solid fa-shield-halved"></i>'} ${escapeChatHTML(senderLabel)}</div>
-                <div>${escapeChatHTML(m.text).replace(/\n/g, '<br>')}</div>
-                <span class="chat-bubble-time">${formatChatTimestamp(m.timestamp)}</span>
-              </div>
-            `;
-          }).join('');
-        }
+        renderCustomerChatBubbles(serverMessages, box);
 
         if (shouldScroll) {
           box.scrollTop = box.scrollHeight;
@@ -6707,6 +8418,55 @@
       }
     }
 
+    function deduplicateMessagesList(messages) {
+      if (!Array.isArray(messages)) return [];
+      const result = [];
+      const seen = new Set();
+
+      for (const m of messages) {
+        if (!m || !m.text) continue;
+        // Key based on ID or normalized sender+text+rough timestamp
+        const textSignature = String(m.text).trim();
+        const timeKey = m.timestamp ? new Date(m.timestamp).getTime() : 0;
+        // Group timestamps within 2 seconds for exact same sender & text
+        const roundedTime = Math.floor(timeKey / 2000);
+        const key = m.id ? String(m.id) : `${m.sender}_${textSignature}_${roundedTime}`;
+
+        if (!seen.has(key)) {
+          seen.add(key);
+          result.push(m);
+        }
+      }
+      return result;
+    }
+
+    function renderCustomerChatBubbles(messages, box) {
+      if (!box) return;
+      const cleanMessages = deduplicateMessagesList(messages);
+
+      if (cleanMessages.length === 0) {
+        box.innerHTML = `
+          <div class="chat-bubble admin-side">
+            <div class="chat-bubble-sender"><i class="fa-solid fa-shield-halved"></i> Admin JaneMurphy</div>
+            <div>Halo kak <strong>${escapeChatHTML(customerChatName || 'Customer')}</strong>! 👋 Selamat datang di Live Chat JaneMurphy.<br>Silakan tanyakan produk, cek stok, atau konfirmasi pesanan di sini. Admin kami akan langsung membalas di web ini.</div>
+            <span class="chat-bubble-time">Baru saja</span>
+          </div>
+        `;
+      } else {
+        box.innerHTML = cleanMessages.map(m => {
+          const isCustomer = m.sender === 'customer';
+          const senderLabel = isCustomer ? (m.customerName || customerChatName || 'Anda') : '🛡️ Admin JaneMurphy';
+          return `
+            <div class="chat-bubble ${isCustomer ? 'customer-side' : 'admin-side'}">
+              <div class="chat-bubble-sender">${isCustomer ? '<i class="fa-solid fa-user"></i>' : '<i class="fa-solid fa-shield-halved"></i>'} ${escapeChatHTML(senderLabel)}</div>
+              <div>${escapeChatHTML(m.text).replace(/\n/g, '<br>')}</div>
+              <span class="chat-bubble-time">${formatChatTimestamp(m.timestamp)}</span>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
     function sendCustomerQuickChat(text) {
       const input = document.getElementById('customerChatInput');
       if (input) {
@@ -6716,29 +8476,21 @@
     }
 
     async function sendCustomerLiveChatMessage() {
+      if (isSendingCustomerChat) return;
+
       const input = document.getElementById('customerChatInput');
+      const sendBtn = document.getElementById('customerChatSendBtn');
       if (!input) return;
       const text = input.value.trim();
       if (!text) return;
 
+      isSendingCustomerChat = true;
       input.value = '';
-      playBeep('click');
-
-      const box = document.getElementById('customerChatMessagesBox');
-      if (box) {
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble customer-side';
-        bubble.innerHTML = `
-          <div class="chat-bubble-sender"><i class="fa-solid fa-user"></i> ${escapeChatHTML(customerChatName || 'Anda')}</div>
-          <div>${escapeChatHTML(text).replace(/\n/g, '<br>')}</div>
-          <span class="chat-bubble-time">Baru saja</span>
-        `;
-        box.appendChild(bubble);
-        box.scrollTop = box.scrollHeight;
-      }
+      if (sendBtn) sendBtn.style.opacity = '0.5';
+      playBeep('message_sent');
 
       try {
-        await fetch('/api/chat/send', {
+        const res = await fetch('/api/chat/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -6748,9 +8500,25 @@
             text: text
           })
         });
-        loadCustomerLiveChatMessages(true);
+
+        const data = await res.json();
+        const box = document.getElementById('customerChatMessagesBox');
+
+        if (data && Array.isArray(data.messages)) {
+          try {
+            localStorage.setItem('jm_chat_msgs_' + customerSessionId, JSON.stringify(data.messages));
+          } catch (e) {}
+          renderCustomerChatBubbles(data.messages, box);
+          if (box) box.scrollTop = box.scrollHeight;
+        } else {
+          await loadCustomerLiveChatMessages(true);
+        }
       } catch (e) {
         console.warn("Send message err:", e);
+        showToast("Gagal mengirim pesan, silakan coba lagi.");
+      } finally {
+        isSendingCustomerChat = false;
+        if (sendBtn) sendBtn.style.opacity = '1';
       }
     }
 
@@ -6898,7 +8666,7 @@
       try {
         const res = await fetch(`/api/chat/messages?sessionId=${encodeURIComponent(sessionId)}`);
         const data = await res.json();
-        const messages = Array.isArray(data.messages) ? data.messages : [];
+        const messages = deduplicateMessagesList(Array.isArray(data.messages) ? data.messages : []);
         const threadInfo = adminChatThreads.find(t => t.sessionId === sessionId);
         const customerName = (threadInfo && threadInfo.customerName) || data.customerName || 'Customer';
 
@@ -6923,7 +8691,7 @@
         } else {
           box.innerHTML = messages.map(m => {
             const isCustomer = m.sender === 'customer';
-            const senderLabel = isCustomer ? `${m.customerName || customerName} (Customer)` : '🛡️ Admin JaneMarket (Anda)';
+            const senderLabel = isCustomer ? `${m.customerName || customerName} (Customer)` : '🛡️ Admin JaneMurphy (Anda)';
             return `
               <div class="chat-bubble ${isCustomer ? 'customer-side' : 'admin-side'}" style="${isCustomer ? 'align-self: flex-start; background: #1f1f26; border: 1px solid #33333d; color: #ffffff;' : 'align-self: flex-end; background: #ffffff; color: #000000;'}">
                 <div class="chat-bubble-sender" style="color: ${isCustomer ? '#60a5fa' : '#52525b'};">
@@ -6955,7 +8723,7 @@
       if (!text) return;
 
       input.value = '';
-      playBeep('click');
+      playBeep('message_sent');
 
       const thread = adminChatThreads.find(t => t.sessionId === adminActiveThreadSessionId);
       const customerName = thread ? thread.customerName : 'Customer';
