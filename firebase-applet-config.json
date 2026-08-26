@@ -1,9 +1,12 @@
 {
-  "projectId": "janemarket-official",
-  "appId": "1:182162307433:web:5af78a086019f352c0e5f8",
-  "apiKey": "AIzaSyBnwUPeq0w7L4ddRV1Icmi6LTEfQfPS0OY",
-  "authDomain": "janemarket-official.firebaseapp.com",
-  "storageBucket": "janemarket-official.firebasestorage.app",
-  "messagingSenderId": "182162307433",
-  "measurementId": "G-E6SE8MZR27"
+  "projectId": "euphoric-overview-fqlhg",
+  "appId": "1:214723428343:web:5e2b68b08312981b3ff8f2",
+  "apiKey": "AIzaSyDYpbJPHfTmOX7Xun59U5F7nHtpcUI67X8",
+  "authDomain": "euphoric-overview-fqlhg.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-janeworks-5adda66d-8d0b-49fd-a8c3-40cfa9bacd8b",
+  "storageBucket": "euphoric-overview-fqlhg.firebasestorage.app",
+  "messagingSenderId": "214723428343",
+  "measurementId": "",
+  "oAuthClientId": "214723428343-qmphau8s4rl9l95fhfgnbbht5ar0ohsn.apps.googleusercontent.com",
+  "recaptchaSiteKey": ""
 }

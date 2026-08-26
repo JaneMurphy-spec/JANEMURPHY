@@ -433,33 +433,25 @@ const appHandler = async (request, response) => {
       return sendJson(response, 201, { success: true, review: newReview, product: prod, message: "Ulasan berhasil dikirim!" });
     }
 
-    // 7c. POST /api/auth/google & POST /api/auth/login
+    // 7c. POST /api/auth/google
     if ((pathname === "/api/auth/google" || pathname === "/api/auth/login") && method === "POST") {
       const body = await parseBody(request);
       const email = (body.email || "").toLowerCase().trim();
       const name = body.name || email.split("@")[0] || "User";
-      const pin = body.pin || body.password || "";
-      const ownerEmail = (store.settings.ownerEmail || "ererex4youu@gmail.com").toLowerCase().trim();
-      const adminPin = String(store.settings.adminPin || "123456").trim();
 
-      // Check if user is owner / admin
-      let isAdmin = false;
-      if (email === ownerEmail || email === "ererex4youu@gmail.com") {
-        isAdmin = true;
-      } else if (pin && String(pin).trim() === adminPin) {
-        isAdmin = true;
-      }
+      // Check if user is owner / admin strictly by email ererex4youu@gmail.com
+      const isAdmin = (email === "ererex4youu@gmail.com");
 
       const user = {
-        email: email || (isAdmin ? ownerEmail : "member@janemurphy.store"),
-        name: isAdmin ? (body.name || "Owner JaneMurphy (Admin)") : name,
+        email: email || "member@janemurphy.store",
+        name: isAdmin ? (body.name || "Owner JaneMurphy") : name,
         picture: body.picture || "",
         role: isAdmin ? "admin" : "customer",
         isAdmin: isAdmin,
         token: "tok-" + Date.now() + "-" + Math.random().toString(36).substring(2, 9)
       };
 
-      return sendJson(response, 200, { success: true, user, message: isAdmin ? "Selamat datang Admin!" : "Berhasil masuk!" });
+      return sendJson(response, 200, { success: true, user, message: isAdmin ? "Selamat datang Owner JaneMurphy (Admin)!" : "Berhasil masuk!" });
     }
 
     // 8. POST /api/chat-ai (Gemini AI Assistant)

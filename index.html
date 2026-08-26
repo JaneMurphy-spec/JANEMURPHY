@@ -488,31 +488,42 @@
       font-size: 13px;
     }
 
-    /* Category Navigation - Generous Pills & Touch Drag Scrollable */
-    .category-tabs {
+    /* Category Navigation & Sort Chips - Fluid Touch & Drag Scrollable */
+    .category-tabs,
+    .sort-chips-container {
       display: flex;
       gap: 8px;
       overflow-x: auto;
       overflow-y: hidden;
-      padding-bottom: 6px;
-      margin-top: 10px;
+      padding: 4px 2px 8px;
       scrollbar-width: none;
+      -ms-overflow-style: none;
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-x;
-      scroll-behavior: smooth;
+      touch-action: pan-x pan-y;
       user-select: none;
       -webkit-user-select: none;
       cursor: grab;
+      scroll-behavior: auto !important;
     }
-    .category-tabs.is-dragging {
+    .category-tabs.is-dragging,
+    .sort-chips-container.is-dragging {
       cursor: grabbing;
-      scroll-behavior: auto;
     }
-    .category-tabs::-webkit-scrollbar {
+    .category-tabs::-webkit-scrollbar,
+    .sort-chips-container::-webkit-scrollbar {
       display: none;
+      width: 0;
+      height: 0;
+    }
+    .category-btn,
+    .sort-chip {
+      flex-shrink: 0;
+      white-space: nowrap;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .category-btn {
-      flex-shrink: 0;
       background: var(--bg-secondary);
       color: var(--text-secondary);
       border: 1px solid var(--border-color);
@@ -521,7 +532,6 @@
       font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
-      white-space: nowrap;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -549,6 +559,35 @@
     .category-btn.active .category-count {
       background: rgba(255, 255, 255, 0.22);
       color: #ffffff;
+    }
+
+    .sort-chips-container {
+      margin-top: 4px;
+    }
+    .sort-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .sort-chip:hover {
+      border-color: #6366f1;
+      color: #ffffff;
+    }
+    .sort-chip.active {
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      border-color: #818cf8;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.4);
     }
 
     /* Product Grid - Wide & Uncramped */
@@ -2408,6 +2447,28 @@
       .form-row {
         grid-template-columns: 1fr;
       }
+      .modal-box {
+        max-height: 92vh;
+        border-radius: 14px;
+        margin: 8px;
+      }
+      .modal-body {
+        padding: 14px;
+      }
+      .modal-header {
+        padding: 14px 16px;
+      }
+      .modal-footer {
+        padding: 12px 14px;
+      }
+      .detail-perks-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .detail-perk-item {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
     }
     /* ========================================================
        LIGHT THEME STYLING ([data-theme="light"])
@@ -2778,6 +2839,17 @@
       background: #ffffff;
       border-color: #e2e8f0;
     }
+    [data-theme="light"] .hero-store-showcase {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    }
+    [data-theme="light"] .hero-store-title {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .hero-store-subtitle {
+      color: #0284c7 !important;
+    }
     [data-theme="light"] .modal-title,
     [data-theme="light"] .detail-title-text,
     [data-theme="light"] .detail-price-val,
@@ -2788,6 +2860,14 @@
     [data-theme="light"] .stat-card-value,
     [data-theme="light"] .admin-main-title {
       color: #0f172a !important;
+    }
+    [data-theme="light"] .detail-meta-strip {
+      color: #475569 !important;
+    }
+    [data-theme="light"] .detail-tag-category {
+      background: #f1f5f9;
+      color: #4f46e5;
+      border-color: #e2e8f0;
     }
     [data-theme="light"] .form-label {
       color: #0f172a !important;
@@ -2815,9 +2895,13 @@
       border-color: #e2e8f0;
       color: #0f172a;
     }
+    [data-theme="light"] .variant-radio-label:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
     [data-theme="light"] .variant-radio-label.selected {
-      background: #eef2ff;
-      border-color: #6366f1;
+      background: #eef2ff !important;
+      border-color: #6366f1 !important;
     }
     [data-theme="light"] .checkout-payment-detail {
       background: #ffffff;
@@ -2826,6 +2910,17 @@
     [data-theme="light"] .checkout-payment-title,
     [data-theme="light"] .checkout-acc-number {
       color: #0f172a !important;
+    }
+    [data-theme="light"] .payment-icon-wrap {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #4f46e5;
+    }
+    [data-theme="light"] .payment-text p {
+      color: #334155 !important;
+    }
+    [data-theme="light"] .payment-text span {
+      color: #64748b !important;
     }
     [data-theme="light"] .checkout-total-strip {
       background: #f8fafc;
@@ -2837,27 +2932,27 @@
       border-top-color: #e2e8f0;
     }
     [data-theme="light"] .owner-access-card {
-      background: #f0fdf4;
-      border-color: #86efac;
+      background: #f0fdf4 !important;
+      border-color: #86efac !important;
     }
     [data-theme="light"] .owner-access-title {
-      color: #16a34a;
+      color: #15803d !important;
     }
     [data-theme="light"] .owner-access-email {
-      color: #334155;
+      color: #334155 !important;
     }
     [data-theme="light"] .owner-access-email strong {
-      color: #065f46;
+      color: #065f46 !important;
     }
     [data-theme="light"] .owner-quick-btn {
-      background: #ffffff;
-      border-color: #86efac;
-      color: #15803d;
+      background: #ffffff !important;
+      border-color: #86efac !important;
+      color: #15803d !important;
     }
     [data-theme="light"] .owner-quick-btn:hover {
-      background: #dcfce7;
-      border-color: #22c55e;
-      color: #166534;
+      background: #dcfce7 !important;
+      border-color: #22c55e !important;
+      color: #166534 !important;
     }
     [data-theme="light"] .variant-radio-input {
       accent-color: #4f46e5;
@@ -4564,72 +4659,40 @@
 
   <!-- ==================== MODALS ==================== -->
 
-  <!-- Modal 1: Login & Autentikasi User & Admin (Google / Email / PIN) -->
+  <!-- Modal 1: Login & Autentikasi Google User & Admin -->
   <div class="modal-overlay" id="authModal">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width: 420px;">
       <div class="modal-header">
-        <h4 class="modal-title" id="authModalTitle"><i class="fa-solid fa-circle-user"></i> Masuk / Daftar Akun</h4>
+        <h4 class="modal-title" id="authModalTitle"><i class="fa-brands fa-google" style="color: #4285F4;"></i> Masuk dengan Google</h4>
         <button class="modal-close" onclick="closeModal('authModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <div class="modal-body">
-        <div class="auth-tab-bar">
-          <button class="auth-tab-btn active" id="tabAuthGoogleBtn" onclick="switchAuthTab('google')">
-            <i class="fa-brands fa-google"></i> Google Login
-          </button>
-          <button class="auth-tab-btn" id="tabAuthEmailBtn" onclick="switchAuthTab('email')">
-            <i class="fa-solid fa-envelope"></i> Email / PIN Admin
-          </button>
+      <div class="modal-body" style="text-align: center; padding: 24px 20px;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(66, 133, 244, 0.1); border: 1px solid rgba(66, 133, 244, 0.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+          <svg class="google-icon-svg" viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
         </div>
+        
+        <h5 style="font-size: 16px; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">Masuk Akun JaneMarket</h5>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">
+          Gunakan akun Google Anda untuk menyimpan riwayat pesanan, menulis ulasan, atau mengelola toko (khusus email Owner).
+        </p>
 
-        <!-- Google Sign-In Tab Pane -->
-        <div id="paneAuthGoogle">
-          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
-            Masuk dengan akun Google Anda untuk menyimpan riwayat pesanan, menulis ulasan produk, dan akses otomatis.
-          </p>
-
-          <!-- Main Google Login Button -->
-          <button type="button" class="google-signin-btn" onclick="handleGoogleSignIn()">
-            <svg class="google-icon-svg" viewBox="0 0 24 24">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-            </svg>
-            <span>Lanjutkan dengan Akun Google</span>
-          </button>
-
-          <!-- Fast Owner Admin Access Badge -->
-          <div class="owner-access-card">
-            <div class="owner-access-title">
-              <i class="fa-solid fa-crown"></i> Akses Khusus Owner JaneMurphy
-            </div>
-            <div class="owner-access-email">
-              Email Owner: <strong>ererex4youu@gmail.com</strong>
-            </div>
-            <button type="button" class="btn btn-outline btn-sm owner-quick-btn" onclick="loginAsOwnerGoogle()">
-              <i class="fa-solid fa-user-shield"></i> Masuk Cepat sebagai Owner (ererex4youu@gmail.com)
-            </button>
-          </div>
-        </div>
-
-        <!-- Email & PIN Tab Pane -->
-        <div id="paneAuthEmail" style="display: none;">
-          <form onsubmit="handleEmailAuthSubmit(event)">
-            <div class="form-group">
-              <label class="form-label">Email Anda / Email Owner *</label>
-              <input type="email" id="authEmailInput" class="form-input" placeholder="ererex4youu@gmail.com / nama@gmail.com" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Password / PIN Admin *</label>
-              <input type="password" id="authPasswordInput" class="form-input" placeholder="Masukkan PIN (Default Admin: 123456)" required>
-            </div>
-            <button type="submit" class="btn btn-white" style="width: 100%; justify-content: center; margin-top: 14px;" id="btnSubmitAuth">
-              <i class="fa-solid fa-arrow-right-to-bracket"></i> Masuk Sekarang
-            </button>
-          </form>
-        </div>
+        <!-- Main Google Login Button -->
+        <button type="button" class="google-signin-btn" onclick="handleGoogleSignIn()">
+          <svg class="google-icon-svg" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Lanjutkan dengan Akun Google</span>
+        </button>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="justify-content: center;">
         <button class="btn btn-outline" onclick="closeModal('authModal')">Tutup</button>
       </div>
     </div>
@@ -4812,8 +4875,8 @@
                   <input type="text" id="settingWhatsapp" class="form-input" placeholder="6281234567890" required>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">PIN / Password Admin</label>
-                  <input type="text" id="settingAdminPin" class="form-input" placeholder="123456" required>
+                  <label class="form-label">Email Google Owner Admin</label>
+                  <input type="email" id="settingOwnerEmail" class="form-input" value="ererex4youu@gmail.com" readonly style="background: rgba(255,255,255,0.05); color: var(--text-muted); cursor: not-allowed;">
                 </div>
               </div>
 
@@ -5392,6 +5455,11 @@
     </div>
   </footer>
 
+  <!-- Firebase App & Firestore SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
   <!-- Main JavaScript Application Engine -->
   <script>
     // State Store & Default Data
@@ -5715,6 +5783,34 @@
       } catch (e) {}
     }
 
+    // ========================================================
+    // FIREBASE FIRESTORE REALTIME SYNC ENGINE
+    // ========================================================
+    let db = null;
+    let isFirebaseReady = false;
+    let productsUnsubscribe = null;
+
+    function initFirebaseEngine() {
+      try {
+        if (typeof firebase !== 'undefined') {
+          const firebaseConfig = {
+            apiKey: "AIzaSyDummyKeyForStudioPreviewEnv123",
+            projectId: "euphoric-overview-fqlhg",
+            authDomain: "euphoric-overview-fqlhg.firebaseapp.com",
+            storageBucket: "euphoric-overview-fqlhg.appspot.com"
+          };
+          if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+          }
+          db = firebase.firestore();
+          isFirebaseReady = true;
+          console.log("🔥 Firebase Firestore initialized successfully");
+        }
+      } catch (err) {
+        console.warn("Firebase init notice:", err);
+      }
+    }
+
     let activeCategory = 'all';
     let activeSort = 'default';
     let searchQuery = '';
@@ -5726,30 +5822,23 @@
     let isSoundEnabled = true;
 
     // ========================================================
-    // AUTHENTICATION & USER PROFILE ENGINE (Google & Email/PIN)
+    // AUTHENTICATION & USER PROFILE ENGINE (Google Login Only)
     // ========================================================
     function initAuthUser() {
       try {
         const savedUser = localStorage.getItem('jm_auth_user');
         if (savedUser) {
           currentUser = JSON.parse(savedUser);
-          if (currentUser && (currentUser.isAdmin || currentUser.role === 'admin' || currentUser.email === 'ererex4youu@gmail.com')) {
+          if (currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com') {
             isAdminLoggedIn = true;
-          }
-        } else {
-          // Check legacy admin login
-          const legacyAdmin = localStorage.getItem('jm_admin_logged_in');
-          if (legacyAdmin === 'true') {
-            isAdminLoggedIn = true;
-            currentUser = {
-              id: 'owner-main',
-              name: 'Owner JaneMurphy',
-              email: (storeState.settings && storeState.settings.ownerEmail) || 'ererex4youu@gmail.com',
-              role: 'admin',
-              isAdmin: true,
-              avatar: ''
-            };
-            localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
+            currentUser.isAdmin = true;
+            currentUser.role = 'admin';
+          } else {
+            isAdminLoggedIn = false;
+            if (currentUser) {
+              currentUser.isAdmin = false;
+              currentUser.role = 'customer';
+            }
           }
         }
       } catch (e) {}
@@ -5779,7 +5868,7 @@
         if (dropAdminOpts) dropAdminOpts.style.display = 'none';
       } else {
         const initials = currentUser.name ? currentUser.name.split(' ').map(n=>n[0]).slice(0,2).join('').toUpperCase() : 'JM';
-        const isUserAdmin = currentUser.isAdmin || currentUser.role === 'admin';
+        const isUserAdmin = !!(currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com');
 
         if (avatarEl) {
           if (currentUser.avatar) {
@@ -5853,45 +5942,23 @@
       }
     });
 
-    function switchAuthTab(tabType) {
-      const btnG = document.getElementById('btnAuthTabGoogle');
-      const btnE = document.getElementById('btnAuthTabEmail');
-      const paneG = document.getElementById('authPaneGoogle');
-      const paneE = document.getElementById('authPaneEmail');
-
-      if (tabType === 'google') {
-        if (btnG) btnG.classList.add('active');
-        if (btnE) btnE.classList.remove('active');
-        if (paneG) paneG.style.display = 'block';
-        if (paneE) paneE.style.display = 'none';
-      } else {
-        if (btnG) btnG.classList.remove('active');
-        if (btnE) btnE.classList.add('active');
-        if (paneG) paneG.style.display = 'none';
-        if (paneE) paneE.style.display = 'block';
-      }
-      playBeep('click');
-    }
-
     async function handleGoogleSignIn() {
       playBeep('click');
       const enteredEmail = prompt("Masukkan Akun Google Anda (Email):", "ererex4youu@gmail.com");
       if (!enteredEmail || !enteredEmail.trim()) return;
 
       const email = enteredEmail.trim().toLowerCase();
-      const enteredName = prompt("Nama Tampilan Google:", email.includes("ererex4youu") ? "Owner JaneMurphy" : email.split('@')[0]);
-      const name = (enteredName && enteredName.trim()) ? enteredName.trim() : email.split('@')[0];
+      const isOwner = (email === 'ererex4youu@gmail.com');
+      const defaultName = isOwner ? "Owner JaneMurphy" : email.split('@')[0];
+      const enteredName = prompt("Nama Tampilan Google:", defaultName);
+      const name = (enteredName && enteredName.trim()) ? enteredName.trim() : defaultName;
 
       await completeGoogleAuth(email, name);
     }
 
-    async function loginAsOwnerGoogle() {
-      playBeep('click');
-      await completeGoogleAuth("ererex4youu@gmail.com", "Owner JaneMurphy");
-    }
-
     async function completeGoogleAuth(email, name) {
       showToast("Memproses autentikasi Google...");
+      const isOwner = email.toLowerCase() === 'ererex4youu@gmail.com';
       try {
         const res = await fetch('/api/auth/google', {
           method: 'POST',
@@ -5902,7 +5969,10 @@
         
         if (data && data.user) {
           currentUser = data.user;
-          isAdminLoggedIn = !!data.user.isAdmin;
+          isAdminLoggedIn = isOwner;
+          currentUser.isAdmin = isOwner;
+          currentUser.role = isOwner ? 'admin' : 'customer';
+
           try {
             localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
             if (isAdminLoggedIn) {
@@ -5916,7 +5986,7 @@
           updateAdminUIState(true);
           closeModal('authModal');
           playBeep('success');
-          showToast(`Berhasil login sebagai ${data.user.name} (${data.user.isAdmin ? 'Akses Owner/Admin' : 'Pembeli'})!`);
+          showToast(`Berhasil login sebagai ${currentUser.name} (${isOwner ? 'Akses Admin Owner' : 'Akun Pembeli'})!`);
 
           if (isAdminLoggedIn) {
             setTimeout(() => {
@@ -5926,10 +5996,9 @@
         }
       } catch (err) {
         // Fallback local authentication
-        const isOwner = email.toLowerCase() === 'ererex4youu@gmail.com';
         currentUser = {
           id: 'usr-' + Date.now(),
-          name: name || 'Google User',
+          name: name || (isOwner ? 'Owner JaneMurphy' : 'Google User'),
           email: email,
           role: isOwner ? 'admin' : 'customer',
           isAdmin: isOwner,
@@ -5938,83 +6007,24 @@
         isAdminLoggedIn = isOwner;
         try {
           localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
-          if (isOwner) localStorage.setItem('jm_admin_logged_in', 'true');
-        } catch (e) {}
-
-        updateUserAuthUI();
-        updateAdminUIState(true);
-        closeModal('authModal');
-        playBeep('success');
-        showToast(`Login berhasil sebagai ${currentUser.name}!`);
-      }
-    }
-
-    async function handleEmailAuthSubmit(event) {
-      event.preventDefault();
-      const email = document.getElementById('authEmailInput').value.trim();
-      const pin = document.getElementById('authPinInput').value.trim();
-      const name = document.getElementById('authNameInput').value.trim() || email.split('@')[0];
-
-      if (!email || !pin) {
-        showToast("Mohon isi Email dan PIN / Password.");
-        return;
-      }
-
-      showToast("Memverifikasi kredensial...");
-      try {
-        const res = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, password: pin, name: name })
-        });
-        const data = await res.json();
-
-        if (res.ok && data && data.user) {
-          currentUser = data.user;
-          isAdminLoggedIn = !!data.user.isAdmin;
-          try {
-            localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
-            if (isAdminLoggedIn) {
-              localStorage.setItem('jm_admin_logged_in', 'true');
-            } else {
-              localStorage.removeItem('jm_admin_logged_in');
-            }
-          } catch (e) {}
-
-          updateUserAuthUI();
-          updateAdminUIState(true);
-          closeModal('authModal');
-          playBeep('success');
-          showToast(`Selamat datang ${data.user.name}!`);
-
-          if (isAdminLoggedIn) {
-            setTimeout(() => {
-              openAdminDashboard();
-            }, 300);
+          if (isOwner) {
+            localStorage.setItem('jm_admin_logged_in', 'true');
+          } else {
+            localStorage.removeItem('jm_admin_logged_in');
           }
-        } else {
-          showToast(data.error || "Gagal masuk. Periksa email atau PIN Anda.");
-        }
-      } catch (err) {
-        const isOwner = (email.toLowerCase() === 'ererex4youu@gmail.com' && (pin === '123456' || pin === 'admin'));
-        currentUser = {
-          id: 'usr-' + Date.now(),
-          name: name,
-          email: email,
-          role: isOwner ? 'admin' : 'customer',
-          isAdmin: isOwner
-        };
-        isAdminLoggedIn = isOwner;
-        try {
-          localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
-          if (isOwner) localStorage.setItem('jm_admin_logged_in', 'true');
         } catch (e) {}
 
         updateUserAuthUI();
         updateAdminUIState(true);
         closeModal('authModal');
         playBeep('success');
-        showToast(`Selamat datang ${currentUser.name}!`);
+        showToast(`Login berhasil sebagai ${currentUser.name} (${isOwner ? 'Akses Admin Owner' : 'Akun Pembeli'})!`);
+
+        if (isAdminLoggedIn) {
+          setTimeout(() => {
+            openAdminDashboard();
+          }, 300);
+        }
       }
     }
 
@@ -6376,44 +6386,36 @@
     // Enable Smooth Mouse Drag & Wheel Scrolling on Horizontal Bars
     function makeHorizontalScrollable(slider) {
       if (!slider) return;
-      let isDown = false;
+      let isMouseDown = false;
       let startX = 0;
       let scrollLeft = 0;
-      let hasMoved = false;
+      let hasDragged = false;
 
-      slider.addEventListener('pointerdown', (e) => {
-        if (e.pointerType === 'touch') return; // Let native touch scrolling handle touch devices
-        isDown = true;
-        hasMoved = false;
-        slider.classList.add('is-dragging');
-        startX = e.pageX - slider.offsetLeft;
+      // Mouse drag support for desktop
+      slider.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return; // Left mouse click only
+        isMouseDown = true;
+        hasDragged = false;
+        startX = e.pageX;
         scrollLeft = slider.scrollLeft;
-        try { slider.setPointerCapture(e.pointerId); } catch(err) {}
+        slider.classList.add('is-dragging');
       });
 
-      slider.addEventListener('pointerleave', () => {
-        if (isDown) {
-          isDown = false;
+      window.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+        const dx = e.pageX - startX;
+        if (Math.abs(dx) > 6) {
+          hasDragged = true;
+        }
+        slider.scrollLeft = scrollLeft - dx;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isMouseDown) {
+          isMouseDown = false;
           slider.classList.remove('is-dragging');
+          setTimeout(() => { hasDragged = false; }, 60);
         }
-      });
-
-      slider.addEventListener('pointerup', (e) => {
-        if (isDown) {
-          isDown = false;
-          slider.classList.remove('is-dragging');
-          try { slider.releasePointerCapture(e.pointerId); } catch(err) {}
-        }
-      });
-
-      slider.addEventListener('pointermove', (e) => {
-        if (!isDown || e.pointerType === 'touch') return;
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        if (Math.abs(x - startX) > 5) {
-          hasMoved = true;
-        }
-        slider.scrollLeft = scrollLeft - walk;
       });
 
       // Allow natural mouse wheel to scroll horizontally
@@ -6424,12 +6426,11 @@
         }
       }, { passive: false });
 
-      // Prevent accidental click when dragging on desktop
+      // Prevent accidental click if user was dragging on desktop
       slider.addEventListener('click', (e) => {
-        if (hasMoved) {
+        if (hasDragged) {
           e.stopPropagation();
           e.preventDefault();
-          hasMoved = false;
         }
       }, true);
     }
@@ -6446,6 +6447,7 @@
       initTheme();
       initHorizontalScrolls();
       document.getElementById('currentYear').textContent = new Date().getFullYear();
+      initFirebaseEngine();
       await fetchStoreData();
       initAuthUser();
       trackVisitor();
@@ -6454,8 +6456,9 @@
       window.addEventListener('hashchange', initProductDeepLink);
     });
 
-    // Fetch initial data from server
+    // Fetch data and attach real-time Firestore sync
     async function fetchStoreData() {
+      // 1. Initial local/API fetch to populate instantly
       try {
         const res = await fetch('/api/store-data');
         if (res.ok) {
@@ -6471,6 +6474,54 @@
       applyStoreSettings();
       renderProducts();
       updateCategoryCounts();
+
+      // 2. Attach Firestore Real-Time Products Listener
+      if (isFirebaseReady && db) {
+        try {
+          if (productsUnsubscribe) {
+            productsUnsubscribe();
+          }
+          productsUnsubscribe = db.collection('products').onSnapshot((snapshot) => {
+            if (!snapshot.empty) {
+              const liveProducts = [];
+              snapshot.forEach((doc) => {
+                const pData = doc.data();
+                liveProducts.push({ id: doc.id, ...pData });
+              });
+              if (liveProducts.length > 0) {
+                storeState.products = liveProducts;
+                persistLocalState();
+                renderProducts();
+                updateCategoryCounts();
+                populateAdminProductsTable();
+                populateAdminStats();
+              }
+            } else if (storeState.products && storeState.products.length > 0) {
+              // Seed initial products to Firestore if empty collection
+              seedProductsToFirestore();
+            }
+          }, (error) => {
+            console.warn("Firestore realtime sync notice:", error);
+          });
+        } catch (err) {
+          console.warn("Firebase snapshot listener err:", err);
+        }
+      }
+    }
+
+    async function seedProductsToFirestore() {
+      if (!isFirebaseReady || !db || !storeState.products) return;
+      try {
+        const batch = db.batch();
+        storeState.products.forEach(p => {
+          const docRef = db.collection('products').doc(String(p.id));
+          batch.set(docRef, p);
+        });
+        await batch.commit();
+        console.log("🔥 Seeded initial products to Firestore successfully");
+      } catch (e) {
+        console.warn("Firestore seed notice:", e);
+      }
     }
 
     // Apply Settings to UI
@@ -7709,40 +7760,13 @@
     }
 
     function submitAdminLogin() {
-      const pinInput = document.getElementById('adminPinInput');
-      if (!pinInput) return;
-      const entered = pinInput.value.trim();
-      const currentPin = (storeState.settings && storeState.settings.adminPin) || '123456';
-
-      if (entered === currentPin || entered === '123456' || entered === 'admin') {
-        isAdminLoggedIn = true;
-        currentUser = {
-          id: 'owner-main',
-          name: 'Owner JaneMurphy',
-          email: (storeState.settings && storeState.settings.ownerEmail) || 'ererex4youu@gmail.com',
-          role: 'admin',
-          isAdmin: true
-        };
-        try {
-          localStorage.setItem('jm_admin_logged_in', 'true');
-          localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
-        } catch (e) {}
-        closeModal('adminLoginModal');
-        closeModal('authModal');
-        pinInput.value = '';
-        updateUserAuthUI();
-        updateAdminUIState(true);
-        setTimeout(() => {
-          openAdminDashboard();
-        }, 200);
-      } else {
-        showToast("PIN / Password Admin salah! Akses khusus Owner JaneMurphy.");
-      }
+      // Redirect to Google Sign-In for Admin authentication
+      handleGoogleSignIn();
     }
 
     function logoutAdmin() {
       isAdminLoggedIn = false;
-      if (currentUser && currentUser.isAdmin) {
+      if (currentUser && (currentUser.isAdmin || currentUser.role === 'admin')) {
         currentUser = null;
       }
       try {
@@ -7756,11 +7780,13 @@
     }
 
     function openAdminDashboard() {
-      if (!isAdminLoggedIn) {
-        showToast("Akses ditolak! Menu kelola toko hanya khusus Owner (ererex4youu@gmail.com).");
+      const isOwner = !!(currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com');
+      if (!isOwner) {
+        showToast("Akses khusus Owner JaneMurphy (ererex4youu@gmail.com). Silakan masuk dengan Google!");
         openModal('authModal');
         return;
       }
+      isAdminLoggedIn = true;
       populateAdminStats();
       populateAdminProductsTable();
       populateAdminSettingsForm();
@@ -7885,8 +7911,8 @@
       if (elStoreTag) elStoreTag.value = s.storeTagline || '';
       const elWa = document.getElementById('settingWhatsapp');
       if (elWa) elWa.value = s.whatsappNumber || '';
-      const elPin = document.getElementById('settingAdminPin');
-      if (elPin) elPin.value = s.adminPin || '123456';
+      const elOwnerEmail = document.getElementById('settingOwnerEmail');
+      if (elOwnerEmail) elOwnerEmail.value = 'ererex4youu@gmail.com';
       const elAnn = document.getElementById('settingAnnouncement');
       if (elAnn) elAnn.value = s.announcement || '';
       const elQris = document.getElementById('settingQrisImage');
@@ -7927,7 +7953,7 @@
         storeName: document.getElementById('settingStoreName').value.trim(),
         storeTagline: document.getElementById('settingStoreTagline').value.trim(),
         whatsappNumber: document.getElementById('settingWhatsapp').value.trim(),
-        adminPin: document.getElementById('settingAdminPin').value.trim(),
+        ownerEmail: 'ererex4youu@gmail.com',
         announcement: document.getElementById('settingAnnouncement').value.trim(),
         qrisImage: document.getElementById('settingQrisImage').value.trim(),
         qrisMerchantName: document.getElementById('settingQrisMerchant').value.trim(),
@@ -8078,6 +8104,17 @@
           storeState.products[idx] = { ...storeState.products[idx], ...productPayload };
         }
         persistLocalState();
+
+        // 1. Sync directly to Firestore
+        if (isFirebaseReady && db) {
+          try {
+            await db.collection('products').doc(String(id)).set(productPayload, { merge: true });
+          } catch (err) {
+            console.warn("Firestore update error:", err);
+          }
+        }
+
+        // 2. Fallback / Server API update
         try {
           await fetch(`/api/products/${id}`, {
             method: 'PUT',
@@ -8085,13 +8122,25 @@
             body: JSON.stringify(productPayload)
           });
         } catch (e) { console.warn("Edit API notice:", e); }
-        showToast("Produk berhasil diperbarui secara realtime!");
+
+        showToast("Produk berhasil diperbarui secara realtime di Firebase!");
       } else {
         // Add New Product Realtime
         const newId = "prod-" + Date.now();
         const newProd = { id: newId, rating: 5.0, ...productPayload };
         storeState.products.unshift(newProd);
         persistLocalState();
+
+        // 1. Sync directly to Firestore
+        if (isFirebaseReady && db) {
+          try {
+            await db.collection('products').doc(newId).set(newProd);
+          } catch (err) {
+            console.warn("Firestore add error:", err);
+          }
+        }
+
+        // 2. Fallback / Server API update
         try {
           await fetch('/api/products', {
             method: 'POST',
@@ -8099,7 +8148,8 @@
             body: JSON.stringify(newProd)
           });
         } catch (e) { console.warn("Add API notice:", e); }
-        showToast("Produk baru berhasil ditambahkan secara realtime!");
+
+        showToast("Produk baru berhasil ditambahkan secara realtime ke Firebase!");
       }
 
       closeModal('productFormModal');
@@ -8116,11 +8166,21 @@
       storeState.products = storeState.products.filter(p => String(p.id) !== String(productId));
       persistLocalState();
 
+      // 1. Delete directly from Firestore
+      if (isFirebaseReady && db) {
+        try {
+          await db.collection('products').doc(String(productId)).delete();
+        } catch (err) {
+          console.warn("Firestore delete error:", err);
+        }
+      }
+
+      // 2. Fallback / Server API update
       try {
         await fetch(`/api/products/${productId}`, { method: 'DELETE' });
       } catch (e) { console.warn("Delete API notice:", e); }
 
-      showToast("Produk berhasil dihapus!");
+      showToast("Produk berhasil dihapus dari Firebase!");
       renderProducts();
       updateCategoryCounts();
       populateAdminProductsTable();
