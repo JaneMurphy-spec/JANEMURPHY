@@ -4678,18 +4678,18 @@
         
         <h5 style="font-size: 16px; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">Masuk Akun JaneMarket</h5>
         <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">
-          Gunakan akun Google Anda untuk menyimpan riwayat pesanan, menulis ulasan, atau mengelola toko (khusus email Owner).
+          Gunakan akun Google Anda untuk autentikasi. Email Owner (<strong style="color: #60a5fa;">ererex4youu@gmail.com</strong>) otomatis mendapatkan akses Admin Toko, sedangkan akun lainnya terdaftar sebagai Pelanggan.
         </p>
 
-        <!-- Main Google Login Button -->
-        <button type="button" class="google-signin-btn" onclick="handleGoogleSignIn()">
+        <!-- Official Google Login Button -->
+        <button type="button" id="googlePopupMainBtn" class="google-signin-btn" onclick="handleGoogleSignIn()" style="width: 100%;">
           <svg class="google-icon-svg" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
           </svg>
-          <span>Lanjutkan dengan Akun Google</span>
+          <span id="googleBtnLabel">Lanjutkan dengan Akun Google</span>
         </button>
       </div>
       <div class="modal-footer" style="justify-content: center;">
@@ -5808,8 +5808,21 @@
           isFirebaseReady = true;
           console.log("🔥 Firebase Firestore & Auth initialized successfully");
 
-          // Realtime Auth State Listener
+          // Realtime Auth State Listener & Redirect Result
           if (firebase.auth) {
+            firebase.auth().getRedirectResult().then((result) => {
+              if (result && result.user) {
+                const user = result.user;
+                const email = (user.email || '').toLowerCase().trim();
+                const name = user.displayName || email.split('@')[0];
+                const photo = user.photoURL || '';
+                const uid = user.uid;
+                completeGoogleAuth(email, name, photo, uid);
+              }
+            }).catch((err) => {
+              console.warn("Firebase redirect auth result notice:", err);
+            });
+
             firebase.auth().onAuthStateChanged((user) => {
               if (user) {
                 const email = (user.email || '').toLowerCase().trim();
@@ -5959,52 +5972,71 @@
 
     async function handleGoogleSignIn() {
       playBeep('click');
-      showToast("Menghubungkan ke Google...");
+      const googleBtn = document.getElementById('googlePopupMainBtn');
+      const label = document.getElementById('googleBtnLabel');
+      if (label) label.textContent = "Menghubungkan ke Google...";
+      if (googleBtn) googleBtn.style.opacity = '0.7';
 
-      // 1. Try Firebase Auth with Google Provider Popup (Standard for Vercel / Web)
       if (typeof firebase !== 'undefined' && firebase.auth) {
         try {
           const provider = new firebase.auth.GoogleAuthProvider();
           provider.setCustomParameters({ prompt: 'select_account' });
-          const result = await firebase.auth().signInWithPopup(provider);
-          if (result && result.user) {
-            const user = result.user;
+          
+          let user = null;
+          try {
+            // 1. Primary Attempt: Google Popup
+            const result = await firebase.auth().signInWithPopup(provider);
+            if (result && result.user) {
+              user = result.user;
+            }
+          } catch (popupErr) {
+            console.warn("Popup blocked/failed, trying redirect:", popupErr);
+            if (popupErr.code === 'auth/popup-blocked' || popupErr.code === 'auth/cancelled-popup-request' || popupErr.code === 'auth/operation-not-supported-in-this-environment') {
+              showToast("Membuka autentikasi Google...");
+              await firebase.auth().signInWithRedirect(provider);
+              return;
+            }
+            throw popupErr;
+          }
+
+          if (user) {
             const email = (user.email || '').toLowerCase().trim();
             const name = user.displayName || email.split('@')[0];
             const photo = user.photoURL || '';
-            await completeGoogleAuth(email, name, photo);
+            const uid = user.uid;
+            await completeGoogleAuth(email, name, photo, uid);
             return;
           }
         } catch (firebaseErr) {
-          console.warn("Firebase Google popup note:", firebaseErr.message || firebaseErr);
-          // If popup blocked or cancelled or domain not in authorized list, fall through to prompt
+          console.warn("Firebase Google login error:", firebaseErr);
+          if (firebaseErr.code !== 'auth/popup-closed-by-user') {
+            showToast("Gagal masuk dengan Google: " + (firebaseErr.message || "Silakan coba lagi"));
+          }
+        } finally {
+          if (label) label.textContent = "Lanjutkan dengan Akun Google";
+          if (googleBtn) googleBtn.style.opacity = '1';
         }
+      } else {
+        showToast("Layanan Google Auth sedang disiapkan, silakan muat ulang halaman.");
+        if (label) label.textContent = "Lanjutkan dengan Akun Google";
+        if (googleBtn) googleBtn.style.opacity = '1';
       }
-
-      // 2. Prompt Fallback for Studio Preview & Manual Input
-      const enteredEmail = prompt("Masukkan Akun Google Anda (Email):", "ererex4youu@gmail.com");
-      if (!enteredEmail || !enteredEmail.trim()) return;
-
-      const email = enteredEmail.trim().toLowerCase();
-      const isOwner = (email === 'ererex4youu@gmail.com');
-      const defaultName = isOwner ? "Owner JaneMurphy" : email.split('@')[0];
-      const enteredName = prompt("Nama Tampilan Google:", defaultName);
-      const name = (enteredName && enteredName.trim()) ? enteredName.trim() : defaultName;
-      const avatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`;
-
-      await completeGoogleAuth(email, name, avatar);
     }
 
     async function completeGoogleAuth(email, name, photoUrl, explicitUid) {
+      if (!email) return;
       showToast("Memproses autentikasi Google...");
-      const isOwner = (email || '').toLowerCase().trim() === 'ererex4youu@gmail.com';
-      const permanentUid = explicitUid || (isOwner ? 'owner-ererex4youu' : ('usr-' + btoa(email || 'user').replace(/[^a-zA-Z0-9]/g, '').substring(0, 16)));
+      
+      const cleanEmail = email.toLowerCase().trim();
+      // STRICT OWNER CHECK: ONLY ererex4youu@gmail.com is Admin
+      const isOwner = (cleanEmail === 'ererex4youu@gmail.com');
+      const permanentUid = explicitUid || (isOwner ? 'owner-ererex4youu' : ('usr-' + btoa(cleanEmail).replace(/[^a-zA-Z0-9]/g, '').substring(0, 16)));
 
       try {
         const res = await fetch('/api/auth/google', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, name: name, picture: photoUrl || '', uid: permanentUid })
+          body: JSON.stringify({ email: cleanEmail, name: name, picture: photoUrl || '', uid: permanentUid })
         });
         const data = await res.json();
         
@@ -6012,9 +6044,11 @@
           currentUser = data.user;
           currentUser.uid = currentUser.uid || permanentUid;
           if (photoUrl && !currentUser.avatar) currentUser.avatar = photoUrl;
-          isAdminLoggedIn = isOwner;
+          
+          // Strictly enforce: only ererex4youu@gmail.com is admin
           currentUser.isAdmin = isOwner;
           currentUser.role = isOwner ? 'admin' : 'customer';
+          isAdminLoggedIn = isOwner;
 
           // Direct sync to Firestore if client SDK is ready
           if (isFirebaseReady && db) {
@@ -6043,64 +6077,22 @@
           } catch (e) {}
 
           updateUserAuthUI();
-          updateAdminUIState(true);
+          updateAdminUIState(isOwner);
           closeModal('authModal');
           playBeep('success');
-          showToast(`Berhasil login sebagai ${currentUser.name} (${isOwner ? 'Akses Admin Owner' : 'Akun Pembeli'})!`);
 
-          if (isAdminLoggedIn) {
+          if (isOwner) {
+            showToast(`Selamat datang Owner JaneMurphy (Admin Toko)!`);
             setTimeout(() => {
               openAdminDashboard();
             }, 300);
+          } else {
+            showToast(`Berhasil masuk sebagai ${currentUser.name} (Pelanggan)!`);
           }
         }
       } catch (err) {
-        // Fallback local authentication with permanent UID
-        currentUser = {
-          id: permanentUid,
-          uid: permanentUid,
-          name: name || (isOwner ? 'Owner JaneMurphy' : 'Google User'),
-          email: email,
-          role: isOwner ? 'admin' : 'customer',
-          isAdmin: isOwner,
-          avatar: photoUrl || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`
-        };
-        isAdminLoggedIn = isOwner;
-
-        if (isFirebaseReady && db) {
-          try {
-            db.collection('users').doc(currentUser.uid).set({
-              uid: currentUser.uid,
-              email: currentUser.email,
-              name: currentUser.name,
-              avatar: currentUser.avatar || '',
-              role: currentUser.role,
-              isAdmin: currentUser.isAdmin,
-              lastLogin: new Date().toISOString()
-            }, { merge: true });
-          } catch (fErr) {}
-        }
-
-        try {
-          localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
-          if (isOwner) {
-            localStorage.setItem('jm_admin_logged_in', 'true');
-          } else {
-            localStorage.removeItem('jm_admin_logged_in');
-          }
-        } catch (e) {}
-
-        updateUserAuthUI();
-        updateAdminUIState(true);
-        closeModal('authModal');
-        playBeep('success');
-        showToast(`Login berhasil sebagai ${currentUser.name} (${isOwner ? 'Akses Admin Owner' : 'Akun Pembeli'})!`);
-
-        if (isAdminLoggedIn) {
-          setTimeout(() => {
-            openAdminDashboard();
-          }, 300);
-        }
+        console.warn("Complete auth error:", err);
+        showToast("Terjadi kendala autentikasi.");
       }
     }
 
