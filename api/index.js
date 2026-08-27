@@ -1,5 +1,39 @@
 const fs = require("node:fs");
 const path = require("node:path");
+let admin = null;
+try {
+  admin = require("firebase-admin");
+} catch (e) {
+  console.warn("firebase-admin import notice in serverless:", e.message);
+}
+
+// Firebase Admin SDK Firestore Initialization
+let adminDb = null;
+function getAdminFirestore() {
+  if (!adminDb && admin) {
+    try {
+      if (!admin.apps.length) {
+        admin.initializeApp({
+          projectId: "euphoric-overview-fqlhg",
+          databaseURL: "https://euphoric-overview-fqlhg.firebaseio.com"
+        });
+      }
+      try {
+        const { getFirestore } = require("firebase-admin/firestore");
+        adminDb = getFirestore(admin.apps[0], "ai-studio-janeworks-5adda66d-8d0b-49fd-a8c3-40cfa9bacd8b");
+      } catch (e1) {
+        try {
+          adminDb = admin.firestore();
+        } catch (e2) {
+          console.warn("Admin firestore fallback notice:", e2.message);
+        }
+      }
+    } catch (err) {
+      console.warn("Firebase Admin SDK init notice in serverless:", err.message);
+    }
+  }
+  return adminDb;
+}
 
 // Embedded Default Store Data (Guarantees 100% availability in Serverless)
 const DEFAULT_STORE = {
@@ -627,33 +661,48 @@ module.exports = async (req, res) => {
     return sendJson(res, 201, { success: true, review: newReview, product: prod, message: "Ulasan berhasil dikirim!" });
   }
 
-  // 7c. POST /api/auth/google & POST /api/auth/login
+  // 7c. POST /api/auth/google
   if ((pathname === "/api/auth/google" || pathname === "/api/auth/login" || pathname === "/auth/google" || pathname === "/auth/login") && method === "POST") {
     const body = await parseBody(req);
     const email = (body.email || "").toLowerCase().trim();
     const name = body.name || email.split("@")[0] || "User";
-    const pin = body.pin || body.password || "";
-    const ownerEmail = (store.settings.ownerEmail || "ererex4youu@gmail.com").toLowerCase().trim();
-    const adminPin = String(store.settings.adminPin || "123456").trim();
+    const uid = body.uid || (email === "ererex4youu@gmail.com" ? "owner-ererex4youu" : "usr-" + Date.now());
 
-    // Check if user is owner / admin
-    let isAdmin = false;
-    if (email === ownerEmail || email === "ererex4youu@gmail.com") {
-      isAdmin = true;
-    } else if (pin && String(pin).trim() === adminPin) {
-      isAdmin = true;
-    }
+    // Check if user is owner / admin strictly by email ererex4youu@gmail.com
+    const isAdmin = (email === "ererex4youu@gmail.com");
 
     const user = {
-      email: email || (isAdmin ? ownerEmail : "member@janemurphy.store"),
-      name: isAdmin ? (body.name || "Owner JaneMurphy (Admin)") : name,
-      picture: body.picture || "",
+      uid: uid,
+      id: uid,
+      email: email || "member@janemurphy.store",
+      name: isAdmin ? (body.name || "Owner JaneMurphy") : name,
+      picture: body.picture || body.avatar || "",
+      avatar: body.picture || body.avatar || "",
       role: isAdmin ? "admin" : "customer",
       isAdmin: isAdmin,
+      lastLogin: new Date().toISOString(),
       token: "tok-" + Date.now() + "-" + Math.random().toString(36).substring(2, 9)
     };
 
-    return sendJson(res, 200, { success: true, user, message: isAdmin ? "Selamat datang Admin!" : "Berhasil masuk!" });
+    // Persist user in Firestore via Admin SDK
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        await firestore.collection("users").doc(user.uid).set({
+          uid: user.uid,
+          email: user.email,
+          name: user.name,
+          avatar: user.avatar,
+          role: user.role,
+          isAdmin: user.isAdmin,
+          lastLogin: user.lastLogin
+        }, { merge: true });
+      } catch (fErr) {
+        console.warn("Firestore user sync notice in serverless:", fErr.message);
+      }
+    }
+
+    return sendJson(res, 200, { success: true, user, message: isAdmin ? "Selamat datang Owner JaneMurphy (Admin)!" : "Berhasil masuk!" });
   }
 
   // 8. POST /api/chat-ai
@@ -731,7 +780,28 @@ Instruksi:
 
   // 9. GET /api/chat/threads
   if ((pathname === "/api/chat/threads" || pathname === "/chat/threads") && method === "GET") {
-    const allChats = getChatsData();
+    let allChats = getChatsData();
+
+    // Try fetching from Firestore via Admin SDK
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        const snap = await firestore.collection("chats").orderBy("timestamp", "asc").get();
+        if (!snap.empty) {
+          const firestoreChats = [];
+          snap.forEach(doc => {
+            firestoreChats.push({ id: doc.id, ...doc.data() });
+          });
+          if (firestoreChats.length > 0) {
+            allChats = firestoreChats;
+            saveChatsData(allChats);
+          }
+        }
+      } catch (fErr) {
+        console.warn("Firestore read threads notice in serverless:", fErr.message);
+      }
+    }
+
     const threadMap = new Map();
 
     for (const msg of allChats) {
@@ -740,6 +810,7 @@ Instruksi:
         threadMap.set(sId, {
           sessionId: sId,
           customerName: msg.customerName || "Customer Web",
+          customerUid: msg.customerUid || "",
           lastMessage: msg.text || "",
           lastSender: msg.sender || "customer",
           lastTimestamp: msg.timestamp || new Date().toISOString(),
@@ -752,6 +823,9 @@ Instruksi:
       thread.totalMessages += 1;
       if (msg.customerName && msg.sender === "customer") {
         thread.customerName = msg.customerName;
+      }
+      if (msg.customerUid) {
+        thread.customerUid = msg.customerUid;
       }
       if (new Date(msg.timestamp) >= new Date(thread.lastTimestamp)) {
         thread.lastMessage = msg.text;
@@ -779,7 +853,26 @@ Instruksi:
       return sendJson(res, 400, { success: false, error: "sessionId diperlukan" });
     }
 
-    const allChats = getChatsData();
+    let allChats = getChatsData();
+
+    // Try fetching from Firestore via Admin SDK
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        const snap = await firestore.collection("chats")
+          .where("sessionId", "==", sessionId)
+          .get();
+        if (!snap.empty) {
+          const list = [];
+          snap.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
+          list.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+          return sendJson(res, 200, { success: true, messages: list });
+        }
+      } catch (fErr) {
+        console.warn("Firestore get messages notice in serverless:", fErr.message);
+      }
+    }
+
     const messages = allChats.filter(m => m.sessionId === sessionId);
     return sendJson(res, 200, { success: true, messages });
   }
@@ -787,27 +880,55 @@ Instruksi:
   // 11. POST /api/chat/send
   if ((pathname === "/api/chat/send" || pathname === "/chat/send") && method === "POST") {
     const body = await parseBody(req);
-    const { sessionId, customerName, sender, text } = body;
+    const { sessionId, customerName, customerUid, sender, senderUid, text } = body;
 
     if (!sessionId || !text || !text.trim()) {
       return sendJson(res, 400, { success: false, error: "sessionId dan text pesan harus diisi" });
     }
 
     const allChats = getChatsData();
-    const newMsg = {
-      id: "msg-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
-      sessionId: String(sessionId).trim(),
-      customerName: customerName ? String(customerName).trim() : "Customer Web",
-      sender: sender === "admin" ? "admin" : "customer",
-      text: String(text).trim(),
-      timestamp: new Date().toISOString(),
-      read: sender === "admin"
-    };
+    const cleanSessionId = String(sessionId).trim();
+    const cleanSender = sender === "admin" ? "admin" : "customer";
+    const cleanText = String(text).trim();
 
-    allChats.push(newMsg);
-    saveChatsData(allChats);
+    const now = Date.now();
+    const isDuplicate = allChats.some(m => 
+      m.sessionId === cleanSessionId &&
+      m.sender === cleanSender &&
+      m.text === cleanText &&
+      (now - new Date(m.timestamp).getTime() < 1500)
+    );
 
-    const sessionMessages = allChats.filter(m => m.sessionId === sessionId);
+    let newMsg = null;
+    if (!isDuplicate) {
+      newMsg = {
+        id: "msg-" + now + "-" + Math.floor(Math.random() * 1000),
+        sessionId: cleanSessionId,
+        customerName: customerName ? String(customerName).trim() : "Customer Web",
+        customerUid: customerUid || "",
+        sender: cleanSender,
+        senderUid: senderUid || (cleanSender === "admin" ? "owner-ererex4youu" : (customerUid || "")),
+        ownerEmail: "ererex4youu@gmail.com",
+        text: cleanText,
+        timestamp: new Date().toISOString(),
+        read: cleanSender === "admin"
+      };
+
+      allChats.push(newMsg);
+      saveChatsData(allChats);
+
+      // Firestore Admin SDK write
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("chats").doc(newMsg.id).set(newMsg, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore Admin SDK write in serverless:", fErr.message);
+        }
+      }
+    }
+
+    const sessionMessages = allChats.filter(m => m.sessionId === cleanSessionId);
     return sendJson(res, 201, { success: true, message: newMsg, messages: sessionMessages });
   }
 
@@ -839,6 +960,31 @@ Instruksi:
       saveChatsData(allChats);
     }
 
+    // Update in Firestore via Admin SDK
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        const snap = await firestore.collection("chats")
+          .where("sessionId", "==", sessionId)
+          .get();
+        const batch = firestore.batch();
+        let count = 0;
+        snap.forEach(doc => {
+          const data = doc.data();
+          if ((role === "admin" && data.sender === "customer" && !data.read) ||
+              (role === "customer" && data.sender === "admin" && !data.read)) {
+            batch.update(doc.ref, { read: true });
+            count++;
+          }
+        });
+        if (count > 0) {
+          await batch.commit();
+        }
+      } catch (fErr) {
+        console.warn("Firestore batch read update in serverless:", fErr.message);
+      }
+    }
+
     return sendJson(res, 200, { success: true, message: "Pesan telah ditandai dibaca" });
   }
 
@@ -854,6 +1000,22 @@ Instruksi:
     }
 
     saveChatsData(allChats);
+
+    // Delete from Firestore via Admin SDK
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        const snap = await firestore.collection("chats")
+          .where("sessionId", "==", sessionId)
+          .get();
+        const batch = firestore.batch();
+        snap.forEach(doc => batch.delete(doc.ref));
+        await batch.commit();
+      } catch (fErr) {
+        console.warn("Firestore delete thread in serverless:", fErr.message);
+      }
+    }
+
     return sendJson(res, 200, { success: true, message: "Percakapan customer berhasil dihapus!" });
   }
 

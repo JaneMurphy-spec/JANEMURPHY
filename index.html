@@ -5794,17 +5794,32 @@
       try {
         if (typeof firebase !== 'undefined') {
           const firebaseConfig = {
-            apiKey: "AIzaSyDummyKeyForStudioPreviewEnv123",
+            apiKey: "AIzaSyDYpbJPHfTmOX7Xun59U5F7nHtpcUI67X8",
             projectId: "euphoric-overview-fqlhg",
             authDomain: "euphoric-overview-fqlhg.firebaseapp.com",
-            storageBucket: "euphoric-overview-fqlhg.appspot.com"
+            storageBucket: "euphoric-overview-fqlhg.firebasestorage.app",
+            messagingSenderId: "214723428343",
+            appId: "1:214723428343:web:5e2b68b08312981b3ff8f2"
           };
           if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
           }
           db = firebase.firestore();
           isFirebaseReady = true;
-          console.log("🔥 Firebase Firestore initialized successfully");
+          console.log("🔥 Firebase Firestore & Auth initialized successfully");
+
+          // Realtime Auth State Listener
+          if (firebase.auth) {
+            firebase.auth().onAuthStateChanged((user) => {
+              if (user) {
+                const email = (user.email || '').toLowerCase().trim();
+                const name = user.displayName || email.split('@')[0];
+                const photo = user.photoURL || '';
+                const uid = user.uid;
+                completeGoogleAuth(email, name, photo, uid);
+              }
+            });
+          }
         }
       } catch (err) {
         console.warn("Firebase init notice:", err);
@@ -5944,6 +5959,29 @@
 
     async function handleGoogleSignIn() {
       playBeep('click');
+      showToast("Menghubungkan ke Google...");
+
+      // 1. Try Firebase Auth with Google Provider Popup (Standard for Vercel / Web)
+      if (typeof firebase !== 'undefined' && firebase.auth) {
+        try {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          provider.setCustomParameters({ prompt: 'select_account' });
+          const result = await firebase.auth().signInWithPopup(provider);
+          if (result && result.user) {
+            const user = result.user;
+            const email = (user.email || '').toLowerCase().trim();
+            const name = user.displayName || email.split('@')[0];
+            const photo = user.photoURL || '';
+            await completeGoogleAuth(email, name, photo);
+            return;
+          }
+        } catch (firebaseErr) {
+          console.warn("Firebase Google popup note:", firebaseErr.message || firebaseErr);
+          // If popup blocked or cancelled or domain not in authorized list, fall through to prompt
+        }
+      }
+
+      // 2. Prompt Fallback for Studio Preview & Manual Input
       const enteredEmail = prompt("Masukkan Akun Google Anda (Email):", "ererex4youu@gmail.com");
       if (!enteredEmail || !enteredEmail.trim()) return;
 
@@ -5952,26 +5990,48 @@
       const defaultName = isOwner ? "Owner JaneMurphy" : email.split('@')[0];
       const enteredName = prompt("Nama Tampilan Google:", defaultName);
       const name = (enteredName && enteredName.trim()) ? enteredName.trim() : defaultName;
+      const avatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`;
 
-      await completeGoogleAuth(email, name);
+      await completeGoogleAuth(email, name, avatar);
     }
 
-    async function completeGoogleAuth(email, name) {
+    async function completeGoogleAuth(email, name, photoUrl, explicitUid) {
       showToast("Memproses autentikasi Google...");
-      const isOwner = email.toLowerCase() === 'ererex4youu@gmail.com';
+      const isOwner = (email || '').toLowerCase().trim() === 'ererex4youu@gmail.com';
+      const permanentUid = explicitUid || (isOwner ? 'owner-ererex4youu' : ('usr-' + btoa(email || 'user').replace(/[^a-zA-Z0-9]/g, '').substring(0, 16)));
+
       try {
         const res = await fetch('/api/auth/google', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, name: name })
+          body: JSON.stringify({ email: email, name: name, picture: photoUrl || '', uid: permanentUid })
         });
         const data = await res.json();
         
         if (data && data.user) {
           currentUser = data.user;
+          currentUser.uid = currentUser.uid || permanentUid;
+          if (photoUrl && !currentUser.avatar) currentUser.avatar = photoUrl;
           isAdminLoggedIn = isOwner;
           currentUser.isAdmin = isOwner;
           currentUser.role = isOwner ? 'admin' : 'customer';
+
+          // Direct sync to Firestore if client SDK is ready
+          if (isFirebaseReady && db) {
+            try {
+              db.collection('users').doc(currentUser.uid).set({
+                uid: currentUser.uid,
+                email: currentUser.email,
+                name: currentUser.name,
+                avatar: currentUser.avatar || '',
+                role: currentUser.role,
+                isAdmin: currentUser.isAdmin,
+                lastLogin: new Date().toISOString()
+              }, { merge: true });
+            } catch (fErr) {
+              console.warn("Firestore client user sync notice:", fErr);
+            }
+          }
 
           try {
             localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
@@ -5995,16 +6055,32 @@
           }
         }
       } catch (err) {
-        // Fallback local authentication
+        // Fallback local authentication with permanent UID
         currentUser = {
-          id: 'usr-' + Date.now(),
+          id: permanentUid,
+          uid: permanentUid,
           name: name || (isOwner ? 'Owner JaneMurphy' : 'Google User'),
           email: email,
           role: isOwner ? 'admin' : 'customer',
           isAdmin: isOwner,
-          avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`
+          avatar: photoUrl || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`
         };
         isAdminLoggedIn = isOwner;
+
+        if (isFirebaseReady && db) {
+          try {
+            db.collection('users').doc(currentUser.uid).set({
+              uid: currentUser.uid,
+              email: currentUser.email,
+              name: currentUser.name,
+              avatar: currentUser.avatar || '',
+              role: currentUser.role,
+              isAdmin: currentUser.isAdmin,
+              lastLogin: new Date().toISOString()
+            }, { merge: true });
+          } catch (fErr) {}
+        }
+
         try {
           localStorage.setItem('jm_auth_user', JSON.stringify(currentUser));
           if (isOwner) {
@@ -6029,6 +6105,9 @@
     }
 
     function handleLogoutUser() {
+      if (typeof firebase !== 'undefined' && firebase.auth) {
+        try { firebase.auth().signOut(); } catch (e) {}
+      }
       currentUser = null;
       isAdminLoggedIn = false;
       try {
@@ -8259,13 +8338,15 @@
     }
 
     // ========================================================
-    // LIVE CHAT ENGINE (Customer Live Chat & Admin Thread Blocks)
+    // LIVE CHAT ENGINE (Customer Live Chat & Admin Thread Blocks with Firestore Realtime)
     // ========================================================
     let customerSessionId = null;
     let customerChatName = null;
     let adminChatThreads = [];
     let adminActiveThreadSessionId = null;
     let chatPollInterval = null;
+    let customerFirestoreUnsub = null;
+    let adminFirestoreUnsub = null;
 
     function initChatEngine() {
       try {
@@ -8284,11 +8365,151 @@
         updateCustomerNameUI(customerChatName);
       }
 
-      // Check initial unread status
+      // 1. Setup Firestore Realtime Listeners for Customer & Admin
+      setupFirestoreChatListeners();
+
+      // 2. Check initial unread status & background polling fallback
       pollChatUpdates();
-      // Start background polling every 3.5s
       if (chatPollInterval) clearInterval(chatPollInterval);
       chatPollInterval = setInterval(pollChatUpdates, 3500);
+    }
+
+    function setupFirestoreChatListeners() {
+      if (!isFirebaseReady || !db) return;
+
+      // Customer Realtime Listener
+      try {
+        if (customerFirestoreUnsub) customerFirestoreUnsub();
+        if (customerSessionId) {
+          customerFirestoreUnsub = db.collection('chats')
+            .where('sessionId', '==', customerSessionId)
+            .onSnapshot((snapshot) => {
+              const msgs = [];
+              snapshot.forEach(doc => msgs.push({ id: doc.id, ...doc.data() }));
+              msgs.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+              
+              if (msgs.length > 0) {
+                try {
+                  localStorage.setItem('jm_chat_msgs_' + customerSessionId, JSON.stringify(msgs));
+                } catch (e) {}
+                const box = document.getElementById('customerChatMessagesBox');
+                if (box) {
+                  renderCustomerChatBubbles(msgs, box);
+                  box.scrollTop = box.scrollHeight;
+                }
+              }
+            }, (err) => {
+              console.warn("Firestore customer chat listener notice:", err);
+            });
+        }
+      } catch (e) {
+        console.warn("Setup customer chat listener err:", e);
+      }
+
+      // Admin Realtime Listener for All Threads
+      try {
+        if (adminFirestoreUnsub) adminFirestoreUnsub();
+        adminFirestoreUnsub = db.collection('chats')
+          .orderBy('timestamp', 'asc')
+          .onSnapshot((snapshot) => {
+            const allChats = [];
+            snapshot.forEach(doc => allChats.push({ id: doc.id, ...doc.data() }));
+
+            if (allChats.length > 0) {
+              const threadMap = new Map();
+              for (const msg of allChats) {
+                const sId = msg.sessionId || 'session-unknown';
+                if (!threadMap.has(sId)) {
+                  threadMap.set(sId, {
+                    sessionId: sId,
+                    customerName: msg.customerName || 'Customer Web',
+                    customerUid: msg.customerUid || '',
+                    lastMessage: msg.text || '',
+                    lastSender: msg.sender || 'customer',
+                    lastTimestamp: msg.timestamp || new Date().toISOString(),
+                    unreadCount: 0
+                  });
+                }
+
+                const thread = threadMap.get(sId);
+                if (msg.customerName && msg.sender === 'customer') {
+                  thread.customerName = msg.customerName;
+                }
+                if (msg.customerUid) {
+                  thread.customerUid = msg.customerUid;
+                }
+                if (new Date(msg.timestamp) >= new Date(thread.lastTimestamp)) {
+                  thread.lastMessage = msg.text;
+                  thread.lastSender = msg.sender;
+                  thread.lastTimestamp = msg.timestamp;
+                }
+                if (msg.sender === 'customer' && !msg.read) {
+                  thread.unreadCount++;
+                }
+              }
+
+              adminChatThreads = Array.from(threadMap.values()).sort((a, b) => new Date(b.lastTimestamp) - new Date(a.lastTimestamp));
+              
+              const totalUnread = adminChatThreads.reduce((sum, t) => sum + (t.unreadCount || 0), 0);
+              const adminBadge = document.getElementById('adminSidebarChatCount');
+              if (adminBadge) {
+                if (totalUnread > 0) {
+                  adminBadge.textContent = totalUnread;
+                  adminBadge.style.display = 'inline-block';
+                } else {
+                  adminBadge.style.display = 'none';
+                }
+              }
+
+              const totalCountEl = document.getElementById('adminThreadTotalCount');
+              if (totalCountEl) totalCountEl.textContent = adminChatThreads.length;
+
+              renderAdminThreadsList(adminChatThreads);
+
+              if (adminActiveThreadSessionId) {
+                const activeMsgs = allChats.filter(m => m.sessionId === adminActiveThreadSessionId);
+                const box = document.getElementById('adminChatMessagesBox');
+                if (box && activeMsgs.length > 0) {
+                  renderAdminChatBubbles(activeMsgs, box);
+                  box.scrollTop = box.scrollHeight;
+                }
+              }
+            }
+          }, (err) => {
+            console.warn("Firestore admin chat listener notice:", err);
+          });
+      } catch (e) {
+        console.warn("Setup admin chat listener err:", e);
+      }
+    }
+
+    function renderAdminChatBubbles(messages, box) {
+      if (!box) return;
+      const cleanMessages = deduplicateMessagesList(messages);
+      const threadInfo = adminChatThreads.find(t => t.sessionId === adminActiveThreadSessionId);
+      const customerName = (threadInfo && threadInfo.customerName) || 'Customer';
+
+      if (cleanMessages.length === 0) {
+        box.innerHTML = `
+          <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin: auto; padding: 20px;">
+            Belum ada riwayat pesan pada sesi customer ini.
+          </div>
+        `;
+      } else {
+        box.innerHTML = cleanMessages.map(m => {
+          const isCustomer = m.sender === 'customer';
+          const senderLabel = isCustomer ? `${m.customerName || customerName} (Customer)` : '🛡️ Admin JaneMurphy (Anda)';
+          return `
+            <div class="chat-bubble ${isCustomer ? 'customer-side' : 'admin-side'}" style="${isCustomer ? 'align-self: flex-start; background: #1f1f26; border: 1px solid #33333d; color: #ffffff;' : 'align-self: flex-end; background: #ffffff; color: #000000;'}">
+              <div class="chat-bubble-sender" style="color: ${isCustomer ? '#60a5fa' : '#52525b'};">
+                ${isCustomer ? '<i class="fa-solid fa-user"></i>' : '<i class="fa-solid fa-shield-halved"></i>'} ${escapeChatHTML(senderLabel)}
+              </div>
+              <div>${escapeChatHTML(m.text).replace(/\n/g, '<br>')}</div>
+              <span class="chat-bubble-time">${formatChatTimestamp(m.timestamp)}</span>
+            </div>
+          `;
+        }).join('');
+      }
     }
 
     function formatChatTimestamp(isoString) {
@@ -8549,16 +8770,35 @@
       if (sendBtn) sendBtn.style.opacity = '0.5';
       playBeep('message_sent');
 
+      const activeUid = (currentUser && currentUser.uid) ? currentUser.uid : customerSessionId;
+      const newMsgId = "msg-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+      const newMsgPayload = {
+        id: newMsgId,
+        sessionId: customerSessionId,
+        customerName: customerChatName || 'Customer',
+        customerUid: activeUid,
+        sender: 'customer',
+        senderUid: activeUid,
+        ownerEmail: 'ererex4youu@gmail.com',
+        text: text,
+        timestamp: new Date().toISOString(),
+        read: false
+      };
+
+      // Direct write to Firestore if ready
+      if (isFirebaseReady && db) {
+        try {
+          db.collection('chats').doc(newMsgId).set(newMsgPayload, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore client write chat notice:", fErr);
+        }
+      }
+
       try {
         const res = await fetch('/api/chat/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId: customerSessionId,
-            customerName: customerChatName || 'Customer',
-            sender: 'customer',
-            text: text
-          })
+          body: JSON.stringify(newMsgPayload)
         });
 
         const data = await res.json();
@@ -8575,7 +8815,6 @@
         }
       } catch (e) {
         console.warn("Send message err:", e);
-        showToast("Gagal mengirim pesan, silakan coba lagi.");
       } finally {
         isSendingCustomerChat = false;
         if (sendBtn) sendBtn.style.opacity = '1';
@@ -8787,17 +9026,37 @@
 
       const thread = adminChatThreads.find(t => t.sessionId === adminActiveThreadSessionId);
       const customerName = thread ? thread.customerName : 'Customer';
+      const customerUid = thread ? (thread.customerUid || '') : '';
+      const adminUid = (currentUser && currentUser.uid) ? currentUser.uid : 'owner-ererex4youu';
+      const newMsgId = "msg-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+
+      const adminMsgPayload = {
+        id: newMsgId,
+        sessionId: adminActiveThreadSessionId,
+        customerName: customerName,
+        customerUid: customerUid,
+        sender: 'admin',
+        senderUid: adminUid,
+        ownerEmail: 'ererex4youu@gmail.com',
+        text: text,
+        timestamp: new Date().toISOString(),
+        read: true
+      };
+
+      // Direct write to Firestore
+      if (isFirebaseReady && db) {
+        try {
+          db.collection('chats').doc(newMsgId).set(adminMsgPayload, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore admin write chat notice:", fErr);
+        }
+      }
 
       try {
         await fetch('/api/chat/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId: adminActiveThreadSessionId,
-            customerName: customerName,
-            sender: 'admin',
-            text: text
-          })
+          body: JSON.stringify(adminMsgPayload)
         });
 
         await loadAdminThreadMessages(adminActiveThreadSessionId, true);

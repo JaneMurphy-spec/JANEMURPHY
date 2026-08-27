@@ -1,6 +1,12 @@
 const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
+let admin = null;
+try {
+  admin = require("firebase-admin");
+} catch (e) {
+  console.warn("firebase-admin import notice:", e.message);
+}
 
 const PORT = 3000;
 const HOST = "0.0.0.0";
@@ -8,6 +14,35 @@ const root = path.resolve(process.cwd());
 const dataDir = path.join(root, "data");
 const storeFile = path.join(dataDir, "store.json");
 const chatsFile = path.join(dataDir, "chats.json");
+
+// Firebase Admin SDK Firestore Initialization
+let adminDb = null;
+function getAdminFirestore() {
+  if (!adminDb && admin) {
+    try {
+      if (!admin.apps.length) {
+        admin.initializeApp({
+          projectId: "euphoric-overview-fqlhg",
+          databaseURL: "https://euphoric-overview-fqlhg.firebaseio.com"
+        });
+      }
+      try {
+        const { getFirestore } = require("firebase-admin/firestore");
+        adminDb = getFirestore(admin.apps[0], "ai-studio-janeworks-5adda66d-8d0b-49fd-a8c3-40cfa9bacd8b");
+      } catch (e1) {
+        try {
+          adminDb = admin.firestore();
+        } catch (e2) {
+          console.warn("Admin firestore fallback notice:", e2.message);
+        }
+      }
+      console.log("🔥 Firebase Admin SDK Firestore initialized successfully");
+    } catch (err) {
+      console.warn("Firebase Admin SDK init notice:", err.message);
+    }
+  }
+  return adminDb;
+}
 
 // Ensure data folder and file exists
 if (!fs.existsSync(dataDir)) {
@@ -438,18 +473,41 @@ const appHandler = async (request, response) => {
       const body = await parseBody(request);
       const email = (body.email || "").toLowerCase().trim();
       const name = body.name || email.split("@")[0] || "User";
+      const uid = body.uid || (email === "ererex4youu@gmail.com" ? "owner-ererex4youu" : "usr-" + Date.now());
 
       // Check if user is owner / admin strictly by email ererex4youu@gmail.com
       const isAdmin = (email === "ererex4youu@gmail.com");
 
       const user = {
+        uid: uid,
+        id: uid,
         email: email || "member@janemurphy.store",
         name: isAdmin ? (body.name || "Owner JaneMurphy") : name,
-        picture: body.picture || "",
+        picture: body.picture || body.avatar || "",
+        avatar: body.picture || body.avatar || "",
         role: isAdmin ? "admin" : "customer",
         isAdmin: isAdmin,
+        lastLogin: new Date().toISOString(),
         token: "tok-" + Date.now() + "-" + Math.random().toString(36).substring(2, 9)
       };
+
+      // Persist user in Firestore via Admin SDK
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("users").doc(user.uid).set({
+            uid: user.uid,
+            email: user.email,
+            name: user.name,
+            avatar: user.avatar,
+            role: user.role,
+            isAdmin: user.isAdmin,
+            lastLogin: user.lastLogin
+          }, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore user sync notice:", fErr.message);
+        }
+      }
 
       return sendJson(response, 200, { success: true, user, message: isAdmin ? "Selamat datang Owner JaneMurphy (Admin)!" : "Berhasil masuk!" });
     }
@@ -531,7 +589,29 @@ Instruksi:
 
     // 9. GET /api/chat/threads (Admin: List all customer chat threads/blocks)
     if (pathname === "/api/chat/threads" && method === "GET") {
-      const allChats = getChatsData();
+      let allChats = getChatsData();
+
+      // Try fetching from Firestore via Admin SDK
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          const snap = await firestore.collection("chats").orderBy("timestamp", "asc").get();
+          if (!snap.empty) {
+            const firestoreChats = [];
+            snap.forEach(doc => {
+              const data = doc.data();
+              firestoreChats.push({ id: doc.id, ...data });
+            });
+            if (firestoreChats.length > 0) {
+              allChats = firestoreChats;
+              saveChatsData(allChats);
+            }
+          }
+        } catch (fErr) {
+          console.warn("Firestore read threads notice:", fErr.message);
+        }
+      }
+
       const threadMap = new Map();
 
       for (const msg of allChats) {
@@ -540,6 +620,7 @@ Instruksi:
           threadMap.set(sId, {
             sessionId: sId,
             customerName: msg.customerName || "Customer Web",
+            customerUid: msg.customerUid || "",
             lastMessage: msg.text || "",
             lastSender: msg.sender || "customer",
             lastTimestamp: msg.timestamp || new Date().toISOString(),
@@ -552,6 +633,9 @@ Instruksi:
         thread.totalMessages += 1;
         if (msg.customerName && msg.sender === "customer") {
           thread.customerName = msg.customerName;
+        }
+        if (msg.customerUid) {
+          thread.customerUid = msg.customerUid;
         }
         if (new Date(msg.timestamp) >= new Date(thread.lastTimestamp)) {
           thread.lastMessage = msg.text;
@@ -579,7 +663,26 @@ Instruksi:
         return sendJson(response, 400, { success: false, error: "sessionId diperlukan" });
       }
 
-      const allChats = getChatsData();
+      let allChats = getChatsData();
+
+      // Try fetching from Firestore via Admin SDK
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          const snap = await firestore.collection("chats")
+            .where("sessionId", "==", sessionId)
+            .get();
+          if (!snap.empty) {
+            const list = [];
+            snap.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
+            list.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+            return sendJson(response, 200, { success: true, messages: list });
+          }
+        } catch (fErr) {
+          console.warn("Firestore get messages notice:", fErr.message);
+        }
+      }
+
       const messages = allChats.filter(m => m.sessionId === sessionId);
       return sendJson(response, 200, { success: true, messages });
     }
@@ -587,7 +690,7 @@ Instruksi:
     // 11. POST /api/chat/send (Send message from Customer or Admin)
     if (pathname === "/api/chat/send" && method === "POST") {
       const body = await parseBody(request);
-      const { sessionId, customerName, sender, text } = body;
+      const { sessionId, customerName, customerUid, sender, senderUid, text } = body;
 
       if (!sessionId || !text || !text.trim()) {
         return sendJson(response, 400, { success: false, error: "sessionId dan text pesan harus diisi" });
@@ -613,7 +716,10 @@ Instruksi:
           id: "msg-" + now + "-" + Math.floor(Math.random() * 1000),
           sessionId: cleanSessionId,
           customerName: customerName ? String(customerName).trim() : "Customer Web",
+          customerUid: customerUid || "",
           sender: cleanSender,
+          senderUid: senderUid || (cleanSender === "admin" ? "owner-ererex4youu" : (customerUid || "")),
+          ownerEmail: "ererex4youu@gmail.com",
           text: cleanText,
           timestamp: new Date().toISOString(),
           read: cleanSender === "admin"
@@ -621,6 +727,16 @@ Instruksi:
 
         allChats.push(newMsg);
         saveChatsData(allChats);
+
+        // Firestore Admin SDK write for permanent durability
+        const firestore = getAdminFirestore();
+        if (firestore) {
+          try {
+            await firestore.collection("chats").doc(newMsg.id).set(newMsg, { merge: true });
+          } catch (fErr) {
+            console.warn("Firestore Admin SDK write chat notice:", fErr.message);
+          }
+        }
       }
 
       const sessionMessages = allChats.filter(m => m.sessionId === cleanSessionId);
@@ -655,6 +771,31 @@ Instruksi:
         saveChatsData(allChats);
       }
 
+      // Update in Firestore via Admin SDK
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          const snap = await firestore.collection("chats")
+            .where("sessionId", "==", sessionId)
+            .get();
+          const batch = firestore.batch();
+          let count = 0;
+          snap.forEach(doc => {
+            const data = doc.data();
+            if ((role === "admin" && data.sender === "customer" && !data.read) ||
+                (role === "customer" && data.sender === "admin" && !data.read)) {
+              batch.update(doc.ref, { read: true });
+              count++;
+            }
+          });
+          if (count > 0) {
+            await batch.commit();
+          }
+        } catch (fErr) {
+          console.warn("Firestore batch read update notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 200, { success: true, message: "Pesan telah ditandai dibaca" });
     }
 
@@ -670,6 +811,22 @@ Instruksi:
       }
 
       saveChatsData(allChats);
+
+      // Delete from Firestore via Admin SDK
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          const snap = await firestore.collection("chats")
+            .where("sessionId", "==", sessionId)
+            .get();
+          const batch = firestore.batch();
+          snap.forEach(doc => batch.delete(doc.ref));
+          await batch.commit();
+        } catch (fErr) {
+          console.warn("Firestore delete thread notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 200, { success: true, message: "Percakapan customer berhasil dihapus!" });
     }
 
