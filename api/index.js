@@ -14,16 +14,16 @@ function getAdminFirestore() {
     try {
       if (!admin.apps.length) {
         admin.initializeApp({
-          projectId: "euphoric-overview-fqlhg",
-          databaseURL: "https://euphoric-overview-fqlhg.firebaseio.com"
+          projectId: "janemarket-official",
+          databaseURL: "https://janemarket-official.firebaseio.com"
         });
       }
       try {
-        const { getFirestore } = require("firebase-admin/firestore");
-        adminDb = getFirestore(admin.apps[0], "ai-studio-janeworks-5adda66d-8d0b-49fd-a8c3-40cfa9bacd8b");
+        adminDb = admin.firestore();
       } catch (e1) {
         try {
-          adminDb = admin.firestore();
+          const { getFirestore } = require("firebase-admin/firestore");
+          adminDb = getFirestore(admin.apps[0]);
         } catch (e2) {
           console.warn("Admin firestore fallback notice:", e2.message);
         }
