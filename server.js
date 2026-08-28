@@ -467,6 +467,26 @@ const appHandler = async (request, response) => {
       prod.rating = Number((sum / prod.reviews.length).toFixed(1));
 
       saveStoreData(store);
+
+      // Persist review to Firestore if connected
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("products").doc(String(prod.id)).set({
+            reviews: prod.reviews,
+            rating: prod.rating
+          }, { merge: true });
+          await firestore.collection("reviews").doc(newReview.id).set({
+            ...newReview,
+            productId: String(prod.id),
+            productName: prod.name || "",
+            createdAt: new Date().toISOString()
+          });
+        } catch (fErr) {
+          console.warn("Firestore review sync notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 201, { success: true, review: newReview, product: prod, message: "Ulasan berhasil dikirim!" });
     }
 

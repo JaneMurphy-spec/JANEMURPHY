@@ -4228,9 +4228,9 @@
         <i class="fa-solid fa-star" style="color: #eab308;"></i>
         <span>Testimoni & Kepuasan Pelanggan</span>
       </h3>
-      <span style="font-size: 12px; color: var(--text-muted);">Rating 4.98 / 5.0 dari 1.850+ Ulasan</span>
+      <span style="font-size: 12px; color: var(--text-muted);" id="globalTestimonialsCountLabel">Rating 4.98 / 5.0 dari 1.850+ Ulasan</span>
     </div>
-    <div class="reviews-grid">
+    <div class="reviews-grid" id="globalTestimonialsGrid">
       <div class="review-card">
         <div>
           <div class="review-header">
@@ -5930,23 +5930,33 @@
     // AUTHENTICATION & USER PROFILE ENGINE (Google Login Only)
     // ========================================================
     function initAuthUser() {
+      isAdminLoggedIn = false;
       try {
         const savedUser = localStorage.getItem('jm_auth_user');
         if (savedUser) {
           currentUser = JSON.parse(savedUser);
-          if (currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com') {
+          const isOwner = !!(currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com');
+          if (isOwner) {
             isAdminLoggedIn = true;
             currentUser.isAdmin = true;
             currentUser.role = 'admin';
           } else {
             isAdminLoggedIn = false;
+            try { localStorage.removeItem('jm_admin_logged_in'); } catch (_) {}
             if (currentUser) {
               currentUser.isAdmin = false;
               currentUser.role = 'customer';
             }
           }
+        } else {
+          currentUser = null;
+          try { localStorage.removeItem('jm_admin_logged_in'); } catch (_) {}
         }
-      } catch (e) {}
+      } catch (e) {
+        currentUser = null;
+        isAdminLoggedIn = false;
+        try { localStorage.removeItem('jm_admin_logged_in'); } catch (_) {}
+      }
 
       updateUserAuthUI();
       updateAdminUIState(false);
@@ -5963,6 +5973,18 @@
       const dropEmail = document.getElementById('dropdownUserEmail');
       const dropAdminOpts = document.getElementById('dropdownAdminOptions');
 
+      const liveChatBtn = document.getElementById('liveChatFloatingBtn');
+      const liveChatWin = document.getElementById('customerLiveChatWindow');
+      const isUserAdmin = !!(currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com');
+
+      // Floating Chat Admin Button: Sembunyikan jika Owner, Tampilkan jika Tamu/Pembeli
+      if (isUserAdmin || isAdminLoggedIn) {
+        if (liveChatBtn) liveChatBtn.style.display = 'none';
+        if (liveChatWin) liveChatWin.classList.remove('active');
+      } else {
+        if (liveChatBtn) liveChatBtn.style.display = 'inline-flex';
+      }
+
       if (!currentUser) {
         if (avatarEl) avatarEl.innerHTML = '<i class="fa-regular fa-user"></i>';
         if (nameEl) nameEl.textContent = 'Masuk / Akun';
@@ -5973,7 +5995,6 @@
         if (dropAdminOpts) dropAdminOpts.style.display = 'none';
       } else {
         const initials = currentUser.name ? currentUser.name.split(' ').map(n=>n[0]).slice(0,2).join('').toUpperCase() : 'JM';
-        const isUserAdmin = !!(currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com');
 
         if (avatarEl) {
           if (currentUser.avatar) {
@@ -6699,6 +6720,7 @@
       applyStoreSettings();
       renderProducts();
       updateCategoryCounts();
+      renderTestimonialsSection();
 
       // 2. Attach Firestore Real-Time Products Listener
       if (isFirebaseReady && db) {
@@ -6726,7 +6748,8 @@
                   warranty: pData.warranty || '',
                   description: pData.description || '',
                   variants: Array.isArray(pData.variants) && pData.variants.length > 0 ? pData.variants : [{ name: "Paket Standar", price: Number(pData.price || 0) }],
-                  features: Array.isArray(pData.features) ? pData.features : ["100% Legal", "Proses Cepat"]
+                  features: Array.isArray(pData.features) ? pData.features : ["100% Legal", "Proses Cepat"],
+                  reviews: Array.isArray(pData.reviews) ? pData.reviews : []
                 });
               });
               if (liveProducts.length > 0) {
@@ -6736,6 +6759,15 @@
                 updateCategoryCounts();
                 populateAdminProductsTable();
                 populateAdminStats();
+                renderTestimonialsSection();
+
+                // If detail modal is open, refresh its reviews in real-time
+                if (currentDetailProductId) {
+                  const openProd = liveProducts.find(p => String(p.id) === String(currentDetailProductId));
+                  if (openProd) {
+                    renderProductReviews(openProd);
+                  }
+                }
               }
             } else if (storeState.products && storeState.products.length > 0) {
               // Seed initial products to Firestore if empty collection
@@ -7320,20 +7352,42 @@
       persistLocalState();
       renderProductReviews(prod);
       renderProducts();
+      renderTestimonialsSection();
 
       // Reset form
       if (commentInput) commentInput.value = '';
       playBeep('success');
-      showToast("Terima kasih! Ulasan Anda berhasil diterbitkan.");
+      showToast("Terima kasih! Ulasan Anda berhasil diterbitkan & disinkronkan realtime!");
 
-      // Post to Server API
+      // 1. Sync directly to Firestore
+      if (isFirebaseReady && db) {
+        try {
+          const cleanReviews = sanitizeForFirestore(prod.reviews);
+          await db.collection('products').doc(String(prod.id)).set({
+            reviews: cleanReviews,
+            rating: prod.rating
+          }, { merge: true });
+
+          await db.collection('reviews').doc(newReview.id).set(sanitizeForFirestore({
+            ...newReview,
+            productId: String(prod.id),
+            productName: prod.name || "",
+            createdAt: new Date().toISOString()
+          }));
+          console.log("🔥 Review synced to Firestore realtime");
+        } catch (err) {
+          console.warn("Firestore review save err:", err);
+        }
+      }
+
+      // 2. Post to Server API
       try {
         await fetch('/api/reviews', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             productId: prod.id,
-            userName: userName,
+            name: userName,
             rating: selectedReviewRating,
             comment: comment
           })
@@ -7341,6 +7395,98 @@
       } catch (e) {
         console.warn("Review API notice:", e);
       }
+    }
+
+    // Dynamic Homepage Testimonials Section
+    function renderTestimonialsSection() {
+      const grid = document.getElementById('globalTestimonialsGrid');
+      if (!grid) return;
+
+      const defaultTestimonials = [
+        {
+          name: "Rizky Pratama",
+          avatar: "RP",
+          rating: 5,
+          comment: "Proses Netflix 4K nya cepet bgt, ga nyampe 3 menit akun udah dikirim via WA dan langsung bisa nonton tanpa kendala household limit. Mantap!",
+          product: "🎬 Netflix 4K UHD 1 Bulan"
+        },
+        {
+          name: "Anisa Salsabila",
+          avatar: "AS",
+          rating: 5,
+          comment: "Canva Pro 1 Tahun langsung aktif di email pribadi sendiri. Desain tugas kampus jadi leluasa bgt tanpa watermark. Adminnya ramah dan fast respon!",
+          product: "🎨 Canva Pro 1 Tahun"
+        },
+        {
+          name: "Fajar Kurniawan",
+          avatar: "FK",
+          rating: 5,
+          comment: "Topup Weekly Diamond Pass MLBB kilat abis. Habis transfer scan QRIS dalam 1 menit notif diamond langsung masuk ke akun ML. Recommended seller!",
+          product: "⚔️ Topup MLBB Weekly Pass"
+        },
+        {
+          name: "M. Dimas Setiawan",
+          avatar: "MD",
+          rating: 5,
+          comment: "Order Jasa Desain Poster buat event kampus, hasilnya estetik dan profesional banget! Dapet revisi cepat dan file master dikirim lengkap.",
+          product: "🖌️ Jasa Desain Poster Event"
+        }
+      ];
+
+      // Collect all real reviews from products
+      const realReviews = [];
+      if (storeState.products && Array.isArray(storeState.products)) {
+        storeState.products.forEach(p => {
+          if (Array.isArray(p.reviews) && p.reviews.length > 0) {
+            p.reviews.forEach(r => {
+              const uName = r.userName || r.name || 'Pembeli Terverifikasi';
+              const initial = uName.slice(0, 2).toUpperCase();
+              realReviews.push({
+                name: uName,
+                avatar: initial,
+                rating: Number(r.rating) || 5,
+                comment: r.comment || '',
+                product: `⭐ ${p.name || 'Produk JaneMurphy'}`
+              });
+            });
+          }
+        });
+      }
+
+      // Combine real user reviews first, then defaults
+      const combined = [...realReviews, ...defaultTestimonials];
+      const countLabel = document.getElementById('globalTestimonialsCountLabel');
+      if (countLabel) {
+        const totalCount = 1850 + realReviews.length;
+        countLabel.textContent = `Rating 4.98 / 5.0 dari ${totalCount.toLocaleString('id-ID')}+ Ulasan`;
+      }
+
+      grid.innerHTML = combined.slice(0, 8).map(t => {
+        const starsHtml = Array.from({ length: 5 }, (_, i) => 
+          `<i class="fa-solid fa-star" style="color: ${i < (t.rating || 5) ? '#eab308' : '#64748b'}; font-size: 13px;"></i>`
+        ).join('');
+
+        return `
+          <div class="review-card">
+            <div>
+              <div class="review-header">
+                <div class="review-user-info">
+                  <div class="review-avatar">${escapeChatHTML(t.avatar)}</div>
+                  <div>
+                    <div class="review-name">${escapeChatHTML(t.name)}</div>
+                    <div class="review-badge"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
+                  </div>
+                </div>
+                <div class="review-stars">
+                  ${starsHtml}
+                </div>
+              </div>
+              <p class="review-text">"${escapeChatHTML(t.comment)}"</p>
+            </div>
+            <div class="review-product-tag">${escapeChatHTML(t.product)}</div>
+          </div>
+        `;
+      }).join('');
     }
 
     function selectDetailVariant(name, price, element) {
@@ -7968,6 +8114,18 @@
       const drawerLoggedIn = document.getElementById('drawerAdminLoggedInActions');
       const drawerLoggedOut = document.getElementById('drawerAdminLoggedOutActions');
 
+      const liveChatBtn = document.getElementById('liveChatFloatingBtn');
+      const liveChatWin = document.getElementById('customerLiveChatWindow');
+      if (isAdminLoggedIn) {
+        if (liveChatBtn) liveChatBtn.style.display = 'none';
+        if (liveChatWin) liveChatWin.classList.remove('active');
+      } else {
+        const isOwner = !!(currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com');
+        if (!isOwner && liveChatBtn) {
+          liveChatBtn.style.display = 'inline-flex';
+        }
+      }
+
       if (drawerStatusText) {
         drawerStatusText.textContent = isAdminLoggedIn ? 'Mode Admin Aktif' : 'Status: Pengunjung Toko';
       }
@@ -8011,17 +8169,22 @@
 
     function logoutAdmin() {
       isAdminLoggedIn = false;
-      if (currentUser && (currentUser.isAdmin || currentUser.role === 'admin')) {
+      if (currentUser && (currentUser.isAdmin || currentUser.role === 'admin' || (currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com'))) {
         currentUser = null;
       }
       try {
         localStorage.removeItem('jm_admin_logged_in');
         localStorage.removeItem('jm_auth_user');
       } catch (e) {}
+      if (typeof firebase !== 'undefined' && firebase.auth) {
+        try { firebase.auth().signOut(); } catch (e) {}
+      }
       closeModal('adminDashboardModal');
+      const liveChatBtn = document.getElementById('liveChatFloatingBtn');
+      if (liveChatBtn) liveChatBtn.style.display = 'inline-flex';
       updateUserAuthUI();
       updateAdminUIState(false);
-      showToast("Berhasil keluar dari mode Admin");
+      showToast("Berhasil keluar dari mode Admin. Mode tamu/pembeli aktif.");
     }
 
     function openAdminDashboard() {
@@ -8727,6 +8890,14 @@
 
     // --- Customer-Side Chat Functions ---
     function toggleCustomerLiveChat() {
+      const isOwner = !!(currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com') || isAdminLoggedIn;
+      if (isOwner) {
+        showToast("Anda sedang login sebagai Owner Toko. Silakan kelola pesan pelanggan di Dashboard Admin > Chat Pelanggan.");
+        openAdminDashboard();
+        switchAdminTab('adminTabLiveChat', document.querySelector('[onclick*="adminTabLiveChat"]'));
+        return;
+      }
+
       const windowEl = document.getElementById('customerLiveChatWindow');
       const aiWindow = document.getElementById('aiChatWindow');
       if (aiWindow && aiWindow.classList.contains('active')) {
@@ -8765,6 +8936,12 @@
     function switchToLiveChatFromAI() {
       const aiWin = document.getElementById('aiChatWindow');
       if (aiWin) aiWin.classList.remove('active');
+      const isOwner = !!(currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com') || isAdminLoggedIn;
+      if (isOwner) {
+        showToast("Anda login sebagai Owner. Pesan pelanggan dikelola melalui Dashboard Admin.");
+        openAdminDashboard();
+        return;
+      }
       toggleCustomerLiveChat();
     }
 
