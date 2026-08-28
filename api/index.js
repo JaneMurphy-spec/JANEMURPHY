@@ -523,6 +523,8 @@ module.exports = async (req, res) => {
       originalPrice: Number(body.originalPrice) || (Number(body.price) ? Number(body.price) * 1.4 : 0),
       image: body.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
       soldCount: Number(body.soldCount) || 0,
+      stockStatus: body.stockStatus || "ready",
+      stockCount: Number(body.stockCount || 0),
       rating: Number(body.rating) || 5.0,
       badge: body.badge || "BARU",
       warranty: body.warranty || "Garansi Penuh",
