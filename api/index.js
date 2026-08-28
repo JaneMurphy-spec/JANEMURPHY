@@ -15,7 +15,7 @@ function getAdminFirestore() {
       if (!admin.apps.length) {
         admin.initializeApp({
           projectId: "janemarket-official",
-          databaseURL: "https://janemarket-official.firebaseio.com"
+          databaseURL: "https://janemarket-official-default-rtdb.asia-southeast1.firebasedatabase.app"
         });
       }
       try {
