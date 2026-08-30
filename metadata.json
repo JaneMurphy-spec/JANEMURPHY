@@ -1,6 +1,6 @@
 {
-  "name": "JaneMurphy",
-  "description": "JaneMurphy - Platform Aplikasi Premium & Topup Game",
+  "name": "JaneMarket",
+  "description": "JaneMarket - Platform Aplikasi Premium & Topup Game",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

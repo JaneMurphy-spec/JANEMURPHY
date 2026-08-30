@@ -625,6 +625,20 @@ module.exports = async (req, res) => {
     return sendJson(res, 201, { success: true, order: newOrder, products: store.products });
   }
 
+  // 7c. PATCH /api/orders/:id (Update order status)
+  if ((pathname.startsWith("/api/orders/") || pathname.startsWith("/orders/")) && method === "PATCH") {
+    const orderId = pathname.replace(/^\/(api\/)?orders\//, "");
+    const body = await parseBody(req);
+    const target = store.orders.find(o => String(o.id) === String(orderId));
+    if (target) {
+      if (body.status) target.status = body.status;
+      if (body.notes) target.notes = body.notes;
+      saveStoreData(store);
+      return sendJson(res, 200, { success: true, order: target });
+    }
+    return sendJson(res, 404, { success: false, error: "Pesanan tidak ditemukan" });
+  }
+
   // 7b. POST /api/reviews
   if ((pathname === "/api/reviews" || pathname === "/reviews") && method === "POST") {
     const body = await parseBody(req);

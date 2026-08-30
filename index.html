@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#09090b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="JaneMurphy">
-  <title>JaneMurphy - Platform Aplikasi Premium & Topup Game</title>
+  <meta name="apple-mobile-web-app-title" content="JaneMarket">
+  <title>JaneMarket - Platform Aplikasi Premium & Topup Game</title>
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3881,6 +3881,211 @@
       background: rgba(239, 68, 68, 0.15);
       color: #f87171;
     }
+    .user-dropdown-card.active, .user-dropdown-card.show {
+      display: block;
+      animation: fadeIn 0.15s ease-out;
+    }
+
+    /* ========================================================
+       MY ORDERS (PESANAN SAYA) STYLING & STATUS BADGES
+       ======================================================== */
+    .my-orders-count-badge {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 1px 7px;
+      border-radius: 999px;
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-theme="light"] .my-orders-count-badge {
+      background: #e0f2fe;
+      color: #0284c7;
+      border-color: #bae6fd;
+    }
+    .my-orders-tab-bar {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .my-orders-tab-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .my-orders-tab {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .my-orders-tab:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .my-orders-tab.active {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-color: #38bdf8;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.2);
+    }
+    [data-theme="light"] .my-orders-tab.active {
+      background: #e0f2fe;
+      color: #0284c7;
+      border-color: #0284c7;
+    }
+    .my-order-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .my-order-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .my-order-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .my-order-id-badge {
+      font-family: monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      border: 1px dashed var(--border-color);
+      transition: all 0.15s ease;
+    }
+    .my-order-id-badge:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    [data-theme="light"] .my-order-id-badge {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    .my-order-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .status-selesai {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+    [data-theme="light"] .status-selesai {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+    }
+    .status-diproses {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+    [data-theme="light"] .status-diproses {
+      background: #e0f2fe;
+      color: #0369a1;
+      border-color: #7dd3fc;
+    }
+    .status-pending {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+    [data-theme="light"] .status-pending {
+      background: #fef3c7;
+      color: #b45309;
+      border-color: #fde68a;
+    }
+    .status-dibatalkan {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+    [data-theme="light"] .status-dibatalkan {
+      background: #fee2e2;
+      color: #b91c1c;
+      border-color: #fca5a5;
+    }
+    .my-order-card-body {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .my-order-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+    }
+    .my-order-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .my-order-prod-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 4px 0;
+    }
+    .my-order-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .my-order-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-color);
+    }
 
     /* Google Button & Auth Modal */
     .google-signin-btn {
@@ -4089,18 +4294,226 @@
       padding: 14px;
       margin-top: 14px;
     }
+
+    /* ==================== SPLASH SCREEN & FLYING LOGO ==================== */
+    .splash-screen-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #0e122b 0%, #060712 70%, #020308 100%);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.55s;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+    }
+    .splash-screen-overlay.fade-out {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+    .splash-backdrop-glow {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(99, 102, 241, 0.15) 45%, transparent 70%);
+      filter: blur(55px);
+      pointer-events: none;
+      animation: splashPulseGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes splashPulseGlow {
+      0% { transform: scale(0.85); opacity: 0.6; }
+      100% { transform: scale(1.18); opacity: 1; }
+    }
+    .splash-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+    }
+    .splash-logo-container {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .splash-logo-glow {
+      position: absolute;
+      inset: -10px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1, #ec4899);
+      opacity: 0.65;
+      filter: blur(16px);
+      animation: splashLogoAura 2.5s ease-in-out infinite alternate;
+      transition: opacity 0.3s ease;
+    }
+    @keyframes splashLogoAura {
+      0% { opacity: 0.45; filter: blur(12px); }
+      100% { opacity: 0.9; filter: blur(22px); }
+    }
+    .splash-logo-img {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 2px solid rgba(56, 189, 248, 0.7);
+      box-shadow: 0 16px 45px rgba(6, 182, 212, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      background: #090a14;
+      animation: splashLogoEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, border-radius, box-shadow;
+      display: block;
+    }
+    @keyframes splashLogoEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(0.35) rotate(-6deg);
+      }
+      65% {
+        transform: scale(1.05) rotate(1deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    .splash-brand-details {
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: splashDetailsEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1), transform 0.3s cubic-bezier(0.4, 0, 1, 1);
+    }
+    .splash-brand-details.hiding {
+      opacity: 0 !important;
+      transform: translateY(22px) scale(0.96) !important;
+    }
+    @keyframes splashDetailsEntrance {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .splash-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .splash-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin: 0;
+      background: linear-gradient(135deg, #ffffff 15%, #38bdf8 55%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 35px rgba(56, 189, 248, 0.4);
+      animation: splashTitleShimmer 3s ease-in-out infinite alternate;
+    }
+    @keyframes splashTitleShimmer {
+      0% { filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.3)); }
+      100% { filter: drop-shadow(0 0 28px rgba(129, 140, 248, 0.65)); }
+    }
+    .splash-title-badge {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: #38bdf8;
+      text-transform: uppercase;
+    }
+    .splash-subtitle {
+      font-size: 11.5px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin: 6px 0 16px 0;
+    }
+    .splash-loading-bar {
+      width: 140px;
+      height: 3.5px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+    .splash-loading-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #38bdf8, #6366f1, #a855f7);
+      border-radius: 99px;
+      animation: splashProgressBar 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    @keyframes splashProgressBar {
+      0% { width: 0%; }
+      50% { width: 75%; }
+      100% { width: 100%; }
+    }
+    .splash-skip-hint {
+      margin-top: 14px;
+      font-size: 10.5px;
+      color: #64748b;
+      letter-spacing: 0.2px;
+      opacity: 0.85;
+    }
   </style>
 </head>
 <body>
+
+  <!-- ==================== SPLASH SCREEN (LOGO & FLYING ANIMATION) ==================== -->
+  <div id="appSplashScreen" class="splash-screen-overlay" onclick="skipSplashScreen()">
+    <div class="splash-backdrop-glow"></div>
+    <div class="splash-content" id="splashMainContent">
+      <!-- Glow ambient behind logo -->
+      <div class="splash-logo-container" id="splashLogoContainer">
+        <div class="splash-logo-glow" id="splashLogoGlow"></div>
+        <img src="LogoJM.jpg" alt="JaneMarket" id="splashLogoImg" class="splash-logo-img" />
+      </div>
+      
+      <!-- Brand Name & Animation underneath -->
+      <div class="splash-brand-details" id="splashBrandDetails">
+        <div class="splash-title-wrap">
+          <h1 class="splash-title">JaneMarket</h1>
+          <span class="splash-title-badge">OFFICIAL</span>
+        </div>
+        <p class="splash-subtitle">PREMIUM APPLICATIONS &amp; TOPUP STORE</p>
+        
+        <div class="splash-loading-bar">
+          <div class="splash-loading-progress"></div>
+        </div>
+        <span class="splash-skip-hint">Memuat aplikasi... (Ketuk untuk langsung masuk)</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Navbar -->
   <header class="navbar">
     <div class="navbar-container">
       <a href="#" class="brand-logo" onclick="resetFilter(); return false;">
-        <img src="LogoJM.jpg" alt="JaneMurphy" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <img src="LogoJM.jpg" alt="JaneMarket" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <div class="brand-icon" style="display: none;">JM</div>
         <div class="brand-text">
-          <h1 id="navStoreName">JaneMurphy</h1>
+          <h1 id="navStoreName">JaneMarket</h1>
           <p id="navStoreTagline">PREMIUM APPLICATIONS</p>
         </div>
       </a>
@@ -4150,6 +4563,16 @@
               <div class="user-dropdown-name" id="dropdownUserName">Pengunjung</div>
               <div class="user-dropdown-email" id="dropdownUserEmail">Belum Masuk</div>
             </div>
+            <!-- My Orders Button (Requested Feature) -->
+            <button type="button" class="user-dropdown-item" onclick="openMyOrdersModal(); closeUserDropdown();" id="dropdownMyOrdersBtn">
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <i class="fa-solid fa-bag-shopping" style="color: #38bdf8; font-size: 14px;"></i>
+                  <span style="font-weight: 700;">Pesanan Saya (My Orders)</span>
+                </div>
+                <span class="my-orders-count-badge" id="myOrdersBadgeCount">0</span>
+              </div>
+            </button>
             <div id="dropdownAdminOptions" style="display: none;">
               <button type="button" class="user-dropdown-item" onclick="openAdminDashboard(); closeUserDropdown();" style="color: #4ade80; font-weight: 700;">
                 <i class="fa-solid fa-gauge-high"></i> Dashboard Admin
@@ -4435,10 +4858,10 @@
       <!-- Drawer Header -->
       <div class="drawer-header">
         <div class="drawer-brand">
-          <img src="LogoJM.jpg" alt="JaneMurphy" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <img src="LogoJM.jpg" alt="JaneMarket" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="brand-icon" style="width: 38px; height: 38px; font-size: 16px; display: none;">JM</div>
           <div>
-            <h4 style="font-size: 16px; font-weight: 800; margin: 0;" id="drawerStoreName">JaneMurphy</h4>
+            <h4 style="font-size: 16px; font-weight: 800; margin: 0;" id="drawerStoreName">JaneMarket</h4>
             <p style="font-size: 9.5px; color: #0284c7; text-transform: uppercase; font-weight: 700; margin: 0;">PREMIUM APPLICATIONS</p>
           </div>
         </div>
@@ -4510,6 +4933,13 @@
         <div>
           <div class="drawer-section-title">LAYANAN & FITUR TOKO</div>
           <div class="drawer-nav-list">
+            <button class="drawer-item" onclick="closeSideMenu(); openMyOrdersModal();">
+              <div class="drawer-item-left">
+                <i class="fa-solid fa-bag-shopping" style="color: #38bdf8;"></i>
+                <span>Pesanan Saya (My Orders)</span>
+              </div>
+              <span class="my-orders-count-badge" id="drawerMyOrdersBadge">0</span>
+            </button>
             <button class="drawer-item" onclick="closeSideMenu(); openPaymentModal();">
               <div class="drawer-item-left">
                 <i class="fa-solid fa-qrcode" style="color: #60a5fa;"></i>
@@ -4527,7 +4957,7 @@
             <button class="drawer-item" onclick="closeSideMenu(); toggleAIChat();">
               <div class="drawer-item-left">
                 <i class="fa-solid fa-robot" style="color: #a855f7;"></i>
-                <span>JaneMurphy AI Assistant</span>
+                <span>JaneMarket AI Assistant</span>
               </div>
               <span style="font-size: 9px; background: #9333ea; color: #ffffff; padding: 2px 6px; border-radius: 4px; font-weight: 700;">AI</span>
             </button>
@@ -4589,7 +5019,7 @@
 
       <!-- Drawer Footer -->
       <div class="drawer-footer-strip">
-        <p style="font-size: 11px; color: var(--text-muted); margin: 0;">⚡ JaneMurphy Official Store</p>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 0;">⚡ JaneMarket Official Store</p>
         <p style="font-size: 10px; color: var(--text-secondary); margin: 4px 0 0;">Proses 1-5 Menit • Garansi Resmi Penuh</p>
       </div>
     </aside>
@@ -4598,7 +5028,7 @@
   <!-- Floating Chat Widgets Group (Customer Live Chat + AI Assistant) -->
   <div class="floating-widgets-group" id="floatingWidgetsGroup">
     <!-- Live Chat Admin Button -->
-    <button class="livechat-floating-btn" onclick="toggleCustomerLiveChat()" id="liveChatFloatingBtn" title="Chat Langsung dengan Admin JaneMurphy">
+    <button class="livechat-floating-btn" onclick="toggleCustomerLiveChat()" id="liveChatFloatingBtn" title="Chat Langsung dengan Admin JaneMarket">
       <div class="livechat-pulse-dot"></div>
       <i class="fa-solid fa-comments"></i>
       <span>Chat Admin</span>
@@ -4606,9 +5036,9 @@
     </button>
 
     <!-- Floating AI Assistant Button -->
-    <button class="ai-floating-btn" onclick="toggleAIChat()" id="aiFloatingBtn" title="Tanya JaneMurphy AI Assistant">
+    <button class="ai-floating-btn" onclick="toggleAIChat()" id="aiFloatingBtn" title="Tanya JaneMarket AI Assistant">
       <i class="fa-solid fa-robot"></i>
-      <span>JaneMurphy AI</span>
+      <span>JaneMarket AI</span>
     </button>
   </div>
 
@@ -4812,6 +5242,76 @@
 
   <!-- Backward-compatibility alias for adminLoginModal -->
   <div id="adminLoginModal" style="display: none;"></div>
+
+  <!-- Modal: Pesanan Saya (My Orders) -->
+  <div class="modal-overlay" id="myOrdersModal">
+    <div class="modal-box" style="max-width: 720px; width: 94%; max-height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden;">
+      <!-- Modal Header -->
+      <div class="modal-header" style="padding: 16px 20px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; background: var(--bg-card);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 17px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <div>
+            <h4 class="modal-title" style="margin: 0; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+              <span>Pesanan Saya (My Orders)</span>
+              <span class="user-role-badge badge-admin" id="myOrdersAdminLabel" style="display: none; font-size: 9.5px;">SEMUA PESANAN TOKO</span>
+            </h4>
+            <p style="margin: 2px 0 0; font-size: 11.5px; color: var(--text-secondary);">Pantau status proses &amp; riwayat pembelian Anda di JaneMarket</p>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeModal('myOrdersModal')" title="Tutup"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Filter Controls & Search -->
+      <div style="padding: 12px 20px; border-bottom: 1px solid var(--border-color); background: var(--bg-secondary); flex-shrink: 0;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+          <div style="flex: 1; min-width: 200px; position: relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 12px;"></i>
+            <input type="text" id="myOrdersSearchInput" class="form-input" placeholder="🔍 Cari ID Order, Nama Produk, atau Paket..." oninput="filterMyOrders()" style="padding-left: 34px; font-size: 12.5px; height: 36px; border-radius: 8px;">
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" onclick="refreshMyOrders()" title="Muat Ulang Pesanan" style="height: 36px; border-radius: 8px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-arrows-rotate"></i> Refresh
+          </button>
+        </div>
+
+        <!-- Status Filter Tabs -->
+        <div class="my-orders-tab-bar" id="myOrdersStatusTabs">
+          <button type="button" class="my-orders-tab active" data-status="all" onclick="setMyOrdersStatusFilter('all', this)">
+            Semua (<span id="myOrdersCountAll">0</span>)
+          </button>
+          <button type="button" class="my-orders-tab" data-status="Diproses" onclick="setMyOrdersStatusFilter('Diproses', this)">
+            ⚡ Diproses (<span id="myOrdersCountProcessing">0</span>)
+          </button>
+          <button type="button" class="my-orders-tab" data-status="Selesai" onclick="setMyOrdersStatusFilter('Selesai', this)">
+            ✅ Selesai (<span id="myOrdersCountCompleted">0</span>)
+          </button>
+          <button type="button" class="my-orders-tab" data-status="Pending" onclick="setMyOrdersStatusFilter('Pending', this)">
+            ⏳ Pending (<span id="myOrdersCountPending">0</span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Orders List Container -->
+      <div class="modal-body" id="myOrdersContainer" style="padding: 16px 20px; overflow-y: auto; flex: 1; min-height: 250px; max-height: 60vh;">
+        <!-- Injected via renderMyOrders() -->
+      </div>
+
+      <!-- Footer Help & Info -->
+      <div class="modal-footer" style="padding: 12px 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); flex-shrink: 0;">
+        <div style="font-size: 11.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-shield-check" style="color: #10b981;"></i>
+          <span>Garansi Penuh • Bantuan Responsif</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn btn-wa btn-sm" onclick="openWhatsAppInquiry('Halo CS JaneMarket, saya ingin menanyakan status pesanan saya...')" style="font-size: 12px;">
+            <i class="fa-brands fa-whatsapp"></i> Bantuan CS WA
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('myOrdersModal')">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal 2: Admin Dashboard (Requirement #1) with Sidebar Navigation -->
   <div class="modal-overlay" id="adminDashboardModal">
@@ -5064,6 +5564,7 @@
                     <th>Metode Bayar</th>
                     <th>Total Harga</th>
                     <th>Waktu</th>
+                    <th>Status Pesanan</th>
                   </tr>
                 </thead>
                 <tbody id="adminOrdersTableBody">
@@ -5615,10 +6116,10 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="brand-logo">
-        <img src="LogoJM.jpg" alt="JaneMurphy" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <img src="LogoJM.jpg" alt="JaneMarket" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <div class="brand-icon" style="width: 38px; height: 38px; font-size: 16px; display: none;">JM</div>
         <div class="brand-text">
-          <h4 id="footerStoreName">JaneMurphy</h4>
+          <h4 id="footerStoreName">JaneMarket</h4>
           <p>PREMIUM APPLICATIONS & TOPUP STORE</p>
         </div>
       </div>
@@ -5630,7 +6131,7 @@
         <a href="#" onclick="handleAdminBtnClick(); return false;"><i class="fa-solid fa-lock"></i> Portal Admin</a>
       </div>
       <p class="footer-copy">
-        © <span id="currentYear">2026</span> JaneMurphy. Semua hak cipta dilindungi undang-undang.
+        © <span id="currentYear">2026</span> JaneMarket. Semua hak cipta dilindungi undang-undang.
       </p>
     </div>
   </footer>
@@ -5664,21 +6165,21 @@
     // State Store & Default Data
     const DEFAULT_STORE_DATA = {
       settings: {
-        storeName: "JaneMurphy",
+        storeName: "JaneMarket",
         storeTagline: "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
         storeLogo: "LogoJM.jpg",
         whatsappNumber: "6281234567890",
         adminPin: "123456",
         qrisImage: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
-        qrisMerchantName: "JANEMURPHY OFFICIAL (QRIS ALL PAYMENT)",
+        qrisMerchantName: "JANEMARKET OFFICIAL (QRIS ALL PAYMENT)",
         paymentMethods: [
-          { id: "dana", name: "DANA", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
-          { id: "gopay", name: "GoPay", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" },
-          { id: "ovo", name: "OVO", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-coins" },
-          { id: "shopeepay", name: "ShopeePay", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-bag-shopping" },
-          { id: "bca", name: "Bank BCA", number: "8735091234", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
-          { id: "mandiri", name: "Bank Mandiri", number: "137001928374", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
-          { id: "seabank", name: "SeaBank", number: "90192837465", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" }
+          { id: "dana", name: "DANA", number: "081234567890", owner: "JaneMarket Admin", active: true, icon: "fa-solid fa-wallet" },
+          { id: "gopay", name: "GoPay", number: "081234567890", owner: "JaneMarket Admin", active: true, icon: "fa-solid fa-mobile-screen" },
+          { id: "ovo", name: "OVO", number: "081234567890", owner: "JaneMarket Admin", active: true, icon: "fa-solid fa-coins" },
+          { id: "shopeepay", name: "ShopeePay", number: "081234567890", owner: "JaneMarket Admin", active: true, icon: "fa-solid fa-bag-shopping" },
+          { id: "bca", name: "Bank BCA", number: "8735091234", owner: "JaneMarket Official", active: true, icon: "fa-solid fa-building-columns" },
+          { id: "mandiri", name: "Bank Mandiri", number: "137001928374", owner: "JaneMarket Official", active: true, icon: "fa-solid fa-building-columns" },
+          { id: "seabank", name: "SeaBank", number: "90192837465", owner: "JaneMarket Official", active: true, icon: "fa-solid fa-building-columns" }
         ],
         promoBanner: {
           title: "🔥 FLASH SALE SPESIAL HARI INI!",
@@ -6189,6 +6690,13 @@
           updateCustomerNameUI(customerChatName);
         }
       }
+
+      updateMyOrdersBadges();
+    }
+
+    function closeUserDropdown() {
+      const dropdown = document.getElementById('userNavDropdown');
+      if (dropdown) dropdown.classList.remove('active', 'show');
     }
 
     function handleUserNavClick(event) {
@@ -6865,8 +7373,106 @@
       }
     }
 
+    // Splash Screen Flying Logo Animation Engine
+    let splashScreenFinished = false;
+    let splashFlyTimer = null;
+
+    function initSplashScreenAnimation() {
+      const splashOverlay = document.getElementById('appSplashScreen');
+      const splashLogoImg = document.getElementById('splashLogoImg');
+      const splashBrandDetails = document.getElementById('splashBrandDetails');
+      const splashLogoGlow = document.getElementById('splashLogoGlow');
+      const targetLogo = document.querySelector('.navbar .brand-logo-img');
+
+      if (!splashOverlay || !splashLogoImg) return;
+
+      // Ensure target logo in navbar is prepared
+      if (targetLogo) {
+        targetLogo.src = 'LogoJM.jpg';
+        targetLogo.style.opacity = '0';
+        targetLogo.style.transition = 'opacity 0.25s ease';
+      }
+
+      // Schedule flight animation after intro display (~1100ms)
+      splashFlyTimer = setTimeout(() => {
+        flySplashLogoToNavbar();
+      }, 1150);
+    }
+
+    function flySplashLogoToNavbar() {
+      if (splashScreenFinished) return;
+
+      const splashOverlay = document.getElementById('appSplashScreen');
+      const splashLogoImg = document.getElementById('splashLogoImg');
+      const splashBrandDetails = document.getElementById('splashBrandDetails');
+      const splashLogoGlow = document.getElementById('splashLogoGlow');
+      const targetLogo = document.querySelector('.navbar .brand-logo-img');
+
+      if (!splashLogoImg || !splashOverlay) {
+        finishSplashScreen();
+        return;
+      }
+
+      // 1. Hide text & logo glow with fade
+      if (splashBrandDetails) splashBrandDetails.classList.add('hiding');
+      if (splashLogoGlow) splashLogoGlow.style.opacity = '0';
+
+      // 2. Calculate target coordinates in navbar
+      if (targetLogo) {
+        const targetRect = targetLogo.getBoundingClientRect();
+        const splashRect = splashLogoImg.getBoundingClientRect();
+
+        const dx = (targetRect.left + targetRect.width / 2) - (splashRect.left + splashRect.width / 2);
+        const dy = (targetRect.top + targetRect.height / 2) - (splashRect.top + splashRect.height / 2);
+        const targetScale = (targetRect.width || 38) / (splashRect.width || 110);
+
+        // Hardware-accelerated smooth flight
+        splashLogoImg.style.transition = 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.65s ease, box-shadow 0.65s ease, border-color 0.65s ease';
+        splashLogoImg.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${targetScale})`;
+        splashLogoImg.style.borderRadius = '10px';
+        splashLogoImg.style.boxShadow = '0 4px 14px rgba(6, 182, 212, 0.4)';
+        splashLogoImg.style.borderColor = 'rgba(56, 189, 248, 0.5)';
+      }
+
+      // 3. Fade out the splash background overlay
+      setTimeout(() => {
+        if (splashOverlay) splashOverlay.classList.add('fade-out');
+      }, 180);
+
+      // 4. Final handoff to navbar logo
+      setTimeout(() => {
+        finishSplashScreen();
+      }, 680);
+    }
+
+    function skipSplashScreen() {
+      if (splashFlyTimer) clearTimeout(splashFlyTimer);
+      finishSplashScreen();
+    }
+
+    function finishSplashScreen() {
+      if (splashScreenFinished) return;
+      splashScreenFinished = true;
+
+      const splashOverlay = document.getElementById('appSplashScreen');
+      const targetLogo = document.querySelector('.navbar .brand-logo-img');
+
+      if (targetLogo) {
+        targetLogo.src = 'LogoJM.jpg';
+        targetLogo.style.opacity = '1';
+      }
+
+      if (splashOverlay) {
+        splashOverlay.classList.add('fade-out');
+        setTimeout(() => {
+          splashOverlay.style.display = 'none';
+        }, 400);
+      }
+    }
+
     // Initialize App
     document.addEventListener('DOMContentLoaded', async () => {
+      initSplashScreenAnimation();
       initTheme();
       initHorizontalScrolls();
       initImageDropzones();
@@ -6978,16 +7584,16 @@
     // Apply Settings to UI
     function applyStoreSettings() {
       const s = storeState.settings || {};
-      document.title = `${s.storeName || 'JaneMurphy'} - ${s.storeTagline || 'Platform Aplikasi Premium'}`;
+      document.title = `${s.storeName || 'JaneMarket'} - ${s.storeTagline || 'Platform Aplikasi Premium'}`;
       
       const navStoreName = document.getElementById('navStoreName');
-      if (navStoreName) navStoreName.textContent = s.storeName || 'JaneMurphy';
+      if (navStoreName) navStoreName.textContent = s.storeName || 'JaneMarket';
 
       const drawerStoreName = document.getElementById('drawerStoreName');
-      if (drawerStoreName) drawerStoreName.textContent = s.storeName || 'JaneMurphy';
+      if (drawerStoreName) drawerStoreName.textContent = s.storeName || 'JaneMarket';
       
       const footerStoreName = document.getElementById('footerStoreName');
-      if (footerStoreName) footerStoreName.textContent = s.storeName || 'JaneMurphy';
+      if (footerStoreName) footerStoreName.textContent = s.storeName || 'JaneMarket';
 
       // Update store logo images
       const logoSrc = s.storeLogo || 'LogoJM.jpg';
@@ -7005,10 +7611,10 @@
       if (announcementText && s.announcement) announcementText.textContent = s.announcement;
 
       const directWa = document.getElementById('btnDirectWa');
-      if (directWa) directWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMurphy') + ', saya ingin bertanya seputar produk...')}`;
+      if (directWa) directWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMarket') + ', saya ingin bertanya seputar produk...')}`;
 
       const drawerWa = document.getElementById('drawerWaLink');
-      if (drawerWa) drawerWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMurphy') + ', saya ingin bertanya seputar produk...')}`;
+      if (drawerWa) drawerWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMarket') + ', saya ingin bertanya seputar produk...')}`;
 
       // Banner middle
       if (s.promoBanner) {
@@ -8118,16 +8724,25 @@
         else if (activeVoucher.type === 'percent') finalCalculatedPrice = Math.max(0, finalCalculatedPrice - Math.round((finalCalculatedPrice * activeVoucher.value) / 100));
       }
 
+      const newOrderId = `ORD-${Date.now().toString().slice(-6)}`;
+      const userEmail = (currentUser && currentUser.email) ? currentUser.email : '';
+      const orderImage = prod ? prod.image : 'LogoJM.jpg';
+
       const orderData = {
+        id: newOrderId,
         productId: productId,
         customerName: customerName,
+        userEmail: userEmail,
         productName: prod ? prod.name : '-',
+        productImage: orderImage,
         category: prod ? prod.category : '-',
         variant: selectedVariantName,
         price: finalCalculatedPrice,
         paymentMethod: paymentMethod,
         accountId: accountId,
-        notes: notes
+        notes: notes,
+        timestamp: new Date().toISOString(),
+        status: 'Diproses'
       };
 
       // Auto-increment sold count & order statistics (Requirement #7)
@@ -8141,20 +8756,12 @@
       storeState.stats.totalRevenue = (Number(storeState.stats.totalRevenue) || 0) + finalCalculatedPrice;
 
       if (!Array.isArray(storeState.orders)) storeState.orders = [];
-      storeState.orders.unshift({
-        id: `ORD-${Date.now().toString().slice(-5)}`,
-        customerName: customerName,
-        productName: prod ? prod.name : '-',
-        category: prod ? prod.category : '-',
-        variant: selectedVariantName,
-        price: finalCalculatedPrice,
-        paymentMethod: paymentMethod,
-        timestamp: new Date().toISOString(),
-        status: 'Selesai'
-      });
+      storeState.orders.unshift(orderData);
 
+      saveLocalOrderId(newOrderId);
       persistLocalState();
       renderProducts();
+      updateMyOrdersBadges();
 
       // Record to Server API
       try {
@@ -8169,7 +8776,8 @@
 
       // Format WhatsApp Message
       const s = storeState.settings || {};
-      let waText = `Halo Admin ${s.storeName || 'JaneMarket'}, saya ingin memesan:\n\n`;
+      let waText = `Halo Admin ${s.storeName || 'JaneMarket'}, saya ingin konfirmasi pesanan baru:\n\n`;
+      waText += `🆔 *ID Pesanan:* ${newOrderId}\n`;
       waText += `📦 *Produk:* ${prod ? prod.name : '-'}\n`;
       waText += `📂 *Kategori:* ${prod ? prod.category : '-'}\n`;
       waText += `🏷️ *Pilihan Paket:* ${selectedVariantName}\n`;
@@ -8519,21 +9127,333 @@
     function populateAdminOrdersTable() {
       const modalTbody = document.getElementById('adminOrdersTableBody');
       const orders = storeState.orders || [];
-      const emptyHtml = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:18px;">Belum ada riwayat pesanan.</td></tr>`;
+      const emptyHtml = `<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:18px;">Belum ada riwayat pesanan.</td></tr>`;
       
-      const rowsHtml = orders.length === 0 ? emptyHtml : orders.map(o => `
+      const rowsHtml = orders.length === 0 ? emptyHtml : orders.map(o => {
+        const currentStatus = o.status || 'Selesai';
+        return `
         <tr>
-          <td><span style="font-family:monospace;font-size:11px;background:var(--bg-secondary);padding:2px 6px;border-radius:4px;">${o.id}</span></td>
-          <td style="font-weight:600;">${o.customerName}</td>
-          <td>${o.productName}</td>
-          <td>${o.variant}</td>
-          <td>${o.paymentMethod}</td>
-          <td style="font-weight:700;">Rp ${Number(o.price || 0).toLocaleString('id-ID')}</td>
+          <td><span style="font-family:monospace;font-size:11px;background:var(--bg-secondary);padding:2px 6px;border-radius:4px;font-weight:700;">${o.id}</span></td>
+          <td style="font-weight:600;">${escapeChatHTML(o.customerName || '-')}</td>
+          <td>${escapeChatHTML(o.productName || '-')}</td>
+          <td>${escapeChatHTML(o.variant || '-')}</td>
+          <td>${escapeChatHTML(o.paymentMethod || 'QRIS')}</td>
+          <td style="font-weight:700;color:#38bdf8;">Rp ${Number(o.price || 0).toLocaleString('id-ID')}</td>
           <td style="font-size:11px;color:var(--text-muted);">${o.timestamp ? new Date(o.timestamp).toLocaleString('id-ID') : '-'}</td>
+          <td>
+            <select class="form-input" style="padding:4px 8px;font-size:11px;border-radius:6px;width:auto;min-width:125px;font-weight:700;" onchange="updateOrderStatus('${o.id}', this.value)">
+              <option value="Diproses" ${currentStatus === 'Diproses' ? 'selected' : ''}>⚡ Diproses</option>
+              <option value="Selesai" ${currentStatus === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
+              <option value="Pending" ${currentStatus === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
+              <option value="Dibatalkan" ${currentStatus === 'Dibatalkan' ? 'selected' : ''}>❌ Dibatalkan</option>
+            </select>
+          </td>
         </tr>
-      `).join('');
+      `;
+      }).join('');
 
       if (modalTbody) modalTbody.innerHTML = rowsHtml;
+    }
+
+    async function updateOrderStatus(orderId, newStatus) {
+      const target = (storeState.orders || []).find(o => String(o.id) === String(orderId));
+      if (target) {
+        target.status = newStatus;
+        persistLocalState();
+        populateAdminOrdersTable();
+        populateAdminStats();
+        if (document.getElementById('myOrdersModal')?.classList.contains('active')) {
+          renderMyOrders();
+        }
+        updateMyOrdersBadges();
+
+        try {
+          await fetch(`/api/orders/${orderId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: newStatus })
+          });
+        } catch (e) {
+          console.warn("Update status note:", e);
+        }
+
+        playBeep('success');
+        showToast(`Status pesanan ${orderId} diubah menjadi: ${newStatus}`);
+      }
+    }
+
+    // ========================================================
+    // MY ORDERS (PESANAN SAYA) ENGINE & MODAL LOGIC
+    // ========================================================
+    let currentMyOrdersFilter = 'all';
+
+    function getMyOrdersList() {
+      const allOrders = storeState.orders || [];
+      let savedLocalOrderIds = [];
+      try {
+        const raw = localStorage.getItem('jm_my_order_ids');
+        if (raw) savedLocalOrderIds = JSON.parse(raw);
+      } catch (e) {}
+
+      if (currentUser && currentUser.email) {
+        const userEmail = currentUser.email.toLowerCase();
+        const userName = (currentUser.name || '').toLowerCase();
+        const isStoreAdmin = (userEmail === 'ererex4youu@gmail.com');
+
+        if (isStoreAdmin) {
+          return [...allOrders];
+        }
+
+        return allOrders.filter(o => {
+          const orderEmail = (o.userEmail || '').toLowerCase();
+          const orderCustName = (o.customerName || '').toLowerCase();
+          const matchEmail = orderEmail && orderEmail === userEmail;
+          const matchName = orderCustName && (orderCustName === userName || orderCustName.includes(userName) || userName.includes(orderCustName));
+          const matchLocalId = savedLocalOrderIds.includes(o.id);
+          return matchEmail || matchName || matchLocalId;
+        });
+      } else {
+        if (savedLocalOrderIds.length > 0) {
+          const matched = allOrders.filter(o => savedLocalOrderIds.includes(o.id));
+          if (matched.length > 0) return matched;
+        }
+        if (customerChatName) {
+          const matched = allOrders.filter(o => (o.customerName || '').toLowerCase() === customerChatName.toLowerCase());
+          if (matched.length > 0) return matched;
+        }
+        return [];
+      }
+    }
+
+    function updateMyOrdersBadges() {
+      const orders = getMyOrdersList();
+      const count = orders.length;
+
+      const dropdownBadge = document.getElementById('myOrdersBadgeCount');
+      if (dropdownBadge) dropdownBadge.textContent = count;
+
+      const drawerBadge = document.getElementById('drawerMyOrdersBadge');
+      if (drawerBadge) drawerBadge.textContent = count;
+    }
+
+    function openMyOrdersModal() {
+      playBeep('pop');
+      closeAllModals();
+      openModal('myOrdersModal');
+      currentMyOrdersFilter = 'all';
+
+      const adminLabel = document.getElementById('myOrdersAdminLabel');
+      const isStoreAdmin = !!(currentUser && currentUser.email && currentUser.email.toLowerCase() === 'ererex4youu@gmail.com');
+      if (adminLabel) adminLabel.style.display = isStoreAdmin ? 'inline-block' : 'none';
+
+      document.querySelectorAll('.my-orders-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-status') === 'all');
+      });
+
+      const searchInp = document.getElementById('myOrdersSearchInput');
+      if (searchInp) searchInp.value = '';
+
+      renderMyOrders();
+    }
+
+    function setMyOrdersStatusFilter(status, btnElement) {
+      playBeep('tab');
+      currentMyOrdersFilter = status;
+      document.querySelectorAll('.my-orders-tab').forEach(tab => tab.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+      renderMyOrders();
+    }
+
+    function filterMyOrders() {
+      renderMyOrders();
+    }
+
+    function refreshMyOrders() {
+      playBeep('pop');
+      renderMyOrders();
+      showToast("Daftar pesanan diperbarui!");
+    }
+
+    function renderMyOrders() {
+      const container = document.getElementById('myOrdersContainer');
+      if (!container) return;
+
+      const userOrders = getMyOrdersList();
+      const searchQuery = (document.getElementById('myOrdersSearchInput')?.value || '').toLowerCase().trim();
+
+      const countAll = userOrders.length;
+      const countProc = userOrders.filter(o => (o.status || '').toLowerCase() === 'diproses').length;
+      const countDone = userOrders.filter(o => (o.status || '').toLowerCase() === 'selesai' || !o.status).length;
+      const countPend = userOrders.filter(o => (o.status || '').toLowerCase() === 'pending').length;
+
+      const elAll = document.getElementById('myOrdersCountAll');
+      if (elAll) elAll.textContent = countAll;
+      const elProc = document.getElementById('myOrdersCountProcessing');
+      if (elProc) elProc.textContent = countProc;
+      const elDone = document.getElementById('myOrdersCountCompleted');
+      if (elDone) elDone.textContent = countDone;
+      const elPend = document.getElementById('myOrdersCountPending');
+      if (elPend) elPend.textContent = countPend;
+
+      updateMyOrdersBadges();
+
+      let filtered = userOrders.filter(o => {
+        const status = (o.status || 'Selesai');
+        if (currentMyOrdersFilter === 'all') return true;
+        if (currentMyOrdersFilter === 'Diproses') return status.toLowerCase() === 'diproses';
+        if (currentMyOrdersFilter === 'Selesai') return status.toLowerCase() === 'selesai';
+        if (currentMyOrdersFilter === 'Pending') return status.toLowerCase() === 'pending';
+        return true;
+      });
+
+      if (searchQuery) {
+        filtered = filtered.filter(o => 
+          (o.id && o.id.toLowerCase().includes(searchQuery)) ||
+          (o.productName && o.productName.toLowerCase().includes(searchQuery)) ||
+          (o.variant && o.variant.toLowerCase().includes(searchQuery)) ||
+          (o.customerName && o.customerName.toLowerCase().includes(searchQuery))
+        );
+      }
+
+      if (userOrders.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px;">
+            <div style="width: 68px; height: 68px; border-radius: 50%; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px; color: #38bdf8;">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <h5 style="font-size: 16px; font-weight: 800; margin-bottom: 8px; color: var(--text-primary);">Belum Ada Riwayat Pesanan</h5>
+            <p style="font-size: 13px; color: var(--text-secondary); max-width: 380px; margin: 0 auto 20px; line-height: 1.5;">
+              ${currentUser ? 'Halo ' + (currentUser.name || 'Kak') + '! Anda belum memiliki riwayat pembelian di JaneMarket.' : 'Anda belum memesan produk apapun pada perangkat ini.'}
+            </p>
+            <button type="button" class="btn btn-primary" onclick="closeModal('myOrdersModal'); scrollToCatalog();" style="border-radius: 10px; padding: 10px 20px; font-weight: 700;">
+              <i class="fa-solid fa-cart-shopping"></i> Jelajahi Produk Sekarang
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 36px 20px; color: var(--text-muted);">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 24px; margin-bottom: 10px; display: block; opacity: 0.6;"></i>
+            <p style="font-size: 13px; margin: 0;">Tidak ditemukan pesanan dengan filter atau kata kunci ini.</p>
+            <button type="button" class="btn btn-outline btn-sm" onclick="setMyOrdersStatusFilter('all', document.querySelector('.my-orders-tab[data-status=all]'))" style="margin-top: 12px; border-radius: 8px;">
+              Tampilkan Semua Pesanan
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(order => {
+        const prod = storeState.products.find(p => p.name === order.productName || String(p.id) === String(order.productId));
+        const imgSrc = order.productImage || (prod ? prod.image : 'LogoJM.jpg');
+        const status = order.status || 'Selesai';
+        
+        let statusBadgeHtml = '';
+        if (status.toLowerCase() === 'diproses') {
+          statusBadgeHtml = `<span class="my-order-status-badge status-diproses"><i class="fa-solid fa-arrows-rotate fa-spin"></i> Sedang Diproses (1-5 Mnt)</span>`;
+        } else if (status.toLowerCase() === 'pending') {
+          statusBadgeHtml = `<span class="my-order-status-badge status-pending"><i class="fa-solid fa-hourglass-half"></i> Menunggu Konfirmasi</span>`;
+        } else if (status.toLowerCase() === 'dibatalkan') {
+          statusBadgeHtml = `<span class="my-order-status-badge status-dibatalkan"><i class="fa-solid fa-circle-xmark"></i> Dibatalkan</span>`;
+        } else {
+          statusBadgeHtml = `<span class="my-order-status-badge status-selesai"><i class="fa-solid fa-circle-check"></i> Selesai (Aktif)</span>`;
+        }
+
+        const dateFormatted = order.timestamp ? new Date(order.timestamp).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' }) : 'Hari Ini';
+        const waCheckText = `Halo Admin JaneMarket, saya ingin konfirmasi status pesanan:\n- ID Order: ${order.id}\n- Produk: ${order.productName}\n- Paket: ${order.variant || '-'}\n- Pembeli: ${order.customerName}\nMohon bantuannya ya. Terima kasih! 🙏`;
+
+        return `
+          <div class="my-order-card" id="card-${order.id}">
+            <div class="my-order-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="my-order-id-badge" onclick="copyOrderId('${order.id}')" title="Klik untuk salin ID Order">
+                  <i class="fa-solid fa-hashtag" style="color: #38bdf8;"></i> ${order.id}
+                  <i class="fa-regular fa-copy" style="font-size: 10px; opacity: 0.7;"></i>
+                </span>
+                <span style="font-size: 11px; color: var(--text-muted);"><i class="fa-regular fa-clock"></i> ${dateFormatted}</span>
+              </div>
+              <div>${statusBadgeHtml}</div>
+            </div>
+
+            <div class="my-order-card-body">
+              <img src="${imgSrc}" alt="${escapeChatHTML(order.productName || 'Produk')}" class="my-order-thumb" onerror="this.src='LogoJM.jpg'">
+              <div class="my-order-info">
+                <h5 class="my-order-prod-name">${escapeChatHTML(order.productName || '-')}</h5>
+                <div class="my-order-meta">
+                  <span><i class="fa-solid fa-layer-group" style="color: #60a5fa;"></i> ${escapeChatHTML(order.category || 'Aplikasi Premium')}</span>
+                  <span><i class="fa-solid fa-tag" style="color: #34d399;"></i> ${escapeChatHTML(order.variant || 'Default')}</span>
+                  <span><i class="fa-solid fa-credit-card" style="color: #fbbf24;"></i> ${escapeChatHTML(order.paymentMethod || 'QRIS')}</span>
+                  ${order.customerName ? `<span><i class="fa-solid fa-user" style="color: #a78bfa;"></i> ${escapeChatHTML(order.customerName)}</span>` : ''}
+                </div>
+                ${order.accountId ? `<div style="font-size: 11.5px; color: var(--text-secondary); background: var(--bg-secondary); padding: 4px 8px; border-radius: 6px; margin-bottom: 4px; display: inline-block;"><i class="fa-solid fa-gamepad" style="color:#a855f7;"></i> Data Akun/ID: <strong>${escapeChatHTML(order.accountId)}</strong></div>` : ''}
+                ${order.notes ? `<div style="font-size: 11.5px; color: var(--text-muted); font-style: italic; margin-top: 2px;">📝 Catatan: "${escapeChatHTML(order.notes)}"</div>` : ''}
+              </div>
+            </div>
+
+            <div class="my-order-card-footer">
+              <div style="display: flex; align-items: baseline; gap: 4px;">
+                <span style="font-size: 11px; color: var(--text-muted);">Total Bayar:</span>
+                <span style="font-size: 14px; font-weight: 800; color: #38bdf8;">Rp ${Number(order.price || 0).toLocaleString('id-ID')}</span>
+              </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="openWhatsAppInquiry('${encodeURIComponent(waCheckText)}')" style="font-size: 11.5px; padding: 5px 10px; border-radius: 8px;">
+                  <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Cek WA
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="handleReorder('${order.productId || ''}', '${escapeChatHTML(order.productName)}')" style="font-size: 11.5px; padding: 5px 10px; border-radius: 8px;">
+                  <i class="fa-solid fa-cart-plus"></i> Beli Lagi
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function copyOrderId(orderId) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(orderId).then(() => {
+          playBeep('pop');
+          showToast(`ID Pesanan ${orderId} berhasil disalin!`);
+        }).catch(() => {
+          showToast(`ID Pesanan: ${orderId}`);
+        });
+      } else {
+        showToast(`ID Pesanan: ${orderId}`);
+      }
+    }
+
+    function handleReorder(productId, productName) {
+      closeModal('myOrdersModal');
+      if (productId) {
+        openProductDetail(productId);
+      } else {
+        const prod = storeState.products.find(p => p.name === productName);
+        if (prod) openProductDetail(prod.id);
+        else scrollToCatalog();
+      }
+    }
+
+    function scrollToCatalog() {
+      const el = document.getElementById('productGrid') || document.querySelector('.products-section');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function saveLocalOrderId(orderId) {
+      try {
+        let list = [];
+        const raw = localStorage.getItem('jm_my_order_ids');
+        if (raw) list = JSON.parse(raw);
+        if (!list.includes(orderId)) {
+          list.unshift(orderId);
+          localStorage.setItem('jm_my_order_ids', JSON.stringify(list));
+        }
+      } catch (e) {}
+      updateMyOrdersBadges();
     }
 
     async function saveStoreSettings(event) {
