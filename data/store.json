@@ -2,7 +2,7 @@
   "settings": {
     "storeName": "JaneMurphy",
     "storeTagline": "Premium Applications & Official Store",
-    "storeLogo": "LogoJM.jpg",
+    "storeLogo": "https://files.catbox.moe/3tt0xl.png",
     "ownerEmail": "ererex4youu@gmail.com",
     "whatsappNumber": "6281234567890",
     "adminPin": "123456",
@@ -76,7 +76,7 @@
     "announcement": "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS & E-Wallet Lengkap"
   },
   "stats": {
-    "totalVisitors": 1855,
+    "totalVisitors": 1858,
     "totalRevenue": 4850000,
     "totalOrders": 142
   },
