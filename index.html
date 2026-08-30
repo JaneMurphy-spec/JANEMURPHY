@@ -1685,7 +1685,7 @@
       overflow-y: auto;
     }
     .admin-main-header {
-      padding: 16px 24px;
+      padding: 10px 18px;
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
       display: flex;
@@ -1694,32 +1694,51 @@
       position: sticky;
       top: 0;
       z-index: 10;
+      min-height: 48px;
     }
     .admin-main-title {
-      font-size: 16px;
-      font-weight: 800;
+      font-size: 14.5px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       gap: 8px;
+      margin: 0;
+      color: #ffffff;
     }
     .admin-tab-content {
       display: none;
-      padding: 24px;
+      padding: 20px;
     }
     .admin-tab-content.active {
       display: block;
+    }
+    #tab-livechat.admin-tab-content {
+      padding: 0 !important;
+    }
+    #tab-livechat.admin-tab-content.active {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
     }
 
     @media (max-width: 768px) {
       .admin-dashboard-container {
         flex-direction: column;
-        max-height: 90vh;
+        max-height: 92vh;
+      }
+      .admin-main-header {
+        padding: 8px 12px;
+        min-height: 42px;
+      }
+      .admin-main-title {
+        font-size: 13.5px;
       }
       .admin-sidebar {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
-        padding: 12px 14px;
+        padding: 8px 10px;
       }
       .admin-sidebar-header {
         display: none;
@@ -1731,16 +1750,16 @@
         gap: 6px;
       }
       .admin-tab-btn {
-        padding: 8px 12px;
+        padding: 6px 10px;
         white-space: nowrap;
         width: auto;
-        font-size: 12px;
+        font-size: 11.5px;
       }
       .admin-sidebar-footer {
         display: none;
       }
       .admin-tab-content {
-        padding: 16px;
+        padding: 12px;
       }
     }
 
@@ -3493,20 +3512,57 @@
     .admin-chat-grid {
       display: grid;
       grid-template-columns: 320px 1fr;
-      height: 580px;
-      max-height: 70vh;
-      border-radius: 12px;
+      height: 600px;
+      max-height: calc(88vh - 60px);
+      border-radius: 0;
       overflow: hidden;
       background: #111114;
-      border: 1px solid var(--border-color);
+      border: none;
+      flex: 1;
+      min-height: 0;
     }
     @media (max-width: 880px) {
       .admin-chat-grid {
+        display: flex;
+        flex-direction: column;
+        height: calc(88vh - 110px);
+        max-height: calc(88vh - 110px);
         grid-template-columns: 1fr;
-        height: auto;
       }
-      .admin-chat-threads-sidebar {
-        max-height: 260px;
+      .admin-chat-grid .admin-chat-threads-sidebar {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        display: flex;
+        flex: 1;
+      }
+      .admin-chat-grid .admin-chat-main-room {
+        display: none;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        flex: 1;
+      }
+      .admin-chat-grid.showing-room .admin-chat-threads-sidebar {
+        display: none !important;
+      }
+      .admin-chat-grid.showing-room .admin-chat-main-room {
+        display: flex !important;
+      }
+      .admin-chat-mobile-back {
+        display: inline-flex !important;
+      }
+      .admin-threads-header {
+        padding: 10px 12px;
+      }
+      .admin-chat-room-header {
+        padding: 8px 12px;
+      }
+      .admin-chat-messages-box {
+        padding: 10px 12px;
+      }
+      .admin-chat-input-area {
+        padding: 8px 10px;
       }
     }
     .admin-chat-threads-sidebar {
@@ -5418,20 +5474,11 @@
         <!-- Admin Main Content Area -->
         <main class="admin-main-content">
           <div class="admin-main-header">
-            <div style="display: flex; flex-direction: column; gap: 4px;">
-              <h4 class="admin-main-title" id="adminMainTitle" style="margin: 0;">
-                <i class="fa-solid fa-chart-pie"></i> Ringkasan & Analisis Toko
-              </h4>
-              <div id="adminFirestoreLiveStatus" style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: #4ade80; background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 20px; padding: 2px 10px; width: fit-content; font-weight: 700;">
-                <span class="stock-dot" style="background: #22c55e; box-shadow: 0 0 6px rgba(34, 197, 94, 0.7);"></span>
-                <span id="adminFirestoreLiveText">Realtime Firestore Aktif & Sinkron</span>
-              </div>
-            </div>
+            <h4 class="admin-main-title" id="adminMainTitle">
+              <i class="fa-solid fa-chart-pie"></i> Ringkasan Toko
+            </h4>
             <div style="display: flex; gap: 8px; align-items: center;">
-              <button class="btn btn-white btn-sm" onclick="openAddProductModal()">
-                <i class="fa-solid fa-plus"></i> Tambah Produk
-              </button>
-              <button class="modal-close" onclick="closeModal('adminDashboardModal')"><i class="fa-solid fa-xmark"></i></button>
+              <button class="modal-close" onclick="closeModal('adminDashboardModal')" title="Tutup Panel Admin"><i class="fa-solid fa-xmark"></i></button>
             </div>
           </div>
 
@@ -5509,6 +5556,42 @@
           <!-- Admin Tab 3: Store Settings (Edit anything) -->
           <div class="admin-tab-content" id="tab-settings">
             <form onsubmit="saveStoreSettings(event)">
+              <!-- Logo Brand & Splash Screen Section -->
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                  <h6 style="font-size: 13.5px; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 8px; color: #ffffff;">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i> Logo Brand Toko &amp; Splash Screen
+                  </h6>
+                  <span style="font-size: 11px; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 3px 8px; border-radius: 6px; font-weight: 600;">
+                    <i class="fa-solid fa-bolt"></i> Sinkron Realtime
+                  </span>
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                  <!-- Live Preview Thumbnail -->
+                  <div style="position: relative; width: 68px; height: 68px; flex-shrink: 0; border-radius: 14px; overflow: hidden; background: #090a14; border: 2px solid rgba(56, 189, 248, 0.6); box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35); display: flex; align-items: center; justify-content: center;">
+                    <img id="settingLogoPreview" src="LogoJM.jpg" alt="Logo Toko" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='LogoJM.jpg'" />
+                  </div>
+
+                  <!-- Actions & File Upload from Gallery -->
+                  <div style="flex: 1; min-width: 220px;">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
+                      <input type="file" id="logoFileInput" accept="image/*" style="display: none;" onchange="handleLogoFileSelect(event)">
+                      <button type="button" class="btn btn-white btn-sm" onclick="document.getElementById('logoFileInput').click()" style="box-shadow: 0 2px 8px rgba(255,255,255,0.15);">
+                        <i class="fa-solid fa-images"></i> Pilih Logo dari Galeri
+                      </button>
+                      <button type="button" class="btn btn-outline btn-sm" onclick="resetDefaultLogo()" title="Kembali ke Logo Bawaan">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Bawaan
+                      </button>
+                    </div>
+                    <div id="logoFileStatus" style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">
+                      <i class="fa-solid fa-circle-info" style="color: #60a5fa;"></i> Foto galeri otomatis diterapkan pada <b>Splash Screen awal</b>, <b>Logo kiri atas Navbar</b>, Drawer &amp; Avatar Admin.
+                    </div>
+                    <input type="text" id="settingStoreLogo" class="form-input" placeholder="https://... atau hasil import galeri" oninput="updateLogoLivePreview(this.value)" style="font-size: 12px; padding: 7px 12px;">
+                  </div>
+                </div>
+              </div>
+
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                 <div class="form-group">
                   <label class="form-label">Nama Toko</label>
@@ -5632,20 +5715,25 @@
               <!-- Right Main Room: Selected Customer Conversation -->
               <div class="admin-chat-main-room" id="adminChatRoom">
                 <div class="admin-chat-room-header">
-                  <div>
-                    <div class="admin-chat-room-title" id="adminActiveCustomerTitle">
-                      <i class="fa-solid fa-comment-dots" style="color: #60a5fa;"></i> Pilih Customer untuk Membalas
-                    </div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;" id="adminActiveSessionMeta">
-                      Klik salah satu blok customer di sebelah kiri untuk melihat pesan
+                  <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
+                    <button type="button" class="btn btn-outline btn-sm admin-chat-mobile-back" onclick="backToAdminThreads()" style="display: none; padding: 4px 9px; font-size: 11.5px; border-radius: 6px;" title="Kembali ke Daftar Customer">
+                      <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div style="min-width: 0; flex: 1;">
+                      <div class="admin-chat-room-title" id="adminActiveCustomerTitle" style="font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <i class="fa-solid fa-comment-dots" style="color: #60a5fa;"></i> Pilih Customer
+                      </div>
+                      <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="adminActiveSessionMeta">
+                        Pilih blok customer di sebelah kiri untuk membalas
+                      </div>
                     </div>
                   </div>
-                  <div id="adminChatHeaderActions" style="display: none; align-items: center; gap: 6px;">
-                    <button type="button" class="btn btn-outline btn-sm" onclick="markActiveThreadRead()" title="Tandai Sudah Dibaca">
-                      <i class="fa-solid fa-check-double"></i> Tandai Dibaca
+                  <div id="adminChatHeaderActions" style="display: none; align-items: center; gap: 6px; flex-shrink: 0;">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="markActiveThreadRead()" title="Tandai Sudah Dibaca" style="padding: 4px 8px; font-size: 11px;">
+                      <i class="fa-solid fa-check-double"></i> <span class="nav-desktop-only">Tandai Dibaca</span>
                     </button>
-                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteActiveThread()" title="Hapus Percakapan Ini">
-                      <i class="fa-solid fa-trash"></i> Hapus
+                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteActiveThread()" title="Hapus Percakapan Ini" style="padding: 4px 8px; font-size: 11px;">
+                      <i class="fa-solid fa-trash"></i> <span class="nav-desktop-only">Hapus</span>
                     </button>
                   </div>
                 </div>
@@ -7419,9 +7507,12 @@
 
       if (!splashOverlay || !splashLogoImg) return;
 
+      const activeLogo = (storeState && storeState.settings && storeState.settings.storeLogo) || 'LogoJM.jpg';
+      splashLogoImg.src = activeLogo;
+
       // Ensure target logo in navbar is prepared
       if (targetLogo) {
-        targetLogo.src = 'LogoJM.jpg';
+        targetLogo.src = activeLogo;
         targetLogo.style.opacity = '0';
         targetLogo.style.transition = 'opacity 0.25s ease';
       }
@@ -7489,10 +7580,15 @@
 
       const splashOverlay = document.getElementById('appSplashScreen');
       const targetLogo = document.querySelector('.navbar .brand-logo-img');
+      const activeLogo = (storeState && storeState.settings && storeState.settings.storeLogo) || 'LogoJM.jpg';
 
       if (targetLogo) {
-        targetLogo.src = 'LogoJM.jpg';
+        targetLogo.src = activeLogo;
         targetLogo.style.opacity = '1';
+        targetLogo.style.display = 'block';
+        if (targetLogo.nextElementSibling && targetLogo.nextElementSibling.classList && targetLogo.nextElementSibling.classList.contains('brand-icon')) {
+          targetLogo.nextElementSibling.style.display = 'none';
+        }
       }
 
       if (splashOverlay) {
@@ -7628,17 +7724,30 @@
       const footerStoreName = document.getElementById('footerStoreName');
       if (footerStoreName) footerStoreName.textContent = s.storeName || 'JaneMarket';
 
-      // Update store logo images
+      // Update store logo images across the entire app
       const logoSrc = s.storeLogo || 'LogoJM.jpg';
-      document.querySelectorAll('.brand-logo-img, .hero-store-logo').forEach(img => {
+      document.querySelectorAll('.brand-logo-img, .hero-store-logo, .customer-chat-avatar-img, .admin-avatar img').forEach(img => {
         if (img) {
           img.src = logoSrc;
           img.style.display = 'block';
           if (img.nextElementSibling && img.nextElementSibling.classList && img.nextElementSibling.classList.contains('brand-icon')) {
             img.nextElementSibling.style.display = 'none';
           }
+          if (img.nextElementSibling && img.nextElementSibling.tagName === 'SPAN') {
+            img.nextElementSibling.style.display = 'none';
+          }
         }
       });
+
+      const splashLogo = document.getElementById('splashLogoImg');
+      if (splashLogo) {
+        splashLogo.src = logoSrc;
+      }
+
+      const settingPreview = document.getElementById('settingLogoPreview');
+      if (settingPreview) {
+        settingPreview.src = logoSrc;
+      }
 
       const announcementText = document.getElementById('announcementText');
       if (announcementText && s.announcement) announcementText.textContent = s.announcement;
@@ -9030,11 +9139,11 @@
       if (target) target.classList.add('active');
 
       const titleMap = {
-        'tab-stats': '<i class="fa-solid fa-chart-pie"></i> Ringkasan & Analisis Toko',
-        'tab-products': '<i class="fa-solid fa-boxes-stacked"></i> Kelola Produk (Realtime)',
-        'tab-settings': '<i class="fa-solid fa-sliders"></i> Pengaturan Toko (Settings)',
-        'tab-orders': '<i class="fa-solid fa-receipt"></i> Log Pesanan & Leads WA',
-        'tab-livechat': '<i class="fa-solid fa-comments"></i> Live Chat Customer (Terpisah Per Customer)'
+        'tab-stats': '<i class="fa-solid fa-chart-pie"></i> Ringkasan Toko',
+        'tab-products': '<i class="fa-solid fa-boxes-stacked"></i> Kelola Produk',
+        'tab-settings': '<i class="fa-solid fa-sliders"></i> Pengaturan Toko',
+        'tab-orders': '<i class="fa-solid fa-receipt"></i> Log Pesanan WA',
+        'tab-livechat': '<i class="fa-solid fa-comments"></i> Live Chat Customer'
       };
       const mainTitle = document.getElementById('adminMainTitle');
       if (mainTitle && titleMap[tabId]) {
@@ -9134,6 +9243,15 @@
     function populateAdminSettingsForm() {
       const s = storeState.settings || {};
       const b = s.promoBanner || {};
+
+      const elStoreLogo = document.getElementById('settingStoreLogo');
+      if (elStoreLogo) elStoreLogo.value = s.storeLogo || 'LogoJM.jpg';
+      const elLogoPreview = document.getElementById('settingLogoPreview');
+      if (elLogoPreview) elLogoPreview.src = s.storeLogo || 'LogoJM.jpg';
+      const elLogoStatus = document.getElementById('logoFileStatus');
+      if (elLogoStatus) {
+        elLogoStatus.innerHTML = `<i class="fa-solid fa-circle-info" style="color: #60a5fa;"></i> Foto galeri otomatis diterapkan pada <b>Splash Screen awal</b>, <b>Logo kiri atas Navbar</b>, Drawer &amp; Avatar Admin.`;
+      }
 
       const elStoreName = document.getElementById('settingStoreName');
       if (elStoreName) elStoreName.value = s.storeName || '';
@@ -9491,9 +9609,11 @@
 
     async function saveStoreSettings(event) {
       event.preventDefault();
+      const logoVal = (document.getElementById('settingStoreLogo')?.value || '').trim() || 'LogoJM.jpg';
       const updatedSettings = {
         storeName: document.getElementById('settingStoreName').value.trim(),
         storeTagline: document.getElementById('settingStoreTagline').value.trim(),
+        storeLogo: logoVal,
         whatsappNumber: document.getElementById('settingWhatsapp').value.trim(),
         ownerEmail: 'ererex4youu@gmail.com',
         announcement: document.getElementById('settingAnnouncement').value.trim(),
@@ -9521,7 +9641,50 @@
       }
 
       applyStoreSettings();
-      showToast("Pengaturan toko berhasil diperbarui!");
+      showToast("Pengaturan toko & logo berhasil diperbarui!");
+    }
+
+    async function handleLogoFileSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      try {
+        showToast("Memproses & mengompres logo dari galeri...");
+        const result = await compressImageFile(file, 600, 600, 0.90);
+        const sizeKb = Math.round((result.dataUrl.length * 0.75) / 1024);
+        
+        const logoInput = document.getElementById('settingStoreLogo');
+        if (logoInput) logoInput.value = result.dataUrl;
+
+        const preview = document.getElementById('settingLogoPreview');
+        if (preview) preview.src = result.dataUrl;
+
+        const status = document.getElementById('logoFileStatus');
+        if (status) {
+          status.innerHTML = `<span style="color:#4ade80; font-weight:700;"><i class="fa-solid fa-circle-check"></i> Foto galeri siap: ${escapeChatHTML(file.name)} (${sizeKb} KB)</span>`;
+        }
+        showToast("Logo berhasil dipilih dari galeri! Klik 'Simpan Semua Pengaturan' untuk menerapkan.");
+      } catch (err) {
+        showToast("Gagal memuat logo: " + err.message);
+      }
+    }
+
+    function updateLogoLivePreview(val) {
+      const preview = document.getElementById('settingLogoPreview');
+      if (preview) {
+        preview.src = (val || '').trim() || 'LogoJM.jpg';
+      }
+    }
+
+    function resetDefaultLogo() {
+      const logoInput = document.getElementById('settingStoreLogo');
+      if (logoInput) logoInput.value = 'LogoJM.jpg';
+      const preview = document.getElementById('settingLogoPreview');
+      if (preview) preview.src = 'LogoJM.jpg';
+      const fileInput = document.getElementById('logoFileInput');
+      if (fileInput) fileInput.value = '';
+      const status = document.getElementById('logoFileStatus');
+      if (status) status.innerHTML = `<span style="color:#60a5fa;"><i class="fa-solid fa-rotate-left"></i> Menggunakan logo default LogoJM.jpg</span>`;
+      showToast("Logo dikembalikan ke LogoJM.jpg. Klik 'Simpan Semua Pengaturan' untuk menerapkan.");
     }
 
     // Image Compression & Processing Utility (Client-Side Optimized)
@@ -10572,10 +10735,18 @@
       renderAdminThreadsList(filtered);
     }
 
+    function backToAdminThreads() {
+      const grid = document.querySelector('.admin-chat-grid');
+      if (grid) grid.classList.remove('showing-room');
+    }
+
     async function selectAdminChatThread(sessionId) {
       adminActiveThreadSessionId = sessionId;
       renderAdminThreadsList(adminChatThreads);
       playBeep('click');
+
+      const grid = document.querySelector('.admin-chat-grid');
+      if (grid) grid.classList.add('showing-room');
 
       const actions = document.getElementById('adminChatHeaderActions');
       const quickBar = document.getElementById('adminQuickReplyBar');
@@ -10767,6 +10938,7 @@
         if (quickBar) quickBar.style.display = 'none';
         if (inputArea) inputArea.style.display = 'none';
 
+        backToAdminThreads();
         loadAdminChatThreads(false);
       } catch (e) {
         console.warn("Delete thread err:", e);
