@@ -76,11 +76,38 @@
     "announcement": "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS & E-Wallet Lengkap"
   },
   "stats": {
-    "totalVisitors": 1858,
-    "totalRevenue": 4850000,
-    "totalOrders": 142
+    "totalVisitors": 1859,
+    "totalRevenue": 4865000,
+    "totalOrders": 143
   },
   "orders": [
+    {
+      "id": "JM-TEST01",
+      "customerName": "Budi",
+      "customerPhone": "08123456789",
+      "customerUid": "",
+      "productName": "undefined (1 Bulan x1)",
+      "category": "Paket Keranjang (1 item)",
+      "variant": "1 Produk Dipilih",
+      "items": [
+        {
+          "productId": "prod-canva-1",
+          "productName": "Canva Pro",
+          "variant": "1 Bulan",
+          "price": 15000,
+          "quantity": 1
+        }
+      ],
+      "price": 15000,
+      "subtotal": 15000,
+      "discountCode": "",
+      "discountAmount": 0,
+      "paymentMethod": "QRIS",
+      "timestamp": "2026-09-03T01:42:19.575Z",
+      "status": "Selesai",
+      "accountId": "",
+      "notes": ""
+    },
     {
       "id": "ORD-17081",
       "customerName": "Rian Pratama",
@@ -551,5 +578,17 @@
         "Template Canva / PSD"
       ]
     }
-  ]
+  ],
+  "userProfiles": {
+    "testuser@example.com": {
+      "uid": "testuser@example.com",
+      "email": "testuser@example.com",
+      "name": "Budi Santoso",
+      "phone": "08123456789",
+      "bio": "Pelanggan Setia",
+      "address": "",
+      "preferredPayment": "QRIS",
+      "updatedAt": "2026-09-03T01:42:15.842Z"
+    }
+  }
 }

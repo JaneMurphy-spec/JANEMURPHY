@@ -398,17 +398,24 @@ const appHandler = async (request, response) => {
       return sendJson(response, 200, { success: true, visitors: store.stats.totalVisitors });
     }
 
-    // 7. POST /api/orders (Record new order / inquiry)
+    // 7. POST /api/orders (Record new order / cart checkout / inquiry)
     if (pathname === "/api/orders" && method === "POST") {
       const body = await parseBody(request);
+      const isCartOrder = Array.isArray(body.items) && body.items.length > 0;
+      
       const newOrder = {
-        id: "ORD-" + Math.floor(10000 + Math.random() * 90000),
-        customerName: body.customerName || "Customer",
+        id: body.id || ("ORD-" + Math.floor(10000 + Math.random() * 90000)),
+        customerName: body.customerName ? String(body.customerName).trim() : "Customer",
         customerPhone: body.customerPhone || "",
-        productName: body.productName || "-",
-        category: body.category || "-",
-        variant: body.variant || "-",
+        customerUid: body.customerUid || "",
+        productName: isCartOrder ? (body.items.map(i => `${i.productName || i.name || 'Produk'} (${i.variant || 'Standard'} x${i.quantity || 1})`).join(", ")) : (body.productName || "-"),
+        category: isCartOrder ? "Paket Keranjang (" + body.items.length + " item)" : (body.category || "-"),
+        variant: isCartOrder ? (body.items.length + " Produk Dipilih") : (body.variant || "-"),
+        items: isCartOrder ? body.items : (body.productId ? [{ id: body.productId, name: body.productName, variant: body.variant, price: body.price, quantity: 1 }] : null),
         price: Number(body.price) || 0,
+        subtotal: Number(body.subtotal) || Number(body.price) || 0,
+        discountCode: body.discountCode || "",
+        discountAmount: Number(body.discountAmount) || 0,
         paymentMethod: body.paymentMethod || "QRIS",
         timestamp: new Date().toISOString(),
         status: "Selesai",
@@ -420,19 +427,296 @@ const appHandler = async (request, response) => {
       store.stats.totalOrders = (store.stats.totalOrders || 0) + 1;
       store.stats.totalRevenue = (store.stats.totalRevenue || 0) + (newOrder.price || 0);
 
-      // Increment sold count automatically for matching product
-      if (body.productId) {
+      // Increment sold count automatically for matching products
+      if (isCartOrder) {
+        body.items.forEach(it => {
+          const prod = store.products.find(p => String(p.id) === String(it.id || it.productId));
+          if (prod) {
+            prod.soldCount = (Number(prod.soldCount) || 0) + (Number(it.quantity) || 1);
+            if (prod.stockStatus === "limited" && prod.stockCount) {
+              prod.stockCount = Math.max(0, prod.stockCount - (Number(it.quantity) || 1));
+            }
+          }
+        });
+      } else if (body.productId) {
         const prod = store.products.find(p => String(p.id) === String(body.productId));
         if (prod) {
           prod.soldCount = (Number(prod.soldCount) || 0) + 1;
+          if (prod.stockStatus === "limited" && prod.stockCount) {
+            prod.stockCount = Math.max(0, prod.stockCount - 1);
+          }
         }
       }
 
       saveStoreData(store);
+
+      // Persist order in Firestore via Admin SDK
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("orders").doc(newOrder.id).set(newOrder, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore order sync notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 201, { success: true, order: newOrder, products: store.products });
     }
 
-    // 7c. PATCH /api/orders/:id (Update order status)
+    // 7a. GET /api/orders (Fetch shopping history)
+    if (pathname === "/api/orders" && method === "GET") {
+      const searchParams = new URLSearchParams(urlParts[1] || "");
+      const customerUid = searchParams.get("customerUid");
+      const customerPhone = searchParams.get("customerPhone");
+      const role = searchParams.get("role");
+
+      let orders = [...(store.orders || [])];
+
+      // Try fetching from Firestore Admin SDK for up-to-date data
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          let query = firestore.collection("orders");
+          if (role !== "admin" && customerUid) {
+            query = query.where("customerUid", "==", customerUid);
+          }
+          const snap = await query.get();
+          if (!snap.empty) {
+            const fsOrders = [];
+            snap.forEach(doc => fsOrders.push({ id: doc.id, ...doc.data() }));
+            fsOrders.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+            orders = fsOrders;
+          }
+        } catch (fErr) {
+          console.warn("Firestore get orders notice:", fErr.message);
+        }
+      }
+
+      if (role !== "admin" && (customerUid || customerPhone)) {
+        orders = orders.filter(o => {
+          if (customerUid && o.customerUid === customerUid) return true;
+          if (customerPhone && o.customerPhone && o.customerPhone === customerPhone) return true;
+          return false;
+        });
+      }
+
+      return sendJson(response, 200, { success: true, orders });
+    }
+
+    // 7b. POST /api/user/profile (Edit Profile Info & Gallery Avatar)
+    if (pathname === "/api/user/profile" && method === "POST") {
+      const body = await parseBody(request);
+      const { uid, email, name, phone, bio, address, preferredPayment, avatar } = body;
+      const userKey = uid || email;
+
+      if (!userKey) {
+        return sendJson(response, 400, { success: false, error: "UID atau Email diperlukan" });
+      }
+
+      if (!store.userProfiles) store.userProfiles = {};
+
+      const existing = store.userProfiles[userKey] || {};
+      const updatedProfile = {
+        ...existing,
+        uid: userKey,
+        email: email || existing.email || "",
+        name: name ? String(name).trim() : (existing.name || "Pengguna JaneMarket"),
+        phone: phone ? String(phone).trim() : (existing.phone || ""),
+        bio: bio ? String(bio).trim() : (existing.bio || ""),
+        address: address ? String(address).trim() : (existing.address || ""),
+        preferredPayment: preferredPayment || existing.preferredPayment || "QRIS",
+        updatedAt: new Date().toISOString()
+      };
+
+      if (avatar) {
+        updatedProfile.avatar = avatar;
+        updatedProfile.picture = avatar;
+      }
+
+      store.userProfiles[userKey] = updatedProfile;
+      saveStoreData(store);
+
+      // Sync to Firestore via Admin SDK
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("users").doc(userKey).set(updatedProfile, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore profile update notice:", fErr.message);
+        }
+      }
+
+      return sendJson(response, 200, { success: true, profile: updatedProfile, message: "Profil berhasil diperbarui!" });
+    }
+
+    // 7c. GET /api/user/profile
+    if (pathname === "/api/user/profile" && method === "GET") {
+      const searchParams = new URLSearchParams(urlParts[1] || "");
+      const userKey = searchParams.get("uid") || searchParams.get("email");
+      if (!userKey) {
+        return sendJson(response, 400, { success: false, error: "UID atau Email diperlukan" });
+      }
+
+      // Check local store first
+      if (store.userProfiles && store.userProfiles[userKey]) {
+        return sendJson(response, 200, { success: true, profile: store.userProfiles[userKey] });
+      }
+
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          const docSnap = await firestore.collection("users").doc(userKey).get();
+          if (docSnap.exists) {
+            return sendJson(response, 200, { success: true, profile: { uid: userKey, ...docSnap.data() } });
+          }
+        } catch (fErr) {
+          console.warn("Firestore get profile notice:", fErr.message);
+        }
+      }
+
+      return sendJson(response, 200, { success: true, profile: null });
+    }
+
+    // 7d. GET /api/notifications/customer (For regular users - flash sales, restocks, promos)
+    if (pathname === "/api/notifications/customer" && method === "GET") {
+      const promoBanner = store.settings.promoBanner || {};
+      const readyProducts = store.products.filter(p => p.stockStatus === 'ready').slice(0, 3);
+      const limitedProducts = store.products.filter(p => p.stockStatus === 'limited').slice(0, 2);
+
+      const customerNotifs = [
+        {
+          id: "notif-flash-sale-1",
+          type: "flashsale",
+          badge: "⚡ FLASH SALE HARI INI",
+          title: promoBanner.title || "Flash Sale Diskon Spesial!",
+          message: promoBanner.subtitle || "Diskon hingga 50% untuk Semua Akun Netflix, Canva, dan Spotify!",
+          time: "Baru saja",
+          timestamp: new Date().toISOString(),
+          read: false,
+          actionText: "Buka Promo",
+          actionUrl: "#middleBannerSection",
+          discountCode: "FLASHSALE"
+        },
+        {
+          id: "notif-voucher-1",
+          type: "discount",
+          badge: "🏷️ VOUCHER DISKON",
+          title: "Voucher Potongan Rp 10.000",
+          message: "Gunakan kode voucher JANEMARKET50 di keranjang belanja saat checkout!",
+          time: "10 menit lalu",
+          timestamp: new Date(Date.now() - 600000).toISOString(),
+          read: false,
+          actionText: "Salin Kode",
+          discountCode: "JANEMARKET50"
+        },
+        {
+          id: "notif-stock-1",
+          type: "stock",
+          badge: "📦 RESTOCK APLIKASI",
+          title: "Stok Netflix 4K & Canva Pro Ready!",
+          message: `Stok baru saja ditambahkan untuk produk favorit Anda: ${readyProducts.map(p => p.name).join(", ")}. Garansi resmi full periode!`,
+          time: "1 jam lalu",
+          timestamp: new Date(Date.now() - 3600000).toISOString(),
+          read: false,
+          actionText: "Lihat Produk",
+          actionUrl: "#productGrid"
+        }
+      ];
+
+      if (limitedProducts.length > 0) {
+        customerNotifs.push({
+          id: "notif-stock-limited",
+          type: "stock",
+          badge: "⚠️ STOK HAMPIR HABIS",
+          title: "Slot Terbatas: " + limitedProducts[0].name,
+          message: `Tersisa ${limitedProducts[0].stockCount || 'beberapa'} slot lagi. Segera amankan sebelum kehabisan!`,
+          time: "2 jam lalu",
+          timestamp: new Date(Date.now() - 7200000).toISOString(),
+          read: false,
+          actionText: "Pesan Sekarang",
+          actionUrl: "#productGrid"
+        });
+      }
+
+      return sendJson(response, 200, { success: true, notifications: customerNotifs });
+    }
+
+    // 7e. GET /api/notifications/admin (For Admin/Owner - customer chats, reviews, orders)
+    if (pathname === "/api/notifications/admin" && method === "GET") {
+      const allChats = getChatsData();
+      const unreadCustomerChats = allChats.filter(c => c.sender === "customer" && !c.read);
+
+      // Collect all recent reviews across products
+      const allReviews = [];
+      store.products.forEach(p => {
+        if (Array.isArray(p.reviews)) {
+          p.reviews.forEach(r => {
+            allReviews.push({ ...r, productId: p.id, productName: p.name });
+          });
+        }
+      });
+      allReviews.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+      const adminNotifs = [];
+
+      // Chat notifications
+      unreadCustomerChats.slice(0, 8).forEach(c => {
+        adminNotifs.push({
+          id: "admin-chat-" + c.id,
+          type: "chat",
+          badge: "💬 CHAT CUSTOMER",
+          title: `Pesan baru dari ${c.customerName || 'Customer Web'}`,
+          message: `"${c.text}"`,
+          time: new Date(c.timestamp).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }),
+          timestamp: c.timestamp,
+          sessionId: c.sessionId,
+          customerName: c.customerName,
+          read: false
+        });
+      });
+
+      // Recent review notifications
+      allReviews.slice(0, 4).forEach(r => {
+        adminNotifs.push({
+          id: "admin-rev-" + r.id,
+          type: "review",
+          badge: `⭐ ULASAN BINTANG ${r.rating || 5}`,
+          title: `Ulasan baru dari ${r.name || 'Pelanggan'} (${r.productName})`,
+          message: `"${r.comment || 'Puas dengan layanannya'}"`,
+          time: r.date || "Baru saja",
+          timestamp: r.timestamp || new Date().toISOString(),
+          productId: r.productId,
+          read: false
+        });
+      });
+
+      // Recent orders
+      (store.orders || []).slice(0, 4).forEach(o => {
+        adminNotifs.push({
+          id: "admin-ord-" + o.id,
+          type: "order",
+          badge: "🛒 PESANAN BARU",
+          title: `Pesanan ${o.id} - ${o.customerName}`,
+          message: `${o.productName} • Total Rp ${(o.price || 0).toLocaleString('id-ID')} (${o.paymentMethod || 'QRIS'})`,
+          time: new Date(o.timestamp || Date.now()).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }),
+          timestamp: o.timestamp,
+          orderId: o.id,
+          read: false
+        });
+      });
+
+      // Sort by timestamp desc
+      adminNotifs.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+      return sendJson(response, 200, {
+        success: true,
+        unreadChatCount: unreadCustomerChats.length,
+        totalNotifications: adminNotifs.length,
+        notifications: adminNotifs
+      });
+    }
+
+    // 7f. PATCH /api/orders/:id (Update order status)
     if (pathname.startsWith("/api/orders/") && method === "PATCH") {
       const orderId = pathname.replace("/api/orders/", "");
       const body = await parseBody(request);
