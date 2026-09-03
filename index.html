@@ -5287,6 +5287,411 @@
       display: flex;
       justify-content: space-between;
     }
+
+    /* ==========================================================================
+       LINTAS WEB (EMBEDDED WEB APP VIEWER)
+       ========================================================================== */
+    body.cross-web-active {
+      overflow: hidden !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+    }
+    body.cross-web-active .navbar,
+    body.cross-web-active .hero-section,
+    body.cross-web-active .search-filter-wrapper,
+    body.cross-web-active .main-container,
+    body.cross-web-active .middle-banner,
+    body.cross-web-active #testimonialsSection,
+    body.cross-web-active #faqSection,
+    body.cross-web-active footer,
+    body.cross-web-active .floating-widgets-group,
+    body.cross-web-active #userFloatingCartBtn {
+      display: none !important;
+    }
+    body.cross-web-active #crossWebViewer {
+      display: flex !important;
+    }
+
+    /* Drawer Section Lintas Web */
+    .drawer-section-lintas {
+      padding-bottom: 14px;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed rgba(56, 189, 248, 0.25);
+    }
+    .drawer-item-lintas {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%) !important;
+      border: 1px solid rgba(236, 72, 153, 0.35) !important;
+      border-radius: 12px !important;
+      padding: 11px 13px !important;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      width: 100%;
+      text-align: left;
+    }
+    .drawer-item-lintas:hover {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%) !important;
+      border-color: #ec4899 !important;
+      transform: translateX(4px) !important;
+      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.25) !important;
+    }
+    .drawer-lintas-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.22) 0%, rgba(168, 85, 247, 0.22) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      border: 1px solid rgba(236, 72, 153, 0.35);
+    }
+    .lintas-live-badge {
+      font-size: 8.5px;
+      font-weight: 800;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 1px 6px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3.5px;
+    }
+    .lintas-live-badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulseGreen 1.5s infinite;
+    }
+
+    /* Embedded Viewer Container */
+    .cross-web-viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: var(--bg-primary);
+      z-index: 999999;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Permanent Top Bar */
+    .cross-web-header {
+      background: #111114;
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 20;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+    .cross-web-header-container {
+      height: 58px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 100%;
+    }
+    /* Permanent Prominent Home Button */
+    .cross-web-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      color: #ffffff;
+      border: 1px solid #60a5fa;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 8px 18px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+      flex-shrink: 0;
+    }
+    .cross-web-home-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.5);
+      background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    }
+    .cross-web-home-btn:active {
+      transform: scale(0.96);
+    }
+    .cross-web-home-btn i {
+      font-size: 16px;
+    }
+    .cross-web-header-line {
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #ec4899 100%);
+      width: 100%;
+    }
+    .cross-web-divider-v {
+      width: 1px;
+      height: 24px;
+      background: var(--border-color);
+      flex-shrink: 0;
+    }
+    .cross-web-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+      min-width: 0;
+      flex: 1;
+    }
+    .cross-web-badge {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 7px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      letter-spacing: 0.4px;
+    }
+    .cross-web-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cross-web-url-indicator {
+      font-size: 11px;
+      color: var(--text-muted);
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cross-web-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .cross-web-action-btn {
+      background: #1e1e24;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 11px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cross-web-action-btn:hover {
+      background: #27272a;
+      color: #ffffff;
+      border-color: #3f3f46;
+    }
+
+    /* Embedded Body & Iframe */
+    .cross-web-body {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 60px);
+      height: calc(100dvh - 60px);
+      background: #09090b;
+      overflow: hidden;
+    }
+    .cross-web-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #ffffff;
+    }
+
+    /* States: Loading / Error / Config */
+    .cross-web-overlay-state {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .cross-web-state-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 28px 24px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeInModal 0.25s ease;
+    }
+    .cross-web-spinner-ring {
+      width: 46px;
+      height: 46px;
+      border: 3.5px solid rgba(56, 189, 248, 0.2);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+    .cross-web-state-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .cross-web-state-subtitle {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 400px;
+    }
+    .cross-web-loading-bar-wrap {
+      width: 100%;
+      max-width: 280px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .cross-web-loading-bar {
+      height: 100%;
+      width: 45%;
+      background: linear-gradient(90deg, #38bdf8, #ec4899);
+      border-radius: 99px;
+      animation: crossWebIndeterminate 1.5s infinite ease-in-out;
+    }
+    @keyframes crossWebIndeterminate {
+      0% { transform: translateX(-100%); width: 30%; }
+      50% { width: 60%; }
+      100% { transform: translateX(350%); width: 30%; }
+    }
+    .cross-web-error-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+    .cross-web-setup-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+    .cross-web-error-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    /* Light Mode Support */
+    [data-theme="light"] .cross-web-header {
+      background: #ffffff;
+      border-bottom-color: #e2e8f0;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+    }
+    [data-theme="light"] .cross-web-home-btn {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-color: #334155;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.2);
+    }
+    [data-theme="light"] .cross-web-home-btn:hover {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    [data-theme="light"] .cross-web-title {
+      color: #0f172a;
+    }
+    [data-theme="light"] .cross-web-action-btn {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+    [data-theme="light"] .cross-web-action-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    [data-theme="light"] .drawer-item-lintas {
+      background: linear-gradient(135deg, #fdf2f8 0%, #eef2ff 100%) !important;
+      border-color: #fbcfe8 !important;
+    }
+    [data-theme="light"] .drawer-item-lintas:hover {
+      background: linear-gradient(135deg, #fce7f3 0%, #e0e7ff 100%) !important;
+      border-color: #ec4899 !important;
+    }
+
+    /* Mobile adjustments for viewer header */
+    @media (max-width: 640px) {
+      .cross-web-header-container {
+        height: 52px;
+        padding: 0 10px;
+        gap: 8px;
+      }
+      .cross-web-home-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+        gap: 6px;
+      }
+      .cross-web-home-btn i {
+        font-size: 14px;
+      }
+      .cross-web-title {
+        font-size: 13.5px;
+      }
+      .cross-web-badge {
+        font-size: 8.5px;
+        padding: 1px 5px;
+      }
+      .cross-web-url-indicator {
+        display: none;
+      }
+      .cross-web-action-btn {
+        padding: 6px 8px;
+        font-size: 11px;
+      }
+      .cross-web-body {
+        height: calc(100vh - 54px);
+        height: calc(100dvh - 54px);
+      }
+    }
   </style>
 </head>
 <body>
@@ -5314,6 +5719,139 @@
         </div>
         <span class="splash-skip-hint">Memuat aplikasi... (Ketuk untuk langsung masuk)</span>
       </div>
+    </div>
+  </div>
+
+  <!-- ==================== LINTAS WEB EMBEDDED VIEWER ==================== -->
+  <div id="crossWebViewer" class="cross-web-viewer" role="region" aria-label="Lintas Web Viewer">
+    <!-- Top Permanent Header: [ 🏠 Home ] ─── [ Shiro Anna ] -->
+    <header class="cross-web-header">
+      <div class="cross-web-header-container">
+        <!-- 🏠 Permanent Home Button -->
+        <button type="button" class="cross-web-home-btn" onclick="closeCrossWebApp()" title="Kembali ke Beranda JaneMarket" id="btnCrossWebHome">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </button>
+
+        <div class="cross-web-divider-v"></div>
+
+        <!-- Title & Status -->
+        <div class="cross-web-title-wrap">
+          <span class="cross-web-badge"><i class="fa-solid fa-globe" style="margin-right: 3px;"></i> Lintas Web</span>
+          <span class="cross-web-title" id="crossWebTitle">Shiro Anna</span>
+          <span class="cross-web-url-indicator" id="crossWebUrlIndicator"></span>
+        </div>
+
+        <!-- Control Actions -->
+        <div class="cross-web-actions">
+          <button type="button" class="cross-web-action-btn" onclick="reloadCrossWebApp()" title="Muat Ulang Halaman" id="btnCrossWebReload">
+            <i class="fa-solid fa-rotate-right" id="crossWebReloadIcon"></i>
+            <span class="nav-desktop-only">Refresh</span>
+          </button>
+          <button type="button" class="cross-web-action-btn" onclick="promptChangeCrossWebUrl()" title="Ubah Link URL" id="btnCrossWebChangeUrl">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span class="nav-desktop-only">Ganti URL</span>
+          </button>
+          <button type="button" class="cross-web-action-btn" onclick="openCrossWebExternal()" title="Buka di Tab Baru" id="btnCrossWebExternal">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span class="nav-desktop-only">Tab Baru</span>
+          </button>
+        </div>
+      </div>
+      <!-- Permanent Divider Line -->
+      <div class="cross-web-header-line"></div>
+    </header>
+
+    <!-- Viewer Body: Loading State / Error State / Config State / Embedded Iframe -->
+    <div class="cross-web-body">
+      <!-- Loading State Indicator -->
+      <div id="crossWebLoading" class="cross-web-overlay-state">
+        <div class="cross-web-state-card">
+          <div class="cross-web-spinner-ring"></div>
+          <div class="cross-web-state-title" id="crossWebLoadingTitle">Memuat Shiro Anna...</div>
+          <div class="cross-web-state-subtitle">Sedang memuat web app ke dalam viewer aplikasi...</div>
+          <div class="cross-web-loading-bar-wrap">
+            <div class="cross-web-loading-bar"></div>
+          </div>
+          <div style="margin-top: 16px; font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i>
+            <span>Sistem Embedded Viewer Aman</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error State (Timeout / X-Frame-Options Denied) -->
+      <div id="crossWebError" class="cross-web-overlay-state" style="display: none;">
+        <div class="cross-web-state-card">
+          <div class="cross-web-error-icon">
+            <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
+          </div>
+          <div class="cross-web-state-title" style="color: #f87171;">Gagal Memuat Web App</div>
+          <div class="cross-web-state-subtitle" id="crossWebErrorMessage">
+            Halaman web membutuhkan waktu terlalu lama untuk merespons atau server web eksternal membatasi penayangan di dalam frame (X-Frame-Options / CSP frame-ancestors).
+          </div>
+          <div class="cross-web-error-actions">
+            <button type="button" class="btn btn-primary btn-sm" onclick="reloadCrossWebApp()">
+              <i class="fa-solid fa-rotate-right"></i> Coba Lagi
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="openCrossWebExternal()">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka di Tab Baru
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="promptChangeCrossWebUrl()">
+              <i class="fa-solid fa-pen-to-square"></i> Ubah Link URL
+            </button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="closeCrossWebApp()">
+              <i class="fa-solid fa-house"></i> Kembali ke Home
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Config State (Ketika URL masih "[taruh link disini]") -->
+      <div id="crossWebConfig" class="cross-web-overlay-state" style="display: none;">
+        <div class="cross-web-state-card">
+          <div class="cross-web-setup-icon">
+            <i class="fa-solid fa-link" style="color: #38bdf8;"></i>
+          </div>
+          <div class="cross-web-state-title">Tautan Shiro Anna Belum Diatur</div>
+          <div class="cross-web-state-subtitle">
+            URL tombol saat ini masih berupa placeholder <code style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; color: #f59e0b; font-weight: 700;">[taruh link disini]</code>. Silakan masukkan tautan web app Shiro Anna yang ingin ditampilkan:
+          </div>
+
+          <form onsubmit="handleSaveCrossWebUrl(event)" style="margin-top: 16px; width: 100%;">
+            <div style="margin-bottom: 14px; text-align: left;">
+              <label style="font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px; display: block;">
+                URL / Tautan Web App:
+              </label>
+              <input
+                type="text"
+                id="crossWebUrlInput"
+                class="form-input"
+                placeholder="https://shiroanna.com atau link web app Anda"
+                style="width: 100%; padding: 10px 14px; font-size: 13px;"
+                required
+              />
+            </div>
+            <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+              <button type="submit" class="btn btn-primary btn-sm" style="padding: 9px 18px;">
+                <i class="fa-solid fa-play"></i> Simpan &amp; Muat Sekarang
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="closeCrossWebApp()">
+                <i class="fa-solid fa-house"></i> Kembali ke Home
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Embedded Iframe -->
+      <iframe
+        id="crossWebIframe"
+        class="cross-web-iframe"
+        title="Shiro Anna Web App Viewer"
+        allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads allow-modals"
+      ></iframe>
     </div>
   </div>
 
@@ -5729,6 +6267,33 @@
       <!-- Drawer Content -->
       <div class="drawer-body">
         
+        <!-- Section: Lintas Web (Item PALING ATAS) -->
+        <div class="drawer-section-lintas">
+          <div class="drawer-section-title" style="display: flex; align-items: center; justify-content: space-between;">
+            <span><i class="fa-solid fa-globe" style="color: #38bdf8; margin-right: 6px;"></i> LINTAS WEB</span>
+            <span style="font-size: 8.5px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 0.5px;">EMBEDDED</span>
+          </div>
+          <div class="drawer-nav-list">
+            <button type="button" class="drawer-item drawer-item-lintas" onclick="openCrossWebApp('Shiro Anna', '[taruh link disini]')" data-url="[taruh link disini]" id="btnNavShiroAnna" title="Buka Shiro Anna (Lintas Web Embedded Viewer)">
+              <div class="drawer-item-left">
+                <div class="drawer-lintas-icon">
+                  <i class="fa-solid fa-sparkles" style="color: #ec4899;"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 800; font-size: 13.5px; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+                    Shiro Anna
+                    <span class="lintas-live-badge">Live</span>
+                  </div>
+                  <div style="font-size: 10px; color: var(--text-muted); margin-top: 1px;">Akses Web App Lintas Platform</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-arrow-right" style="font-size: 11px; color: #ec4899;"></i>
+              </div>
+            </button>
+          </div>
+        </div>
+
         <!-- Section: Navigasi Toko -->
         <div>
           <div class="drawer-section-title">NAVIGASI TOKO</div>
@@ -13081,6 +13646,268 @@
         }
       }
     }
+
+    // ==========================================================================
+    // LINTAS WEB (EMBEDDED WEB APP VIEWER)
+    // ==========================================================================
+    // Tautan Web App Shiro Anna (Ganti nilai ini jika ingin memasang URL statis)
+    let SHIRO_ANNA_URL = "[taruh link disini]";
+    let currentCrossWebApp = {
+      name: 'Shiro Anna',
+      url: SHIRO_ANNA_URL
+    };
+    let crossWebLoadTimer = null;
+    let prevScrollYBeforeCrossWeb = 0;
+
+    function isPlaceholderUrl(url) {
+      if (!url) return true;
+      const clean = String(url).trim().toLowerCase();
+      return clean === '' || clean === '[taruh link disini]' || clean.includes('taruh link') || clean.startsWith('[');
+    }
+
+    function getEffectiveCrossWebUrl(appName, rawUrl) {
+      // 1. Cek penyimpanan lokal jika pernah dikonfigurasi pengguna
+      const storageKey = 'janemarket_crossweb_url_' + (appName || 'default').replace(/\s+/g, '_').toLowerCase();
+      const saved = localStorage.getItem(storageKey);
+      if (saved && saved.trim() && !isPlaceholderUrl(saved)) {
+        return saved.trim();
+      }
+      // 2. Jika rawUrl bukan placeholder, gunakan rawUrl
+      if (rawUrl && !isPlaceholderUrl(rawUrl)) {
+        return rawUrl.trim();
+      }
+      // 3. Gunakan konstanta SHIRO_ANNA_URL
+      return SHIRO_ANNA_URL;
+    }
+
+    function openCrossWebApp(appName = 'Shiro Anna', requestedUrl = '[taruh link disini]') {
+      // 1. Otomatis tutup hamburger drawer
+      closeSideMenu();
+      if (typeof playBeep === 'function') playBeep('pop');
+
+      // 2. Simpan posisi scroll beranda utama agar tidak terganggu
+      prevScrollYBeforeCrossWeb = window.scrollY || 0;
+
+      // 3. Tentukan URL yang akan dimuat
+      const finalUrl = getEffectiveCrossWebUrl(appName, requestedUrl);
+      currentCrossWebApp = {
+        name: appName,
+        url: finalUrl
+      };
+
+      // 4. Perbarui judul dan URL display di Top Bar permanen
+      const titleEl = document.getElementById('crossWebTitle');
+      const urlIndEl = document.getElementById('crossWebUrlIndicator');
+      const loadingTitleEl = document.getElementById('crossWebLoadingTitle');
+      if (titleEl) titleEl.textContent = appName;
+      if (loadingTitleEl) loadingTitleEl.textContent = `Memuat ${appName}...`;
+      if (urlIndEl) {
+        urlIndEl.textContent = isPlaceholderUrl(finalUrl) ? 'URL belum dikonfigurasi' : finalUrl;
+        urlIndEl.title = finalUrl;
+      }
+
+      // 5. Aktifkan mode Lintas Web (UI utama disembunyikan sementara)
+      document.body.classList.add('cross-web-active');
+      const viewer = document.getElementById('crossWebViewer');
+      if (viewer) viewer.style.display = 'flex';
+
+      // 6. Push history state untuk navigasi back button yang rapi
+      try {
+        if (window.location.hash !== '#lintas-web-shiro-anna') {
+          window.history.pushState({ view: 'crossWeb', app: appName }, '', '#lintas-web-shiro-anna');
+        }
+      } catch (e) {}
+
+      // 7. Muat konten web app
+      loadCrossWebContent(finalUrl);
+    }
+
+    function loadCrossWebContent(url) {
+      const iframe = document.getElementById('crossWebIframe');
+      const loading = document.getElementById('crossWebLoading');
+      const errorEl = document.getElementById('crossWebError');
+      const configEl = document.getElementById('crossWebConfig');
+
+      if (crossWebLoadTimer) {
+        clearTimeout(crossWebLoadTimer);
+        crossWebLoadTimer = null;
+      }
+
+      // Sembunyikan error dan config terlebih dahulu
+      if (errorEl) errorEl.style.display = 'none';
+      if (configEl) configEl.style.display = 'none';
+
+      // Cek apakah URL masih bernilai placeholder "[taruh link disini]"
+      if (isPlaceholderUrl(url)) {
+        if (loading) loading.style.display = 'none';
+        if (configEl) {
+          configEl.style.display = 'flex';
+          const input = document.getElementById('crossWebUrlInput');
+          if (input) {
+            input.value = '';
+            setTimeout(() => input.focus(), 150);
+          }
+        }
+        return;
+      }
+
+      // Format URL agar valid dengan protokol
+      let formattedUrl = url.trim();
+      if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
+        formattedUrl = 'https://' + formattedUrl;
+      }
+
+      // Tampilkan indikator pemuatan (Loading State)
+      if (loading) loading.style.display = 'flex';
+
+      // Muat ke dalam iframe
+      if (iframe) {
+        iframe.onload = function() {
+          // Hilangkan loading saat halaman berhasil terhubung
+          if (loading) loading.style.display = 'none';
+          if (crossWebLoadTimer) {
+            clearTimeout(crossWebLoadTimer);
+            crossWebLoadTimer = null;
+          }
+        };
+
+        iframe.onerror = function() {
+          handleCrossWebLoadError("Browser mendeteksi kegagalan saat memuat URL eksternal (kebijakan keamanan server seperti X-Frame-Options atau CSP frame-ancestors).");
+        };
+
+        // Safety timeout 15 detik jika respon terhambat
+        crossWebLoadTimer = setTimeout(() => {
+          if (loading && loading.style.display !== 'none') {
+            handleCrossWebLoadError("Proses memuat membutuhkan waktu lebih dari 15 detik. Web app tujuan kemungkinan membatasi penayangan di dalam frame (X-Frame-Options / CSP frame-ancestors).");
+          }
+        }, 15000);
+
+        try {
+          iframe.src = formattedUrl;
+        } catch (e) {
+          handleCrossWebLoadError("Tidak dapat memuat URL target: " + (e.message || ''));
+        }
+      }
+    }
+
+    function handleCrossWebLoadError(reason) {
+      const loading = document.getElementById('crossWebLoading');
+      const errorEl = document.getElementById('crossWebError');
+      const msgEl = document.getElementById('crossWebErrorMessage');
+      if (loading) loading.style.display = 'none';
+      if (errorEl) errorEl.style.display = 'flex';
+      if (msgEl && reason) msgEl.textContent = reason;
+      if (crossWebLoadTimer) {
+        clearTimeout(crossWebLoadTimer);
+        crossWebLoadTimer = null;
+      }
+    }
+
+    function reloadCrossWebApp() {
+      const icon = document.getElementById('crossWebReloadIcon');
+      if (icon) icon.classList.add('fa-spin');
+      if (typeof playBeep === 'function') playBeep('click');
+
+      const url = currentCrossWebApp.url || SHIRO_ANNA_URL;
+      loadCrossWebContent(url);
+
+      setTimeout(() => {
+        if (icon) icon.classList.remove('fa-spin');
+      }, 1000);
+    }
+
+    function promptChangeCrossWebUrl() {
+      const current = isPlaceholderUrl(currentCrossWebApp.url) ? '' : currentCrossWebApp.url;
+      const newUrl = prompt("Masukkan URL Web App Shiro Anna yang ingin dimuat:", current);
+      if (newUrl !== null && newUrl.trim() !== '') {
+        saveCustomCrossWebUrl(currentCrossWebApp.name, newUrl.trim());
+      }
+    }
+
+    function handleSaveCrossWebUrl(event) {
+      if (event) event.preventDefault();
+      const input = document.getElementById('crossWebUrlInput');
+      if (!input || !input.value.trim()) return;
+      saveCustomCrossWebUrl(currentCrossWebApp.name, input.value.trim());
+    }
+
+    function saveCustomCrossWebUrl(appName, url) {
+      if (!url) return;
+      const storageKey = 'janemarket_crossweb_url_' + (appName || 'default').replace(/\s+/g, '_').toLowerCase();
+      localStorage.setItem(storageKey, url);
+      currentCrossWebApp.url = url;
+
+      const urlIndEl = document.getElementById('crossWebUrlIndicator');
+      if (urlIndEl) {
+        urlIndEl.textContent = url;
+        urlIndEl.title = url;
+      }
+
+      if (typeof showToast === 'function') {
+        showToast(`Tautan ${appName} berhasil disimpan!`);
+      }
+      loadCrossWebContent(url);
+    }
+
+    function openCrossWebExternal() {
+      let url = currentCrossWebApp.url;
+      if (isPlaceholderUrl(url)) {
+        if (typeof showToast === 'function') showToast("URL belum ditentukan!");
+        promptChangeCrossWebUrl();
+        return;
+      }
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+      }
+      window.open(url, '_blank');
+    }
+
+    // Tombol Home Permanen: Kembali ke Beranda JaneMarket
+    function closeCrossWebApp(updateHistory = true) {
+      if (typeof playBeep === 'function') playBeep('pop');
+
+      // 1. Bersihkan timer & proses muat
+      if (crossWebLoadTimer) {
+        clearTimeout(crossWebLoadTimer);
+        crossWebLoadTimer = null;
+      }
+
+      // 2. Tutup viewer dan pulihkan tampilan UI utama
+      const viewer = document.getElementById('crossWebViewer');
+      if (viewer) viewer.style.display = 'none';
+      document.body.classList.remove('cross-web-active');
+
+      // 3. Kembalikan posisi scrolling web app utama persis seperti sebelumnya
+      window.scrollTo({
+        top: prevScrollYBeforeCrossWeb || 0,
+        behavior: 'instant'
+      });
+
+      // 4. Bersihkan hash navigasi browser jika diperlukan
+      if (updateHistory && window.location.hash === '#lintas-web-shiro-anna') {
+        try {
+          window.history.back();
+        } catch (e) {
+          window.location.hash = '';
+        }
+      }
+    }
+
+    // Tangani tombol back / forward browser
+    window.addEventListener('popstate', function(event) {
+      if (document.body.classList.contains('cross-web-active')) {
+        closeCrossWebApp(false);
+      } else if (window.location.hash === '#lintas-web-shiro-anna') {
+        openCrossWebApp('Shiro Anna', SHIRO_ANNA_URL);
+      }
+    });
+
+    // Cek deep link saat halaman selesai dimuat
+    window.addEventListener('DOMContentLoaded', function() {
+      if (window.location.hash === '#lintas-web-shiro-anna') {
+        setTimeout(() => openCrossWebApp('Shiro Anna', SHIRO_ANNA_URL), 500);
+      }
+    });
   </script>
 </body>
 </html>
