@@ -2219,6 +2219,37 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* WhatsApp Direct Redirect Toast & Banner */
+    .wa-redirect-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(140px);
+      background: #18181b;
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 20px rgba(37, 211, 102, 0.25);
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: 16px;
+      z-index: 100000;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 92vw;
+      width: 420px;
+    }
+    .wa-redirect-toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+    [data-theme="light"] .wa-redirect-toast {
+      background: #ffffff;
+      border-color: rgba(37, 211, 102, 0.5);
+      color: #0f172a;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2), 0 0 20px rgba(37, 211, 102, 0.25);
+    }
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
     /* Quick Sort & Filter Chips - Drag & Touch Scrollable */
     .sort-chips-container {
       display: flex;
@@ -5692,6 +5723,1292 @@
         height: calc(100dvh - 54px);
       }
     }
+
+    /* ==========================================================================
+       UI NEW (MODERN REFACTOR) STYLES
+       Spacious, breathable, modern layout with high contrast and smooth UX
+       ========================================================================== */
+    .ui-view-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      animation: uinFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes uinFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .uin-container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (max-width: 640px) {
+      .uin-container {
+        padding: 0 16px;
+      }
+    }
+
+    /* --- UI New Sticky Navbar --- */
+    .uin-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 11, 20, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    [data-theme="light"] .uin-navbar {
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    }
+    .uin-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      height: 72px;
+    }
+    .uin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .uin-brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.2s ease;
+    }
+    .uin-brand:hover .uin-brand-logo {
+      transform: scale(1.05);
+    }
+    .uin-brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+    }
+    [data-theme="light"] .uin-brand-title {
+      background: linear-gradient(135deg, #09090b 40%, #4338ca 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .uin-brand-subtitle {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .uin-brand-verified {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #10b981;
+      color: #ffffff;
+      font-size: 8px;
+    }
+
+    /* Nav Center Links & Capsule Search */
+    .uin-nav-center {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+      max-width: 540px;
+    }
+    .uin-search-capsule {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 0 16px;
+      height: 42px;
+      transition: all 0.2s ease;
+    }
+    [data-theme="light"] .uin-search-capsule {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    .uin-search-capsule:focus-within {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+    [data-theme="light"] .uin-search-capsule:focus-within {
+      background: #ffffff;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+    .uin-search-capsule i {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .uin-search-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-size: 13.5px;
+      font-family: inherit;
+    }
+    .uin-search-input::placeholder {
+      color: var(--text-muted);
+    }
+    .uin-search-clear {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 4px;
+      display: none;
+    }
+    .uin-search-clear:hover {
+      color: var(--text-primary);
+    }
+
+    /* Segmented UI Switcher Pill */
+    .uin-switcher-pill {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 3px;
+      gap: 2px;
+    }
+    [data-theme="light"] .uin-switcher-pill {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    .uin-switch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+    .uin-switch-btn:hover {
+      color: var(--text-primary);
+    }
+    .uin-switch-btn.active {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Actions Cluster */
+    .uin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .uin-btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    [data-theme="light"] .uin-btn-icon {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.08);
+      color: #09090b;
+    }
+    .uin-btn-icon:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+    [data-theme="light"] .uin-btn-icon:hover {
+      background: rgba(0, 0, 0, 0.07);
+    }
+    .uin-badge-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9999px;
+      background: var(--brand-primary);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--bg-primary);
+    }
+    .uin-btn-cart-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: #38bdf8;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .uin-btn-cart-pill:hover {
+      background: rgba(56, 189, 248, 0.2);
+      transform: translateY(-1px);
+    }
+    .uin-btn-wa-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 12px;
+      background: #25d366;
+      border: none;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    }
+    .uin-btn-wa-pill:hover {
+      background: #20ba5a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+    }
+
+    /* --- Hero Section (Modern Spacious Split) --- */
+    .uin-hero {
+      padding: 56px 0 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .uin-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .uin-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: #818cf8;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    [data-theme="light"] .uin-hero-badge {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+      color: #4338ca;
+    }
+    .uin-hero-title {
+      font-size: clamp(30px, 4.2vw, 46px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 18px;
+    }
+    .uin-hero-title span {
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .uin-hero-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+    .uin-hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .uin-metric-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    [data-theme="light"] .uin-metric-pill {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #1e293b;
+    }
+    .uin-hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .uin-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #ffffff;
+      font-size: 14.5px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+      transition: all 0.2s ease;
+    }
+    .uin-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(99, 102, 241, 0.45);
+    }
+    .uin-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    [data-theme="light"] .uin-btn-secondary {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      color: #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .uin-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+
+    /* Right Wing: Hero Interactive Spotlight Bento */
+    .uin-spotlight-box {
+      position: relative;
+    }
+    .uin-spotlight-card {
+      background: linear-gradient(145deg, rgba(21, 24, 46, 0.85), rgba(16, 18, 34, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.15);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="light"] .uin-spotlight-card {
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+      border-color: #e2e8f0;
+      box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.12);
+    }
+    .uin-spotlight-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .uin-spotlight-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #f97316;
+      background: rgba(249, 115, 22, 0.12);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .uin-spotlight-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #10b981;
+      font-weight: 700;
+    }
+    .uin-spotlight-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+    .uin-spotlight-media {
+      width: 100%;
+      height: 190px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      position: relative;
+      background: var(--bg-card);
+    }
+    .uin-spotlight-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .uin-spotlight-media:hover img {
+      transform: scale(1.04);
+    }
+    .uin-spotlight-title {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+    .uin-spotlight-perks {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .uin-spotlight-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 18px;
+    }
+    [data-theme="light"] .uin-spotlight-price-row {
+      border-top-color: #f1f5f9;
+    }
+    .uin-spotlight-price {
+      font-size: 22px;
+      font-weight: 800;
+      color: #06b6d4;
+    }
+    .uin-spotlight-orig {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-left: 8px;
+    }
+    .uin-spotlight-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 14px;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .uin-spotlight-btn:hover {
+      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* --- Perks Strip (4 Clean Value Cards) --- */
+    .uin-perks-section {
+      padding: 24px 0 48px 0;
+    }
+    .uin-perks-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .uin-perk-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+    [data-theme="light"] .uin-perk-card {
+      background: #ffffff;
+      border-color: #f1f5f9;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+    .uin-perk-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(99, 102, 241, 0.25);
+      transform: translateY(-2px);
+    }
+    [data-theme="light"] .uin-perk-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .uin-perk-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .uin-perk-icon.amber { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+    .uin-perk-icon.emerald { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+    .uin-perk-icon.cyan { background: rgba(6, 182, 212, 0.12); color: #06b6d4; }
+    .uin-perk-icon.purple { background: rgba(168, 85, 247, 0.12); color: #a855f7; }
+    .uin-perk-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .uin-perk-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* --- Filter & Storefront Hub (Ergonomic, Unified & Spacious) --- */
+    .uin-store-section {
+      padding: 16px 0 64px 0;
+    }
+    .uin-filter-card {
+      background: rgba(21, 24, 46, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(10px);
+    }
+    [data-theme="light"] .uin-filter-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .uin-filter-row-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .uin-category-capsules {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0;
+      scrollbar-width: none;
+    }
+    .uin-category-capsules::-webkit-scrollbar { display: none; }
+    .uin-cat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    [data-theme="light"] .uin-cat-btn {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #475569;
+    }
+    .uin-cat-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+    }
+    .uin-cat-btn.active {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+    .uin-cat-count {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.15);
+      color: inherit;
+    }
+    .uin-cat-btn.active .uin-cat-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+    .uin-sort-select {
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    [data-theme="light"] .uin-sort-select {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #1e293b;
+    }
+    .uin-filter-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    [data-theme="light"] .uin-filter-status-row {
+      border-top-color: #f1f5f9;
+    }
+    .uin-filter-reset-link {
+      color: #38bdf8;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .uin-filter-reset-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Product Grid & Cards (Modern, Breathable & Tactile) --- */
+    .uin-product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      gap: 26px;
+    }
+    .uin-card {
+      background: rgba(21, 24, 46, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+    }
+    [data-theme="light"] .uin-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    }
+    .uin-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.15);
+    }
+    [data-theme="light"] .uin-card:hover {
+      border-color: #94a3b8;
+      box-shadow: 0 16px 32px -8px rgba(99, 102, 241, 0.12);
+    }
+    .uin-card-media {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background: var(--bg-secondary);
+      overflow: hidden;
+    }
+    .uin-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .uin-card:hover .uin-card-img {
+      transform: scale(1.06);
+    }
+    .uin-card-topup-art {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.15));
+      color: #38bdf8;
+      font-size: 48px;
+    }
+    .uin-card-badge-left {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      letter-spacing: 0.3px;
+    }
+    .uin-card-rating {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      padding: 4px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fbbf24;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .uin-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .uin-card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .uin-stock-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .uin-stock-ready { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+    .uin-stock-limited { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+    .uin-stock-preorder { background: rgba(56, 189, 248, 0.12); color: #38bdf8; }
+    .uin-stock-soldout { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+    .uin-stock-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .uin-sold-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .uin-card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .uin-card-perks-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .uin-card-bottom {
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    [data-theme="light"] .uin-card-bottom {
+      border-top-color: #f1f5f9;
+    }
+    .uin-card-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .uin-card-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    [data-theme="light"] .uin-card-price {
+      color: #0284c7;
+    }
+    .uin-card-orig-price {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+    .uin-card-discount-tag {
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+    .uin-card-btn-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .uin-btn-card-cart {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    [data-theme="light"] .uin-btn-card-cart {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #1e293b;
+    }
+    .uin-btn-card-cart:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: scale(1.05);
+    }
+    .uin-btn-card-buy {
+      flex: 1;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border: none;
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.2s ease;
+    }
+    .uin-btn-card-buy:hover {
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* --- Promo Banner Section --- */
+    .uin-promo-section {
+      padding: 24px 0 64px 0;
+    }
+    .uin-promo-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(236, 72, 153, 0.12) 100%), #101222;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 24px;
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="light"] .uin-promo-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(236, 72, 153, 0.06) 100%), #ffffff;
+      border-color: #c7d2fe;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08);
+    }
+    .uin-promo-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #ec4899;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(236, 72, 153, 0.25);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+    .uin-promo-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .uin-promo-desc {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.6;
+    }
+    .uin-promo-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* --- Reviews & Testimonials Section --- */
+    .uin-reviews-section {
+      padding: 24px 0 64px 0;
+    }
+    .uin-section-header {
+      margin-bottom: 28px;
+    }
+    .uin-section-tag {
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--brand-primary);
+      margin-bottom: 6px;
+    }
+    .uin-section-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .uin-reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .uin-review-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    [data-theme="light"] .uin-review-card {
+      background: #ffffff;
+      border-color: #f1f5f9;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+    }
+    .uin-review-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .uin-review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .uin-review-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .uin-review-verified {
+      font-size: 11px;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .uin-review-stars {
+      color: #fbbf24;
+      font-size: 12px;
+      margin: 8px 0;
+    }
+    .uin-review-quote {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .uin-review-prod-tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    /* --- Modern FAQ Section --- */
+    .uin-faq-section {
+      padding: 24px 0 64px 0;
+    }
+    .uin-faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .uin-faq-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    [data-theme="light"] .uin-faq-card {
+      background: #ffffff;
+      border-color: #f1f5f9;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+    .uin-faq-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+    .uin-faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .uin-faq-card i {
+      transition: transform 0.2s ease;
+      color: var(--text-muted);
+    }
+    .uin-faq-card.open i {
+      transform: rotate(180deg);
+      color: var(--brand-primary);
+    }
+    .uin-faq-a {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-top: 12px;
+      display: none;
+    }
+    .uin-faq-card.open .uin-faq-a {
+      display: block;
+      animation: uinFadeIn 0.2s ease;
+    }
+
+    /* --- Modern Footer (UI New) --- */
+    .uin-footer {
+      background: rgba(10, 11, 20, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 56px 0 32px 0;
+      color: var(--text-secondary);
+    }
+    [data-theme="light"] .uin-footer {
+      background: #f8fafc;
+      border-top-color: #e2e8f0;
+      color: #64748b;
+    }
+    .uin-footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .uin-footer-brand p {
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin-top: 14px;
+      max-width: 320px;
+    }
+    .uin-footer-col h5 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 16px;
+    }
+    .uin-footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .uin-footer-links a {
+      font-size: 13.5px;
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+    .uin-footer-links a:hover {
+      color: var(--brand-primary);
+    }
+    .uin-footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    [data-theme="light"] .uin-footer-bottom {
+      border-top-color: #e2e8f0;
+    }
+
+    /* Responsive Breakpoints for UI New */
+    @media (max-width: 1024px) {
+      .uin-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .uin-spotlight-box {
+        max-width: 480px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .uin-perks-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .uin-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .uin-nav-center {
+        display: none;
+      }
+      .uin-promo-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+      }
+      .uin-promo-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+      .uin-promo-actions button {
+        width: 100%;
+      }
+      .floating-ui-switcher {
+        bottom: 84px; /* above bottom navigation */
+        left: 16px;
+        padding: 7px 12px;
+      }
+      .uin-product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+      }
+      .uin-card-body {
+        padding: 16px;
+      }
+    }
+    @media (max-width: 480px) {
+      .uin-perks-grid {
+        grid-template-columns: 1fr;
+      }
+      .uin-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .uin-product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -5855,6 +7172,447 @@
     </div>
   </div>
 
+  <!-- ==================== UI NEW VIEW (MODERN REFACTOR) ==================== -->
+  <div id="uiNewView" class="ui-view-wrapper">
+    <!-- UI New Sticky Navbar -->
+    <header class="uin-navbar">
+      <div class="uin-container uin-nav-inner">
+        <!-- Brand -->
+        <a href="#" class="uin-brand" onclick="resetFilter(); window.scrollTo({top:0, behavior:'smooth'}); return false;">
+          <img src="https://files.catbox.moe/3tt0xl.png" alt="JaneMurphy" class="uin-brand-logo brand-logo-img" />
+          <div>
+            <h1 class="uin-brand-title" id="uinNavStoreName">JaneMurphy</h1>
+            <div class="uin-brand-subtitle">
+              <span id="uinNavStoreTagline">PREMIUM APPLICATIONS</span>
+              <span class="uin-brand-verified" title="Terverifikasi & Terpercaya"><i class="fa-solid fa-check"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Center Search Capsule -->
+        <div class="uin-nav-center">
+          <div class="uin-search-capsule">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="uinSearchInput" class="uin-search-input" placeholder="Cari aplikasi premium, game, atau jasa..." oninput="handleUINewSearch(this.value)" />
+            <button type="button" class="uin-search-clear" id="uinSearchClear" onclick="clearUINewSearch()" title="Hapus Pencarian">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Actions & UI Switcher -->
+        <div class="uin-nav-actions">
+          <!-- Segmented UI Version Switcher -->
+          <div class="uin-switcher-pill" title="Pilih Versi Tampilan Antarmuka">
+            <button type="button" class="uin-switch-btn active" id="uinNavSwitchNew" onclick="switchUIVersion('new')">
+              <i class="fa-solid fa-sparkles" style="color: #fef08a;"></i> UI New
+            </button>
+            <button type="button" class="uin-switch-btn" id="uinNavSwitchOld" onclick="switchUIVersion('old')">
+              <i class="fa-solid fa-clock-rotate-left"></i> UI Old
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button type="button" class="uin-btn-icon" onclick="toggleTheme()" id="uinBtnTheme" title="Ganti Tema (Gelap / Terang)">
+            <i class="fa-solid fa-moon" id="uinThemeIcon" style="color: #60a5fa;"></i>
+          </button>
+
+          <!-- Cart Pill -->
+          <button type="button" class="uin-btn-cart-pill" onclick="openCartModal()" title="Lihat Keranjang Belanja">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="nav-desktop-only">Keranjang</span>
+            <span class="uin-badge-count" id="uinCartBadgeCount">0</span>
+          </button>
+
+          <!-- Direct WhatsApp Admin -->
+          <a href="https://wa.me/6283823567366" target="_blank" rel="noopener noreferrer" class="uin-btn-wa-pill nav-desktop-only" id="uinBtnDirectWa" title="Chat WhatsApp Admin">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+
+          <!-- User Profile / Auth Button -->
+          <button type="button" class="uin-btn-icon" id="uinNavUserBtn" onclick="handleUserNavClick()" title="Akun Saya">
+            <div id="uinNavUserAvatar" style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; background: rgba(255,255,255,0.1);">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </button>
+
+          <!-- Hamburger Menu Button -->
+          <button type="button" class="uin-btn-icon" onclick="openSideMenu()" title="Buka Menu Lengkap">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- UI New Hero Section -->
+    <section class="uin-hero">
+      <div class="uin-container uin-hero-grid">
+        <!-- Hero Left Info -->
+        <div>
+          <div class="uin-hero-badge">
+            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Toko Digital Resmi & Terverifikasi
+          </div>
+          <h2 class="uin-hero-title">
+            Solusi Kebutuhan <span>Digital Premium</span> & Topup Instan
+          </h2>
+          <p class="uin-hero-desc">
+            Akses aplikasi premium original legal bergaransi penuh, topup voucher game favorit termurah kilat 1-5 menit, dan jasa desain promosi profesional siap pakai.
+          </p>
+
+          <div class="uin-hero-metrics">
+            <div class="uin-metric-pill"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> Proses 1-5 Menit</div>
+            <div class="uin-metric-pill"><i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> 100% Legal Bergaransi</div>
+            <div class="uin-metric-pill"><i class="fa-solid fa-qrcode" style="color: #06b6d4;"></i> QRIS All Payment</div>
+            <div class="uin-metric-pill"><i class="fa-solid fa-headset" style="color: #a855f7;"></i> Layanan CS 24 Jam</div>
+          </div>
+
+          <div class="uin-hero-actions">
+            <a href="#uinStoreCatalog" class="uin-btn-primary">
+              <i class="fa-solid fa-layer-group"></i> Jelajahi Katalog
+            </a>
+            <button type="button" class="uin-btn-secondary" onclick="openPaymentModal()">
+              <i class="fa-solid fa-qrcode"></i> Info Pembayaran QRIS
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Right Spotlight -->
+        <div class="uin-spotlight-box">
+          <div class="uin-spotlight-card" id="uinSpotlightCard">
+            <div class="uin-spotlight-header">
+              <span class="uin-spotlight-badge"><i class="fa-solid fa-fire"></i> PRODUK TERPOPULER</span>
+              <span class="uin-spotlight-live"><span class="uin-spotlight-dot"></span> Ready Stock</span>
+            </div>
+            <div class="uin-spotlight-media" id="uinSpotlightMedia">
+              <img src="https://files.catbox.moe/k3i476.jpg" alt="Spotlight" id="uinSpotlightImg" />
+            </div>
+            <h4 class="uin-spotlight-title" id="uinSpotlightTitle">YouTube Premium 1 Bulan</h4>
+            <div class="uin-spotlight-perks" id="uinSpotlightPerks">
+              <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Tanpa Iklan • Bebas Download • Garansi Penuh
+            </div>
+            <div class="uin-spotlight-price-row">
+              <div>
+                <span class="uin-spotlight-price" id="uinSpotlightPrice">Rp 15.000</span>
+                <span class="uin-spotlight-orig" id="uinSpotlightOrigPrice">Rp 45.000</span>
+              </div>
+              <span style="font-size: 11px; color: #10b981; font-weight: 700;">★ 5.0 (Terverifikasi)</span>
+            </div>
+            <button type="button" class="uin-spotlight-btn" id="uinSpotlightBuyBtn" onclick="handleSpotlightBuy()">
+              <i class="fa-solid fa-bag-shopping"></i> Beli Sekarang
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perks Strip (4 Clean Value Cards) -->
+    <section class="uin-perks-section">
+      <div class="uin-container uin-perks-grid">
+        <div class="uin-perk-card">
+          <div class="uin-perk-icon amber"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <div class="uin-perk-title">Kilat 1 - 5 Menit</div>
+            <div class="uin-perk-desc">Pesanan diproses secara cepat dan otomatis langsung ke akun Anda.</div>
+          </div>
+        </div>
+        <div class="uin-perk-card">
+          <div class="uin-perk-icon emerald"><i class="fa-solid fa-shield-halved"></i></div>
+          <div>
+            <div class="uin-perk-title">Garansi Penuh</div>
+            <div class="uin-perk-desc">Jaminan replace atau panduan penuh jika terjadi kendala selama masa aktif.</div>
+          </div>
+        </div>
+        <div class="uin-perk-card">
+          <div class="uin-perk-icon cyan"><i class="fa-solid fa-qrcode"></i></div>
+          <div>
+            <div class="uin-perk-title">QRIS All Payment</div>
+            <div class="uin-perk-desc">Bisa scan dari BCA, Mandiri, BRI, BNI, DANA, GoPay, OVO, ShopeePay & SeaBank.</div>
+          </div>
+        </div>
+        <div class="uin-perk-card">
+          <div class="uin-perk-icon purple"><i class="fa-solid fa-headset"></i></div>
+          <div>
+            <div class="uin-perk-title">Bantuan Siaga</div>
+            <div class="uin-perk-desc">Tim CS ramah siap membantu via WhatsApp kapan saja Anda butuh.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Catalog & Discovery Hub -->
+    <section class="uin-store-section" id="uinStoreCatalog">
+      <div class="uin-container">
+        <!-- Section Title Header -->
+        <div class="uin-section-header">
+          <div class="uin-section-tag"><i class="fa-solid fa-sparkles"></i> KATALOG STORE</div>
+          <h3 class="uin-section-title">Temukan Produk & Layanan Favorit</h3>
+        </div>
+
+        <!-- Filter & Control Card -->
+        <div class="uin-filter-card">
+          <div class="uin-filter-row-top">
+            <!-- Category Pills -->
+            <div class="uin-category-capsules" id="uinCategoryCapsules">
+              <button type="button" class="uin-cat-btn active" data-cat="all" onclick="filterCategoryNew('all', this)">
+                <i class="fa-solid fa-border-all"></i> Semua Produk <span class="uin-cat-count" id="uin-count-all">0</span>
+              </button>
+              <button type="button" class="uin-cat-btn" data-cat="Aplikasi Premium" onclick="filterCategoryNew('Aplikasi Premium', this)">
+                <i class="fa-solid fa-mobile-screen"></i> Aplikasi Premium <span class="uin-cat-count" id="uin-count-app">0</span>
+              </button>
+              <button type="button" class="uin-cat-btn" data-cat="Topup Game" onclick="filterCategoryNew('Topup Game', this)">
+                <i class="fa-solid fa-gamepad"></i> Topup Game <span class="uin-cat-count" id="uin-count-game">0</span>
+              </button>
+              <button type="button" class="uin-cat-btn" data-cat="Jasa Design Poster" onclick="filterCategoryNew('Jasa Design Poster', this)">
+                <i class="fa-solid fa-palette"></i> Jasa Desain <span class="uin-cat-count" id="uin-count-design">0</span>
+              </button>
+            </div>
+
+            <!-- Sort Select -->
+            <div class="uin-sort-wrap">
+              <select id="uinSortSelect" class="uin-sort-select" onchange="handleSortSelectNew(this.value)">
+                <option value="default">Urutkan: Rekomendasi</option>
+                <option value="price-asc">Harga: Termurah</option>
+                <option value="price-desc">Harga: Tertinggi</option>
+                <option value="rating-desc">Rating: Tertinggi</option>
+                <option value="sold-desc">Terlaris (Paling Populer)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Active Filter Status & Reset -->
+          <div class="uin-filter-status-row">
+            <div id="uinFilterStatusText">Menampilkan semua produk</div>
+            <a class="uin-filter-reset-link" onclick="resetFilterNew()">
+              <i class="fa-solid fa-rotate-left"></i> Reset Filter
+            </a>
+          </div>
+        </div>
+
+        <!-- Modern Product Grid Container -->
+        <div class="uin-product-grid" id="productGridNew">
+          <!-- Populated dynamically by renderProducts() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Promo Showcase Banner -->
+    <section class="uin-promo-section">
+      <div class="uin-container">
+        <div class="uin-promo-card">
+          <div>
+            <span class="uin-promo-badge"><i class="fa-solid fa-bolt"></i> PROMO SPESIAL BULAN INI</span>
+            <h3 class="uin-promo-title" id="uinBannerTitle">Diskon Ekstra & Bonus Aktivasi Kilat</h3>
+            <p class="uin-promo-desc" id="uinBannerDesc">
+              Dapatkan potongan harga spesial untuk pembelian paket tahunan dan topup game nominal besar. Salin kode kupon atau hubungi admin WhatsApp untuk klaim!
+            </p>
+          </div>
+          <div class="uin-promo-actions">
+            <button type="button" class="uin-btn-secondary" onclick="copyToClipboard('JANEMURPHYPRO', 'Kode Promo')">
+              <i class="fa-solid fa-ticket"></i> Salin Kupon: JANEMURPHYPRO
+            </button>
+            <a href="https://wa.me/6283823567366?text=assalamu%27alaikum%20min%20mau%20klaim%20promo%20JANEMURPHYPRO" target="_blank" rel="noopener noreferrer" class="uin-btn-primary" id="uinBannerWaBtn">
+              <i class="fa-brands fa-whatsapp"></i> Klaim via WA
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verified Customer Reviews Section -->
+    <section class="uin-reviews-section">
+      <div class="uin-container">
+        <div class="uin-section-header">
+          <div class="uin-section-tag"><i class="fa-solid fa-star" style="color: #fbbf24;"></i> TESTIMONI PEMBELI</div>
+          <h3 class="uin-section-title">Apa Kata Mereka Tentang Layanan Kami</h3>
+        </div>
+
+        <div class="uin-reviews-grid">
+          <div class="uin-review-card">
+            <div>
+              <div class="uin-review-user">
+                <div class="uin-review-avatar">FR</div>
+                <div>
+                  <div class="uin-review-name">Fajar Ramadhan</div>
+                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
+                </div>
+              </div>
+              <div class="uin-review-stars">★★★★★</div>
+              <p class="uin-review-quote">"Langganan YouTube Premium disini ga pernah kecewa, baru transfer hitungan menit udah langsung aktif di email pribadi. Mantap!"</p>
+            </div>
+            <div class="uin-review-prod-tag">YouTube Premium 1 Bulan</div>
+          </div>
+
+          <div class="uin-review-card">
+            <div>
+              <div class="uin-review-user">
+                <div class="uin-review-avatar" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">AS</div>
+                <div>
+                  <div class="uin-review-name">Annisa Salma</div>
+                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
+                </div>
+              </div>
+              <div class="uin-review-stars">★★★★★</div>
+              <p class="uin-review-quote">"Canva Pro nya awet banget tanpa kendala. Garansinya beneran amanah pas ada update akun langsung dibantu admin ramah."</p>
+            </div>
+            <div class="uin-review-prod-tag">Canva Pro Lifetime / 1 Thn</div>
+          </div>
+
+          <div class="uin-review-card">
+            <div>
+              <div class="uin-review-user">
+                <div class="uin-review-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">DP</div>
+                <div>
+                  <div class="uin-review-name">Dimas Pratama</div>
+                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
+                </div>
+              </div>
+              <div class="uin-review-stars">★★★★★</div>
+              <p class="uin-review-quote">"Topup Diamond ML fast respon banget! Ga nyampe 3 menit diamond udah masuk ke akun. Harganya juga jauh lebih murah dari in-game."</p>
+            </div>
+            <div class="uin-review-prod-tag">Topup Game Mobile Legends</div>
+          </div>
+
+          <div class="uin-review-card">
+            <div>
+              <div class="uin-review-user">
+                <div class="uin-review-avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">RN</div>
+                <div>
+                  <div class="uin-review-name">Rizky Nugraha</div>
+                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
+                </div>
+              </div>
+              <div class="uin-review-stars">★★★★★</div>
+              <p class="uin-review-quote">"Desain poster promosi buat olshop saya hasilnya keren banget, estetik dan revisinya cepat. Rekomen buat yang butuh desain kilat."</p>
+            </div>
+            <div class="uin-review-prod-tag">Jasa Design Poster Grafis</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern FAQ Section -->
+    <section class="uin-faq-section">
+      <div class="uin-container">
+        <div class="uin-section-header">
+          <div class="uin-section-tag"><i class="fa-solid fa-circle-question"></i> PERTANYAAN UMUM</div>
+          <h3 class="uin-section-title">Hal yang Sering Ditanyakan (FAQ)</h3>
+        </div>
+
+        <div class="uin-faq-grid">
+          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
+            <div class="uin-faq-q">
+              <span>Bagaimana cara melakukan pembelian?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="uin-faq-a">
+              Pilih produk yang Anda inginkan pada katalog, klik tombol <strong>Beli Sekarang</strong>, tentukan varian, isi nomor WhatsApp dan catatan, lalu selesaikan pembayaran via QRIS All Payment atau E-Wallet.
+            </div>
+          </div>
+
+          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
+            <div class="uin-faq-q">
+              <span>Berapa lama proses aktivasi produk?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="uin-faq-a">
+              Rata-rata pesanan selesai dalam 1 - 5 menit setelah bukti pembayaran dikonfirmasi melalui WhatsApp admin kami.
+            </div>
+          </div>
+
+          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
+            <div class="uin-faq-q">
+              <span>Apakah produk bergaransi resmi?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="uin-faq-a">
+              Ya, seluruh aplikasi premium dan layanan kami memiliki garansi penuh sesuai masa aktif produk. Jika terjadi kendala, admin akan langsung membantu hingga tuntas.
+            </div>
+          </div>
+
+          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
+            <div class="uin-faq-q">
+              <span>Metode pembayaran apa saja yang didukung?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="uin-faq-a">
+              Kami mendukung <strong>QRIS All Payment</strong> yang dapat discan dari semua M-Banking (BCA, Mandiri, BRI, BNI, BSI) dan E-Wallet (DANA, GoPay, OVO, ShopeePay, LinkAja, SeaBank).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern Footer (UI New) -->
+    <footer class="uin-footer">
+      <div class="uin-container">
+        <div class="uin-footer-grid">
+          <div class="uin-footer-brand">
+            <a href="#" class="uin-brand" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+              <img src="https://files.catbox.moe/3tt0xl.png" alt="JaneMurphy" class="uin-brand-logo brand-logo-img" />
+              <div>
+                <h4 class="uin-brand-title" id="uinFooterStoreName">JaneMurphy</h4>
+                <div class="uin-brand-subtitle">PREMIUM APPLICATIONS & TOPUP</div>
+              </div>
+            </a>
+            <p>
+              Platform terpercaya penyedia aplikasi premium original, voucher game termurah proses kilat, dan layanan desain kreatif dengan garansi amanah.
+            </p>
+          </div>
+
+          <div class="uin-footer-col">
+            <h5>Kategori</h5>
+            <div class="uin-footer-links">
+              <a onclick="filterCategoryNew('Aplikasi Premium')"><i class="fa-solid fa-mobile-screen"></i> Aplikasi Premium</a>
+              <a onclick="filterCategoryNew('Topup Game')"><i class="fa-solid fa-gamepad"></i> Topup Game</a>
+              <a onclick="filterCategoryNew('Jasa Design Poster')"><i class="fa-solid fa-palette"></i> Jasa Desain Poster</a>
+              <a onclick="filterCategoryNew('all')"><i class="fa-solid fa-layer-group"></i> Semua Produk</a>
+            </div>
+          </div>
+
+          <div class="uin-footer-col">
+            <h5>Bantuan & Menu</h5>
+            <div class="uin-footer-links">
+              <a onclick="openPaymentModal()"><i class="fa-solid fa-qrcode"></i> Cara Bayar QRIS</a>
+              <a onclick="handleUserNavClick()"><i class="fa-solid fa-user"></i> Akun / Transaksi Saya</a>
+              <a onclick="handleAdminBtnClick()"><i class="fa-solid fa-lock"></i> Portal Admin</a>
+              <a onclick="switchUIVersion('old')"><i class="fa-solid fa-clock-rotate-left"></i> Beralih ke UI Old</a>
+            </div>
+          </div>
+
+          <div class="uin-footer-col">
+            <h5>Kontak & CS</h5>
+            <div class="uin-footer-links">
+              <a href="https://wa.me/6283823567366" target="_blank" rel="noopener noreferrer" style="color: #22c55e; font-weight: 700;">
+                <i class="fa-brands fa-whatsapp"></i> +62 838-2356-7366
+              </a>
+              <span style="font-size: 12px; color: var(--text-muted);">Siaga: Senin - Minggu (24 Jam)</span>
+              <span style="font-size: 12px; color: var(--text-muted);">Garansi: 100% Aman & Terpercaya</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="uin-footer-bottom">
+          <div>
+            © <span class="uin-year">2026</span> <strong id="uinFooterCopyName">JaneMurphy</strong>. Seluruh hak cipta dilindungi undang-undang.
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <span style="font-size: 12px; color: var(--text-muted);">Tampilan:</span>
+            <button type="button" class="btn btn-xs" onclick="switchUIVersion('old')" style="font-size: 11px; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--text-secondary); cursor: pointer;">
+              <i class="fa-solid fa-clock-rotate-left"></i> UI Old
+            </button>
+            <button type="button" class="btn btn-xs" onclick="switchUIVersion('new')" style="font-size: 11px; padding: 4px 10px; border-radius: 6px; background: #6366f1; border: none; color: #fff; font-weight: 700; cursor: pointer;">
+              <i class="fa-solid fa-sparkles"></i> UI New
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- ==================== END UI NEW VIEW ==================== -->
+
+  <!-- ==================== UI OLD VIEW (ORIGINAL PRESERVED) ==================== -->
+  <div id="uiOldView" class="ui-view-wrapper" style="display: none;">
   <!-- Navbar -->
   <header class="navbar">
     <div class="navbar-container">
@@ -5875,6 +7633,11 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Switch to UI New Button -->
+        <button type="button" class="btn btn-sm" onclick="switchUIVersion('new')" id="btnSwitchToUiNew" title="Beralih ke UI New (Modern Refactor)" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; font-weight: 700; border: none; box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4); display: inline-flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-sparkles" style="color: #fef08a;"></i> <span class="nav-desktop-only">UI New</span>
+        </button>
+
         <!-- Theme Toggle Button (Dark / Light Mode) -->
         <button class="btn btn-outline btn-sm" onclick="toggleTheme()" id="btnThemeNav" title="Ganti Tema (Gelap / Terang)">
           <i class="fa-solid fa-moon" id="themeNavIcon" style="color: #60a5fa;"></i>
@@ -6246,6 +8009,8 @@
       </div>
     </div>
   </section>
+  </div>
+  <!-- ==================== END UI OLD VIEW ==================== -->
 
   <!-- ==================== SIDE MENU DRAWER (GARIS TIGA / HAMBURGER) ==================== -->
   <div class="side-drawer-overlay" id="sideDrawerOverlay" onclick="closeSideMenu(event)">
@@ -6267,6 +8032,22 @@
       <!-- Drawer Content -->
       <div class="drawer-body">
         
+        <!-- Section: Pilihan Tampilan (UI Switcher) -->
+        <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 14px; padding: 12px; margin-bottom: 16px;">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #818cf8; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+            <span><i class="fa-solid fa-sliders" style="margin-right: 6px;"></i> PILIHAN TAMPILAN</span>
+            <span id="drawerCurrentUiBadge" style="font-size: 9px; padding: 2px 6px; border-radius: 4px; background: #6366f1; color: #fff;">UI New</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button type="button" id="drawerBtnUiNew" onclick="switchUIVersion('new'); closeSideMenu();" style="padding: 8px 10px; border-radius: 9px; border: 1px solid rgba(99, 102, 241, 0.4); background: #6366f1; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fa-solid fa-sparkles"></i> UI New
+            </button>
+            <button type="button" id="drawerBtnUiOld" onclick="switchUIVersion('old'); closeSideMenu();" style="padding: 8px 10px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.05); color: var(--text-primary); font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fa-solid fa-clock-rotate-left"></i> UI Old
+            </button>
+          </div>
+        </div>
+
         <!-- Section: Lintas Web (Item PALING ATAS) -->
         <div class="drawer-section-lintas">
           <div class="drawer-section-title" style="display: flex; align-items: center; justify-content: space-between;">
@@ -6944,7 +8725,7 @@
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                 <div class="form-group">
                   <label class="form-label">Nomor WhatsApp Admin (Format 628xxx)</label>
-                  <input type="text" id="settingWhatsapp" class="form-input" placeholder="6281234567890" required>
+                  <input type="text" id="settingWhatsapp" class="form-input" placeholder="6283823567366" required>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Email Google Owner Admin</label>
@@ -7334,12 +9115,15 @@
               <span style="font-size: 11.5px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-share-nodes" style="color: #60a5fa;"></i> Bagikan Produk:
               </span>
-              <div style="display: flex; gap: 6px;">
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                 <button type="button" class="btn btn-outline btn-sm" onclick="copyCurrentProductLink()" title="Salin Tautan Produk">
                   <i class="fa-solid fa-link"></i> Salin Link
                 </button>
                 <button type="button" class="btn btn-outline btn-sm" onclick="shareCurrentProduct()" title="Bagikan ke WhatsApp/Media Sosial">
                   <i class="fa-brands fa-whatsapp"></i> Share
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="inquireCurrentProductViaWhatsApp()" title="Tanya ketersediaan produk ke WhatsApp CS" style="color: #25d366; border-color: rgba(37, 211, 102, 0.4);">
+                  <i class="fa-brands fa-whatsapp"></i> Tanya Stok
                 </button>
               </div>
             </div>
@@ -7831,7 +9615,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" id="uiOldFooter" style="display: none;">
     <div class="footer-content">
       <div class="brand-logo">
         <img src="https://files.catbox.moe/3tt0xl.png" alt="JaneMurphy" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" />
@@ -7885,15 +9669,15 @@
         storeName: "JaneMurphy",
         storeTagline: "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
         storeLogo: "https://files.catbox.moe/3tt0xl.png",
-        whatsappNumber: "6281234567890",
+        whatsappNumber: "6283823567366",
         adminPin: "123456",
         qrisImage: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
         qrisMerchantName: "JANEMURPHY OFFICIAL (QRIS ALL PAYMENT)",
         paymentMethods: [
-          { id: "dana", name: "DANA", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
-          { id: "gopay", name: "GoPay", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" },
-          { id: "ovo", name: "OVO", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-coins" },
-          { id: "shopeepay", name: "ShopeePay", number: "081234567890", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-bag-shopping" },
+          { id: "dana", name: "DANA", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
+          { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" },
+          { id: "ovo", name: "OVO", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-coins" },
+          { id: "shopeepay", name: "ShopeePay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-bag-shopping" },
           { id: "bca", name: "Bank BCA", number: "8735091234", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
           { id: "mandiri", name: "Bank Mandiri", number: "137001928374", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
           { id: "seabank", name: "SeaBank", number: "90192837465", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" }
@@ -8194,10 +9978,139 @@
       }
     } catch (e) {}
 
+    // Pastikan nomor WhatsApp resmi admin selalu diarahkan ke nomor owner: 6283823567366
+    if (!storeState.settings) storeState.settings = {};
+    if (!storeState.settings.whatsappNumber || 
+        storeState.settings.whatsappNumber === '6281234567890' || 
+        storeState.settings.whatsappNumber === '62895325602169' ||
+        storeState.settings.whatsappNumber.includes('1234567890')) {
+      storeState.settings.whatsappNumber = '6283823567366';
+    }
+
     function persistLocalState() {
       try {
         localStorage.setItem('jm_store_data', JSON.stringify(storeState));
       } catch (e) {}
+    }
+
+    // ========================================================
+    // ENGINE WHATSAPP & DIRECT MESSAGING (NOMOR RESMI: +6283823567366)
+    // ========================================================
+    function getAdminWhatsAppNumber() {
+      let num = (storeState && storeState.settings && storeState.settings.whatsappNumber) 
+                ? String(storeState.settings.whatsappNumber).trim() 
+                : '6283823567366';
+      num = num.replace(/[^0-9]/g, '');
+      if (num.startsWith('0')) {
+        num = '62' + num.slice(1);
+      } else if (num.startsWith('8')) {
+        num = '62' + num;
+      }
+      if (num === '6281234567890' || num === '62895325602169' || !num) {
+        num = '6283823567366';
+      }
+      return num;
+    }
+
+    function showWhatsAppRedirectToast(waUrl, customToastMsg) {
+      const toastId = 'waRedirectToast';
+      let existing = document.getElementById(toastId);
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.id = toastId;
+      toast.className = 'wa-redirect-toast';
+      toast.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-brands fa-whatsapp" style="color: #25d366; font-size: 26px; animation: pulseGreen 1.5s infinite;"></i>
+            <div>
+              <div style="font-weight: 800; font-size: 13.5px; color: inherit;">${customToastMsg || "Mengarahkan ke WhatsApp..."}</div>
+              <div style="font-size: 11px; color: #10b981; font-weight: 600;">CS WhatsApp: +62 838-2356-7366</div>
+            </div>
+          </div>
+          <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-sm" style="padding: 7px 14px; font-size: 12px; border-radius: 99px; text-decoration: none; white-space: nowrap; font-weight: 700;">
+            Buka WA <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; margin-left: 4px;"></i>
+          </a>
+        </div>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.classList.add('show'), 15);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => { try { toast.remove(); } catch(e){} }, 400);
+      }, 7000);
+    }
+
+    function openWhatsAppDirect(waUrl, customToastMsg = "Mengarahkan ke WhatsApp...") {
+      if (!waUrl) return;
+      if (typeof playBeep === 'function') playBeep('purchase');
+
+      // Tampilkan toast dengan fallback tombol Buka WA agar 100% anti-blokir popup
+      showWhatsAppRedirectToast(waUrl, customToastMsg);
+
+      // Buka langsung secara sinkron tanpa setTimeout agar user gesture token tidak kadaluarsa
+      let opened = false;
+      try {
+        const win = window.open(waUrl, '_blank');
+        if (win && !win.closed && typeof win.closed !== 'undefined') {
+          opened = true;
+        }
+      } catch (e) {
+        console.warn("Direct window.open notice:", e);
+      }
+
+      if (!opened) {
+        try {
+          const a = document.createElement('a');
+          a.href = waUrl;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(() => { try { a.remove(); } catch(e){} }, 500);
+          opened = true;
+        } catch (e2) {
+          console.warn("Anchor fallback notice:", e2);
+        }
+      }
+
+      // Deteksi browser mobile / webview jika popup tetap diblokir
+      const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile && !opened) {
+        try {
+          window.location.assign(waUrl);
+        } catch (e3) {
+          window.location.href = waUrl;
+        }
+      }
+    }
+
+    function inquireProductViaWhatsApp(productId) {
+      const prod = (storeState && storeState.products) ? storeState.products.find(p => String(p.id) === String(productId)) : null;
+      const prodName = prod ? prod.name : 'produk ini';
+      const waNum = getAdminWhatsAppNumber();
+      const text = `assalamu'alaikum min apakah ${prodName} masih tersedia? kalo masih, saya mau beli`;
+      const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(text)}`;
+      openWhatsAppDirect(waUrl, `Tanya stok ${prodName} ke WhatsApp...`);
+    }
+
+    function inquireCurrentProductViaWhatsApp() {
+      if (typeof currentDetailProductId !== 'undefined' && currentDetailProductId) {
+        inquireProductViaWhatsApp(currentDetailProductId);
+      } else {
+        openWhatsAppInquiry();
+      }
+    }
+
+    function openWhatsAppInquiry(customText) {
+      const waNum = getAdminWhatsAppNumber();
+      let text = customText || "assalamu'alaikum min apakah produk masih tersedia? kalo masih, saya mau beli";
+      try {
+        if (text.includes('%')) text = decodeURIComponent(text);
+      } catch (e) {}
+      const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(text)}`;
+      openWhatsAppDirect(waUrl, "Membuka WhatsApp CS...");
     }
 
     // ========================================================
@@ -8373,6 +10286,13 @@
           roleBadge.className = 'user-role-badge badge-guest';
         }
         if (dropAdminOpts) dropAdminOpts.style.display = 'none';
+
+        const uinAvatar = document.getElementById('uinNavUserAvatar');
+        if (uinAvatar) {
+          uinAvatar.innerHTML = '<i class="fa-solid fa-user"></i>';
+          uinAvatar.style.background = 'rgba(255,255,255,0.1)';
+          uinAvatar.style.color = 'inherit';
+        }
       } else {
         const initials = currentUser.name ? currentUser.name.split(' ').map(n=>n[0]).slice(0,2).join('').toUpperCase() : 'JM';
 
@@ -8381,6 +10301,17 @@
             avatarEl.innerHTML = `<img src="${currentUser.avatar}" alt="${currentUser.name}" style="width:100%;height:100%;object-fit:cover;">`;
           } else {
             avatarEl.innerHTML = initials;
+          }
+        }
+
+        const uinAvatar = document.getElementById('uinNavUserAvatar');
+        if (uinAvatar) {
+          if (currentUser.avatar) {
+            uinAvatar.innerHTML = `<img src="${currentUser.avatar}" alt="${currentUser.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+          } else {
+            uinAvatar.textContent = initials;
+            uinAvatar.style.background = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+            uinAvatar.style.color = '#fff';
           }
         }
 
@@ -8983,6 +10914,17 @@
         }
       }
 
+      const uinThemeIcon = document.getElementById('uinThemeIcon');
+      if (uinThemeIcon) {
+        if (theme === 'light') {
+          uinThemeIcon.className = 'fa-solid fa-sun';
+          uinThemeIcon.style.color = '#eab308';
+        } else {
+          uinThemeIcon.className = 'fa-solid fa-moon';
+          uinThemeIcon.style.color = '#60a5fa';
+        }
+      }
+
       // Update Drawer Theme Elements
       const drawerIcon = document.getElementById('drawerThemeIcon');
       const drawerStatus = document.getElementById('drawerThemeStatus');
@@ -9218,9 +11160,13 @@
     document.addEventListener('DOMContentLoaded', async () => {
       initSplashScreenAnimation();
       initTheme();
+      initUIVersion();
       initHorizontalScrolls();
       initImageDropzones();
-      document.getElementById('currentYear').textContent = new Date().getFullYear();
+      const yr = new Date().getFullYear();
+      const yrEl = document.getElementById('currentYear');
+      if (yrEl) yrEl.textContent = yr;
+      document.querySelectorAll('.uin-year').forEach(el => el.textContent = yr);
       initFirebaseEngine();
       await fetchStoreData();
       initAuthUser();
@@ -9397,11 +11343,33 @@
       const announcementText = document.getElementById('announcementText');
       if (announcementText && s.announcement) announcementText.textContent = s.announcement;
 
+      const waAdminNum = getAdminWhatsAppNumber();
+      const defaultInquiryText = encodeURIComponent("assalamu'alaikum min apakah produk masih tersedia? kalo masih, saya mau beli");
+
       const directWa = document.getElementById('btnDirectWa');
-      if (directWa) directWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMarket') + ', saya ingin bertanya seputar produk...')}`;
+      if (directWa) directWa.href = `https://wa.me/${waAdminNum}?text=${defaultInquiryText}`;
 
       const drawerWa = document.getElementById('drawerWaLink');
-      if (drawerWa) drawerWa.href = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo CS ' + (s.storeName || 'JaneMarket') + ', saya ingin bertanya seputar produk...')}`;
+      if (drawerWa) drawerWa.href = `https://wa.me/${waAdminNum}?text=${defaultInquiryText}`;
+
+      // Sync UI New brand elements
+      const uinNavName = document.getElementById('uinNavStoreName');
+      if (uinNavName) uinNavName.textContent = s.storeName || 'JaneMurphy';
+
+      const uinNavTag = document.getElementById('uinNavStoreTagline');
+      if (uinNavTag) uinNavTag.textContent = (s.storeTagline || 'PREMIUM APPLICATIONS').toUpperCase();
+
+      const uinFooterName = document.getElementById('uinFooterStoreName');
+      if (uinFooterName) uinFooterName.textContent = s.storeName || 'JaneMurphy';
+
+      const uinFooterCopy = document.getElementById('uinFooterCopyName');
+      if (uinFooterCopy) uinFooterCopy.textContent = s.storeName || 'JaneMurphy';
+
+      const uinDirectWa = document.getElementById('uinBtnDirectWa');
+      if (uinDirectWa) uinDirectWa.href = `https://wa.me/${waAdminNum}?text=${defaultInquiryText}`;
+
+      const uinBannerWa = document.getElementById('uinBannerWaBtn');
+      if (uinBannerWa) uinBannerWa.href = `https://wa.me/${waAdminNum}?text=${encodeURIComponent("assalamu'alaikum min mau klaim promo JANEMURPHYPRO")}`;
 
       // Banner middle
       if (s.promoBanner) {
@@ -9627,6 +11595,344 @@
           </div>
         `;
       }).join('');
+
+      // Render UI New Modern Products Grid (Spacious, Adaptive, Information-Rich)
+      const gridNew = document.getElementById('productGridNew');
+      if (gridNew) {
+        if (filtered.length === 0) {
+          gridNew.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 64px 24px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 20px;">
+              <i class="fa-solid fa-box-open" style="font-size: 42px; color: var(--text-muted); margin-bottom: 16px;"></i>
+              <h4 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">Produk Tidak Ditemukan</h4>
+              <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">Coba gunakan kata kunci lain atau reset filter kategori.</p>
+              <button class="uin-btn-primary" onclick="resetFilterNew()"><i class="fa-solid fa-rotate-left"></i> Reset Filter</button>
+            </div>
+          `;
+        } else {
+          gridNew.innerHTML = filtered.map(product => {
+            const isTopup = product.category === 'Topup Game';
+            const formattedPrice = `Rp ${Number(product.price || 0).toLocaleString('id-ID')}`;
+            const formattedOrig = product.originalPrice ? `Rp ${Number(product.originalPrice).toLocaleString('id-ID')}` : '';
+            const soldText = product.soldCount !== undefined ? product.soldCount : 0;
+            
+            // Stock pill
+            const stockStatus = product.stockStatus || 'ready';
+            let stockHtml = '';
+            if (stockStatus === 'ready') {
+              stockHtml = `<span class="uin-stock-tag uin-stock-ready"><span class="uin-stock-dot"></span> Ready Stock</span>`;
+            } else if (stockStatus === 'limited') {
+              const countLabel = product.stockCount ? `Sisa ${product.stockCount}` : 'Terbatas';
+              stockHtml = `<span class="uin-stock-tag uin-stock-limited"><span class="uin-stock-dot"></span> ${countLabel}</span>`;
+            } else if (stockStatus === 'preorder') {
+              stockHtml = `<span class="uin-stock-tag uin-stock-preorder"><span class="uin-stock-dot"></span> Pre-Order</span>`;
+            } else if (stockStatus === 'soldout') {
+              stockHtml = `<span class="uin-stock-tag uin-stock-soldout"><span class="uin-stock-dot"></span> Habis</span>`;
+            }
+
+            // Discount badge
+            let discountHtml = '';
+            if (product.originalPrice && product.originalPrice > product.price) {
+              const pct = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+              discountHtml = `<span class="uin-card-discount-tag">Hemat ${pct}%</span>`;
+            }
+
+            // Media
+            let cardMedia = '';
+            if (product.image && (!isTopup || product.image.startsWith('http'))) {
+              cardMedia = `
+                <div class="uin-card-media">
+                  <img src="${product.image}" alt="${product.name}" class="uin-card-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
+                  ${product.category ? `<span class="uin-card-badge-left">${product.category}</span>` : ''}
+                  <span class="uin-card-rating"><i class="fa-solid fa-star"></i> ${product.rating || '5.0'}</span>
+                </div>
+              `;
+            } else {
+              cardMedia = `
+                <div class="uin-card-media">
+                  <div class="uin-card-topup-art"><i class="fa-solid fa-gamepad"></i></div>
+                  ${product.category ? `<span class="uin-card-badge-left">${product.category}</span>` : ''}
+                  <span class="uin-card-rating"><i class="fa-solid fa-star"></i> ${product.rating || '5.0'}</span>
+                </div>
+              `;
+            }
+
+            // Highlights
+            let highlightsText = product.warranty ? `Garansi: ${product.warranty}` : (Array.isArray(product.features) && product.features.length > 0 ? product.features.slice(0, 2).join(' • ') : 'Proses Cepat 1-5 Menit • Legal');
+
+            return `
+              <div class="uin-card" onclick="handleProductCardClick(event, '${product.id}', this)" title="Klik untuk beli atau lihat detail lengkap">
+                ${cardMedia}
+                <div class="uin-card-body">
+                  <div>
+                    <div class="uin-card-meta-row">
+                      ${stockHtml}
+                      <span class="uin-sold-tag"><i class="fa-solid fa-fire" style="color:#f97316;"></i> ${soldText} terjual</span>
+                    </div>
+                    <h3 class="uin-card-title">${product.name}</h3>
+                    <div class="uin-card-perks-text">${highlightsText}</div>
+                  </div>
+
+                  <div class="uin-card-bottom">
+                    <div class="uin-card-price-row">
+                      <div>
+                        <span class="uin-card-price">${formattedPrice}</span>
+                        ${formattedOrig ? `<span class="uin-card-orig-price">${formattedOrig}</span>` : ''}
+                      </div>
+                      ${discountHtml}
+                    </div>
+                    <div class="uin-card-btn-row">
+                      <button type="button" class="uin-btn-card-cart" onclick="event.stopPropagation(); quickAddToCart('${product.id}')" title="Tambah ke Keranjang">
+                        <i class="fa-solid fa-cart-plus"></i>
+                      </button>
+                      <button type="button" class="uin-btn-card-buy" onclick="event.stopPropagation(); handleProductCardClick(event, '${product.id}', this.closest('.uin-card'))">
+                        <i class="fa-solid fa-bag-shopping"></i> <span>Beli Sekarang</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    // ==========================================
+    // UI VERSION MANAGER (UI NEW vs UI OLD)
+    // ==========================================
+    let currentUIVersion = 'new';
+
+    function initUIVersion() {
+      try {
+        const saved = localStorage.getItem('jm_ui_version');
+        currentUIVersion = (saved === 'old' || saved === 'new') ? saved : 'new';
+      } catch (e) {
+        currentUIVersion = 'new';
+      }
+      switchUIVersion(currentUIVersion, false);
+    }
+
+    function switchUIVersion(version, notify = true) {
+      currentUIVersion = version === 'old' ? 'old' : 'new';
+      try {
+        localStorage.setItem('jm_ui_version', currentUIVersion);
+      } catch (e) {}
+
+      const uiNew = document.getElementById('uiNewView');
+      const uiOld = document.getElementById('uiOldView');
+      const uiOldFooter = document.getElementById('uiOldFooter');
+
+      // Switcher elements
+      const navSwNew = document.getElementById('uinNavSwitchNew');
+      const navSwOld = document.getElementById('uinNavSwitchOld');
+      const drwBadge = document.getElementById('drawerCurrentUiBadge');
+      const drwBtnNew = document.getElementById('drawerBtnUiNew');
+      const drwBtnOld = document.getElementById('drawerBtnUiOld');
+
+      if (currentUIVersion === 'new') {
+        if (uiNew) uiNew.style.display = 'block';
+        if (uiOld) uiOld.style.display = 'none';
+        if (uiOldFooter) uiOldFooter.style.display = 'none';
+
+        if (navSwNew) navSwNew.classList.add('active');
+        if (navSwOld) navSwOld.classList.remove('active');
+
+        if (drwBadge) drwBadge.textContent = 'UI New';
+        if (drwBtnNew) {
+          drwBtnNew.style.background = '#6366f1';
+          drwBtnNew.style.color = '#ffffff';
+        }
+        if (drwBtnOld) {
+          drwBtnOld.style.background = 'rgba(255, 255, 255, 0.05)';
+          drwBtnOld.style.color = 'var(--text-primary)';
+        }
+
+        updateSpotlightProduct();
+        if (notify) {
+          showToast('Beralih ke tampilan UI New (Modern & Luas) ✨');
+          if (isSoundEnabled) playBeep('switch');
+        }
+      } else {
+        if (uiNew) uiNew.style.display = 'none';
+        if (uiOld) uiOld.style.display = 'block';
+        if (uiOldFooter) uiOldFooter.style.display = 'block';
+
+        if (navSwNew) navSwNew.classList.remove('active');
+        if (navSwOld) navSwOld.classList.add('active');
+
+        if (drwBadge) drwBadge.textContent = 'UI Old';
+        if (drwBtnOld) {
+          drwBtnOld.style.background = '#6366f1';
+          drwBtnOld.style.color = '#ffffff';
+        }
+        if (drwBtnNew) {
+          drwBtnNew.style.background = 'rgba(255, 255, 255, 0.05)';
+          drwBtnNew.style.color = 'var(--text-primary)';
+        }
+
+        if (notify) {
+          showToast('Beralih ke tampilan UI Old (Klasik)');
+          if (isSoundEnabled) playBeep('switch');
+        }
+      }
+
+      renderProducts();
+      updateCategoryCounts();
+      updateCartBadges();
+      updateUserAuthUI();
+    }
+
+    function toggleUIVersion() {
+      switchUIVersion(currentUIVersion === 'new' ? 'old' : 'new', true);
+    }
+
+    // Filter by category in UI New
+    function filterCategoryNew(category, btnElement) {
+      if (category === 'all') {
+        activeCategory = 'all';
+      } else {
+        activeCategory = category;
+      }
+
+      // Update UI New active button
+      document.querySelectorAll('.uin-cat-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Also sync with UI Old category buttons if present
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        if (btn.textContent && btn.textContent.toLowerCase().includes(category.toLowerCase())) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      const statusEl = document.getElementById('uinFilterStatusText');
+      if (statusEl) {
+        statusEl.textContent = category === 'all' ? 'Menampilkan semua produk' : `Kategori: ${category}`;
+      }
+
+      renderProducts();
+      if (isSoundEnabled) playBeep('pop');
+    }
+
+    // Sort in UI New
+    function handleSortSelectNew(value) {
+      if (value === 'price-asc') {
+        activeSort = 'lowest';
+      } else if (value === 'price-desc') {
+        activeSort = 'highest';
+      } else if (value === 'sold-desc') {
+        activeSort = 'popular';
+      } else if (value === 'rating-desc') {
+        activeSort = 'warranty';
+      } else {
+        activeSort = 'default';
+      }
+      renderProducts();
+      if (isSoundEnabled) playBeep('pop');
+    }
+
+    // Search in UI New
+    function handleUINewSearch(query) {
+      searchQuery = (query || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('uinSearchClear');
+      if (clearBtn) {
+        clearBtn.style.display = searchQuery.length > 0 ? 'inline-flex' : 'none';
+      }
+
+      // Sync search input in UI Old
+      const oldSearch = document.getElementById('searchInput');
+      if (oldSearch && oldSearch.value !== query) {
+        oldSearch.value = query;
+      }
+
+      const statusEl = document.getElementById('uinFilterStatusText');
+      if (statusEl) {
+        if (searchQuery) {
+          statusEl.textContent = `Pencarian: "${query}"`;
+        } else {
+          statusEl.textContent = activeCategory === 'all' ? 'Menampilkan semua produk' : `Kategori: ${activeCategory}`;
+        }
+      }
+
+      renderProducts();
+    }
+
+    function clearUINewSearch() {
+      const input = document.getElementById('uinSearchInput');
+      if (input) input.value = '';
+      const clearBtn = document.getElementById('uinSearchClear');
+      if (clearBtn) clearBtn.style.display = 'none';
+      handleUINewSearch('');
+    }
+
+    function resetFilterNew() {
+      const input = document.getElementById('uinSearchInput');
+      if (input) input.value = '';
+      const clearBtn = document.getElementById('uinSearchClear');
+      if (clearBtn) clearBtn.style.display = 'none';
+
+      const sortSel = document.getElementById('uinSortSelect');
+      if (sortSel) sortSel.value = 'default';
+
+      searchQuery = '';
+      activeSort = 'default';
+      filterCategoryNew('all', null);
+      showToast('Filter katalog berhasil di-reset');
+    }
+
+    // Spotlight hero card update
+    let currentSpotlightProduct = null;
+
+    function updateSpotlightProduct() {
+      const products = storeState.products || [];
+      if (products.length === 0) return;
+
+      // Find best-seller or first product
+      let featured = products.find(p => p.soldCount && p.soldCount > 100) || products[0];
+      if (!featured) return;
+
+      currentSpotlightProduct = featured;
+
+      const imgEl = document.getElementById('uinSpotlightImg');
+      const titleEl = document.getElementById('uinSpotlightTitle');
+      const perksEl = document.getElementById('uinSpotlightPerks');
+      const priceEl = document.getElementById('uinSpotlightPrice');
+      const origEl = document.getElementById('uinSpotlightOrigPrice');
+
+      if (imgEl && featured.image) imgEl.src = featured.image;
+      if (titleEl) titleEl.textContent = featured.name;
+      if (priceEl) priceEl.textContent = `Rp ${Number(featured.price || 0).toLocaleString('id-ID')}`;
+      if (origEl) {
+        if (featured.originalPrice && featured.originalPrice > featured.price) {
+          origEl.textContent = `Rp ${Number(featured.originalPrice).toLocaleString('id-ID')}`;
+          origEl.style.display = 'inline';
+        } else {
+          origEl.style.display = 'none';
+        }
+      }
+      if (perksEl) {
+        if (featured.warranty) {
+          perksEl.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Garansi: ${featured.warranty} • Proses 1-5 Menit`;
+        } else {
+          perksEl.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Legal & Original • Terverifikasi`;
+        }
+      }
+    }
+
+    function handleSpotlightBuy() {
+      if (currentSpotlightProduct) {
+        openCheckoutModal(currentSpotlightProduct.id);
+      } else {
+        const first = (storeState.products || [])[0];
+        if (first) openCheckoutModal(first.id);
+      }
     }
 
     // Product Detail Engine (Click on Product Card)
@@ -10092,10 +12398,30 @@
       const countGame = document.getElementById('count-game');
       const countDesign = document.getElementById('count-design');
 
-      if (countAll) countAll.textContent = all.length;
-      if (countApp) countApp.textContent = all.filter(p => p.category === 'Aplikasi Premium').length;
-      if (countGame) countGame.textContent = all.filter(p => p.category === 'Topup Game').length;
-      if (countDesign) countDesign.textContent = all.filter(p => p.category === 'Jasa Design Poster').length;
+      const numAll = all.length;
+      const numApp = all.filter(p => p.category === 'Aplikasi Premium').length;
+      const numGame = all.filter(p => p.category === 'Topup Game').length;
+      const numDesign = all.filter(p => p.category === 'Jasa Design Poster').length;
+
+      if (countAll) countAll.textContent = numAll;
+      if (countApp) countApp.textContent = numApp;
+      if (countGame) countGame.textContent = numGame;
+      if (countDesign) countDesign.textContent = numDesign;
+
+      // Sync UI New Category Counts
+      const uinCountAll = document.getElementById('uin-count-all');
+      const uinCountApp = document.getElementById('uin-count-app');
+      const uinCountGame = document.getElementById('uin-count-game');
+      const uinCountDesign = document.getElementById('uin-count-design');
+
+      if (uinCountAll) uinCountAll.textContent = numAll;
+      if (uinCountApp) uinCountApp.textContent = numApp;
+      if (uinCountGame) uinCountGame.textContent = numGame;
+      if (uinCountDesign) uinCountDesign.textContent = numDesign;
+
+      if (typeof updateSpotlightProduct === 'function') {
+        updateSpotlightProduct();
+      }
     }
 
     // Copy to Clipboard Utility
@@ -10354,15 +12680,16 @@
     });
 
     function contactAdminPayment() {
-      const s = storeState.settings || {};
-      const url = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo Admin JaneMarket, saya sudah melakukan pembayaran dan ingin konfirmasi bukti transfer.')}`;
-      window.open(url, '_blank');
+      const waNum = getAdminWhatsAppNumber();
+      const url = `https://wa.me/${waNum}?text=${encodeURIComponent('Halo Admin JaneMarket, saya sudah melakukan pembayaran dan ingin konfirmasi bukti transfer.')}`;
+      openWhatsAppDirect(url, "Konfirmasi Pembayaran via WhatsApp...");
     }
 
     function contactAdminPromo() {
-      const s = storeState.settings || {};
-      const url = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent('Halo Admin JaneMarket, saya ingin klaim promo Flash Sale diskon spesial hari ini!')}`;
-      window.open(url, '_blank');
+      const waNum = getAdminWhatsAppNumber();
+      const text = "assalamu'alaikum min apakah promo diskon masih tersedia? kalo masih, saya mau beli";
+      const url = `https://wa.me/${waNum}?text=${encodeURIComponent(text)}`;
+      openWhatsAppDirect(url, "Klaim Promo via WhatsApp...");
     }
 
     // Voucher & Promo Engine
@@ -10519,13 +12846,14 @@
       const newOrderId = `ORD-${Date.now().toString().slice(-6)}`;
       const userEmail = (currentUser && currentUser.email) ? currentUser.email : '';
       const orderImage = prod ? prod.image : 'https://files.catbox.moe/3tt0xl.png';
+      const productName = prod ? prod.name : (document.getElementById('orderProductTitle')?.textContent?.trim() || 'Produk');
 
       const orderData = {
         id: newOrderId,
         productId: productId,
         customerName: customerName,
         userEmail: userEmail,
-        productName: prod ? prod.name : '-',
+        productName: productName,
         productImage: orderImage,
         category: prod ? prod.category : '-',
         variant: selectedVariantName,
@@ -10555,23 +12883,12 @@
       renderProducts();
       updateMyOrdersBadges();
 
-      // Record to Server API
-      try {
-        await fetch('/api/orders', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderData)
-        });
-      } catch (e) {
-        console.warn("Order log note:", e);
-      }
-
-      // Format WhatsApp Message
-      const s = storeState.settings || {};
-      let waText = `Halo Admin ${s.storeName || 'JaneMarket'}, saya ingin konfirmasi pesanan baru:\n\n`;
+      // Format WhatsApp Message with EXACT requested greeting:
+      // "assalamu'alaikum min apakah (nama produk) masih tersedia? kalo masih, saya mau beli"
+      let waText = `assalamu'alaikum min apakah ${productName} masih tersedia? kalo masih, saya mau beli\n\n`;
+      waText += `📋 *Detail Pemesanan:*\n`;
       waText += `🆔 *ID Pesanan:* ${newOrderId}\n`;
-      waText += `📦 *Produk:* ${prod ? prod.name : '-'}\n`;
-      waText += `📂 *Kategori:* ${prod ? prod.category : '-'}\n`;
+      waText += `📦 *Produk:* ${productName}\n`;
       waText += `🏷️ *Pilihan Paket:* ${selectedVariantName}\n`;
       if (activeVoucher) {
         waText += `🎟️ *Voucher Promo:* ${activeVoucher.code} (${activeVoucher.label})\n`;
@@ -10585,16 +12902,25 @@
       if (notes) {
         waText += `📝 *Catatan:* ${notes}\n`;
       }
-      waText += `\nMohon segera diproses ya kak. Terima kasih! 🙏`;
+      waText += `\nMohon segera diproses ya min. Terima kasih! 🙏`;
 
-      playBeep('purchase');
+      const targetWa = getAdminWhatsAppNumber();
+      const waUrl = `https://wa.me/${targetWa}?text=${encodeURIComponent(waText)}`;
+
+      // Catat ke server API secara asynchronous di background
+      fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+      }).catch(e => console.warn("Order log note:", e));
+
       closeModal('checkoutModal');
-      showToast("Mengarahkan ke WhatsApp...");
 
-      const waUrl = `https://wa.me/${s.whatsappNumber || '6281234567890'}?text=${encodeURIComponent(waText)}`;
-      setTimeout(() => {
-        window.open(waUrl, '_blank');
-      }, 300);
+      // Tampilkan struk digital langsung agar user punya bukti order lengkap
+      viewDigitalReceipt(newOrderId);
+
+      // Buka WhatsApp langsung anti-blokir popup
+      openWhatsAppDirect(waUrl, `Mengarahkan ke WhatsApp (${targetWa})...`);
     }
 
     // FAQ Accordion Toggle
@@ -11292,6 +13618,12 @@
         navBadge.style.display = totalCount > 0 ? 'inline-flex' : 'none';
       }
 
+      const uinBadge = document.getElementById('uinCartBadgeCount');
+      if (uinBadge) {
+        uinBadge.textContent = totalCount;
+        uinBadge.style.display = totalCount > 0 ? 'inline-flex' : 'none';
+      }
+
       const dropBadge = document.getElementById('dropdownCartCount');
       if (dropBadge) {
         dropBadge.textContent = totalCount;
@@ -11636,23 +13968,26 @@
       showToast(`Pesanan #${orderId} berhasil diproses!`);
 
       // WhatsApp Message Preparation
+      const firstItemName = (items && items.length > 0) ? items[0].name : 'produk';
+      const greetingHeader = (items.length === 1)
+        ? `assalamu'alaikum min apakah ${firstItemName} masih tersedia? kalo masih, saya mau beli\n\n`
+        : `assalamu'alaikum min apakah produk berikut masih tersedia? kalo masih, saya mau beli\n\n`;
+
       let itemLines = items.map((it, idx) => `  ${idx + 1}. ${it.name} [${it.variant || 'Standar'}] x${it.quantity || 1} = Rp ${(Number(it.price || 0) * (it.quantity || 1)).toLocaleString('id-ID')}`).join('\n');
-      let waMessage = `Halo Admin JaneMarket, saya ingin konfirmasi pesanan dari Keranjang Belanja:\n\n*ID Pesanan:* ${orderId}\n*Nama Pemesan:* ${custName}\n*Nomor WA:* ${custPhone}\n*Email Akun:* ${currentUser?.email || '-'}\n\n*Daftar Produk:* \n${itemLines}\n\n*Subtotal:* Rp ${subtotal.toLocaleString('id-ID')}\n` +
+      let waMessage = `${greetingHeader}📋 *Detail Pesanan Keranjang:*\n*ID Pesanan:* ${orderId}\n*Nama Pemesan:* ${custName}\n*Nomor WA:* ${custPhone}\n*Email Akun:* ${currentUser?.email || '-'}\n\n*Daftar Produk:* \n${itemLines}\n\n*Subtotal:* Rp ${subtotal.toLocaleString('id-ID')}\n` +
         (cartDiscountAmount > 0 ? `*Potongan Promo (${activeCartPromoCode}):* -Rp ${cartDiscountAmount.toLocaleString('id-ID')}\n` : '') +
         `*Total Pembayaran:* Rp ${finalPrice.toLocaleString('id-ID')}\n*Metode Pembayaran:* ${payMethod}\n` +
         (custNotes ? `*Catatan Khusus:* ${custNotes}\n` : '') +
         `\nMohon segera diproses ya Min. Terima kasih banyak! 🙏`;
 
-      const targetWaNumber = (storeState.settings && storeState.settings.whatsappNumber) || '62895325602169';
-      const waUrl = `https://wa.me/${targetWaNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(waMessage)}`;
+      const targetWaNumber = getAdminWhatsAppNumber();
+      const waUrl = `https://wa.me/${targetWaNumber}?text=${encodeURIComponent(waMessage)}`;
 
       // Open digital receipt modal directly for user gratification
       viewDigitalReceipt(orderId);
 
-      // Trigger WhatsApp window after slight timeout
-      setTimeout(() => {
-        try { window.open(waUrl, '_blank'); } catch (e) {}
-      }, 500);
+      // Trigger WhatsApp window directly
+      openWhatsAppDirect(waUrl, `Mengarahkan ke WhatsApp (${targetWaNumber})...`);
     }
 
     // ========================================================
@@ -12231,7 +14566,7 @@
       playBeep('click');
 
       const order = currentReceiptOrderData;
-      const targetWaNumber = (storeState.settings && storeState.settings.whatsappNumber) || '62895325602169';
+      const targetWaNumber = getAdminWhatsAppNumber();
 
       const text = `*STRUK DIGITAL JANEMARKET*\n` +
         `--------------------------------\n` +
@@ -12245,8 +14580,8 @@
         `--------------------------------\n` +
         `Terima kasih telah berbelanja di JaneMarket Official Store.`;
 
-      const url = `https://wa.me/${targetWaNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(text)}`;
-      try { window.open(url, '_blank'); } catch (e) {}
+      const url = `https://wa.me/${targetWaNumber}?text=${encodeURIComponent(text)}`;
+      openWhatsAppDirect(url, "Membuka Struk di WhatsApp...");
     }
 
     // Initialize notification polling intervals
@@ -12262,7 +14597,7 @@
         storeName: document.getElementById('settingStoreName').value.trim(),
         storeTagline: document.getElementById('settingStoreTagline').value.trim(),
         storeLogo: logoVal,
-        whatsappNumber: document.getElementById('settingWhatsapp').value.trim(),
+        whatsappNumber: document.getElementById('settingWhatsapp').value.trim() || '6283823567366',
         ownerEmail: 'ererex4youu@gmail.com',
         announcement: document.getElementById('settingAnnouncement').value.trim(),
         qrisImage: document.getElementById('settingQrisImage').value.trim(),

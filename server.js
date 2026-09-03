@@ -856,7 +856,7 @@ Berikut katalog produk lengkap yang tersedia:
 ${productCatalogText}
 
 Info Tambahan:
-- Nomor WhatsApp Resmi Admin: ${store.settings.whatsappNumber || '6281234567890'}
+- Nomor WhatsApp Resmi Admin: ${store.settings.whatsappNumber || '6283823567366'}
 - Metode Pembayaran: QRIS All Payment (BCA, Mandiri, DANA, GoPay, OVO, ShopeePay, SeaBank, dll.)
 - Keunggulan: Proses kilat 1-5 menit, Garansi akun/ganti baru jika bermasalah, Legal & Aman 100%.
 
