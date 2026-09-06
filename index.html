@@ -1344,6 +1344,286 @@
       color: #ffffff;
     }
 
+    /* Clean Product Form Sections (Simple & Anti-Headache) */
+    .prod-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .prod-form-card:hover {
+      border-color: var(--border-light);
+    }
+    .prod-form-card-header {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .prod-form-step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #4f46e5;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .prod-form-step-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .prod-form-card-body {
+      padding: 14px;
+    }
+    .prod-image-quick-wrapper {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .prod-thumb-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+      background: #18181b;
+      flex-shrink: 0;
+    }
+    .prod-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .prod-thumb-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+    .prod-image-actions {
+      flex: 1;
+      min-width: 200px;
+    }
+    .variant-builder-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .variant-builder-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .variant-builder-row input {
+      margin-bottom: 0 !important;
+    }
+    .template-pill-btn {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .template-pill-btn:hover {
+      background: rgba(99, 102, 241, 0.25);
+      color: #ffffff;
+      border-color: #6366f1;
+    }
+
+    /* Clean Product Detail Styles (Anti-Headache & Highly Scannable) */
+    .detail-variants-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    @media (max-width: 480px) {
+      .detail-variants-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+    .detail-variant-chip {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: 10px;
+      padding: 9px 12px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      user-select: none;
+    }
+    .detail-variant-chip:hover {
+      border-color: #6366f1;
+      background: var(--bg-card-hover);
+    }
+    .detail-variant-chip.active {
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.12);
+      box-shadow: 0 0 0 1px #6366f1;
+    }
+    .detail-variant-chip-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .detail-variant-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .detail-variant-chip.active .detail-variant-dot {
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
+    .detail-variant-chip-price {
+      font-size: 13px;
+      font-weight: 800;
+      color: #38bdf8;
+      white-space: nowrap;
+    }
+    .detail-variant-chip.active .detail-variant-chip-price {
+      color: #60a5fa;
+    }
+
+    /* Clean Formatted Description Container */
+    .clean-desc-container {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .clean-desc-lead {
+      font-size: 13px;
+      color: var(--text-primary);
+      line-height: 1.5;
+      font-weight: 600;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-color);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .clean-desc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .clean-desc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+    .clean-desc-icon {
+      color: #22c55e;
+      font-size: 13px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .clean-desc-text {
+      flex: 1;
+      font-weight: 500;
+    }
+    .clean-desc-guarantees {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-color);
+    }
+    .clean-guarantee-pill {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 3px 9px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Light Mode Overrides for New Components */
+    [data-theme="light"] .prod-form-card,
+    [data-theme="light"] .clean-desc-container,
+    [data-theme="light"] .clean-guarantee-pill,
+    [data-theme="light"] .detail-variant-chip {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #0f172a;
+    }
+    [data-theme="light"] .prod-form-card-header {
+      background: #f1f5f9;
+      border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .clean-desc-item {
+      color: #334155;
+    }
+    [data-theme="light"] .clean-desc-lead {
+      color: #0f172a;
+      border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .clean-desc-guarantees {
+      border-top-color: #e2e8f0;
+    }
+    [data-theme="light"] .detail-variant-chip:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .detail-variant-chip.active {
+      background: #eef2ff;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px #6366f1;
+    }
+    [data-theme="light"] .detail-variant-chip-price {
+      color: #4f46e5;
+    }
+    [data-theme="light"] .template-pill-btn {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+      color: #4338ca;
+    }
+
     /* Middle Advertisement / Promo Banner (Item #5) - Clean & Integrated */
     .middle-banner {
       max-width: 1440px;
@@ -5369,13 +5649,23 @@
       width: 36px;
       height: 36px;
       border-radius: 9px;
-      background: linear-gradient(135deg, rgba(236, 72, 153, 0.22) 0%, rgba(168, 85, 247, 0.22) 100%);
+      background: rgba(236, 72, 153, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       flex-shrink: 0;
       border: 1px solid rgba(236, 72, 153, 0.35);
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+    }
+    .drawer-lintas-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
     }
     .lintas-live-badge {
       font-size: 8.5px;
@@ -5724,1291 +6014,6 @@
       }
     }
 
-    /* ==========================================================================
-       UI NEW (MODERN REFACTOR) STYLES
-       Spacious, breathable, modern layout with high contrast and smooth UX
-       ========================================================================== */
-    .ui-view-wrapper {
-      width: 100%;
-      min-height: 100vh;
-      animation: uinFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes uinFadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .uin-container {
-      width: 100%;
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    @media (max-width: 640px) {
-      .uin-container {
-        padding: 0 16px;
-      }
-    }
-
-    /* --- UI New Sticky Navbar --- */
-    .uin-navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10, 11, 20, 0.82);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-    [data-theme="light"] .uin-navbar {
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-    }
-    .uin-nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      height: 72px;
-    }
-    .uin-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .uin-brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      transition: transform 0.2s ease;
-    }
-    .uin-brand:hover .uin-brand-logo {
-      transform: scale(1.05);
-    }
-    .uin-brand-title {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0;
-    }
-    [data-theme="light"] .uin-brand-title {
-      background: linear-gradient(135deg, #09090b 40%, #4338ca 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .uin-brand-subtitle {
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      color: var(--accent-cyan);
-      text-transform: uppercase;
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .uin-brand-verified {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: #10b981;
-      color: #ffffff;
-      font-size: 8px;
-    }
-
-    /* Nav Center Links & Capsule Search */
-    .uin-nav-center {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex: 1;
-      max-width: 540px;
-    }
-    .uin-search-capsule {
-      position: relative;
-      display: flex;
-      align-items: center;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 9999px;
-      padding: 0 16px;
-      height: 42px;
-      transition: all 0.2s ease;
-    }
-    [data-theme="light"] .uin-search-capsule {
-      background: rgba(0, 0, 0, 0.03);
-      border-color: rgba(0, 0, 0, 0.1);
-    }
-    .uin-search-capsule:focus-within {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: var(--brand-primary);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-    [data-theme="light"] .uin-search-capsule:focus-within {
-      background: #ffffff;
-      border-color: var(--brand-primary);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-    }
-    .uin-search-capsule i {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-right: 10px;
-    }
-    .uin-search-input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text-primary);
-      font-size: 13.5px;
-      font-family: inherit;
-    }
-    .uin-search-input::placeholder {
-      color: var(--text-muted);
-    }
-    .uin-search-clear {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 13px;
-      padding: 4px;
-      display: none;
-    }
-    .uin-search-clear:hover {
-      color: var(--text-primary);
-    }
-
-    /* Segmented UI Switcher Pill */
-    .uin-switcher-pill {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 9999px;
-      padding: 3px;
-      gap: 2px;
-    }
-    [data-theme="light"] .uin-switcher-pill {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.1);
-    }
-    .uin-switch-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 13px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      white-space: nowrap;
-    }
-    .uin-switch-btn:hover {
-      color: var(--text-primary);
-    }
-    .uin-switch-btn.active {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: #ffffff;
-      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
-    }
-
-    /* Actions Cluster */
-    .uin-nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .uin-btn-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-primary);
-      cursor: pointer;
-      position: relative;
-      transition: all 0.2s ease;
-    }
-    [data-theme="light"] .uin-btn-icon {
-      background: rgba(0, 0, 0, 0.03);
-      border-color: rgba(0, 0, 0, 0.08);
-      color: #09090b;
-    }
-    .uin-btn-icon:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-1px);
-    }
-    [data-theme="light"] .uin-btn-icon:hover {
-      background: rgba(0, 0, 0, 0.07);
-    }
-    .uin-badge-count {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: 9999px;
-      background: var(--brand-primary);
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--bg-primary);
-    }
-    .uin-btn-cart-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      height: 40px;
-      padding: 0 14px;
-      border-radius: 12px;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      color: #38bdf8;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .uin-btn-cart-pill:hover {
-      background: rgba(56, 189, 248, 0.2);
-      transform: translateY(-1px);
-    }
-    .uin-btn-wa-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      height: 40px;
-      padding: 0 14px;
-      border-radius: 12px;
-      background: #25d366;
-      border: none;
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
-    }
-    .uin-btn-wa-pill:hover {
-      background: #20ba5a;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
-    }
-
-    /* --- Hero Section (Modern Spacious Split) --- */
-    .uin-hero {
-      padding: 56px 0 40px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .uin-hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      align-items: center;
-    }
-    .uin-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      background: rgba(99, 102, 241, 0.12);
-      border: 1px solid rgba(99, 102, 241, 0.25);
-      color: #818cf8;
-      font-size: 11.5px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    [data-theme="light"] .uin-hero-badge {
-      background: #eef2ff;
-      border-color: #c7d2fe;
-      color: #4338ca;
-    }
-    .uin-hero-title {
-      font-size: clamp(30px, 4.2vw, 46px);
-      font-weight: 800;
-      line-height: 1.18;
-      letter-spacing: -0.03em;
-      color: var(--text-primary);
-      margin-bottom: 18px;
-    }
-    .uin-hero-title span {
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .uin-hero-desc {
-      font-size: 16px;
-      line-height: 1.65;
-      color: var(--text-secondary);
-      max-width: 580px;
-      margin-bottom: 28px;
-    }
-    .uin-hero-metrics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-    .uin-metric-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 14px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-    [data-theme="light"] .uin-metric-pill {
-      background: #f8fafc;
-      border-color: #e2e8f0;
-      color: #1e293b;
-    }
-    .uin-hero-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-    .uin-btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 26px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      color: #ffffff;
-      font-size: 14.5px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
-      transition: all 0.2s ease;
-    }
-    .uin-btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(99, 102, 241, 0.45);
-    }
-    .uin-btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 22px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-primary);
-      font-size: 14.5px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    [data-theme="light"] .uin-btn-secondary {
-      background: #ffffff;
-      border-color: #e2e8f0;
-      color: #1e293b;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-    .uin-btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-1px);
-    }
-
-    /* Right Wing: Hero Interactive Spotlight Bento */
-    .uin-spotlight-box {
-      position: relative;
-    }
-    .uin-spotlight-card {
-      background: linear-gradient(145deg, rgba(21, 24, 46, 0.85), rgba(16, 18, 34, 0.95));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.15);
-      backdrop-filter: blur(12px);
-      position: relative;
-      overflow: hidden;
-    }
-    [data-theme="light"] .uin-spotlight-card {
-      background: linear-gradient(145deg, #ffffff, #f8fafc);
-      border-color: #e2e8f0;
-      box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.12);
-    }
-    .uin-spotlight-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .uin-spotlight-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 800;
-      color: #f97316;
-      background: rgba(249, 115, 22, 0.12);
-      border: 1px solid rgba(249, 115, 22, 0.25);
-      padding: 4px 10px;
-      border-radius: 9999px;
-    }
-    .uin-spotlight-live {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      color: #10b981;
-      font-weight: 700;
-    }
-    .uin-spotlight-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 8px #10b981;
-    }
-    .uin-spotlight-media {
-      width: 100%;
-      height: 190px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 18px;
-      position: relative;
-      background: var(--bg-card);
-    }
-    .uin-spotlight-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    .uin-spotlight-media:hover img {
-      transform: scale(1.04);
-    }
-    .uin-spotlight-title {
-      font-size: 19px;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: var(--text-primary);
-    }
-    .uin-spotlight-perks {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .uin-spotlight-price-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      margin-bottom: 18px;
-    }
-    [data-theme="light"] .uin-spotlight-price-row {
-      border-top-color: #f1f5f9;
-    }
-    .uin-spotlight-price {
-      font-size: 22px;
-      font-weight: 800;
-      color: #06b6d4;
-    }
-    .uin-spotlight-orig {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: line-through;
-      margin-left: 8px;
-    }
-    .uin-spotlight-btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 14px;
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      border: none;
-      color: #ffffff;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-    }
-    .uin-spotlight-btn:hover {
-      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
-      transform: translateY(-1px);
-    }
-
-    /* --- Perks Strip (4 Clean Value Cards) --- */
-    .uin-perks-section {
-      padding: 24px 0 48px 0;
-    }
-    .uin-perks-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .uin-perk-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      transition: all 0.2s ease;
-    }
-    [data-theme="light"] .uin-perk-card {
-      background: #ffffff;
-      border-color: #f1f5f9;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-    }
-    .uin-perk-card:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(99, 102, 241, 0.25);
-      transform: translateY(-2px);
-    }
-    [data-theme="light"] .uin-perk-card:hover {
-      border-color: #cbd5e1;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-    .uin-perk-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    .uin-perk-icon.amber { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
-    .uin-perk-icon.emerald { background: rgba(16, 185, 129, 0.12); color: #10b981; }
-    .uin-perk-icon.cyan { background: rgba(6, 182, 212, 0.12); color: #06b6d4; }
-    .uin-perk-icon.purple { background: rgba(168, 85, 247, 0.12); color: #a855f7; }
-    .uin-perk-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-    .uin-perk-desc {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.45;
-    }
-
-    /* --- Filter & Storefront Hub (Ergonomic, Unified & Spacious) --- */
-    .uin-store-section {
-      padding: 16px 0 64px 0;
-    }
-    .uin-filter-card {
-      background: rgba(21, 24, 46, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 16px 20px;
-      margin-bottom: 32px;
-      backdrop-filter: blur(10px);
-    }
-    [data-theme="light"] .uin-filter-card {
-      background: #ffffff;
-      border-color: #e2e8f0;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    }
-    .uin-filter-row-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .uin-category-capsules {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 4px 0;
-      scrollbar-width: none;
-    }
-    .uin-category-capsules::-webkit-scrollbar { display: none; }
-    .uin-cat-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-secondary);
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-    }
-    [data-theme="light"] .uin-cat-btn {
-      background: #f1f5f9;
-      border-color: #e2e8f0;
-      color: #475569;
-    }
-    .uin-cat-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-primary);
-    }
-    .uin-cat-btn.active {
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      border-color: transparent;
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-    }
-    .uin-cat-count {
-      font-size: 11px;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.15);
-      color: inherit;
-    }
-    .uin-cat-btn.active .uin-cat-count {
-      background: rgba(255, 255, 255, 0.25);
-      color: #ffffff;
-    }
-    .uin-sort-select {
-      height: 40px;
-      padding: 0 14px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-primary);
-      font-size: 13px;
-      font-weight: 600;
-      outline: none;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    [data-theme="light"] .uin-sort-select {
-      background: #f8fafc;
-      border-color: #cbd5e1;
-      color: #1e293b;
-    }
-    .uin-filter-status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 12.5px;
-      color: var(--text-muted);
-    }
-    [data-theme="light"] .uin-filter-status-row {
-      border-top-color: #f1f5f9;
-    }
-    .uin-filter-reset-link {
-      color: #38bdf8;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .uin-filter-reset-link:hover {
-      text-decoration: underline;
-    }
-
-    /* --- Product Grid & Cards (Modern, Breathable & Tactile) --- */
-    .uin-product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
-      gap: 26px;
-    }
-    .uin-card {
-      background: rgba(21, 24, 46, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      position: relative;
-    }
-    [data-theme="light"] .uin-card {
-      background: #ffffff;
-      border-color: #e2e8f0;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
-    }
-    .uin-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(99, 102, 241, 0.4);
-      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.15);
-    }
-    [data-theme="light"] .uin-card:hover {
-      border-color: #94a3b8;
-      box-shadow: 0 16px 32px -8px rgba(99, 102, 241, 0.12);
-    }
-    .uin-card-media {
-      position: relative;
-      width: 100%;
-      height: 180px;
-      background: var(--bg-secondary);
-      overflow: hidden;
-    }
-    .uin-card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .uin-card:hover .uin-card-img {
-      transform: scale(1.06);
-    }
-    .uin-card-topup-art {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.15));
-      color: #38bdf8;
-      font-size: 48px;
-    }
-    .uin-card-badge-left {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 2;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 800;
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      letter-spacing: 0.3px;
-    }
-    .uin-card-rating {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 2;
-      padding: 4px 8px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 800;
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fbbf24;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .uin-card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .uin-card-meta-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    .uin-stock-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .uin-stock-ready { background: rgba(16, 185, 129, 0.12); color: #10b981; }
-    .uin-stock-limited { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
-    .uin-stock-preorder { background: rgba(56, 189, 248, 0.12); color: #38bdf8; }
-    .uin-stock-soldout { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
-    .uin-stock-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-    .uin-sold-tag {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-    .uin-card-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--text-primary);
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: 6px;
-    }
-    .uin-card-perks-text {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.45;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .uin-card-bottom {
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    [data-theme="light"] .uin-card-bottom {
-      border-top-color: #f1f5f9;
-    }
-    .uin-card-price-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-    .uin-card-price {
-      font-size: 18px;
-      font-weight: 800;
-      color: #38bdf8;
-    }
-    [data-theme="light"] .uin-card-price {
-      color: #0284c7;
-    }
-    .uin-card-orig-price {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-decoration: line-through;
-      margin-left: 6px;
-    }
-    .uin-card-discount-tag {
-      font-size: 10.5px;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: rgba(239, 68, 68, 0.15);
-      color: #ef4444;
-    }
-    .uin-card-btn-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .uin-btn-card-cart {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-primary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
-    }
-    [data-theme="light"] .uin-btn-card-cart {
-      background: #f1f5f9;
-      border-color: #e2e8f0;
-      color: #1e293b;
-    }
-    .uin-btn-card-cart:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: #38bdf8;
-      color: #38bdf8;
-      transform: scale(1.05);
-    }
-    .uin-btn-card-buy {
-      flex: 1;
-      height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      border: none;
-      color: #ffffff;
-      font-size: 13.5px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: all 0.2s ease;
-    }
-    .uin-btn-card-buy:hover {
-      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
-      transform: translateY(-1px);
-    }
-
-    /* --- Promo Banner Section --- */
-    .uin-promo-section {
-      padding: 24px 0 64px 0;
-    }
-    .uin-promo-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(236, 72, 153, 0.12) 100%), #101222;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 24px;
-      padding: 36px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    [data-theme="light"] .uin-promo-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(236, 72, 153, 0.06) 100%), #ffffff;
-      border-color: #c7d2fe;
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08);
-    }
-    .uin-promo-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      color: #ec4899;
-      background: rgba(236, 72, 153, 0.12);
-      border: 1px solid rgba(236, 72, 153, 0.25);
-      padding: 4px 10px;
-      border-radius: 9999px;
-      margin-bottom: 12px;
-    }
-    .uin-promo-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-    .uin-promo-desc {
-      font-size: 14.5px;
-      color: var(--text-secondary);
-      max-width: 580px;
-      line-height: 1.6;
-    }
-    .uin-promo-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    /* --- Reviews & Testimonials Section --- */
-    .uin-reviews-section {
-      padding: 24px 0 64px 0;
-    }
-    .uin-section-header {
-      margin-bottom: 28px;
-    }
-    .uin-section-tag {
-      font-size: 11.5px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--brand-primary);
-      margin-bottom: 6px;
-    }
-    .uin-section-title {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
-    }
-    .uin-reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .uin-review-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 18px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    [data-theme="light"] .uin-review-card {
-      background: #ffffff;
-      border-color: #f1f5f9;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
-    }
-    .uin-review-user {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .uin-review-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .uin-review-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-    .uin-review-verified {
-      font-size: 11px;
-      color: #10b981;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .uin-review-stars {
-      color: #fbbf24;
-      font-size: 12px;
-      margin: 8px 0;
-    }
-    .uin-review-quote {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      font-style: italic;
-    }
-    .uin-review-prod-tag {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.1);
-      padding: 4px 10px;
-      border-radius: 6px;
-      display: inline-block;
-      width: fit-content;
-    }
-
-    /* --- Modern FAQ Section --- */
-    .uin-faq-section {
-      padding: 24px 0 64px 0;
-    }
-    .uin-faq-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
-    }
-    .uin-faq-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 16px;
-      padding: 20px 24px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    [data-theme="light"] .uin-faq-card {
-      background: #ffffff;
-      border-color: #f1f5f9;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-    }
-    .uin-faq-card:hover {
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-    .uin-faq-q {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-    .uin-faq-card i {
-      transition: transform 0.2s ease;
-      color: var(--text-muted);
-    }
-    .uin-faq-card.open i {
-      transform: rotate(180deg);
-      color: var(--brand-primary);
-    }
-    .uin-faq-a {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-top: 12px;
-      display: none;
-    }
-    .uin-faq-card.open .uin-faq-a {
-      display: block;
-      animation: uinFadeIn 0.2s ease;
-    }
-
-    /* --- Modern Footer (UI New) --- */
-    .uin-footer {
-      background: rgba(10, 11, 20, 0.95);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 56px 0 32px 0;
-      color: var(--text-secondary);
-    }
-    [data-theme="light"] .uin-footer {
-      background: #f8fafc;
-      border-top-color: #e2e8f0;
-      color: #64748b;
-    }
-    .uin-footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 48px;
-    }
-    .uin-footer-brand p {
-      font-size: 13.5px;
-      line-height: 1.6;
-      margin-top: 14px;
-      max-width: 320px;
-    }
-    .uin-footer-col h5 {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 16px;
-    }
-    .uin-footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .uin-footer-links a {
-      font-size: 13.5px;
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s ease;
-      cursor: pointer;
-    }
-    .uin-footer-links a:hover {
-      color: var(--brand-primary);
-    }
-    .uin-footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 13px;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    [data-theme="light"] .uin-footer-bottom {
-      border-top-color: #e2e8f0;
-    }
-
-    /* Responsive Breakpoints for UI New */
-    @media (max-width: 1024px) {
-      .uin-hero-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-      .uin-spotlight-box {
-        max-width: 480px;
-        margin: 0 auto;
-        width: 100%;
-      }
-      .uin-perks-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .uin-footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 768px) {
-      .uin-nav-center {
-        display: none;
-      }
-      .uin-promo-card {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 24px;
-      }
-      .uin-promo-actions {
-        width: 100%;
-        flex-direction: column;
-      }
-      .uin-promo-actions button {
-        width: 100%;
-      }
-      .floating-ui-switcher {
-        bottom: 84px; /* above bottom navigation */
-        left: 16px;
-        padding: 7px 12px;
-      }
-      .uin-product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 16px;
-      }
-      .uin-card-body {
-        padding: 16px;
-      }
-    }
-    @media (max-width: 480px) {
-      .uin-perks-grid {
-        grid-template-columns: 1fr;
-      }
-      .uin-footer-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-      .uin-product-grid {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
 </head>
 <body>
@@ -7054,6 +6059,7 @@
 
         <!-- Title & Status -->
         <div class="cross-web-title-wrap">
+          <img src="https://cdn.jsdelivr.net/gh/asahichanID/media@main/images%20(6).jpeg" alt="Shiro Anna" id="crossWebProfileImg" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid #ec4899; flex-shrink: 0; display: block;" />
           <span class="cross-web-badge"><i class="fa-solid fa-globe" style="margin-right: 3px;"></i> Lintas Web</span>
           <span class="cross-web-title" id="crossWebTitle">Shiro Anna</span>
           <span class="cross-web-url-indicator" id="crossWebUrlIndicator"></span>
@@ -7084,6 +6090,7 @@
       <!-- Loading State Indicator -->
       <div id="crossWebLoading" class="cross-web-overlay-state">
         <div class="cross-web-state-card">
+          <img src="https://cdn.jsdelivr.net/gh/asahichanID/media@main/images%20(6).jpeg" alt="Shiro Anna" id="crossWebLoadingProfileImg" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; border: 2px solid #ec4899; box-shadow: 0 0 16px rgba(236,72,153,0.4); display: block;" />
           <div class="cross-web-spinner-ring"></div>
           <div class="cross-web-state-title" id="crossWebLoadingTitle">Memuat Shiro Anna...</div>
           <div class="cross-web-state-subtitle">Sedang memuat web app ke dalam viewer aplikasi...</div>
@@ -7172,447 +6179,7 @@
     </div>
   </div>
 
-  <!-- ==================== UI NEW VIEW (MODERN REFACTOR) ==================== -->
-  <div id="uiNewView" class="ui-view-wrapper">
-    <!-- UI New Sticky Navbar -->
-    <header class="uin-navbar">
-      <div class="uin-container uin-nav-inner">
-        <!-- Brand -->
-        <a href="#" class="uin-brand" onclick="resetFilter(); window.scrollTo({top:0, behavior:'smooth'}); return false;">
-          <img src="https://files.catbox.moe/3tt0xl.png" alt="JaneMurphy" class="uin-brand-logo brand-logo-img" />
-          <div>
-            <h1 class="uin-brand-title" id="uinNavStoreName">JaneMurphy</h1>
-            <div class="uin-brand-subtitle">
-              <span id="uinNavStoreTagline">PREMIUM APPLICATIONS</span>
-              <span class="uin-brand-verified" title="Terverifikasi & Terpercaya"><i class="fa-solid fa-check"></i></span>
-            </div>
-          </div>
-        </a>
 
-        <!-- Center Search Capsule -->
-        <div class="uin-nav-center">
-          <div class="uin-search-capsule">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="uinSearchInput" class="uin-search-input" placeholder="Cari aplikasi premium, game, atau jasa..." oninput="handleUINewSearch(this.value)" />
-            <button type="button" class="uin-search-clear" id="uinSearchClear" onclick="clearUINewSearch()" title="Hapus Pencarian">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Right Actions & UI Switcher -->
-        <div class="uin-nav-actions">
-          <!-- Segmented UI Version Switcher -->
-          <div class="uin-switcher-pill" title="Pilih Versi Tampilan Antarmuka">
-            <button type="button" class="uin-switch-btn active" id="uinNavSwitchNew" onclick="switchUIVersion('new')">
-              <i class="fa-solid fa-sparkles" style="color: #fef08a;"></i> UI New
-            </button>
-            <button type="button" class="uin-switch-btn" id="uinNavSwitchOld" onclick="switchUIVersion('old')">
-              <i class="fa-solid fa-clock-rotate-left"></i> UI Old
-            </button>
-          </div>
-
-          <!-- Theme Toggle -->
-          <button type="button" class="uin-btn-icon" onclick="toggleTheme()" id="uinBtnTheme" title="Ganti Tema (Gelap / Terang)">
-            <i class="fa-solid fa-moon" id="uinThemeIcon" style="color: #60a5fa;"></i>
-          </button>
-
-          <!-- Cart Pill -->
-          <button type="button" class="uin-btn-cart-pill" onclick="openCartModal()" title="Lihat Keranjang Belanja">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span class="nav-desktop-only">Keranjang</span>
-            <span class="uin-badge-count" id="uinCartBadgeCount">0</span>
-          </button>
-
-          <!-- Direct WhatsApp Admin -->
-          <a href="https://wa.me/6283823567366" target="_blank" rel="noopener noreferrer" class="uin-btn-wa-pill nav-desktop-only" id="uinBtnDirectWa" title="Chat WhatsApp Admin">
-            <i class="fa-brands fa-whatsapp"></i>
-            <span>WhatsApp</span>
-          </a>
-
-          <!-- User Profile / Auth Button -->
-          <button type="button" class="uin-btn-icon" id="uinNavUserBtn" onclick="handleUserNavClick()" title="Akun Saya">
-            <div id="uinNavUserAvatar" style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; background: rgba(255,255,255,0.1);">
-              <i class="fa-solid fa-user"></i>
-            </div>
-          </button>
-
-          <!-- Hamburger Menu Button -->
-          <button type="button" class="uin-btn-icon" onclick="openSideMenu()" title="Buka Menu Lengkap">
-            <i class="fa-solid fa-bars-staggered"></i>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- UI New Hero Section -->
-    <section class="uin-hero">
-      <div class="uin-container uin-hero-grid">
-        <!-- Hero Left Info -->
-        <div>
-          <div class="uin-hero-badge">
-            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Toko Digital Resmi & Terverifikasi
-          </div>
-          <h2 class="uin-hero-title">
-            Solusi Kebutuhan <span>Digital Premium</span> & Topup Instan
-          </h2>
-          <p class="uin-hero-desc">
-            Akses aplikasi premium original legal bergaransi penuh, topup voucher game favorit termurah kilat 1-5 menit, dan jasa desain promosi profesional siap pakai.
-          </p>
-
-          <div class="uin-hero-metrics">
-            <div class="uin-metric-pill"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> Proses 1-5 Menit</div>
-            <div class="uin-metric-pill"><i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> 100% Legal Bergaransi</div>
-            <div class="uin-metric-pill"><i class="fa-solid fa-qrcode" style="color: #06b6d4;"></i> QRIS All Payment</div>
-            <div class="uin-metric-pill"><i class="fa-solid fa-headset" style="color: #a855f7;"></i> Layanan CS 24 Jam</div>
-          </div>
-
-          <div class="uin-hero-actions">
-            <a href="#uinStoreCatalog" class="uin-btn-primary">
-              <i class="fa-solid fa-layer-group"></i> Jelajahi Katalog
-            </a>
-            <button type="button" class="uin-btn-secondary" onclick="openPaymentModal()">
-              <i class="fa-solid fa-qrcode"></i> Info Pembayaran QRIS
-            </button>
-          </div>
-        </div>
-
-        <!-- Hero Right Spotlight -->
-        <div class="uin-spotlight-box">
-          <div class="uin-spotlight-card" id="uinSpotlightCard">
-            <div class="uin-spotlight-header">
-              <span class="uin-spotlight-badge"><i class="fa-solid fa-fire"></i> PRODUK TERPOPULER</span>
-              <span class="uin-spotlight-live"><span class="uin-spotlight-dot"></span> Ready Stock</span>
-            </div>
-            <div class="uin-spotlight-media" id="uinSpotlightMedia">
-              <img src="https://files.catbox.moe/k3i476.jpg" alt="Spotlight" id="uinSpotlightImg" />
-            </div>
-            <h4 class="uin-spotlight-title" id="uinSpotlightTitle">YouTube Premium 1 Bulan</h4>
-            <div class="uin-spotlight-perks" id="uinSpotlightPerks">
-              <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Tanpa Iklan • Bebas Download • Garansi Penuh
-            </div>
-            <div class="uin-spotlight-price-row">
-              <div>
-                <span class="uin-spotlight-price" id="uinSpotlightPrice">Rp 15.000</span>
-                <span class="uin-spotlight-orig" id="uinSpotlightOrigPrice">Rp 45.000</span>
-              </div>
-              <span style="font-size: 11px; color: #10b981; font-weight: 700;">★ 5.0 (Terverifikasi)</span>
-            </div>
-            <button type="button" class="uin-spotlight-btn" id="uinSpotlightBuyBtn" onclick="handleSpotlightBuy()">
-              <i class="fa-solid fa-bag-shopping"></i> Beli Sekarang
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Perks Strip (4 Clean Value Cards) -->
-    <section class="uin-perks-section">
-      <div class="uin-container uin-perks-grid">
-        <div class="uin-perk-card">
-          <div class="uin-perk-icon amber"><i class="fa-solid fa-bolt"></i></div>
-          <div>
-            <div class="uin-perk-title">Kilat 1 - 5 Menit</div>
-            <div class="uin-perk-desc">Pesanan diproses secara cepat dan otomatis langsung ke akun Anda.</div>
-          </div>
-        </div>
-        <div class="uin-perk-card">
-          <div class="uin-perk-icon emerald"><i class="fa-solid fa-shield-halved"></i></div>
-          <div>
-            <div class="uin-perk-title">Garansi Penuh</div>
-            <div class="uin-perk-desc">Jaminan replace atau panduan penuh jika terjadi kendala selama masa aktif.</div>
-          </div>
-        </div>
-        <div class="uin-perk-card">
-          <div class="uin-perk-icon cyan"><i class="fa-solid fa-qrcode"></i></div>
-          <div>
-            <div class="uin-perk-title">QRIS All Payment</div>
-            <div class="uin-perk-desc">Bisa scan dari BCA, Mandiri, BRI, BNI, DANA, GoPay, OVO, ShopeePay & SeaBank.</div>
-          </div>
-        </div>
-        <div class="uin-perk-card">
-          <div class="uin-perk-icon purple"><i class="fa-solid fa-headset"></i></div>
-          <div>
-            <div class="uin-perk-title">Bantuan Siaga</div>
-            <div class="uin-perk-desc">Tim CS ramah siap membantu via WhatsApp kapan saja Anda butuh.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Store Catalog & Discovery Hub -->
-    <section class="uin-store-section" id="uinStoreCatalog">
-      <div class="uin-container">
-        <!-- Section Title Header -->
-        <div class="uin-section-header">
-          <div class="uin-section-tag"><i class="fa-solid fa-sparkles"></i> KATALOG STORE</div>
-          <h3 class="uin-section-title">Temukan Produk & Layanan Favorit</h3>
-        </div>
-
-        <!-- Filter & Control Card -->
-        <div class="uin-filter-card">
-          <div class="uin-filter-row-top">
-            <!-- Category Pills -->
-            <div class="uin-category-capsules" id="uinCategoryCapsules">
-              <button type="button" class="uin-cat-btn active" data-cat="all" onclick="filterCategoryNew('all', this)">
-                <i class="fa-solid fa-border-all"></i> Semua Produk <span class="uin-cat-count" id="uin-count-all">0</span>
-              </button>
-              <button type="button" class="uin-cat-btn" data-cat="Aplikasi Premium" onclick="filterCategoryNew('Aplikasi Premium', this)">
-                <i class="fa-solid fa-mobile-screen"></i> Aplikasi Premium <span class="uin-cat-count" id="uin-count-app">0</span>
-              </button>
-              <button type="button" class="uin-cat-btn" data-cat="Topup Game" onclick="filterCategoryNew('Topup Game', this)">
-                <i class="fa-solid fa-gamepad"></i> Topup Game <span class="uin-cat-count" id="uin-count-game">0</span>
-              </button>
-              <button type="button" class="uin-cat-btn" data-cat="Jasa Design Poster" onclick="filterCategoryNew('Jasa Design Poster', this)">
-                <i class="fa-solid fa-palette"></i> Jasa Desain <span class="uin-cat-count" id="uin-count-design">0</span>
-              </button>
-            </div>
-
-            <!-- Sort Select -->
-            <div class="uin-sort-wrap">
-              <select id="uinSortSelect" class="uin-sort-select" onchange="handleSortSelectNew(this.value)">
-                <option value="default">Urutkan: Rekomendasi</option>
-                <option value="price-asc">Harga: Termurah</option>
-                <option value="price-desc">Harga: Tertinggi</option>
-                <option value="rating-desc">Rating: Tertinggi</option>
-                <option value="sold-desc">Terlaris (Paling Populer)</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Active Filter Status & Reset -->
-          <div class="uin-filter-status-row">
-            <div id="uinFilterStatusText">Menampilkan semua produk</div>
-            <a class="uin-filter-reset-link" onclick="resetFilterNew()">
-              <i class="fa-solid fa-rotate-left"></i> Reset Filter
-            </a>
-          </div>
-        </div>
-
-        <!-- Modern Product Grid Container -->
-        <div class="uin-product-grid" id="productGridNew">
-          <!-- Populated dynamically by renderProducts() -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Promo Showcase Banner -->
-    <section class="uin-promo-section">
-      <div class="uin-container">
-        <div class="uin-promo-card">
-          <div>
-            <span class="uin-promo-badge"><i class="fa-solid fa-bolt"></i> PROMO SPESIAL BULAN INI</span>
-            <h3 class="uin-promo-title" id="uinBannerTitle">Diskon Ekstra & Bonus Aktivasi Kilat</h3>
-            <p class="uin-promo-desc" id="uinBannerDesc">
-              Dapatkan potongan harga spesial untuk pembelian paket tahunan dan topup game nominal besar. Salin kode kupon atau hubungi admin WhatsApp untuk klaim!
-            </p>
-          </div>
-          <div class="uin-promo-actions">
-            <button type="button" class="uin-btn-secondary" onclick="copyToClipboard('JANEMURPHYPRO', 'Kode Promo')">
-              <i class="fa-solid fa-ticket"></i> Salin Kupon: JANEMURPHYPRO
-            </button>
-            <a href="https://wa.me/6283823567366?text=assalamu%27alaikum%20min%20mau%20klaim%20promo%20JANEMURPHYPRO" target="_blank" rel="noopener noreferrer" class="uin-btn-primary" id="uinBannerWaBtn">
-              <i class="fa-brands fa-whatsapp"></i> Klaim via WA
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Verified Customer Reviews Section -->
-    <section class="uin-reviews-section">
-      <div class="uin-container">
-        <div class="uin-section-header">
-          <div class="uin-section-tag"><i class="fa-solid fa-star" style="color: #fbbf24;"></i> TESTIMONI PEMBELI</div>
-          <h3 class="uin-section-title">Apa Kata Mereka Tentang Layanan Kami</h3>
-        </div>
-
-        <div class="uin-reviews-grid">
-          <div class="uin-review-card">
-            <div>
-              <div class="uin-review-user">
-                <div class="uin-review-avatar">FR</div>
-                <div>
-                  <div class="uin-review-name">Fajar Ramadhan</div>
-                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
-                </div>
-              </div>
-              <div class="uin-review-stars">★★★★★</div>
-              <p class="uin-review-quote">"Langganan YouTube Premium disini ga pernah kecewa, baru transfer hitungan menit udah langsung aktif di email pribadi. Mantap!"</p>
-            </div>
-            <div class="uin-review-prod-tag">YouTube Premium 1 Bulan</div>
-          </div>
-
-          <div class="uin-review-card">
-            <div>
-              <div class="uin-review-user">
-                <div class="uin-review-avatar" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">AS</div>
-                <div>
-                  <div class="uin-review-name">Annisa Salma</div>
-                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
-                </div>
-              </div>
-              <div class="uin-review-stars">★★★★★</div>
-              <p class="uin-review-quote">"Canva Pro nya awet banget tanpa kendala. Garansinya beneran amanah pas ada update akun langsung dibantu admin ramah."</p>
-            </div>
-            <div class="uin-review-prod-tag">Canva Pro Lifetime / 1 Thn</div>
-          </div>
-
-          <div class="uin-review-card">
-            <div>
-              <div class="uin-review-user">
-                <div class="uin-review-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">DP</div>
-                <div>
-                  <div class="uin-review-name">Dimas Pratama</div>
-                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
-                </div>
-              </div>
-              <div class="uin-review-stars">★★★★★</div>
-              <p class="uin-review-quote">"Topup Diamond ML fast respon banget! Ga nyampe 3 menit diamond udah masuk ke akun. Harganya juga jauh lebih murah dari in-game."</p>
-            </div>
-            <div class="uin-review-prod-tag">Topup Game Mobile Legends</div>
-          </div>
-
-          <div class="uin-review-card">
-            <div>
-              <div class="uin-review-user">
-                <div class="uin-review-avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">RN</div>
-                <div>
-                  <div class="uin-review-name">Rizky Nugraha</div>
-                  <div class="uin-review-verified"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</div>
-                </div>
-              </div>
-              <div class="uin-review-stars">★★★★★</div>
-              <p class="uin-review-quote">"Desain poster promosi buat olshop saya hasilnya keren banget, estetik dan revisinya cepat. Rekomen buat yang butuh desain kilat."</p>
-            </div>
-            <div class="uin-review-prod-tag">Jasa Design Poster Grafis</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Modern FAQ Section -->
-    <section class="uin-faq-section">
-      <div class="uin-container">
-        <div class="uin-section-header">
-          <div class="uin-section-tag"><i class="fa-solid fa-circle-question"></i> PERTANYAAN UMUM</div>
-          <h3 class="uin-section-title">Hal yang Sering Ditanyakan (FAQ)</h3>
-        </div>
-
-        <div class="uin-faq-grid">
-          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
-            <div class="uin-faq-q">
-              <span>Bagaimana cara melakukan pembelian?</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="uin-faq-a">
-              Pilih produk yang Anda inginkan pada katalog, klik tombol <strong>Beli Sekarang</strong>, tentukan varian, isi nomor WhatsApp dan catatan, lalu selesaikan pembayaran via QRIS All Payment atau E-Wallet.
-            </div>
-          </div>
-
-          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
-            <div class="uin-faq-q">
-              <span>Berapa lama proses aktivasi produk?</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="uin-faq-a">
-              Rata-rata pesanan selesai dalam 1 - 5 menit setelah bukti pembayaran dikonfirmasi melalui WhatsApp admin kami.
-            </div>
-          </div>
-
-          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
-            <div class="uin-faq-q">
-              <span>Apakah produk bergaransi resmi?</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="uin-faq-a">
-              Ya, seluruh aplikasi premium dan layanan kami memiliki garansi penuh sesuai masa aktif produk. Jika terjadi kendala, admin akan langsung membantu hingga tuntas.
-            </div>
-          </div>
-
-          <div class="uin-faq-card" onclick="this.classList.toggle('open')">
-            <div class="uin-faq-q">
-              <span>Metode pembayaran apa saja yang didukung?</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="uin-faq-a">
-              Kami mendukung <strong>QRIS All Payment</strong> yang dapat discan dari semua M-Banking (BCA, Mandiri, BRI, BNI, BSI) dan E-Wallet (DANA, GoPay, OVO, ShopeePay, LinkAja, SeaBank).
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Modern Footer (UI New) -->
-    <footer class="uin-footer">
-      <div class="uin-container">
-        <div class="uin-footer-grid">
-          <div class="uin-footer-brand">
-            <a href="#" class="uin-brand" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
-              <img src="https://files.catbox.moe/3tt0xl.png" alt="JaneMurphy" class="uin-brand-logo brand-logo-img" />
-              <div>
-                <h4 class="uin-brand-title" id="uinFooterStoreName">JaneMurphy</h4>
-                <div class="uin-brand-subtitle">PREMIUM APPLICATIONS & TOPUP</div>
-              </div>
-            </a>
-            <p>
-              Platform terpercaya penyedia aplikasi premium original, voucher game termurah proses kilat, dan layanan desain kreatif dengan garansi amanah.
-            </p>
-          </div>
-
-          <div class="uin-footer-col">
-            <h5>Kategori</h5>
-            <div class="uin-footer-links">
-              <a onclick="filterCategoryNew('Aplikasi Premium')"><i class="fa-solid fa-mobile-screen"></i> Aplikasi Premium</a>
-              <a onclick="filterCategoryNew('Topup Game')"><i class="fa-solid fa-gamepad"></i> Topup Game</a>
-              <a onclick="filterCategoryNew('Jasa Design Poster')"><i class="fa-solid fa-palette"></i> Jasa Desain Poster</a>
-              <a onclick="filterCategoryNew('all')"><i class="fa-solid fa-layer-group"></i> Semua Produk</a>
-            </div>
-          </div>
-
-          <div class="uin-footer-col">
-            <h5>Bantuan & Menu</h5>
-            <div class="uin-footer-links">
-              <a onclick="openPaymentModal()"><i class="fa-solid fa-qrcode"></i> Cara Bayar QRIS</a>
-              <a onclick="handleUserNavClick()"><i class="fa-solid fa-user"></i> Akun / Transaksi Saya</a>
-              <a onclick="handleAdminBtnClick()"><i class="fa-solid fa-lock"></i> Portal Admin</a>
-              <a onclick="switchUIVersion('old')"><i class="fa-solid fa-clock-rotate-left"></i> Beralih ke UI Old</a>
-            </div>
-          </div>
-
-          <div class="uin-footer-col">
-            <h5>Kontak & CS</h5>
-            <div class="uin-footer-links">
-              <a href="https://wa.me/6283823567366" target="_blank" rel="noopener noreferrer" style="color: #22c55e; font-weight: 700;">
-                <i class="fa-brands fa-whatsapp"></i> +62 838-2356-7366
-              </a>
-              <span style="font-size: 12px; color: var(--text-muted);">Siaga: Senin - Minggu (24 Jam)</span>
-              <span style="font-size: 12px; color: var(--text-muted);">Garansi: 100% Aman & Terpercaya</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="uin-footer-bottom">
-          <div>
-            © <span class="uin-year">2026</span> <strong id="uinFooterCopyName">JaneMurphy</strong>. Seluruh hak cipta dilindungi undang-undang.
-          </div>
-          <div style="display: flex; align-items: center; gap: 14px;">
-            <span style="font-size: 12px; color: var(--text-muted);">Tampilan:</span>
-            <button type="button" class="btn btn-xs" onclick="switchUIVersion('old')" style="font-size: 11px; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--text-secondary); cursor: pointer;">
-              <i class="fa-solid fa-clock-rotate-left"></i> UI Old
-            </button>
-            <button type="button" class="btn btn-xs" onclick="switchUIVersion('new')" style="font-size: 11px; padding: 4px 10px; border-radius: 6px; background: #6366f1; border: none; color: #fff; font-weight: 700; cursor: pointer;">
-              <i class="fa-solid fa-sparkles"></i> UI New
-            </button>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-  <!-- ==================== END UI NEW VIEW ==================== -->
-
-  <!-- ==================== UI OLD VIEW (ORIGINAL PRESERVED) ==================== -->
-  <div id="uiOldView" class="ui-view-wrapper" style="display: none;">
   <!-- Navbar -->
   <header class="navbar">
     <div class="navbar-container">
@@ -7633,11 +6200,6 @@
       </nav>
 
       <div class="nav-actions">
-        <!-- Switch to UI New Button -->
-        <button type="button" class="btn btn-sm" onclick="switchUIVersion('new')" id="btnSwitchToUiNew" title="Beralih ke UI New (Modern Refactor)" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; font-weight: 700; border: none; box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4); display: inline-flex; align-items: center; gap: 6px;">
-          <i class="fa-solid fa-sparkles" style="color: #fef08a;"></i> <span class="nav-desktop-only">UI New</span>
-        </button>
-
         <!-- Theme Toggle Button (Dark / Light Mode) -->
         <button class="btn btn-outline btn-sm" onclick="toggleTheme()" id="btnThemeNav" title="Ganti Tema (Gelap / Terang)">
           <i class="fa-solid fa-moon" id="themeNavIcon" style="color: #60a5fa;"></i>
@@ -8009,8 +6571,7 @@
       </div>
     </div>
   </section>
-  </div>
-  <!-- ==================== END UI OLD VIEW ==================== -->
+
 
   <!-- ==================== SIDE MENU DRAWER (GARIS TIGA / HAMBURGER) ==================== -->
   <div class="side-drawer-overlay" id="sideDrawerOverlay" onclick="closeSideMenu(event)">
@@ -8032,22 +6593,6 @@
       <!-- Drawer Content -->
       <div class="drawer-body">
         
-        <!-- Section: Pilihan Tampilan (UI Switcher) -->
-        <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 14px; padding: 12px; margin-bottom: 16px;">
-          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #818cf8; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-            <span><i class="fa-solid fa-sliders" style="margin-right: 6px;"></i> PILIHAN TAMPILAN</span>
-            <span id="drawerCurrentUiBadge" style="font-size: 9px; padding: 2px 6px; border-radius: 4px; background: #6366f1; color: #fff;">UI New</span>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <button type="button" id="drawerBtnUiNew" onclick="switchUIVersion('new'); closeSideMenu();" style="padding: 8px 10px; border-radius: 9px; border: 1px solid rgba(99, 102, 241, 0.4); background: #6366f1; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
-              <i class="fa-solid fa-sparkles"></i> UI New
-            </button>
-            <button type="button" id="drawerBtnUiOld" onclick="switchUIVersion('old'); closeSideMenu();" style="padding: 8px 10px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.05); color: var(--text-primary); font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
-              <i class="fa-solid fa-clock-rotate-left"></i> UI Old
-            </button>
-          </div>
-        </div>
-
         <!-- Section: Lintas Web (Item PALING ATAS) -->
         <div class="drawer-section-lintas">
           <div class="drawer-section-title" style="display: flex; align-items: center; justify-content: space-between;">
@@ -8055,10 +6600,11 @@
             <span style="font-size: 8.5px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 0.5px;">EMBEDDED</span>
           </div>
           <div class="drawer-nav-list">
-            <button type="button" class="drawer-item drawer-item-lintas" onclick="openCrossWebApp('Shiro Anna', '[taruh link disini]')" data-url="[taruh link disini]" id="btnNavShiroAnna" title="Buka Shiro Anna (Lintas Web Embedded Viewer)">
+            <button type="button" class="drawer-item drawer-item-lintas" onclick="openCrossWebApp('Shiro Anna', 'https://shironna.my.id/')" data-url="https://shironna.my.id/" id="btnNavShiroAnna" title="Buka Shiro Anna (Lintas Web Embedded Viewer)">
               <div class="drawer-item-left">
                 <div class="drawer-lintas-icon">
-                  <i class="fa-solid fa-sparkles" style="color: #ec4899;"></i>
+                  <img src="https://cdn.jsdelivr.net/gh/asahichanID/media@main/images%20(6).jpeg" alt="Shiro Anna" id="drawerLintasProfileImg" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" />
+                  <i class="fa-solid fa-sparkles" style="color: #ec4899; display: none;"></i>
                 </div>
                 <div>
                   <div style="font-weight: 800; font-size: 13.5px; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
@@ -8890,142 +7436,202 @@
     </div>
   </div>
 
-  <!-- Modal 3: Add / Edit Product (Requirement #1 & #2) -->
+  <!-- Modal 3: Add / Edit Product - Simple & Clean Design -->
   <div class="modal-overlay" id="productFormModal">
-    <div class="modal-box">
+    <div class="modal-box modal-box-large" style="max-width: 680px;">
       <div class="modal-header">
         <h4 class="modal-title" id="productModalTitle"><i class="fa-solid fa-box"></i> Tambah Produk Baru</h4>
         <button class="modal-close" onclick="closeModal('productFormModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <form onsubmit="handleProductSubmit(event)" class="modal-body">
+      <form onsubmit="handleProductSubmit(event)" class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
         <input type="hidden" id="prodFormId">
 
-        <div class="form-group">
-          <label class="form-label">Nama Produk *</label>
-          <input type="text" id="prodFormName" class="form-input" placeholder="contoh: Netflix Premium 4K / Mobile Legends 86 DM" required>
+        <!-- Bagian 1: Data Pokok Produk -->
+        <div class="prod-form-card">
+          <div class="prod-form-card-header">
+            <span class="prod-form-step-num">1</span>
+            <span class="prod-form-step-title">Informasi Pokok Produk</span>
+          </div>
+          <div class="prod-form-card-body">
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label class="form-label">Nama Produk *</label>
+              <input type="text" id="prodFormName" class="form-input" placeholder="Misal: Netflix Premium 4K / Mobile Legends 86 DM" required>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 12px;">
+              <div class="form-group">
+                <label class="form-label">Kategori *</label>
+                <select id="prodFormCategory" class="form-select" required onchange="handleCategoryChangeInForm(this.value)">
+                  <option value="Aplikasi Premium">Aplikasi Premium</option>
+                  <option value="Topup Game">Topup Game</option>
+                  <option value="Jasa Design Poster">Jasa Design Poster</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Harga Pokok (Rp) *</label>
+                <input type="number" id="prodFormPrice" class="form-input" placeholder="Contoh: 35000" required oninput="syncDefaultVariantPrice(this.value)">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Status Stok *</label>
+                <select id="prodFormStockStatus" class="form-select" onchange="toggleStockCountInput(this.value)">
+                  <option value="ready">🟢 Ready Stock (Tersedia)</option>
+                  <option value="limited">🟡 Slot Terbatas (Sisa Sedikit)</option>
+                  <option value="preorder">🔵 Pre-Order (PO)</option>
+                  <option value="soldout">🔴 Stok Habis (Sold Out)</option>
+                </select>
+              </div>
+              <div class="form-group" id="prodStockCountGroup" style="display: none;">
+                <label class="form-label">Jumlah Slot Tersisa</label>
+                <input type="number" id="prodFormStockCount" class="form-input" placeholder="Misal: 5 (slot)">
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Kategori *</label>
-            <select id="prodFormCategory" class="form-select" required onchange="toggleImageRequirement(this.value)">
-              <option value="Aplikasi Premium">Aplikasi Premium</option>
-              <option value="Topup Game">Topup Game</option>
-              <option value="Jasa Design Poster">Jasa Design Poster</option>
-            </select>
+        <!-- Bagian 2: Foto Produk -->
+        <div class="prod-form-card">
+          <div class="prod-form-card-header">
+            <span class="prod-form-step-num">2</span>
+            <span class="prod-form-step-title" id="prodImageLabel">Foto / Gambar Produk</span>
           </div>
-          <div class="form-group">
-            <label class="form-label">Badge Label</label>
-            <input type="text" id="prodFormBadge" class="form-input" placeholder="BEST SELLER / INSTAN / PROMO">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Harga Utama (Rp) *</label>
-            <input type="number" id="prodFormPrice" class="form-input" placeholder="35000" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Jumlah Terjual (Sales Count)</label>
-            <input type="number" id="prodFormSold" class="form-input" placeholder="428">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Status Stok Real-Time *</label>
-            <select id="prodFormStockStatus" class="form-select" onchange="toggleStockCountInput(this.value)">
-              <option value="ready">Ready Stock (Hijau)</option>
-              <option value="limited">Slot Terbatas / Tersisa (Kuning)</option>
-              <option value="preorder">Pre-Order (Biru)</option>
-              <option value="soldout">Stok Habis / Kosong (Merah)</option>
-            </select>
-          </div>
-          <div class="form-group" id="prodStockCountGroup">
-            <label class="form-label">Jumlah Slot / Stok (Opsional)</label>
-            <input type="number" id="prodFormStockCount" class="form-input" placeholder="contoh: 3 / 5 (kosongkan jika unlimited)">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" id="prodImageLabel">Foto / Gambar Produk * (Galeri HP/Laptop atau URL)</label>
-          
-          <div class="image-upload-component" id="prodImageUploadComponent">
-            <!-- Hidden Input for Final Processed Image -->
+          <div class="prod-form-card-body">
             <input type="hidden" id="prodFormImage" value="">
+            
+            <div class="prod-image-quick-wrapper">
+              <!-- Thumbnail Preview Box -->
+              <div class="prod-thumb-box" id="prodImagePreviewContainer">
+                <img id="prodImagePreview" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Preview Foto">
+                <button type="button" class="prod-thumb-remove" onclick="clearProductImage()" title="Hapus Gambar">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
 
-            <!-- Image Preview Box -->
-            <div class="image-preview-wrapper" id="prodImagePreviewContainer" style="display: none;">
-              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                <div class="image-preview-card">
-                  <img id="prodImagePreview" class="image-preview-img" src="" alt="Preview Produk">
-                  <button type="button" class="image-preview-remove-btn" onclick="clearProductImage()" title="Hapus foto">
-                    <i class="fa-solid fa-xmark"></i>
+              <!-- Action Buttons -->
+              <div class="prod-image-actions">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('prodFileInput').click()">
+                    <i class="fa-solid fa-image"></i> Pilih dari Galeri HP/PC
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="toggleProdImageUrlGroup()">
+                    <i class="fa-solid fa-link"></i> <span id="toggleUrlBtnText">Input Link URL</span>
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="useDefaultCategoryPhoto()" title="Pasang foto bawaan yang cocok">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Foto Otomatis
                   </button>
                 </div>
-                <div>
-                  <div id="prodImageFileInfo" style="font-size: 12px; font-weight: 600; color: #4ade80;">
-                    <i class="fa-solid fa-circle-check"></i> Foto Terpilih
+                <input type="file" id="prodFileInput" accept="image/*" style="display: none;" onchange="handleProductFileSelect(event)">
+                <div id="prodImageFileInfo" style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">
+                  Foto otomatis dikompresi agar loading toko tetap cepat & hemat kuota.
+                </div>
+
+                <!-- Hidden Dropzone target for drop events and code compatibility -->
+                <div id="prodImageDropzone" style="display: none;"></div>
+
+                <!-- URL Input Group -->
+                <div id="prodImageUrlGroup" style="display: none; margin-top: 8px;">
+                  <div style="display: flex; gap: 6px;">
+                    <input type="text" id="prodFormImageUrlInput" class="form-input" placeholder="Tempel URL gambar (https://...)" oninput="handleProdUrlInput(this.value)">
                   </div>
-                  <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
-                    Otomatis dioptimalkan & siap disinkronkan ke toko
-                  </div>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('prodFileInput').click()" style="margin-top: 6px; font-size: 11px; padding: 4px 10px;">
-                    <i class="fa-solid fa-arrows-rotate"></i> Ganti Foto Lain
-                  </button>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Gallery Upload Dropzone (Click / Tap / Drag-and-Drop) -->
-            <div class="image-dropzone" id="prodImageDropzone" onclick="document.getElementById('prodFileInput').click()">
-              <input type="file" id="prodFileInput" accept="image/*" style="display: none;" onchange="handleProductFileSelect(event)">
-              <div style="font-size: 26px; color: #6366f1;">
-                <i class="fa-solid fa-images"></i>
-              </div>
-              <div class="dropzone-main-text" style="font-size: 13px; font-weight: 600; color: #ffffff;">
-                Pilih Foto dari Galeri / Album HP &amp; Komputer
-              </div>
-              <div style="font-size: 11px; color: var(--text-muted);">
-                Klik di sini atau seret foto ke dalam kotak ini (JPG, PNG, WEBP)
-              </div>
+        <!-- Bagian 3: Pilihan Paket / Durasi (Varian) -->
+        <div class="prod-form-card">
+          <div class="prod-form-card-header" style="justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="prod-form-step-num">3</span>
+              <span class="prod-form-step-title">Paket & Durasi Harga</span>
             </div>
-
-            <!-- Toggle URL Option -->
-            <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between;">
-              <span style="font-size: 11px; color: var(--text-muted);">Atau ingin gunakan link web langsung?</span>
-              <button type="button" class="btn btn-outline btn-sm" onclick="toggleProdImageUrlGroup()" style="font-size: 11px; padding: 2px 8px;">
-                <i class="fa-solid fa-link"></i> <span id="toggleUrlBtnText">Input Link URL</span>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="applyQuickVariantPreset('standard')" style="font-size: 11px; padding: 3px 8px;">
+                <i class="fa-solid fa-bolt"></i> Contoh Paket
+              </button>
+              <button type="button" class="btn btn-white btn-sm" onclick="addNewVariantRow()" style="font-size: 11px; padding: 3px 8px;">
+                <i class="fa-solid fa-plus"></i> Tambah Paket
               </button>
             </div>
+          </div>
+          <div class="prod-form-card-body">
+            <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px;">
+              Tentukan pilihan paket yang bisa dipilih customer (misal: 1 Bulan, 3 Bulan, atau jumlah Diamond):
+            </p>
+            
+            <!-- Interactive Visual Variant List -->
+            <div id="variantListBuilder" class="variant-builder-list">
+              <!-- Dynamically populated rows -->
+            </div>
 
-            <div id="prodImageUrlGroup" style="display: none; margin-top: 8px;">
-              <input type="text" id="prodFormImageUrlInput" class="form-input" placeholder="https://images.unsplash.com/..." oninput="handleProdUrlInput(this.value)">
-              <small style="font-size: 10.5px; color: var(--text-muted); display: block; margin-top: 3px;">Ketik / tempel link gambar online jika ingin menggunakan foto dari web.</small>
+            <!-- Hidden / Synchronized Textarea for Full Backward Compatibility -->
+            <textarea id="prodFormVariants" style="display: none;"></textarea>
+          </div>
+        </div>
+
+        <!-- Bagian 4: Deskripsi & Keunggulan Produk -->
+        <div class="prod-form-card">
+          <div class="prod-form-card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="prod-form-step-num">4</span>
+              <span class="prod-form-step-title">Deskripsi & Keunggulan</span>
+            </div>
+            <!-- Quick Helper Template Buttons -->
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('streaming')" title="Gunakan template streaming">
+                <i class="fa-solid fa-tv"></i> Template Streaming
+              </button>
+              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('software')" title="Gunakan template Canva/Tools">
+                <i class="fa-solid fa-pen-ruler"></i> Template Tools/Pro
+              </button>
+              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('topup')" title="Gunakan template Game">
+                <i class="fa-solid fa-gamepad"></i> Template Topup
+              </button>
+            </div>
+          </div>
+          <div class="prod-form-card-body">
+            <textarea id="prodFormDesc" class="form-textarea" rows="3" placeholder="Tuliskan keunggulan produk (bisa poin-poin atau klik salah satu tombol template di atas)..." style="font-size: 12.5px; line-height: 1.5;"></textarea>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">
+              <i class="fa-solid fa-circle-info"></i> Tampilan di pembeli akan otomatis dirapikan menjadi daftar poin & checklist yang enak dilihat.
             </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Garansi / Keterangan Legal</label>
-          <input type="text" id="prodFormWarranty" class="form-input" placeholder="Garansi 30 Hari / 100% Legal">
+        <!-- Bagian 5: Opsi Tambahan (Collapsible / Default Terlipat Rapi) -->
+        <div class="prod-form-card">
+          <div class="prod-form-card-header" onclick="toggleAdvancedProductOptions()" style="cursor: pointer; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="prod-form-step-num" style="background: rgba(255,255,255,0.1); color: var(--text-secondary);"><i class="fa-solid fa-gear"></i></span>
+              <span class="prod-form-step-title" style="color: var(--text-secondary);">Pengaturan Tambahan (Opsional)</span>
+            </div>
+            <span id="advancedOptionsChevron" style="font-size: 12px; color: var(--text-muted);"><i class="fa-solid fa-chevron-down"></i></span>
+          </div>
+          <div id="prodAdvancedOptionsBody" class="prod-form-card-body" style="display: none;">
+            <div class="form-row" style="margin-bottom: 12px;">
+              <div class="form-group">
+                <label class="form-label">Garansi / Jaminan</label>
+                <input type="text" id="prodFormWarranty" class="form-input" placeholder="Misal: Garansi 30 Hari / Full Periode">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Label Badge</label>
+                <input type="text" id="prodFormBadge" class="form-input" placeholder="Misal: BEST SELLER / PROMO">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Angka Terjual (Sales Count Awal)</label>
+              <input type="number" id="prodFormSold" class="form-input" placeholder="0">
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Deskripsi Singkat</label>
-          <textarea id="prodFormDesc" class="form-textarea" rows="2" placeholder="Jelaskan spesifikasi, durasi, dan keunggulan produk..."></textarea>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Pilihan Varian / Durasi / Paket (1 Baris = 1 Varian: Nama|Harga)</label>
-          <textarea id="prodFormVariants" class="form-textarea" rows="3" placeholder="1 Bulan Private Profile|35000&#10;3 Bulan Private Profile|95000"></textarea>
-          <small style="font-size: 11px; color: var(--text-muted);">Format: Nama Varian | Harga Rupiah (contoh: 1 Bulan|35000)</small>
-        </div>
-
-        <div class="modal-footer" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
+        <!-- Modal Footer -->
+        <div class="modal-footer" style="padding-left: 0; padding-right: 0; padding-bottom: 0; display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
           <button type="button" class="btn btn-outline" onclick="closeModal('productFormModal')">Batal</button>
-          <button type="submit" class="btn btn-white" id="btnSaveProduct">
-            <i class="fa-solid fa-floppy-disk"></i> Simpan Produk Realtime
+          <button type="submit" class="btn btn-white" id="btnSaveProduct" style="font-weight: 700;">
+            <i class="fa-solid fa-floppy-disk"></i> Simpan Produk
           </button>
         </div>
       </form>
@@ -9071,11 +7677,11 @@
     </div>
   </div>
 
-  <!-- Modal: Product Detail (Click to view full description and price) -->
+  <!-- Modal: Product Detail (Clean & Highly Legible Layout) -->
   <div class="modal-overlay" id="productDetailModal">
     <div class="modal-box modal-box-large">
       <div class="modal-header">
-        <h4 class="modal-title" id="detailModalTitle"><i class="fa-solid fa-circle-info"></i> Detail & Spesifikasi Produk</h4>
+        <h4 class="modal-title" id="detailModalTitle"><i class="fa-solid fa-circle-info"></i> Detail Produk</h4>
         <button class="modal-close" onclick="closeModal('productDetailModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -9096,36 +7702,23 @@
             <h3 class="detail-title-text" id="detailName">-</h3>
 
             <div class="detail-meta-strip">
-              <div><i class="fa-solid fa-star" style="color: #eab308;"></i> <strong id="detailRating">5.0</strong> / 5.0</div>
+              <div style="cursor: pointer;" onclick="switchProductDetailTab('reviews')" title="Klik untuk lihat ulasan pembeli">
+                <i class="fa-solid fa-star" style="color: #eab308;"></i> <strong id="detailRating">5.0</strong> / 5.0
+                <span style="text-decoration: underline; margin-left: 4px; font-size: 11px; color: var(--text-muted);">(<span id="detailReviewsCounterLink">0</span> ulasan)</span>
+              </div>
               <div>•</div>
               <div><i class="fa-solid fa-fire" style="color: #f97316;"></i> Terjual <strong id="detailSold">0</strong>x</div>
               <div>•</div>
-              <div style="color: #25d366;"><i class="fa-solid fa-shield-halved"></i> <span id="detailWarranty">Garansi Resmi</span></div>
+              <div style="color: #22c55e;"><i class="fa-solid fa-shield-halved"></i> <span id="detailWarranty">Garansi Penuh</span></div>
             </div>
 
             <!-- Price Card -->
             <div class="detail-price-card">
-              <span class="detail-price-val" id="detailPrice">Rp 0</span>
-              <span class="detail-price-orig" id="detailOrigPrice">Rp 0</span>
-              <span class="detail-discount-badge" id="detailDiscount">HEMAT 30%</span>
-            </div>
-
-            <!-- Share & Copy Link Strip (Feature #5) -->
-            <div class="detail-share-strip">
-              <span style="font-size: 11.5px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
-                <i class="fa-solid fa-share-nodes" style="color: #60a5fa;"></i> Bagikan Produk:
-              </span>
-              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button type="button" class="btn btn-outline btn-sm" onclick="copyCurrentProductLink()" title="Salin Tautan Produk">
-                  <i class="fa-solid fa-link"></i> Salin Link
-                </button>
-                <button type="button" class="btn btn-outline btn-sm" onclick="shareCurrentProduct()" title="Bagikan ke WhatsApp/Media Sosial">
-                  <i class="fa-brands fa-whatsapp"></i> Share
-                </button>
-                <button type="button" class="btn btn-outline btn-sm" onclick="inquireCurrentProductViaWhatsApp()" title="Tanya ketersediaan produk ke WhatsApp CS" style="color: #25d366; border-color: rgba(37, 211, 102, 0.4);">
-                  <i class="fa-brands fa-whatsapp"></i> Tanya Stok
-                </button>
+              <div>
+                <span class="detail-price-val" id="detailPrice">Rp 0</span>
+                <span class="detail-price-orig" id="detailOrigPrice">Rp 0</span>
               </div>
+              <span class="detail-discount-badge" id="detailDiscount">HEMAT 30%</span>
             </div>
 
             <!-- Detail Tabs Navigation (Spesifikasi vs Ulasan Pembeli) -->
@@ -9140,44 +7733,46 @@
             </div>
 
             <!-- Tab 1 Pane: Description, Perks, & Variants -->
-            <div class="detail-tab-content-pane active" id="paneDetailDesc">
-              <!-- Full Description -->
-              <div>
-                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">
-                  Deskripsi & Keunggulan Produk:
-                </div>
-                <div class="detail-desc-text" id="detailDescText">
-                  -
-                </div>
-              </div>
-
-              <!-- Perks / Highlights -->
-              <div class="detail-perks-grid">
-                <div class="detail-perk-item">
-                  <i class="fa-solid fa-bolt"></i>
-                  <span>Proses Cepat 1-5 Menit</span>
-                </div>
-                <div class="detail-perk-item">
-                  <i class="fa-solid fa-lock"></i>
-                  <span>Akun Legal & Private</span>
-                </div>
-                <div class="detail-perk-item">
-                  <i class="fa-solid fa-rotate-left"></i>
-                  <span>Garansi Ganti Baru</span>
-                </div>
-                <div class="detail-perk-item">
-                  <i class="fa-solid fa-headset"></i>
-                  <span>Support CS 24/7</span>
-                </div>
-              </div>
-
+            <div class="detail-tab-content-pane active" id="paneDetailDesc" style="display: flex; flex-direction: column; gap: 14px;">
               <!-- Variant / Package Picker inside Detail Modal -->
               <div id="detailVariantSection">
-                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">
-                  Pilih Paket / Durasi:
+                <div style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center;">
+                  <span><i class="fa-solid fa-layer-group"></i> Pilih Paket / Durasi:</span>
+                  <span id="detailSelectedVariantLabel" style="font-size: 12px; color: var(--text-primary); font-weight: 700; text-transform: none;">-</span>
                 </div>
-                <div class="variant-selector" id="detailVariantSelector">
-                  <!-- Injected via JS -->
+                <div class="detail-variants-wrap" id="detailVariantSelector">
+                  <!-- Injected via JS as clean selectable chips -->
+                </div>
+              </div>
+
+              <!-- Clean Formatted Description & Benefits -->
+              <div>
+                <div style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;">
+                  <i class="fa-solid fa-list-check"></i> Rincian &amp; Keunggulan Layanan:
+                </div>
+                <!-- Clean Formatted Container -->
+                <div id="detailDescFormattedContainer" class="clean-desc-container">
+                  <!-- Injected via formatProductDescription() -->
+                </div>
+                <!-- Fallback element for compatibility -->
+                <div class="detail-desc-text" id="detailDescText" style="display: none;">-</div>
+              </div>
+
+              <!-- Share & Copy Link Strip (Compact & Clean) -->
+              <div class="detail-share-strip" style="margin-top: 4px;">
+                <span style="font-size: 11.5px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-solid fa-shield-halved" style="color: #22c55e;"></i> 100% Bergaransi Resmi
+                </span>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="copyCurrentProductLink()" title="Salin Tautan Produk">
+                    <i class="fa-solid fa-link"></i> Salin Link
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="shareCurrentProduct()" title="Bagikan ke WhatsApp/Media Sosial">
+                    <i class="fa-brands fa-whatsapp"></i> Share
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="inquireCurrentProductViaWhatsApp()" title="Tanya ketersediaan produk ke WhatsApp CS" style="color: #25d366; border-color: rgba(37, 211, 102, 0.4);">
+                    <i class="fa-brands fa-whatsapp"></i> Tanya CS
+                  </button>
                 </div>
               </div>
             </div>
@@ -9248,7 +7843,7 @@
       </div>
       <div class="modal-footer" style="justify-content: space-between; flex-wrap: wrap; gap: 10px;">
         <button class="btn btn-outline" onclick="openPaymentModal(true)">
-          <i class="fa-solid fa-qrcode"></i> Cek Pembayaran (QRIS)
+          <i class="fa-solid fa-qrcode"></i> Metode Pembayaran
         </button>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <button class="btn btn-dark" onclick="closeModal('productDetailModal')">Tutup</button>
@@ -9615,7 +8210,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer" id="uiOldFooter" style="display: none;">
+  <footer class="footer">
     <div class="footer-content">
       <div class="brand-logo">
         <img src="https://files.catbox.moe/3tt0xl.png" alt="JaneMurphy" class="brand-logo-img" style="width: 38px; height: 38px; border-radius: 9px;" />
@@ -10287,12 +8882,6 @@
         }
         if (dropAdminOpts) dropAdminOpts.style.display = 'none';
 
-        const uinAvatar = document.getElementById('uinNavUserAvatar');
-        if (uinAvatar) {
-          uinAvatar.innerHTML = '<i class="fa-solid fa-user"></i>';
-          uinAvatar.style.background = 'rgba(255,255,255,0.1)';
-          uinAvatar.style.color = 'inherit';
-        }
       } else {
         const initials = currentUser.name ? currentUser.name.split(' ').map(n=>n[0]).slice(0,2).join('').toUpperCase() : 'JM';
 
@@ -10304,16 +8893,6 @@
           }
         }
 
-        const uinAvatar = document.getElementById('uinNavUserAvatar');
-        if (uinAvatar) {
-          if (currentUser.avatar) {
-            uinAvatar.innerHTML = `<img src="${currentUser.avatar}" alt="${currentUser.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
-          } else {
-            uinAvatar.textContent = initials;
-            uinAvatar.style.background = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
-            uinAvatar.style.color = '#fff';
-          }
-        }
 
         if (nameEl) {
           nameEl.textContent = currentUser.name.split(' ')[0] || currentUser.name;
@@ -11160,13 +9739,12 @@
     document.addEventListener('DOMContentLoaded', async () => {
       initSplashScreenAnimation();
       initTheme();
-      initUIVersion();
+      try { localStorage.removeItem('jm_ui_version'); } catch(e) {}
       initHorizontalScrolls();
       initImageDropzones();
       const yr = new Date().getFullYear();
       const yrEl = document.getElementById('currentYear');
       if (yrEl) yrEl.textContent = yr;
-      document.querySelectorAll('.uin-year').forEach(el => el.textContent = yr);
       initFirebaseEngine();
       await fetchStoreData();
       initAuthUser();
@@ -11351,25 +9929,6 @@
 
       const drawerWa = document.getElementById('drawerWaLink');
       if (drawerWa) drawerWa.href = `https://wa.me/${waAdminNum}?text=${defaultInquiryText}`;
-
-      // Sync UI New brand elements
-      const uinNavName = document.getElementById('uinNavStoreName');
-      if (uinNavName) uinNavName.textContent = s.storeName || 'JaneMurphy';
-
-      const uinNavTag = document.getElementById('uinNavStoreTagline');
-      if (uinNavTag) uinNavTag.textContent = (s.storeTagline || 'PREMIUM APPLICATIONS').toUpperCase();
-
-      const uinFooterName = document.getElementById('uinFooterStoreName');
-      if (uinFooterName) uinFooterName.textContent = s.storeName || 'JaneMurphy';
-
-      const uinFooterCopy = document.getElementById('uinFooterCopyName');
-      if (uinFooterCopy) uinFooterCopy.textContent = s.storeName || 'JaneMurphy';
-
-      const uinDirectWa = document.getElementById('uinBtnDirectWa');
-      if (uinDirectWa) uinDirectWa.href = `https://wa.me/${waAdminNum}?text=${defaultInquiryText}`;
-
-      const uinBannerWa = document.getElementById('uinBannerWaBtn');
-      if (uinBannerWa) uinBannerWa.href = `https://wa.me/${waAdminNum}?text=${encodeURIComponent("assalamu'alaikum min mau klaim promo JANEMURPHYPRO")}`;
 
       // Banner middle
       if (s.promoBanner) {
@@ -11596,343 +10155,6 @@
         `;
       }).join('');
 
-      // Render UI New Modern Products Grid (Spacious, Adaptive, Information-Rich)
-      const gridNew = document.getElementById('productGridNew');
-      if (gridNew) {
-        if (filtered.length === 0) {
-          gridNew.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 64px 24px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 20px;">
-              <i class="fa-solid fa-box-open" style="font-size: 42px; color: var(--text-muted); margin-bottom: 16px;"></i>
-              <h4 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">Produk Tidak Ditemukan</h4>
-              <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">Coba gunakan kata kunci lain atau reset filter kategori.</p>
-              <button class="uin-btn-primary" onclick="resetFilterNew()"><i class="fa-solid fa-rotate-left"></i> Reset Filter</button>
-            </div>
-          `;
-        } else {
-          gridNew.innerHTML = filtered.map(product => {
-            const isTopup = product.category === 'Topup Game';
-            const formattedPrice = `Rp ${Number(product.price || 0).toLocaleString('id-ID')}`;
-            const formattedOrig = product.originalPrice ? `Rp ${Number(product.originalPrice).toLocaleString('id-ID')}` : '';
-            const soldText = product.soldCount !== undefined ? product.soldCount : 0;
-            
-            // Stock pill
-            const stockStatus = product.stockStatus || 'ready';
-            let stockHtml = '';
-            if (stockStatus === 'ready') {
-              stockHtml = `<span class="uin-stock-tag uin-stock-ready"><span class="uin-stock-dot"></span> Ready Stock</span>`;
-            } else if (stockStatus === 'limited') {
-              const countLabel = product.stockCount ? `Sisa ${product.stockCount}` : 'Terbatas';
-              stockHtml = `<span class="uin-stock-tag uin-stock-limited"><span class="uin-stock-dot"></span> ${countLabel}</span>`;
-            } else if (stockStatus === 'preorder') {
-              stockHtml = `<span class="uin-stock-tag uin-stock-preorder"><span class="uin-stock-dot"></span> Pre-Order</span>`;
-            } else if (stockStatus === 'soldout') {
-              stockHtml = `<span class="uin-stock-tag uin-stock-soldout"><span class="uin-stock-dot"></span> Habis</span>`;
-            }
-
-            // Discount badge
-            let discountHtml = '';
-            if (product.originalPrice && product.originalPrice > product.price) {
-              const pct = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-              discountHtml = `<span class="uin-card-discount-tag">Hemat ${pct}%</span>`;
-            }
-
-            // Media
-            let cardMedia = '';
-            if (product.image && (!isTopup || product.image.startsWith('http'))) {
-              cardMedia = `
-                <div class="uin-card-media">
-                  <img src="${product.image}" alt="${product.name}" class="uin-card-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
-                  ${product.category ? `<span class="uin-card-badge-left">${product.category}</span>` : ''}
-                  <span class="uin-card-rating"><i class="fa-solid fa-star"></i> ${product.rating || '5.0'}</span>
-                </div>
-              `;
-            } else {
-              cardMedia = `
-                <div class="uin-card-media">
-                  <div class="uin-card-topup-art"><i class="fa-solid fa-gamepad"></i></div>
-                  ${product.category ? `<span class="uin-card-badge-left">${product.category}</span>` : ''}
-                  <span class="uin-card-rating"><i class="fa-solid fa-star"></i> ${product.rating || '5.0'}</span>
-                </div>
-              `;
-            }
-
-            // Highlights
-            let highlightsText = product.warranty ? `Garansi: ${product.warranty}` : (Array.isArray(product.features) && product.features.length > 0 ? product.features.slice(0, 2).join(' • ') : 'Proses Cepat 1-5 Menit • Legal');
-
-            return `
-              <div class="uin-card" onclick="handleProductCardClick(event, '${product.id}', this)" title="Klik untuk beli atau lihat detail lengkap">
-                ${cardMedia}
-                <div class="uin-card-body">
-                  <div>
-                    <div class="uin-card-meta-row">
-                      ${stockHtml}
-                      <span class="uin-sold-tag"><i class="fa-solid fa-fire" style="color:#f97316;"></i> ${soldText} terjual</span>
-                    </div>
-                    <h3 class="uin-card-title">${product.name}</h3>
-                    <div class="uin-card-perks-text">${highlightsText}</div>
-                  </div>
-
-                  <div class="uin-card-bottom">
-                    <div class="uin-card-price-row">
-                      <div>
-                        <span class="uin-card-price">${formattedPrice}</span>
-                        ${formattedOrig ? `<span class="uin-card-orig-price">${formattedOrig}</span>` : ''}
-                      </div>
-                      ${discountHtml}
-                    </div>
-                    <div class="uin-card-btn-row">
-                      <button type="button" class="uin-btn-card-cart" onclick="event.stopPropagation(); quickAddToCart('${product.id}')" title="Tambah ke Keranjang">
-                        <i class="fa-solid fa-cart-plus"></i>
-                      </button>
-                      <button type="button" class="uin-btn-card-buy" onclick="event.stopPropagation(); handleProductCardClick(event, '${product.id}', this.closest('.uin-card'))">
-                        <i class="fa-solid fa-bag-shopping"></i> <span>Beli Sekarang</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join('');
-        }
-      }
-    }
-
-    // ==========================================
-    // UI VERSION MANAGER (UI NEW vs UI OLD)
-    // ==========================================
-    let currentUIVersion = 'new';
-
-    function initUIVersion() {
-      try {
-        const saved = localStorage.getItem('jm_ui_version');
-        currentUIVersion = (saved === 'old' || saved === 'new') ? saved : 'new';
-      } catch (e) {
-        currentUIVersion = 'new';
-      }
-      switchUIVersion(currentUIVersion, false);
-    }
-
-    function switchUIVersion(version, notify = true) {
-      currentUIVersion = version === 'old' ? 'old' : 'new';
-      try {
-        localStorage.setItem('jm_ui_version', currentUIVersion);
-      } catch (e) {}
-
-      const uiNew = document.getElementById('uiNewView');
-      const uiOld = document.getElementById('uiOldView');
-      const uiOldFooter = document.getElementById('uiOldFooter');
-
-      // Switcher elements
-      const navSwNew = document.getElementById('uinNavSwitchNew');
-      const navSwOld = document.getElementById('uinNavSwitchOld');
-      const drwBadge = document.getElementById('drawerCurrentUiBadge');
-      const drwBtnNew = document.getElementById('drawerBtnUiNew');
-      const drwBtnOld = document.getElementById('drawerBtnUiOld');
-
-      if (currentUIVersion === 'new') {
-        if (uiNew) uiNew.style.display = 'block';
-        if (uiOld) uiOld.style.display = 'none';
-        if (uiOldFooter) uiOldFooter.style.display = 'none';
-
-        if (navSwNew) navSwNew.classList.add('active');
-        if (navSwOld) navSwOld.classList.remove('active');
-
-        if (drwBadge) drwBadge.textContent = 'UI New';
-        if (drwBtnNew) {
-          drwBtnNew.style.background = '#6366f1';
-          drwBtnNew.style.color = '#ffffff';
-        }
-        if (drwBtnOld) {
-          drwBtnOld.style.background = 'rgba(255, 255, 255, 0.05)';
-          drwBtnOld.style.color = 'var(--text-primary)';
-        }
-
-        updateSpotlightProduct();
-        if (notify) {
-          showToast('Beralih ke tampilan UI New (Modern & Luas) ✨');
-          if (isSoundEnabled) playBeep('switch');
-        }
-      } else {
-        if (uiNew) uiNew.style.display = 'none';
-        if (uiOld) uiOld.style.display = 'block';
-        if (uiOldFooter) uiOldFooter.style.display = 'block';
-
-        if (navSwNew) navSwNew.classList.remove('active');
-        if (navSwOld) navSwOld.classList.add('active');
-
-        if (drwBadge) drwBadge.textContent = 'UI Old';
-        if (drwBtnOld) {
-          drwBtnOld.style.background = '#6366f1';
-          drwBtnOld.style.color = '#ffffff';
-        }
-        if (drwBtnNew) {
-          drwBtnNew.style.background = 'rgba(255, 255, 255, 0.05)';
-          drwBtnNew.style.color = 'var(--text-primary)';
-        }
-
-        if (notify) {
-          showToast('Beralih ke tampilan UI Old (Klasik)');
-          if (isSoundEnabled) playBeep('switch');
-        }
-      }
-
-      renderProducts();
-      updateCategoryCounts();
-      updateCartBadges();
-      updateUserAuthUI();
-    }
-
-    function toggleUIVersion() {
-      switchUIVersion(currentUIVersion === 'new' ? 'old' : 'new', true);
-    }
-
-    // Filter by category in UI New
-    function filterCategoryNew(category, btnElement) {
-      if (category === 'all') {
-        activeCategory = 'all';
-      } else {
-        activeCategory = category;
-      }
-
-      // Update UI New active button
-      document.querySelectorAll('.uin-cat-btn').forEach(btn => {
-        if (btn.getAttribute('data-cat') === category) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-
-      // Also sync with UI Old category buttons if present
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        if (btn.textContent && btn.textContent.toLowerCase().includes(category.toLowerCase())) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-
-      const statusEl = document.getElementById('uinFilterStatusText');
-      if (statusEl) {
-        statusEl.textContent = category === 'all' ? 'Menampilkan semua produk' : `Kategori: ${category}`;
-      }
-
-      renderProducts();
-      if (isSoundEnabled) playBeep('pop');
-    }
-
-    // Sort in UI New
-    function handleSortSelectNew(value) {
-      if (value === 'price-asc') {
-        activeSort = 'lowest';
-      } else if (value === 'price-desc') {
-        activeSort = 'highest';
-      } else if (value === 'sold-desc') {
-        activeSort = 'popular';
-      } else if (value === 'rating-desc') {
-        activeSort = 'warranty';
-      } else {
-        activeSort = 'default';
-      }
-      renderProducts();
-      if (isSoundEnabled) playBeep('pop');
-    }
-
-    // Search in UI New
-    function handleUINewSearch(query) {
-      searchQuery = (query || '').trim().toLowerCase();
-      const clearBtn = document.getElementById('uinSearchClear');
-      if (clearBtn) {
-        clearBtn.style.display = searchQuery.length > 0 ? 'inline-flex' : 'none';
-      }
-
-      // Sync search input in UI Old
-      const oldSearch = document.getElementById('searchInput');
-      if (oldSearch && oldSearch.value !== query) {
-        oldSearch.value = query;
-      }
-
-      const statusEl = document.getElementById('uinFilterStatusText');
-      if (statusEl) {
-        if (searchQuery) {
-          statusEl.textContent = `Pencarian: "${query}"`;
-        } else {
-          statusEl.textContent = activeCategory === 'all' ? 'Menampilkan semua produk' : `Kategori: ${activeCategory}`;
-        }
-      }
-
-      renderProducts();
-    }
-
-    function clearUINewSearch() {
-      const input = document.getElementById('uinSearchInput');
-      if (input) input.value = '';
-      const clearBtn = document.getElementById('uinSearchClear');
-      if (clearBtn) clearBtn.style.display = 'none';
-      handleUINewSearch('');
-    }
-
-    function resetFilterNew() {
-      const input = document.getElementById('uinSearchInput');
-      if (input) input.value = '';
-      const clearBtn = document.getElementById('uinSearchClear');
-      if (clearBtn) clearBtn.style.display = 'none';
-
-      const sortSel = document.getElementById('uinSortSelect');
-      if (sortSel) sortSel.value = 'default';
-
-      searchQuery = '';
-      activeSort = 'default';
-      filterCategoryNew('all', null);
-      showToast('Filter katalog berhasil di-reset');
-    }
-
-    // Spotlight hero card update
-    let currentSpotlightProduct = null;
-
-    function updateSpotlightProduct() {
-      const products = storeState.products || [];
-      if (products.length === 0) return;
-
-      // Find best-seller or first product
-      let featured = products.find(p => p.soldCount && p.soldCount > 100) || products[0];
-      if (!featured) return;
-
-      currentSpotlightProduct = featured;
-
-      const imgEl = document.getElementById('uinSpotlightImg');
-      const titleEl = document.getElementById('uinSpotlightTitle');
-      const perksEl = document.getElementById('uinSpotlightPerks');
-      const priceEl = document.getElementById('uinSpotlightPrice');
-      const origEl = document.getElementById('uinSpotlightOrigPrice');
-
-      if (imgEl && featured.image) imgEl.src = featured.image;
-      if (titleEl) titleEl.textContent = featured.name;
-      if (priceEl) priceEl.textContent = `Rp ${Number(featured.price || 0).toLocaleString('id-ID')}`;
-      if (origEl) {
-        if (featured.originalPrice && featured.originalPrice > featured.price) {
-          origEl.textContent = `Rp ${Number(featured.originalPrice).toLocaleString('id-ID')}`;
-          origEl.style.display = 'inline';
-        } else {
-          origEl.style.display = 'none';
-        }
-      }
-      if (perksEl) {
-        if (featured.warranty) {
-          perksEl.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Garansi: ${featured.warranty} • Proses 1-5 Menit`;
-        } else {
-          perksEl.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Legal & Original • Terverifikasi`;
-        }
-      }
-    }
-
-    function handleSpotlightBuy() {
-      if (currentSpotlightProduct) {
-        openCheckoutModal(currentSpotlightProduct.id);
-      } else {
-        const first = (storeState.products || [])[0];
-        if (first) openCheckoutModal(first.id);
-      }
     }
 
     // Product Detail Engine (Click on Product Card)
@@ -11975,6 +10197,94 @@
       setTimeout(() => {
         openProductDetailModal(productId);
       }, 120);
+    }
+
+    // Clean Product Description Formatter (Converts raw text/sentences into beautiful scannable bullet points)
+    function formatProductDescription(desc, features, category, warranty) {
+      const raw = (desc || '').trim();
+      let leadText = '';
+      let bulletPoints = [];
+
+      if (raw) {
+        const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+        if (lines.length > 1) {
+          if (!lines[0].startsWith('-') && !lines[0].startsWith('•') && !lines[0].startsWith('*') && lines[0].length > 10) {
+            leadText = lines[0];
+            bulletPoints = lines.slice(1).map(l => l.replace(/^[-•*–\d\.\)]\s*/, '').trim()).filter(Boolean);
+          } else {
+            bulletPoints = lines.map(l => l.replace(/^[-•*–\d\.\)]\s*/, '').trim()).filter(Boolean);
+          }
+        } else {
+          if (raw.includes('•') || raw.includes('- ') || raw.includes('|')) {
+            bulletPoints = raw.split(/•|- |\|/).map(s => s.trim()).filter(Boolean);
+          } else if (raw.length > 70 && raw.includes('.')) {
+            const sentences = raw.split(/\.\s+/).map(s => s.trim()).filter(Boolean);
+            if (sentences.length > 1) {
+              leadText = sentences[0] + (sentences[0].endsWith('.') ? '' : '.');
+              bulletPoints = sentences.slice(1).map(s => s.endsWith('.') ? s : s + '.');
+            } else {
+              leadText = raw;
+            }
+          } else {
+            leadText = raw;
+          }
+        }
+      }
+
+      if (!leadText && bulletPoints.length === 0) {
+        leadText = 'Layanan akun premium dan topup game terpercaya dengan proses kilat dan jaminan garansi resmi seumur masa aktif.';
+      }
+
+      if (bulletPoints.length === 0) {
+        if (Array.isArray(features) && features.length > 0) {
+          bulletPoints = [...features];
+        } else if (category === 'Aplikasi Premium') {
+          bulletPoints = [
+            'Akun Private / Sharing kualitas tertinggi, legal & anti on-hold',
+            'Full support & garansi ganti baru selama masa langganan aktif',
+            'Bisa login di HP, Tablet, Laptop, maupun Smart TV',
+            'Proses kilat langsung dikirimkan oleh admin via WhatsApp'
+          ];
+        } else if (category === 'Topup Game') {
+          bulletPoints = [
+            '100% Diamond / Item resmi & legal langsung masuk ke ID game Anda',
+            'Hanya butuh User ID & Zone ID (tanpa login, 100% aman)',
+            'Proses otomatis super kilat hitungan 1-5 menit',
+            'Struk pembayaran resmi terkirim otomatis'
+          ];
+        } else {
+          bulletPoints = [
+            'Dikerjakan oleh profesional dengan file resolusi tinggi (HD/4K)',
+            'Mendapatkan revisi sampai desain sesuai keinginan Anda',
+            'Proses pengerjaan cepat dan komunikasi ramah',
+            'Format file lengkap (JPG, PNG, PDF, & Master File)'
+          ];
+        }
+      }
+
+      const warrantyBadge = warranty || 'Garansi Penuh';
+
+      return `
+        ${leadText ? `
+          <div class="clean-desc-lead">
+            <i class="fa-solid fa-sparkles" style="color: #6366f1; margin-top: 2px;"></i>
+            <span>${escapeChatHTML(leadText)}</span>
+          </div>
+        ` : ''}
+        <div class="clean-desc-list">
+          ${bulletPoints.map(point => `
+            <div class="clean-desc-item">
+              <i class="fa-solid fa-circle-check clean-desc-icon"></i>
+              <span class="clean-desc-text">${escapeChatHTML(point)}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="clean-desc-guarantees">
+          <span class="clean-guarantee-pill"><i class="fa-solid fa-bolt" style="color: #eab308;"></i> Proses 1-5 Menit</span>
+          <span class="clean-guarantee-pill"><i class="fa-solid fa-shield-halved" style="color: #22c55e;"></i> ${escapeChatHTML(warrantyBadge)}</span>
+          <span class="clean-guarantee-pill"><i class="fa-solid fa-lock" style="color: #38bdf8;"></i> 100% Legal & Aman</span>
+        </div>
+      `;
     }
 
     function openProductDetailModal(productId) {
@@ -12042,10 +10352,18 @@
       document.getElementById('detailOrigPrice').textContent = `Rp ${origPrice.toLocaleString('id-ID')}`;
       document.getElementById('detailDiscount').textContent = `HEMAT ${discountPercent}%`;
 
-      // Full Description
-      document.getElementById('detailDescText').textContent = prod.description || 'Layanan akun premium dan topup game terbaik dengan proses kilat dan jaminan garansi resmi seumur masa aktif.';
+      // Full Description Formatted (Clean & High Readability)
+      const formattedHtml = formatProductDescription(prod.description, prod.features, prod.category, prod.warranty);
+      const descBox = document.getElementById('detailDescFormattedContainer');
+      if (descBox) {
+        descBox.innerHTML = formattedHtml;
+      }
+      const rawDescFallback = document.getElementById('detailDescText');
+      if (rawDescFallback) {
+        rawDescFallback.textContent = prod.description || '';
+      }
 
-      // Variants Selector
+      // Variants Selector (Clean selectable chips)
       const variants = Array.isArray(prod.variants) && prod.variants.length > 0 ? prod.variants : [
         { name: "Paket Standar", price: basePrice }
       ];
@@ -12053,15 +10371,20 @@
       selectedVariantName = variants[0].name;
       selectedVariantPrice = variants[0].price;
 
+      const labelEl = document.getElementById('detailSelectedVariantLabel');
+      if (labelEl) {
+        labelEl.textContent = `${variants[0].name} (Rp ${Number(variants[0].price).toLocaleString('id-ID')})`;
+      }
+
       const variantBox = document.getElementById('detailVariantSelector');
       variantBox.innerHTML = variants.map((v, idx) => `
-        <label class="variant-radio-label ${idx === 0 ? 'selected' : ''}" onclick="selectDetailVariant('${v.name}', ${v.price}, this)">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="radio" class="variant-radio-input" name="detail_variant" value="${v.name}" ${idx === 0 ? 'checked' : ''}>
-            <span class="variant-name">${v.name}</span>
+        <div class="detail-variant-chip ${idx === 0 ? 'active' : ''}" onclick="selectDetailVariant('${escapeChatHTML(v.name)}', ${v.price}, this)">
+          <div class="detail-variant-chip-name">
+            <span class="detail-variant-dot"></span>
+            <span>${escapeChatHTML(v.name)}</span>
           </div>
-          <span class="variant-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
-        </label>
+          <span class="detail-variant-chip-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
+        </div>
       `).join('');
 
       // Initialize Reviews & Tab
@@ -12374,10 +10697,23 @@
     function selectDetailVariant(name, price, element) {
       selectedVariantName = name;
       selectedVariantPrice = price;
-      document.querySelectorAll('#detailVariantSelector .variant-radio-label').forEach(el => el.classList.remove('selected'));
-      element.classList.add('selected');
-      const radio = element.querySelector('input[type="radio"]');
-      if (radio) radio.checked = true;
+
+      document.querySelectorAll('#detailVariantSelector .detail-variant-chip, #detailVariantSelector .variant-radio-label').forEach(el => {
+        el.classList.remove('active');
+        el.classList.remove('selected');
+      });
+
+      if (element) {
+        element.classList.add('active');
+        element.classList.add('selected');
+        const radio = element.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+      }
+
+      const labelEl = document.getElementById('detailSelectedVariantLabel');
+      if (labelEl) {
+        labelEl.textContent = `${name} (Rp ${Number(price).toLocaleString('id-ID')})`;
+      }
 
       document.getElementById('detailPrice').textContent = `Rp ${Number(price).toLocaleString('id-ID')}`;
       const origPrice = Math.round(Number(price) * 1.35);
@@ -12408,20 +10744,6 @@
       if (countGame) countGame.textContent = numGame;
       if (countDesign) countDesign.textContent = numDesign;
 
-      // Sync UI New Category Counts
-      const uinCountAll = document.getElementById('uin-count-all');
-      const uinCountApp = document.getElementById('uin-count-app');
-      const uinCountGame = document.getElementById('uin-count-game');
-      const uinCountDesign = document.getElementById('uin-count-design');
-
-      if (uinCountAll) uinCountAll.textContent = numAll;
-      if (uinCountApp) uinCountApp.textContent = numApp;
-      if (uinCountGame) uinCountGame.textContent = numGame;
-      if (uinCountDesign) uinCountDesign.textContent = numDesign;
-
-      if (typeof updateSpotlightProduct === 'function') {
-        updateSpotlightProduct();
-      }
     }
 
     // Copy to Clipboard Utility
@@ -13616,12 +11938,6 @@
       if (navBadge) {
         navBadge.textContent = totalCount;
         navBadge.style.display = totalCount > 0 ? 'inline-flex' : 'none';
-      }
-
-      const uinBadge = document.getElementById('uinCartBadgeCount');
-      if (uinBadge) {
-        uinBadge.textContent = totalCount;
-        uinBadge.style.display = totalCount > 0 ? 'inline-flex' : 'none';
       }
 
       const dropBadge = document.getElementById('dropdownCartCount');
@@ -14820,6 +13136,163 @@
       }
     }
 
+    // Visual Variants Builder & Quick Presets (Simple Product Management)
+    function renderVisualVariantsBuilder(variantLines) {
+      const container = document.getElementById('variantListBuilder');
+      if (!container) return;
+
+      container.innerHTML = '';
+      const lines = (variantLines || '').split('\n').map(l => l.trim()).filter(Boolean);
+
+      if (lines.length === 0) {
+        const currentPrice = Number(document.getElementById('prodFormPrice')?.value) || 35000;
+        addNewVariantRow('1 Bulan Full Garansi', currentPrice);
+        return;
+      }
+
+      lines.forEach(line => {
+        const parts = line.split('|');
+        const vName = parts[0] ? parts[0].trim() : 'Paket Standar';
+        const vPrice = parts[1] ? Number(parts[1].trim()) : 0;
+        addNewVariantRow(vName, vPrice);
+      });
+    }
+
+    function addNewVariantRow(name = '', price = '') {
+      const container = document.getElementById('variantListBuilder');
+      if (!container) return;
+
+      const row = document.createElement('div');
+      row.className = 'variant-builder-row';
+      row.innerHTML = `
+        <input type="text" class="form-input form-input-sm var-name-input" placeholder="Nama Paket (misal: 1 Bulan)" value="${escapeChatHTML(String(name))}" oninput="syncVariantsFromBuilder()">
+        <div style="display: flex; align-items: center; gap: 4px; width: 140px; flex-shrink: 0;">
+          <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">Rp</span>
+          <input type="number" class="form-input form-input-sm var-price-input" placeholder="Harga" value="${price !== '' ? price : ''}" oninput="syncVariantsFromBuilder()">
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" onclick="removeVariantRow(this)" style="padding: 4px 8px; color: #ef4444; border-color: rgba(239, 68, 68, 0.3); flex-shrink: 0;" title="Hapus Paket">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      `;
+      container.appendChild(row);
+      syncVariantsFromBuilder();
+    }
+
+    function removeVariantRow(btn) {
+      const row = btn.closest('.variant-builder-row');
+      if (row) {
+        const container = document.getElementById('variantListBuilder');
+        if (container && container.children.length <= 1) {
+          showToast("Minimal harus ada 1 paket / varian harga!");
+          return;
+        }
+        row.remove();
+        syncVariantsFromBuilder();
+      }
+    }
+
+    function syncVariantsFromBuilder() {
+      const rows = document.querySelectorAll('#variantListBuilder .variant-builder-row');
+      const lines = [];
+      rows.forEach(r => {
+        const nameInput = r.querySelector('.var-name-input');
+        const priceInput = r.querySelector('.var-price-input');
+        const n = nameInput ? nameInput.value.trim() : '';
+        const p = priceInput ? Number(priceInput.value) || 0 : 0;
+        if (n) {
+          lines.push(`${n}|${p}`);
+        }
+      });
+      const textarea = document.getElementById('prodFormVariants');
+      if (textarea) {
+        textarea.value = lines.join('\n');
+      }
+    }
+
+    function syncDefaultVariantPrice(val) {
+      const num = Number(val);
+      if (isNaN(num) || num <= 0) return;
+      const firstPriceInput = document.querySelector('#variantListBuilder .variant-builder-row:first-child .var-price-input');
+      if (firstPriceInput && (!firstPriceInput.value || Number(firstPriceInput.value) === 0)) {
+        firstPriceInput.value = num;
+        syncVariantsFromBuilder();
+      }
+    }
+
+    function applyQuickVariantPreset(type) {
+      const basePrice = Number(document.getElementById('prodFormPrice')?.value) || 35000;
+      let lines = [];
+      if (type === 'app') {
+        lines = [
+          `1 Bulan Private|${basePrice}`,
+          `3 Bulan Private|${Math.round(basePrice * 2.7)}`,
+          `1 Tahun Private (Hemat)|${Math.round(basePrice * 8.5)}`
+        ];
+      } else if (type === 'diamond') {
+        lines = [
+          `Weekly Diamond Pass|30000`,
+          `86 Diamonds (78+8 Bonus)|23000`,
+          `172 Diamonds (156+16 Bonus)|45000`,
+          `257 Diamonds (234+23 Bonus)|67000`,
+          `706 Diamonds (625+81 Bonus)|175000`
+        ];
+      } else if (type === 'standard') {
+        lines = [
+          `Paket Standar (1x)|${basePrice}`,
+          `Paket Lengkap + Revisi|${Math.round(basePrice * 1.5)}`
+        ];
+      }
+      renderVisualVariantsBuilder(lines.join('\n'));
+      showToast("Pilihan paket otomatis terpasang!");
+    }
+
+    function applyDescTemplate(type) {
+      const descInput = document.getElementById('prodFormDesc');
+      if (!descInput) return;
+
+      let template = '';
+      if (type === 'streaming') {
+        template = `Akun Private / Sharing kualitas 4K Ultra HD resmi\nGaransi penuh ganti baru selama masa langganan aktif\nBebas nonton tanpa kendala household atau limit login\nProses kilat 1-5 menit langsung dikirim via WhatsApp`;
+      } else if (type === 'software') {
+        template = `Aktivasi resmi langsung ke email pribadi Anda (100% Legal)\nSemua fitur Pro, Brand Kit, & ratusan template premium terbuka\nEkspor file tanpa watermark dengan resolusi tertinggi\nGaransi resmi penuh selama periode masa aktif`;
+      } else if (type === 'topup') {
+        template = `100% Diamond resmi legal langsung dari publisher resmi\nCukup cantumkan User ID dan Server ID di catatan pemesanan\nProses pengisian kilat otomatis 1-3 menit langsung masuk\nJaminan 100% aman anti minus / anti banned`;
+      }
+      descInput.value = template;
+      showToast("✨ Template deskripsi berhasil diterapkan!");
+    }
+
+    function useDefaultCategoryPhoto() {
+      const cat = document.getElementById('prodFormCategory')?.value || 'Aplikasi Premium';
+      let url = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80';
+      if (cat === 'Topup Game') {
+        url = 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80';
+      } else if (cat === 'Jasa Design Poster') {
+        url = 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80';
+      }
+      setProductImagePreview(url, 'Foto Kategori Otomatis');
+      showToast("Foto standar otomatis berhasil dipasang!");
+    }
+
+    function toggleAdvancedProductOptions() {
+      const body = document.getElementById('prodAdvancedOptionsBody');
+      const chevron = document.getElementById('advancedOptionsChevron');
+      if (!body) return;
+      const isHidden = body.style.display === 'none' || !body.style.display;
+      body.style.display = isHidden ? 'block' : 'none';
+      if (chevron) {
+        chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+    }
+
+    function handleCategoryChangeInForm(cat) {
+      toggleImageRequirement(cat);
+      const currImg = document.getElementById('prodFormImage')?.value || '';
+      if (!currImg) {
+        useDefaultCategoryPhoto();
+      }
+    }
+
     // Product Add / Edit Real-time Engine (Item #1 & #4)
     function openAddProductModal() {
       document.getElementById('prodFormId').value = '';
@@ -14834,11 +13307,18 @@
       toggleStockCountInput('ready');
       
       const defaultImg = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80';
-      setProductImagePreview(defaultImg, 'Foto Standar Default');
+      setProductImagePreview(defaultImg, 'Foto Standar Otomatis');
       
       document.getElementById('prodFormWarranty').value = 'Garansi Penuh';
       document.getElementById('prodFormDesc').value = '';
       document.getElementById('prodFormVariants').value = '1 Bulan|35000\n3 Bulan|95000';
+      renderVisualVariantsBuilder('1 Bulan|35000\n3 Bulan|95000');
+      
+      const advBody = document.getElementById('prodAdvancedOptionsBody');
+      if (advBody) advBody.style.display = 'none';
+      const chevron = document.getElementById('advancedOptionsChevron');
+      if (chevron) chevron.style.transform = 'rotate(0deg)';
+
       toggleImageRequirement('Aplikasi Premium');
       openModal('productFormModal');
     }
@@ -14879,6 +13359,12 @@
 
       const variantLines = (p.variants || []).map(v => `${v.name}|${v.price}`).join('\n');
       document.getElementById('prodFormVariants').value = variantLines;
+      renderVisualVariantsBuilder(variantLines);
+
+      const advBody = document.getElementById('prodAdvancedOptionsBody');
+      if (advBody) advBody.style.display = 'none';
+      const chevron = document.getElementById('advancedOptionsChevron');
+      if (chevron) chevron.style.transform = 'rotate(0deg)';
 
       toggleImageRequirement(p.category);
       openModal('productFormModal');
@@ -14886,6 +13372,9 @@
 
     async function handleProductSubmit(event) {
       event.preventDefault();
+      // Ensure variants builder is synchronized
+      syncVariantsFromBuilder();
+
       const id = document.getElementById('prodFormId').value;
       const name = document.getElementById('prodFormName').value.trim();
       const category = document.getElementById('prodFormCategory').value;
@@ -15985,14 +14474,30 @@
     // ==========================================================================
     // LINTAS WEB (EMBEDDED WEB APP VIEWER)
     // ==========================================================================
-    // Tautan Web App Shiro Anna (Ganti nilai ini jika ingin memasang URL statis)
-    let SHIRO_ANNA_URL = "[taruh link disini]";
+    // Tautan Web App & Profil Shiro Anna
+    const SHIRO_ANNA_URL = "https://shironna.my.id/";
+    const SHIRO_ANNA_IMAGE = "https://cdn.jsdelivr.net/gh/asahichanID/media@main/images%20(6).jpeg";
+
     let currentCrossWebApp = {
       name: 'Shiro Anna',
-      url: SHIRO_ANNA_URL
+      url: SHIRO_ANNA_URL,
+      image: SHIRO_ANNA_IMAGE,
+      avatar: SHIRO_ANNA_IMAGE,
+      icon: SHIRO_ANNA_IMAGE,
+      thumbnail: SHIRO_ANNA_IMAGE,
+      photo: SHIRO_ANNA_IMAGE,
+      profile: SHIRO_ANNA_IMAGE
     };
     let crossWebLoadTimer = null;
     let prevScrollYBeforeCrossWeb = 0;
+
+    // Bersihkan konfigurasi placeholder lama jika ada
+    try {
+      const stored = localStorage.getItem('janemarket_crossweb_url_shiro_anna');
+      if (stored && (stored === '[taruh link disini]' || stored.includes('taruh link'))) {
+        localStorage.removeItem('janemarket_crossweb_url_shiro_anna');
+      }
+    } catch(e) {}
 
     function isPlaceholderUrl(url) {
       if (!url) return true;
@@ -16001,21 +14506,30 @@
     }
 
     function getEffectiveCrossWebUrl(appName, rawUrl) {
-      // 1. Cek penyimpanan lokal jika pernah dikonfigurasi pengguna
+      // 1. Jika Shiro Anna, utamakan URL shironna.my.id langsung
+      if (appName === 'Shiro Anna' || !appName) {
+        const storageKey = 'janemarket_crossweb_url_shiro_anna';
+        const saved = localStorage.getItem(storageKey);
+        if (saved && saved.trim() && !isPlaceholderUrl(saved) && !saved.includes('taruh link')) {
+          return saved.trim();
+        }
+        return SHIRO_ANNA_URL;
+      }
+      // 2. Cek penyimpanan lokal jika pernah dikonfigurasi pengguna
       const storageKey = 'janemarket_crossweb_url_' + (appName || 'default').replace(/\s+/g, '_').toLowerCase();
       const saved = localStorage.getItem(storageKey);
       if (saved && saved.trim() && !isPlaceholderUrl(saved)) {
         return saved.trim();
       }
-      // 2. Jika rawUrl bukan placeholder, gunakan rawUrl
+      // 3. Jika rawUrl bukan placeholder, gunakan rawUrl
       if (rawUrl && !isPlaceholderUrl(rawUrl)) {
         return rawUrl.trim();
       }
-      // 3. Gunakan konstanta SHIRO_ANNA_URL
+      // 4. Gunakan konstanta SHIRO_ANNA_URL
       return SHIRO_ANNA_URL;
     }
 
-    function openCrossWebApp(appName = 'Shiro Anna', requestedUrl = '[taruh link disini]') {
+    function openCrossWebApp(appName = 'Shiro Anna', requestedUrl = 'https://shironna.my.id/') {
       // 1. Otomatis tutup hamburger drawer
       closeSideMenu();
       if (typeof playBeep === 'function') playBeep('pop');
@@ -16027,17 +14541,28 @@
       const finalUrl = getEffectiveCrossWebUrl(appName, requestedUrl);
       currentCrossWebApp = {
         name: appName,
-        url: finalUrl
+        url: finalUrl,
+        image: SHIRO_ANNA_IMAGE,
+        avatar: SHIRO_ANNA_IMAGE,
+        icon: SHIRO_ANNA_IMAGE,
+        thumbnail: SHIRO_ANNA_IMAGE,
+        photo: SHIRO_ANNA_IMAGE,
+        profile: SHIRO_ANNA_IMAGE
       };
 
-      // 4. Perbarui judul dan URL display di Top Bar permanen
+      // 4. Perbarui judul, profil, dan URL display di Top Bar permanen
       const titleEl = document.getElementById('crossWebTitle');
       const urlIndEl = document.getElementById('crossWebUrlIndicator');
       const loadingTitleEl = document.getElementById('crossWebLoadingTitle');
+      const profileImgEl = document.getElementById('crossWebProfileImg');
+      const loadingProfileImgEl = document.getElementById('crossWebLoadingProfileImg');
+
       if (titleEl) titleEl.textContent = appName;
       if (loadingTitleEl) loadingTitleEl.textContent = `Memuat ${appName}...`;
+      if (profileImgEl) profileImgEl.src = SHIRO_ANNA_IMAGE;
+      if (loadingProfileImgEl) loadingProfileImgEl.src = SHIRO_ANNA_IMAGE;
       if (urlIndEl) {
-        urlIndEl.textContent = isPlaceholderUrl(finalUrl) ? 'URL belum dikonfigurasi' : finalUrl;
+        urlIndEl.textContent = finalUrl;
         urlIndEl.title = finalUrl;
       }
 
@@ -16053,7 +14578,7 @@
         }
       } catch (e) {}
 
-      // 7. Muat konten web app
+      // 7. Muat konten web app langsung
       loadCrossWebContent(finalUrl);
     }
 
@@ -16072,22 +14597,14 @@
       if (errorEl) errorEl.style.display = 'none';
       if (configEl) configEl.style.display = 'none';
 
-      // Cek apakah URL masih bernilai placeholder "[taruh link disini]"
-      if (isPlaceholderUrl(url)) {
-        if (loading) loading.style.display = 'none';
-        if (configEl) {
-          configEl.style.display = 'flex';
-          const input = document.getElementById('crossWebUrlInput');
-          if (input) {
-            input.value = '';
-            setTimeout(() => input.focus(), 150);
-          }
-        }
-        return;
+      // Pastikan URL selalu valid dan tidak meminta user input manual
+      let targetUrl = url;
+      if (!targetUrl || isPlaceholderUrl(targetUrl)) {
+        targetUrl = SHIRO_ANNA_URL;
       }
 
       // Format URL agar valid dengan protokol
-      let formattedUrl = url.trim();
+      let formattedUrl = String(targetUrl).trim();
       if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
         formattedUrl = 'https://' + formattedUrl;
       }
@@ -16185,11 +14702,9 @@
     }
 
     function openCrossWebExternal() {
-      let url = currentCrossWebApp.url;
+      let url = currentCrossWebApp.url || SHIRO_ANNA_URL;
       if (isPlaceholderUrl(url)) {
-        if (typeof showToast === 'function') showToast("URL belum ditentukan!");
-        promptChangeCrossWebUrl();
-        return;
+        url = SHIRO_ANNA_URL;
       }
       if (!url.startsWith('http://') && !url.startsWith('https://')) {
         url = 'https://' + url;
