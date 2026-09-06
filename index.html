@@ -651,10 +651,12 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
       gap: 16px;
+      width: 100%;
+      min-width: 0;
     }
     @media (max-width: 640px) {
       .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
       }
     }
@@ -845,30 +847,35 @@
       align-items: center;
       justify-content: space-between;
       gap: 6px;
+      flex-wrap: wrap;
+      min-width: 0;
     }
     .price-box {
       display: flex;
       flex-direction: column;
       min-width: 0;
-      flex: 1;
+      flex: 1 1 auto;
     }
     .original-price {
       font-size: 9.5px;
       color: var(--text-muted);
       text-decoration: line-through;
       line-height: 1.1;
+      white-space: nowrap;
     }
     .current-price {
       font-size: 14.5px;
       font-weight: 800;
       color: #38bdf8;
       line-height: 1.2;
+      white-space: nowrap;
     }
     .card-action-wrap {
       display: flex;
       gap: 6px;
       align-items: center;
       flex-shrink: 0;
+      flex-wrap: nowrap;
     }
     .card-cart-btn {
       padding: 6px 9px;
@@ -933,29 +940,38 @@
         font-size: 11px !important;
       }
       .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
+        width: 100%;
       }
       .product-card {
         border-radius: 12px;
+        min-width: 0;
+        width: 100%;
       }
       .card-body {
         padding: 8px 9px 10px;
         gap: 4px;
+        min-width: 0;
       }
       .card-title {
         font-size: 12px;
         line-height: 1.32;
         min-height: 32px;
         margin-bottom: 2px;
+        word-break: break-word;
+        overflow-wrap: break-word;
       }
       .card-meta-compact {
         gap: 4px;
         margin-bottom: 3px;
+        flex-wrap: wrap;
+        min-width: 0;
       }
       .card-sold {
         font-size: 9.5px;
         gap: 3px;
+        white-space: nowrap;
       }
       .card-sold i {
         font-size: 9px;
@@ -965,6 +981,7 @@
         padding: 1.5px 5.5px;
         border-radius: 4px;
         gap: 3.5px;
+        white-space: nowrap;
       }
       .stock-dot {
         width: 4.5px;
@@ -974,6 +991,8 @@
         padding-top: 7px;
         margin-top: 1px;
         gap: 4px;
+        flex-wrap: wrap;
+        min-width: 0;
       }
       .original-price {
         font-size: 8.5px;
@@ -1008,6 +1027,7 @@
       }
       .card-action-wrap {
         gap: 4px;
+        min-width: 0;
       }
       .card-cart-btn {
         padding: 4px 6px;
@@ -1026,8 +1046,37 @@
       }
     }
 
+    @media (max-width: 520px) {
+      .card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .price-box {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 4px;
+      }
+      .card-action-wrap {
+        width: 100%;
+        display: flex;
+        gap: 4px;
+      }
+      .card-cart-btn {
+        flex-shrink: 0;
+      }
+      .card-action-btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
     @media (max-width: 420px) {
       .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
       }
       .card-body {
@@ -1073,11 +1122,12 @@
 
     @media (max-width: 340px) {
       .product-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 10px;
       }
       .product-card {
         border-radius: 12px;
+        min-width: 0;
       }
       .card-body {
         padding: 10px 12px;
@@ -1088,6 +1138,21 @@
       }
       .current-price {
         font-size: 13.5px;
+      }
+      .card-footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .price-box {
+        width: auto;
+        flex-direction: column;
+      }
+      .card-action-wrap {
+        width: auto;
+      }
+      .card-action-btn {
+        flex: 0 0 auto;
       }
     }
 
@@ -1350,18 +1415,22 @@
       border: 1px solid var(--border-color);
       border-radius: 12px;
       overflow: hidden;
+      flex-shrink: 0 !important;
+      width: 100%;
+      box-sizing: border-box;
       transition: border-color 0.2s;
     }
     .prod-form-card:hover {
       border-color: var(--border-light);
     }
     .prod-form-card-header {
-      padding: 10px 14px;
+      padding: 11px 14px;
       background: rgba(255, 255, 255, 0.02);
       border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .prod-form-step-num {
       width: 22px;
@@ -1383,6 +1452,8 @@
     }
     .prod-form-card-body {
       padding: 14px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .prod-image-quick-wrapper {
       display: flex;
@@ -1706,14 +1777,19 @@
       bottom: 0;
       background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(8px);
-      z-index: 100;
+      z-index: 1050;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 16px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .modal-overlay.active {
       display: flex;
+    }
+    #productFormModal {
+      z-index: 1150;
     }
     .modal-box {
       background: var(--bg-secondary);
@@ -1722,11 +1798,15 @@
       width: 100%;
       max-width: 580px;
       max-height: 90vh;
+      max-height: 90dvh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
       animation: modalFade 0.2s ease-out;
+      margin: auto;
+      min-width: 0;
+      box-sizing: border-box;
     }
     .modal-box-large {
       max-width: 960px;
@@ -1741,9 +1821,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
       flex-shrink: 0;
       background: var(--bg-secondary);
       z-index: 5;
+      min-width: 0;
     }
     .modal-title {
       font-size: 16px;
@@ -1751,6 +1833,10 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex: 1;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .modal-close {
       background: transparent;
@@ -1761,6 +1847,7 @@
       padding: 4px;
       border-radius: 6px;
       transition: color 0.2s;
+      flex-shrink: 0;
     }
     .modal-close:hover {
       color: #ffffff;
@@ -1770,6 +1857,14 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       flex: 1;
+      min-height: 0;
+      overscroll-behavior: contain;
+      min-width: 0;
+    }
+    .modal-body > * {
+      flex-shrink: 0;
+      min-width: 0;
+      max-width: 100%;
     }
     .modal-footer {
       padding: 14px 20px;
@@ -1780,6 +1875,8 @@
       gap: 10px;
       background: var(--bg-secondary);
       flex-shrink: 0;
+      flex-wrap: wrap;
+      min-width: 0;
     }
 
     /* Form Controls */
@@ -2167,10 +2264,12 @@
     }
     .admin-main-content {
       flex: 1;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       background: var(--bg-secondary);
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .admin-main-header {
       padding: 10px 18px;
@@ -2213,7 +2312,10 @@
     @media (max-width: 768px) {
       .admin-dashboard-container {
         flex-direction: column;
-        max-height: 92vh;
+        max-height: 90vh;
+        max-height: 90dvh;
+        min-height: 0;
+        flex: 1;
       }
       .admin-main-header {
         padding: 8px 12px;
@@ -2227,6 +2329,7 @@
         border-right: none;
         border-bottom: 1px solid var(--border-color);
         padding: 8px 10px;
+        flex-shrink: 0;
       }
       .admin-sidebar-header {
         display: none;
@@ -2234,8 +2337,13 @@
       .admin-sidebar-nav {
         flex-direction: row;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
         padding-bottom: 4px;
         gap: 6px;
+      }
+      .admin-sidebar-nav::-webkit-scrollbar {
+        display: none;
       }
       .admin-tab-btn {
         padding: 6px 10px;
@@ -2492,7 +2600,7 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 102, 241, 0.4);
-      z-index: 200;
+      z-index: 2500;
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .toast.show {
@@ -3096,18 +3204,53 @@
         grid-template-columns: 1fr;
       }
       .modal-box {
-        max-height: 92vh;
+        max-height: 94vh;
+        max-height: 94dvh;
         border-radius: 14px;
-        margin: 8px;
+        margin: auto;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      .modal-overlay {
+        padding: 8px;
       }
       .modal-body {
-        padding: 14px;
+        padding: 14px 12px;
+        min-width: 0;
       }
       .modal-header {
-        padding: 14px 16px;
+        padding: 12px 14px;
+        gap: 8px;
+        min-width: 0;
+      }
+      .modal-title {
+        font-size: 14.5px;
       }
       .modal-footer {
         padding: 12px 14px;
+        gap: 8px;
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+      .modal-footer .btn {
+        flex: 1 1 auto;
+        min-width: 100px;
+        justify-content: center;
+      }
+      .modal-footer > div {
+        flex: 1 1 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .modal-footer > div > .btn {
+        flex: 1 1 auto;
+        min-width: 90px;
+        justify-content: center;
+      }
+      .prod-form-card-body {
+        padding: 12px 10px;
       }
       .detail-perks-grid {
         grid-template-columns: 1fr 1fr;
@@ -3117,6 +3260,22 @@
         padding: 8px 10px;
         font-size: 11px;
       }
+    }
+
+    /* Clean Z-Index Stacking Architecture & Conflict Prevention */
+    /* Ensure all floating widgets, social proof toasts, and chat windows are suppressed when any modal overlay is active */
+    body.modal-open .floating-widgets-group,
+    body:has(.modal-overlay.active) .floating-widgets-group,
+    body.modal-open .live-sales-toast,
+    body:has(.modal-overlay.active) .live-sales-toast,
+    body.modal-open .customer-chat-window,
+    body:has(.modal-overlay.active) .customer-chat-window,
+    body.modal-open .ai-chat-window,
+    body:has(.modal-overlay.active) .ai-chat-window {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
     /* ========================================================
        LIGHT THEME STYLING ([data-theme="light"])
@@ -7438,197 +7597,199 @@
 
   <!-- Modal 3: Add / Edit Product - Simple & Clean Design -->
   <div class="modal-overlay" id="productFormModal">
-    <div class="modal-box modal-box-large" style="max-width: 680px;">
+    <div class="modal-box modal-box-large" style="max-width: 680px; max-height: 90vh; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden;">
       <div class="modal-header">
         <h4 class="modal-title" id="productModalTitle"><i class="fa-solid fa-box"></i> Tambah Produk Baru</h4>
         <button class="modal-close" onclick="closeModal('productFormModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <form onsubmit="handleProductSubmit(event)" class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
-        <input type="hidden" id="prodFormId">
+      <form id="productEditForm" onsubmit="handleProductSubmit(event)" style="display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; margin: 0;">
+        <div class="modal-body" id="productFormModalBody" style="flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; gap: 16px; padding: 18px 20px;">
+          <input type="hidden" id="prodFormId">
 
-        <!-- Bagian 1: Data Pokok Produk -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header">
-            <span class="prod-form-step-num">1</span>
-            <span class="prod-form-step-title">Informasi Pokok Produk</span>
-          </div>
-          <div class="prod-form-card-body">
-            <div class="form-group" style="margin-bottom: 12px;">
-              <label class="form-label">Nama Produk *</label>
-              <input type="text" id="prodFormName" class="form-input" placeholder="Misal: Netflix Premium 4K / Mobile Legends 86 DM" required>
+          <!-- Bagian 1: Data Pokok Produk -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header">
+              <span class="prod-form-step-num">1</span>
+              <span class="prod-form-step-title">Informasi Pokok Produk</span>
             </div>
+            <div class="prod-form-card-body">
+              <div class="form-group" style="margin-bottom: 12px;">
+                <label class="form-label">Nama Produk *</label>
+                <input type="text" id="prodFormName" class="form-input" placeholder="Misal: Netflix Premium 4K / Mobile Legends 86 DM" required>
+              </div>
 
-            <div class="form-row" style="margin-bottom: 12px;">
-              <div class="form-group">
-                <label class="form-label">Kategori *</label>
-                <select id="prodFormCategory" class="form-select" required onchange="handleCategoryChangeInForm(this.value)">
-                  <option value="Aplikasi Premium">Aplikasi Premium</option>
-                  <option value="Topup Game">Topup Game</option>
-                  <option value="Jasa Design Poster">Jasa Design Poster</option>
-                </select>
+              <div class="form-row" style="margin-bottom: 12px;">
+                <div class="form-group">
+                  <label class="form-label">Kategori *</label>
+                  <select id="prodFormCategory" class="form-select" required onchange="handleCategoryChangeInForm(this.value)">
+                    <option value="Aplikasi Premium">Aplikasi Premium</option>
+                    <option value="Topup Game">Topup Game</option>
+                    <option value="Jasa Design Poster">Jasa Design Poster</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Harga Pokok (Rp) *</label>
+                  <input type="number" id="prodFormPrice" class="form-input" placeholder="Contoh: 35000" required oninput="syncDefaultVariantPrice(this.value)">
+                </div>
               </div>
-              <div class="form-group">
-                <label class="form-label">Harga Pokok (Rp) *</label>
-                <input type="number" id="prodFormPrice" class="form-input" placeholder="Contoh: 35000" required oninput="syncDefaultVariantPrice(this.value)">
-              </div>
-            </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Status Stok *</label>
-                <select id="prodFormStockStatus" class="form-select" onchange="toggleStockCountInput(this.value)">
-                  <option value="ready">🟢 Ready Stock (Tersedia)</option>
-                  <option value="limited">🟡 Slot Terbatas (Sisa Sedikit)</option>
-                  <option value="preorder">🔵 Pre-Order (PO)</option>
-                  <option value="soldout">🔴 Stok Habis (Sold Out)</option>
-                </select>
-              </div>
-              <div class="form-group" id="prodStockCountGroup" style="display: none;">
-                <label class="form-label">Jumlah Slot Tersisa</label>
-                <input type="number" id="prodFormStockCount" class="form-input" placeholder="Misal: 5 (slot)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Status Stok *</label>
+                  <select id="prodFormStockStatus" class="form-select" onchange="toggleStockCountInput(this.value)">
+                    <option value="ready">🟢 Ready Stock (Tersedia)</option>
+                    <option value="limited">🟡 Slot Terbatas (Sisa Sedikit)</option>
+                    <option value="preorder">🔵 Pre-Order (PO)</option>
+                    <option value="soldout">🔴 Stok Habis (Sold Out)</option>
+                  </select>
+                </div>
+                <div class="form-group" id="prodStockCountGroup" style="display: none;">
+                  <label class="form-label">Jumlah Slot Tersisa</label>
+                  <input type="number" id="prodFormStockCount" class="form-input" placeholder="Misal: 5 (slot)">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Bagian 2: Foto Produk -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header">
-            <span class="prod-form-step-num">2</span>
-            <span class="prod-form-step-title" id="prodImageLabel">Foto / Gambar Produk</span>
-          </div>
-          <div class="prod-form-card-body">
-            <input type="hidden" id="prodFormImage" value="">
-            
-            <div class="prod-image-quick-wrapper">
-              <!-- Thumbnail Preview Box -->
-              <div class="prod-thumb-box" id="prodImagePreviewContainer">
-                <img id="prodImagePreview" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Preview Foto">
-                <button type="button" class="prod-thumb-remove" onclick="clearProductImage()" title="Hapus Gambar">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-
-              <!-- Action Buttons -->
-              <div class="prod-image-actions">
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('prodFileInput').click()">
-                    <i class="fa-solid fa-image"></i> Pilih dari Galeri HP/PC
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="toggleProdImageUrlGroup()">
-                    <i class="fa-solid fa-link"></i> <span id="toggleUrlBtnText">Input Link URL</span>
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="useDefaultCategoryPhoto()" title="Pasang foto bawaan yang cocok">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> Foto Otomatis
+          <!-- Bagian 2: Foto Produk -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header">
+              <span class="prod-form-step-num">2</span>
+              <span class="prod-form-step-title" id="prodImageLabel">Foto / Gambar Produk</span>
+            </div>
+            <div class="prod-form-card-body">
+              <input type="hidden" id="prodFormImage" value="">
+              
+              <div class="prod-image-quick-wrapper">
+                <!-- Thumbnail Preview Box -->
+                <div class="prod-thumb-box" id="prodImagePreviewContainer">
+                  <img id="prodImagePreview" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Preview Foto">
+                  <button type="button" class="prod-thumb-remove" onclick="clearProductImage()" title="Hapus Gambar">
+                    <i class="fa-solid fa-xmark"></i>
                   </button>
                 </div>
-                <input type="file" id="prodFileInput" accept="image/*" style="display: none;" onchange="handleProductFileSelect(event)">
-                <div id="prodImageFileInfo" style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">
-                  Foto otomatis dikompresi agar loading toko tetap cepat & hemat kuota.
-                </div>
 
-                <!-- Hidden Dropzone target for drop events and code compatibility -->
-                <div id="prodImageDropzone" style="display: none;"></div>
+                <!-- Action Buttons -->
+                <div class="prod-image-actions">
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('prodFileInput').click()">
+                      <i class="fa-solid fa-image"></i> Pilih dari Galeri HP/PC
+                    </button>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="toggleProdImageUrlGroup()">
+                      <i class="fa-solid fa-link"></i> <span id="toggleUrlBtnText">Input Link URL</span>
+                    </button>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="useDefaultCategoryPhoto()" title="Pasang foto bawaan yang cocok">
+                      <i class="fa-solid fa-wand-magic-sparkles"></i> Foto Otomatis
+                    </button>
+                  </div>
+                  <input type="file" id="prodFileInput" accept="image/*" style="display: none;" onchange="handleProductFileSelect(event)">
+                  <div id="prodImageFileInfo" style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">
+                    Foto otomatis dikompresi agar loading toko tetap cepat & hemat kuota.
+                  </div>
 
-                <!-- URL Input Group -->
-                <div id="prodImageUrlGroup" style="display: none; margin-top: 8px;">
-                  <div style="display: flex; gap: 6px;">
-                    <input type="text" id="prodFormImageUrlInput" class="form-input" placeholder="Tempel URL gambar (https://...)" oninput="handleProdUrlInput(this.value)">
+                  <!-- Hidden Dropzone target for drop events and code compatibility -->
+                  <div id="prodImageDropzone" style="display: none;"></div>
+
+                  <!-- URL Input Group -->
+                  <div id="prodImageUrlGroup" style="display: none; margin-top: 8px;">
+                    <div style="display: flex; gap: 6px;">
+                      <input type="text" id="prodFormImageUrlInput" class="form-input" placeholder="Tempel URL gambar (https://...)" oninput="handleProdUrlInput(this.value)">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Bagian 3: Pilihan Paket / Durasi (Varian) -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header" style="justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="prod-form-step-num">3</span>
-              <span class="prod-form-step-title">Paket & Durasi Harga</span>
-            </div>
-            <div style="display: flex; gap: 6px;">
-              <button type="button" class="btn btn-outline btn-sm" onclick="applyQuickVariantPreset('standard')" style="font-size: 11px; padding: 3px 8px;">
-                <i class="fa-solid fa-bolt"></i> Contoh Paket
-              </button>
-              <button type="button" class="btn btn-white btn-sm" onclick="addNewVariantRow()" style="font-size: 11px; padding: 3px 8px;">
-                <i class="fa-solid fa-plus"></i> Tambah Paket
-              </button>
-            </div>
-          </div>
-          <div class="prod-form-card-body">
-            <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px;">
-              Tentukan pilihan paket yang bisa dipilih customer (misal: 1 Bulan, 3 Bulan, atau jumlah Diamond):
-            </p>
-            
-            <!-- Interactive Visual Variant List -->
-            <div id="variantListBuilder" class="variant-builder-list">
-              <!-- Dynamically populated rows -->
-            </div>
-
-            <!-- Hidden / Synchronized Textarea for Full Backward Compatibility -->
-            <textarea id="prodFormVariants" style="display: none;"></textarea>
-          </div>
-        </div>
-
-        <!-- Bagian 4: Deskripsi & Keunggulan Produk -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="prod-form-step-num">4</span>
-              <span class="prod-form-step-title">Deskripsi & Keunggulan</span>
-            </div>
-            <!-- Quick Helper Template Buttons -->
-            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('streaming')" title="Gunakan template streaming">
-                <i class="fa-solid fa-tv"></i> Template Streaming
-              </button>
-              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('software')" title="Gunakan template Canva/Tools">
-                <i class="fa-solid fa-pen-ruler"></i> Template Tools/Pro
-              </button>
-              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('topup')" title="Gunakan template Game">
-                <i class="fa-solid fa-gamepad"></i> Template Topup
-              </button>
-            </div>
-          </div>
-          <div class="prod-form-card-body">
-            <textarea id="prodFormDesc" class="form-textarea" rows="3" placeholder="Tuliskan keunggulan produk (bisa poin-poin atau klik salah satu tombol template di atas)..." style="font-size: 12.5px; line-height: 1.5;"></textarea>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">
-              <i class="fa-solid fa-circle-info"></i> Tampilan di pembeli akan otomatis dirapikan menjadi daftar poin & checklist yang enak dilihat.
-            </div>
-          </div>
-        </div>
-
-        <!-- Bagian 5: Opsi Tambahan (Collapsible / Default Terlipat Rapi) -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header" onclick="toggleAdvancedProductOptions()" style="cursor: pointer; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="prod-form-step-num" style="background: rgba(255,255,255,0.1); color: var(--text-secondary);"><i class="fa-solid fa-gear"></i></span>
-              <span class="prod-form-step-title" style="color: var(--text-secondary);">Pengaturan Tambahan (Opsional)</span>
-            </div>
-            <span id="advancedOptionsChevron" style="font-size: 12px; color: var(--text-muted);"><i class="fa-solid fa-chevron-down"></i></span>
-          </div>
-          <div id="prodAdvancedOptionsBody" class="prod-form-card-body" style="display: none;">
-            <div class="form-row" style="margin-bottom: 12px;">
-              <div class="form-group">
-                <label class="form-label">Garansi / Jaminan</label>
-                <input type="text" id="prodFormWarranty" class="form-input" placeholder="Misal: Garansi 30 Hari / Full Periode">
+          <!-- Bagian 3: Pilihan Paket / Durasi (Varian) -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="prod-form-step-num">3</span>
+                <span class="prod-form-step-title">Paket & Durasi Harga</span>
               </div>
-              <div class="form-group">
-                <label class="form-label">Label Badge</label>
-                <input type="text" id="prodFormBadge" class="form-input" placeholder="Misal: BEST SELLER / PROMO">
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="applyQuickVariantPreset('standard')" style="font-size: 11px; padding: 3px 8px;">
+                  <i class="fa-solid fa-bolt"></i> Contoh Paket
+                </button>
+                <button type="button" class="btn btn-white btn-sm" onclick="addNewVariantRow()" style="font-size: 11px; padding: 3px 8px;">
+                  <i class="fa-solid fa-plus"></i> Tambah Paket
+                </button>
               </div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Angka Terjual (Sales Count Awal)</label>
-              <input type="number" id="prodFormSold" class="form-input" placeholder="0">
+            <div class="prod-form-card-body">
+              <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px;">
+                Tentukan pilihan paket yang bisa dipilih customer (misal: 1 Bulan, 3 Bulan, atau jumlah Diamond):
+              </p>
+              
+              <!-- Interactive Visual Variant List -->
+              <div id="variantListBuilder" class="variant-builder-list">
+                <!-- Dynamically populated rows -->
+              </div>
+
+              <!-- Hidden / Synchronized Textarea for Full Backward Compatibility -->
+              <textarea id="prodFormVariants" style="display: none;"></textarea>
+            </div>
+          </div>
+
+          <!-- Bagian 4: Deskripsi & Keunggulan Produk -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="prod-form-step-num">4</span>
+                <span class="prod-form-step-title">Deskripsi & Keunggulan</span>
+              </div>
+              <!-- Quick Helper Template Buttons -->
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button type="button" class="template-pill-btn" onclick="applyDescTemplate('streaming')" title="Gunakan template streaming">
+                  <i class="fa-solid fa-tv"></i> Template Streaming
+                </button>
+                <button type="button" class="template-pill-btn" onclick="applyDescTemplate('software')" title="Gunakan template Canva/Tools">
+                  <i class="fa-solid fa-pen-ruler"></i> Template Tools/Pro
+                </button>
+                <button type="button" class="template-pill-btn" onclick="applyDescTemplate('topup')" title="Gunakan template Game">
+                  <i class="fa-solid fa-gamepad"></i> Template Topup
+                </button>
+              </div>
+            </div>
+            <div class="prod-form-card-body">
+              <textarea id="prodFormDesc" class="form-textarea" rows="3" placeholder="Tuliskan keunggulan produk (bisa poin-poin atau klik salah satu tombol template di atas)..." style="font-size: 12.5px; line-height: 1.5;"></textarea>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">
+                <i class="fa-solid fa-circle-info"></i> Tampilan di pembeli akan otomatis dirapikan menjadi daftar poin & checklist yang enak dilihat.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian 5: Opsi Tambahan (Collapsible / Default Terlipat Rapi) -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header" onclick="toggleAdvancedProductOptions()" style="cursor: pointer; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="prod-form-step-num" style="background: rgba(255,255,255,0.1); color: var(--text-secondary);"><i class="fa-solid fa-gear"></i></span>
+                <span class="prod-form-step-title" style="color: var(--text-secondary);">Pengaturan Tambahan (Opsional)</span>
+              </div>
+              <span id="advancedOptionsChevron" style="font-size: 12px; color: var(--text-muted);"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div id="prodAdvancedOptionsBody" class="prod-form-card-body" style="display: none;">
+              <div class="form-row" style="margin-bottom: 12px;">
+                <div class="form-group">
+                  <label class="form-label">Garansi / Jaminan</label>
+                  <input type="text" id="prodFormWarranty" class="form-input" placeholder="Misal: Garansi 30 Hari / Full Periode">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Label Badge</label>
+                  <input type="text" id="prodFormBadge" class="form-input" placeholder="Misal: BEST SELLER / PROMO">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Angka Terjual (Sales Count Awal)</label>
+                <input type="number" id="prodFormSold" class="form-input" placeholder="0">
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Modal Footer -->
-        <div class="modal-footer" style="padding-left: 0; padding-right: 0; padding-bottom: 0; display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+        <!-- Modal Footer (Pinned at bottom, never crushed) -->
+        <div class="modal-footer" style="flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--bg-secondary); border-top: 1px solid var(--border-color); z-index: 10;">
           <button type="button" class="btn btn-outline" onclick="closeModal('productFormModal')">Batal</button>
           <button type="submit" class="btn btn-white" id="btnSaveProduct" style="font-weight: 700;">
             <i class="fa-solid fa-floppy-disk"></i> Simpan Produk
@@ -7860,90 +8021,92 @@
 
   <!-- Modal 5: Checkout Order via WhatsApp (Requirement #8) -->
   <div class="modal-overlay" id="checkoutModal">
-    <div class="modal-box">
+    <div class="modal-box" style="max-height: 90vh; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden;">
       <div class="modal-header">
         <h4 class="modal-title"><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Form Pemesanan WhatsApp</h4>
         <button class="modal-close" onclick="closeModal('checkoutModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <form onsubmit="submitWhatsAppOrder(event)" class="modal-body">
-        <input type="hidden" id="orderProductId">
-        <input type="hidden" id="orderProductCategory">
-        
-        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 14px;">
-          <h5 id="orderProductTitle" style="font-size: 15px; font-weight: 800;">-</h5>
-          <p id="orderProductDesc" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">-</p>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Pilih Varian / Paket / Durasi</label>
-          <div class="variant-selector" id="checkoutVariantSelector">
-            <!-- Injected via JS -->
+      <form id="checkoutOrderForm" onsubmit="submitWhatsAppOrder(event)" style="display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; margin: 0;">
+        <div class="modal-body" style="flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 18px 20px;">
+          <input type="hidden" id="orderProductId">
+          <input type="hidden" id="orderProductCategory">
+          
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 14px;">
+            <h5 id="orderProductTitle" style="font-size: 15px; font-weight: 800;">-</h5>
+            <p id="orderProductDesc" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">-</p>
           </div>
-        </div>
 
-        <div class="form-group" id="accountFieldContainer" style="display: none;">
-          <label class="form-label" id="accountFieldLabel">User ID / Player ID & Zone ID (Untuk Topup)</label>
-          <input type="text" id="orderAccountId" class="form-input" placeholder="contoh: 123456789 (2104)">
-        </div>
-
-        <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Nama Pembeli *</label>
-            <input type="text" id="orderCustomerName" class="form-input" placeholder="Nama Anda" required>
+            <label class="form-label">Pilih Varian / Paket / Durasi</label>
+            <div class="variant-selector" id="checkoutVariantSelector">
+              <!-- Injected via JS -->
+            </div>
           </div>
+
+          <div class="form-group" id="accountFieldContainer" style="display: none;">
+            <label class="form-label" id="accountFieldLabel">User ID / Player ID & Zone ID (Untuk Topup)</label>
+            <input type="text" id="orderAccountId" class="form-input" placeholder="contoh: 123456789 (2104)">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nama Pembeli *</label>
+              <input type="text" id="orderCustomerName" class="form-input" placeholder="Nama Anda" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Metode Pembayaran</label>
+              <select id="orderPaymentMethod" class="form-select" onchange="updateCheckoutPaymentInfo()">
+                <option value="QRIS All Payment">QRIS All Payment (BCA/Mandiri/E-Wallet)</option>
+                <option value="DANA">DANA</option>
+                <option value="GoPay">GoPay</option>
+                <option value="OVO">OVO</option>
+                <option value="ShopeePay">ShopeePay</option>
+                <option value="Bank BCA">Bank BCA</option>
+                <option value="Bank Mandiri">Bank Mandiri</option>
+                <option value="SeaBank">SeaBank</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Quick Payment & Salin Rekening Box (Feature #3) -->
+          <div class="checkout-payment-box" id="checkoutPaymentBox">
+            <!-- Injected via JS based on selected payment method -->
+          </div>
+
           <div class="form-group">
-            <label class="form-label">Metode Pembayaran</label>
-            <select id="orderPaymentMethod" class="form-select" onchange="updateCheckoutPaymentInfo()">
-              <option value="QRIS All Payment">QRIS All Payment (BCA/Mandiri/E-Wallet)</option>
-              <option value="DANA">DANA</option>
-              <option value="GoPay">GoPay</option>
-              <option value="OVO">OVO</option>
-              <option value="ShopeePay">ShopeePay</option>
-              <option value="Bank BCA">Bank BCA</option>
-              <option value="Bank Mandiri">Bank Mandiri</option>
-              <option value="SeaBank">SeaBank</option>
-            </select>
+            <label class="form-label">Catatan Tambahan (Opsional)</label>
+            <input type="text" id="orderNotes" class="form-input" placeholder="contoh: email canva / konsep poster...">
+          </div>
+
+          <!-- Voucher Code Input Box -->
+          <div class="form-group" style="background: var(--bg-card); border: 1px dashed var(--border-light); padding: 12px; border-radius: 8px;">
+            <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+              <span><i class="fa-solid fa-ticket" style="color: #eab308;"></i> Punya Kode Voucher Promo?</span>
+              <span style="font-size: 10px; color: var(--text-muted);">Coba: JANEHEMAT / VIP10</span>
+            </label>
+            <div class="voucher-input-box">
+              <input type="text" id="voucherCodeInput" class="form-input" placeholder="Masukkan kode voucher..." style="text-transform: uppercase;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="applyVoucher()">Gunakan</button>
+            </div>
+            <div id="voucherActiveInfo" style="display: none;" class="voucher-active-badge">
+              <i class="fa-solid fa-circle-check"></i> <span id="voucherBadgeText">Voucher Aktif</span>
+              <button type="button" onclick="removeVoucher()" style="background: none; border: none; color: #ef4444; cursor: pointer; margin-left: 6px; font-size: 12px;">✕</button>
+            </div>
+          </div>
+
+          <div class="checkout-total-strip">
+            <div id="voucherDiscountRow" style="display: none; justify-content: space-between; font-size: 12px; color: #16a34a; font-weight: 700;">
+              <span>Potongan Diskon:</span>
+              <span id="orderDiscountAmount">-Rp 0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 13px; font-weight: 700;">Total Pembayaran:</span>
+              <span id="orderSummaryPrice" style="font-size: 16px; font-weight: 800;">Rp 0</span>
+            </div>
           </div>
         </div>
 
-        <!-- Dynamic Quick Payment & Salin Rekening Box (Feature #3) -->
-        <div class="checkout-payment-box" id="checkoutPaymentBox">
-          <!-- Injected via JS based on selected payment method -->
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Catatan Tambahan (Opsional)</label>
-          <input type="text" id="orderNotes" class="form-input" placeholder="contoh: email canva / konsep poster...">
-        </div>
-
-        <!-- Voucher Code Input Box -->
-        <div class="form-group" style="background: var(--bg-card); border: 1px dashed var(--border-light); padding: 12px; border-radius: 8px;">
-          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
-            <span><i class="fa-solid fa-ticket" style="color: #eab308;"></i> Punya Kode Voucher Promo?</span>
-            <span style="font-size: 10px; color: var(--text-muted);">Coba: JANEHEMAT / VIP10</span>
-          </label>
-          <div class="voucher-input-box">
-            <input type="text" id="voucherCodeInput" class="form-input" placeholder="Masukkan kode voucher..." style="text-transform: uppercase;">
-            <button type="button" class="btn btn-outline btn-sm" onclick="applyVoucher()">Gunakan</button>
-          </div>
-          <div id="voucherActiveInfo" style="display: none;" class="voucher-active-badge">
-            <i class="fa-solid fa-circle-check"></i> <span id="voucherBadgeText">Voucher Aktif</span>
-            <button type="button" onclick="removeVoucher()" style="background: none; border: none; color: #ef4444; cursor: pointer; margin-left: 6px; font-size: 12px;">✕</button>
-          </div>
-        </div>
-
-        <div class="checkout-total-strip">
-          <div id="voucherDiscountRow" style="display: none; justify-content: space-between; font-size: 12px; color: #16a34a; font-weight: 700;">
-            <span>Potongan Diskon:</span>
-            <span id="orderDiscountAmount">-Rp 0</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 13px; font-weight: 700;">Total Pembayaran:</span>
-            <span id="orderSummaryPrice" style="font-size: 16px; font-weight: 800;">Rp 0</span>
-          </div>
-        </div>
-
-        <div class="modal-footer" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
+        <div class="modal-footer" style="flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--bg-secondary); border-top: 1px solid var(--border-color); z-index: 10;">
           <button type="button" class="btn btn-outline" onclick="closeModal('checkoutModal')">Batal</button>
           <button type="submit" class="btn btn-wa">
             <i class="fa-brands fa-whatsapp"></i> Pesan Sekarang via WhatsApp
@@ -11023,6 +11186,7 @@
     // Modal Management (Prevent Stacking / Clean Transitions)
     function closeAllModals() {
       document.querySelectorAll('.modal-overlay').forEach(el => el.classList.remove('active'));
+      document.body.style.overflow = '';
     }
 
     function openModal(id, closeOthers = true) {
@@ -11030,13 +11194,24 @@
         closeAllModals();
       }
       const el = document.getElementById(id);
-      if (el) el.classList.add('active');
+      if (el) {
+        el.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (id === 'productFormModal') {
+          const body = document.getElementById('productFormModalBody');
+          if (body) body.scrollTop = 0;
+        }
+      }
       playBeep('modal_open');
     }
 
     function closeModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('active');
+      const anyActive = document.querySelector('.modal-overlay.active');
+      if (!anyActive) {
+        document.body.style.overflow = '';
+      }
       playBeep('modal_close');
     }
 
@@ -11062,7 +11237,7 @@
       document.querySelectorAll('.modal-overlay').forEach(overlay => {
         overlay.addEventListener('click', (e) => {
           if (e.target === overlay) {
-            overlay.classList.remove('active');
+            closeModal(overlay.id);
           }
         });
       });
@@ -13393,7 +13568,8 @@
       if (chevron) chevron.style.transform = 'rotate(0deg)';
 
       toggleImageRequirement('Aplikasi Premium');
-      openModal('productFormModal');
+      const isAdminOpen = document.getElementById('adminDashboardModal')?.classList.contains('active');
+      openModal('productFormModal', !isAdminOpen);
     }
 
     function toggleStockCountInput(status) {
@@ -13440,7 +13616,8 @@
       if (chevron) chevron.style.transform = 'rotate(0deg)';
 
       toggleImageRequirement(p.category);
-      openModal('productFormModal');
+      const isAdminOpen = document.getElementById('adminDashboardModal')?.classList.contains('active');
+      openModal('productFormModal', !isAdminOpen);
     }
 
     async function handleProductSubmit(event) {
