@@ -331,9 +331,15 @@ const DEFAULT_STORE = {
 
 // In-Memory store cache for serverless execution
 let memoryStore = JSON.parse(JSON.stringify(DEFAULT_STORE));
+const dataDir = path.join(process.cwd(), "data");
+const storeFilePath = path.join(dataDir, "store.json");
+
+function sanitizeText(val) {
+  if (typeof val !== "string") return val;
+  return val.replace(/<[^>]*>?/gm, "").replace(/javascript:/gi, "").trim();
+}
 
 function getStoreData() {
-  const storeFilePath = path.join(process.cwd(), "data", "store.json");
   try {
     if (fs.existsSync(storeFilePath)) {
       const data = JSON.parse(fs.readFileSync(storeFilePath, "utf8"));
@@ -348,8 +354,6 @@ function getStoreData() {
 
 function saveStoreData(data) {
   memoryStore = data;
-  const dataDir = path.join(process.cwd(), "data");
-  const storeFilePath = path.join(dataDir, "store.json");
   try {
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });

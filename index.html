@@ -8258,6 +8258,26 @@
       }
     });
 
+    // Universal Security & HTML Sanitizer Helpers (Prevents XSS / script injections)
+    function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    const escapeChatHTML = escapeHTML;
+
+    function stripDangerousHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/<[^>]*>?/gm, '')
+        .replace(/javascript:/gi, '')
+        .trim();
+    }
+
     // State Store & Default Data
     const DEFAULT_STORE_DATA = {
       settings: {
@@ -9817,9 +9837,9 @@
                 const pData = doc.data() || {};
                 liveProducts.push({
                   id: String(doc.id),
-                  name: pData.name || 'Produk',
-                  category: pData.category || 'Aplikasi Premium',
-                  badge: pData.badge || '',
+                  name: stripDangerousHTML(pData.name || 'Produk'),
+                  category: stripDangerousHTML(pData.category || 'Aplikasi Premium'),
+                  badge: stripDangerousHTML(pData.badge || ''),
                   price: Number(pData.price || 0),
                   originalPrice: Number(pData.originalPrice || 0),
                   soldCount: Number(pData.soldCount || 0),
@@ -9827,10 +9847,13 @@
                   stockCount: Number(pData.stockCount || 0),
                   rating: pData.rating ? Number(pData.rating) : 5.0,
                   image: pData.image || '',
-                  warranty: pData.warranty || '',
-                  description: pData.description || '',
-                  variants: Array.isArray(pData.variants) && pData.variants.length > 0 ? pData.variants : [{ name: "Paket Standar", price: Number(pData.price || 0) }],
-                  features: Array.isArray(pData.features) ? pData.features : ["100% Legal", "Proses Cepat"],
+                  warranty: stripDangerousHTML(pData.warranty || ''),
+                  description: stripDangerousHTML(pData.description || ''),
+                  variants: Array.isArray(pData.variants) && pData.variants.length > 0 ? pData.variants.map(v => ({
+                    name: stripDangerousHTML(v.name || 'Paket Standar'),
+                    price: Number(v.price || 0)
+                  })) : [{ name: "Paket Standar", price: Number(pData.price || 0) }],
+                  features: Array.isArray(pData.features) ? pData.features.map(f => stripDangerousHTML(f)) : ["100% Legal", "Proses Cepat"],
                   reviews: Array.isArray(pData.reviews) ? pData.reviews : []
                 });
               });
@@ -10106,8 +10129,8 @@
         if (product.image && (!isTopup || product.image.startsWith('http'))) {
           headerMedia = `
             <div class="card-image-wrap">
-              <img src="${product.image}" alt="${product.name}" class="card-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
-              ${product.badge ? `<span class="card-badge">${product.badge}</span>` : ''}
+              <img src="${product.image}" alt="${escapeHTML(product.name)}" class="card-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
+              ${product.badge ? `<span class="card-badge">${escapeHTML(product.badge)}</span>` : ''}
               <span class="card-rating"><i class="fa-solid fa-star"></i> ${product.rating || '5.0'}</span>
             </div>
           `;
@@ -10117,17 +10140,17 @@
               <div class="topup-icon-circle">
                 <i class="fa-solid fa-gamepad"></i>
               </div>
-              ${product.badge ? `<span class="card-badge">${product.badge}</span>` : ''}
+              ${product.badge ? `<span class="card-badge">${escapeHTML(product.badge)}</span>` : ''}
             </div>
           `;
         }
 
         return `
-          <div class="product-card" onclick="handleProductCardClick(event, '${product.id}', this)" title="Klik untuk beli atau lihat detail">
+          <div class="product-card" onclick="handleProductCardClick(event, '${escapeHTML(product.id)}', this)" title="Klik untuk beli atau lihat detail">
             ${headerMedia}
             <div class="card-body">
               <div>
-                <h3 class="card-title">${product.name}</h3>
+                <h3 class="card-title">${escapeHTML(product.name)}</h3>
                 <div class="card-meta-compact">
                   ${stockBadgeHtml}
                   <div class="card-sold">
@@ -10305,8 +10328,8 @@
       const mediaBox = document.getElementById('detailMediaContainer');
       if (prod.image && (!isTopup || prod.image.startsWith('http'))) {
         mediaBox.innerHTML = `
-          <img src="${prod.image}" alt="${prod.name}" class="detail-media-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
-          ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${prod.badge}</span>` : ''}
+          <img src="${prod.image}" alt="${escapeHTML(prod.name)}" class="detail-media-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
+          ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : ''}
         `;
       } else {
         mediaBox.innerHTML = `
@@ -10314,7 +10337,7 @@
             <div class="topup-icon-circle" style="width:80px;height:80px;font-size:36px;">
               <i class="fa-solid fa-gamepad"></i>
             </div>
-            ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${prod.badge}</span>` : ''}
+            ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : ''}
           </div>
         `;
       }
@@ -10485,13 +10508,13 @@
             <div class="review-card">
               <div class="review-header">
                 <div class="review-user-info">
-                  <div class="review-avatar">${userInitial}</div>
+                  <div class="review-avatar">${escapeHTML(userInitial)}</div>
                   <div>
                     <div class="review-author-name">
-                      ${userName}
+                      ${escapeHTML(userName)}
                       <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Pembeli Terverifikasi</span>
                     </div>
-                    <div class="review-date">${dateLabel}</div>
+                    <div class="review-date">${escapeHTML(dateLabel)}</div>
                   </div>
                 </div>
                 <div class="review-stars-static">
@@ -10499,7 +10522,7 @@
                 </div>
               </div>
               <div class="review-comment">
-                ${escapeChatHTML(r.comment || '')}
+                ${escapeHTML(r.comment || '')}
               </div>
             </div>
           `;
@@ -11518,18 +11541,18 @@
         return `
         <tr>
           <td>
-            <div style="font-weight: 700; color: #ffffff;">${p.name}</div>
+            <div style="font-weight: 700; color: #ffffff;">${escapeHTML(p.name)}</div>
             <div style="font-size: 11px; color: var(--text-muted);">${(p.variants || []).length} Pilihan Varian</div>
           </td>
-          <td><span style="background: var(--bg-secondary); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 11px;">${p.category}</span></td>
-          <td><span style="padding: 2px 7px; border-radius: 4px; font-size: 10.5px; font-weight: 700; display: inline-block; ${stockStyle}">${stockLabel}</span></td>
+          <td><span style="background: var(--bg-secondary); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 11px;">${escapeHTML(p.category)}</span></td>
+          <td><span style="padding: 2px 7px; border-radius: 4px; font-size: 10.5px; font-weight: 700; display: inline-block; ${stockStyle}">${escapeHTML(stockLabel)}</span></td>
           <td><span style="font-weight: 700;">Rp ${Number(p.price || 0).toLocaleString('id-ID')}</span></td>
           <td>${p.soldCount || 0}x</td>
-          <td>${p.badge || '-'}</td>
+          <td>${escapeHTML(p.badge || '-')}</td>
           <td>
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-outline btn-sm" onclick="editProduct('${p.id}')" title="Edit Produk"><i class="fa-solid fa-pen"></i></button>
-              <button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')" title="Hapus Produk"><i class="fa-solid fa-trash"></i></button>
+              <button class="btn btn-outline btn-sm" onclick="editProduct('${escapeHTML(p.id)}')" title="Edit Produk"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-danger btn-sm" onclick="deleteProduct('${escapeHTML(p.id)}')" title="Hapus Produk"><i class="fa-solid fa-trash"></i></button>
             </div>
           </td>
         </tr>
@@ -13415,18 +13438,21 @@
       }
 
       const productPayload = {
-        name,
-        category,
-        badge: badge || '',
+        name: stripDangerousHTML(name),
+        category: stripDangerousHTML(category),
+        badge: stripDangerousHTML(badge || ''),
         price,
         originalPrice: Math.round(price * 1.35),
         soldCount,
         stockStatus,
         stockCount,
         image,
-        warranty: warranty || 'Garansi Penuh',
-        description: desc,
-        variants,
+        warranty: stripDangerousHTML(warranty || 'Garansi Penuh'),
+        description: stripDangerousHTML(desc),
+        variants: variants.map(v => ({
+          name: stripDangerousHTML(v.name || 'Paket Standar'),
+          price: Number(v.price) || price
+        })),
         features: ["100% Legal & Bergaransi", "Proses Cepat & Terpercaya"]
       };
 
@@ -13448,7 +13474,7 @@
           } catch (err) {
             console.error("Firestore update error:", err);
             if (err.code === 'permission-denied') {
-              alert("Perhatian: Izin Firestore ditolak. Pastikan Rules di Firebase Console diatur: allow read, write: if true;");
+              showToast("Perhatian: Izin Firestore ditolak. Pastikan Rules di Firebase Console diatur.");
             }
           }
         }
@@ -13479,7 +13505,7 @@
           } catch (err) {
             console.error("Firestore add error:", err);
             if (err.code === 'permission-denied') {
-              alert("Perhatian: Izin Firestore ditolak. Pastikan Rules di Firebase Console diatur: allow read, write: if true;");
+              showToast("Perhatian: Izin Firestore ditolak. Pastikan Rules di Firebase Console diatur.");
             }
           }
         }
@@ -13518,7 +13544,7 @@
         } catch (err) {
           console.error("Firestore delete error:", err);
           if (err.code === 'permission-denied') {
-            alert("Perhatian: Izin Firestore ditolak saat menghapus produk.");
+            showToast("Perhatian: Izin Firestore ditolak saat menghapus produk.");
           }
         }
       }
