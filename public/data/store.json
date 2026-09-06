@@ -4,7 +4,7 @@
     "storeTagline": "Premium Applications & Official Store",
     "storeLogo": "https://files.catbox.moe/3tt0xl.png",
     "ownerEmail": "ererex4youu@gmail.com",
-    "whatsappNumber": "6281234567890",
+    "whatsappNumber": "6283823567366",
     "adminPin": "123456",
     "qrisImage": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
     "qrisMerchantName": "JANEMURPHY OFFICIAL (QRIS ALL PAYMENT)",
@@ -12,7 +12,7 @@
       {
         "id": "dana",
         "name": "DANA",
-        "number": "081234567890",
+        "number": "083823567366",
         "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-wallet"
@@ -20,7 +20,7 @@
       {
         "id": "gopay",
         "name": "GoPay",
-        "number": "081234567890",
+        "number": "083823567366",
         "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-mobile-screen"
@@ -28,7 +28,7 @@
       {
         "id": "ovo",
         "name": "OVO",
-        "number": "081234567890",
+        "number": "083823567366",
         "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-coins"
@@ -36,7 +36,7 @@
       {
         "id": "shopeepay",
         "name": "ShopeePay",
-        "number": "081234567890",
+        "number": "083823567366",
         "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-bag-shopping"
@@ -76,11 +76,65 @@
     "announcement": "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS & E-Wallet Lengkap"
   },
   "stats": {
-    "totalVisitors": 1858,
-    "totalRevenue": 4850000,
-    "totalOrders": 142
+    "totalVisitors": 1864,
+    "totalRevenue": 4865400,
+    "totalOrders": 144
   },
   "orders": [
+    {
+      "id": "ORD-215941",
+      "customerName": "Raz 4youu",
+      "customerPhone": "",
+      "customerUid": "",
+      "productName": "Canva",
+      "category": "Aplikasi Premium",
+      "variant": "Paket Standar",
+      "items": [
+        {
+          "id": "3",
+          "name": "Canva",
+          "variant": "Paket Standar",
+          "price": 400,
+          "quantity": 1
+        }
+      ],
+      "price": 400,
+      "subtotal": 400,
+      "discountCode": "",
+      "discountAmount": 0,
+      "paymentMethod": "QRIS All Payment",
+      "timestamp": "2026-09-06T02:53:36.398Z",
+      "status": "Selesai",
+      "accountId": "",
+      "notes": ""
+    },
+    {
+      "id": "JM-TEST01",
+      "customerName": "Budi",
+      "customerPhone": "08123456789",
+      "customerUid": "",
+      "productName": "undefined (1 Bulan x1)",
+      "category": "Paket Keranjang (1 item)",
+      "variant": "1 Produk Dipilih",
+      "items": [
+        {
+          "productId": "prod-canva-1",
+          "productName": "Canva Pro",
+          "variant": "1 Bulan",
+          "price": 15000,
+          "quantity": 1
+        }
+      ],
+      "price": 15000,
+      "subtotal": 15000,
+      "discountCode": "",
+      "discountAmount": 0,
+      "paymentMethod": "QRIS",
+      "timestamp": "2026-09-03T01:42:19.575Z",
+      "status": "Selesai",
+      "accountId": "",
+      "notes": ""
+    },
     {
       "id": "ORD-17081",
       "customerName": "Rian Pratama",
@@ -551,5 +605,17 @@
         "Template Canva / PSD"
       ]
     }
-  ]
+  ],
+  "userProfiles": {
+    "testuser@example.com": {
+      "uid": "testuser@example.com",
+      "email": "testuser@example.com",
+      "name": "Budi Santoso",
+      "phone": "08123456789",
+      "bio": "Pelanggan Setia",
+      "address": "",
+      "preferredPayment": "QRIS",
+      "updatedAt": "2026-09-03T01:42:15.842Z"
+    }
+  }
 }

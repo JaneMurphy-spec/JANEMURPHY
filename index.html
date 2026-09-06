@@ -8268,7 +8268,6 @@
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
     }
-    const escapeChatHTML = escapeHTML;
 
     function stripDangerousHTML(str) {
       if (str === null || str === undefined) return '';
@@ -9733,6 +9732,7 @@
     function finishSplashScreen() {
       if (splashScreenFinished) return;
       splashScreenFinished = true;
+      if (splashFlyTimer) clearTimeout(splashFlyTimer);
 
       const splashOverlay = document.getElementById('appSplashScreen');
       const targetLogo = document.querySelector('.navbar .brand-logo-img');
@@ -9749,14 +9749,57 @@
 
       if (splashOverlay) {
         splashOverlay.classList.add('fade-out');
+        splashOverlay.style.pointerEvents = 'none';
         setTimeout(() => {
           splashOverlay.style.display = 'none';
-        }, 400);
+          splashOverlay.remove();
+        }, 350);
       }
     }
 
+    function initSplashScreenAnimation() {
+      const splashOverlay = document.getElementById('appSplashScreen');
+      const splashLogoImg = document.getElementById('splashLogoImg');
+      const splashBrandDetails = document.getElementById('splashBrandDetails');
+      const splashLogoGlow = document.getElementById('splashLogoGlow');
+      const targetLogo = document.querySelector('.navbar .brand-logo-img');
+
+      if (!splashOverlay) return;
+
+      // Tap / Click anywhere on splash overlay to skip immediately
+      splashOverlay.addEventListener('click', skipSplashScreen, { passive: true });
+      splashOverlay.addEventListener('touchstart', skipSplashScreen, { passive: true });
+
+      if (!splashLogoImg) {
+        finishSplashScreen();
+        return;
+      }
+
+      const activeLogo = (storeState && storeState.settings && storeState.settings.storeLogo) || 'https://files.catbox.moe/3tt0xl.png';
+      splashLogoImg.src = activeLogo;
+
+      // Ensure target logo in navbar is prepared
+      if (targetLogo) {
+        targetLogo.src = activeLogo;
+        targetLogo.style.opacity = '0';
+        targetLogo.style.transition = 'opacity 0.25s ease';
+      }
+
+      // Hard safety timer: splash will ALWAYS dismiss within 2.2 seconds max
+      setTimeout(() => {
+        if (!splashScreenFinished) {
+          finishSplashScreen();
+        }
+      }, 2200);
+
+      // Schedule flight animation after intro display (~1000ms)
+      splashFlyTimer = setTimeout(() => {
+        flySplashLogoToNavbar();
+      }, 1000);
+    }
+
     // Initialize App
-    document.addEventListener('DOMContentLoaded', async () => {
+    async function startJaneApp() {
       initSplashScreenAnimation();
       initTheme();
       try { localStorage.removeItem('jm_ui_version'); } catch(e) {}
@@ -9776,7 +9819,14 @@
       fetchAdminNotifications();
       initLazyImagesObserver();
       window.addEventListener('hashchange', initProductDeepLink);
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startJaneApp);
+    } else {
+      // DOM is already parsed/interactive
+      startJaneApp();
+    }
 
     function initLazyImagesObserver() {
       if ('IntersectionObserver' in window) {

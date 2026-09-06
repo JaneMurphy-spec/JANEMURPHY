@@ -10,6 +10,18 @@ service cloud.firestore {
     match /orders/{orderId} {
       allow read, write: if true;
     }
+    match /chats/{chatId} {
+      allow read, write: if true;
+    }
+    match /chat_threads/{threadId} {
+      allow read, write: if true;
+    }
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
     match /admins/{adminId} {
       allow read, write: if true;
     }

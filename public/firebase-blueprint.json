@@ -1,0 +1,118 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Customer and admin account profiles",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "avatar": { "type": "string" },
+        "phone": { "type": "string" },
+        "bio": { "type": "string" },
+        "address": { "type": "string" },
+        "preferredPayment": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "customer"] },
+        "isAdmin": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "name"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase transaction record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "customerUid": { "type": "string" },
+        "productName": { "type": "string" },
+        "category": { "type": "string" },
+        "variant": { "type": "string" },
+        "items": { "type": "array" },
+        "price": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "status": { "type": "string", "enum": ["Selesai", "Diproses", "Pending", "Dibatalkan"] },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "customerName", "price", "timestamp"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Catalog item in JaneMarket",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "image": { "type": "string" },
+        "soldCount": { "type": "number" },
+        "stockStatus": { "type": "string" },
+        "stockCount": { "type": "number" },
+        "rating": { "type": "number" },
+        "badge": { "type": "string" },
+        "warranty": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["id", "name", "price"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "User review for product",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "name": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "productId", "rating", "comment"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Chat message between customer and admin",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerUid": { "type": "string" },
+        "sender": { "type": "string", "enum": ["customer", "admin"] },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["id", "sessionId", "text", "sender"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "User account information and profile data"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "Shopping and checkout transaction records"
+    },
+    "/products/{productId}": {
+      "schema": { "$ref": "Product" },
+      "description": "Store items and inventory"
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "Review" },
+      "description": "Customer ratings and feedback"
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "ChatMessage" },
+      "description": "Live support chat messages"
+    }
+  }
+}
