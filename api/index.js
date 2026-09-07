@@ -45,13 +45,8 @@ const DEFAULT_STORE = {
     qrisImage: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
     qrisMerchantName: "JANEMARKET OFFICIAL (QRIS ALL PAYMENT)",
     paymentMethods: [
-      { id: "dana", name: "DANA", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-wallet" },
-      { id: "gopay", name: "GoPay", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-mobile-screen" },
-      { id: "ovo", name: "OVO", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-coins" },
-      { id: "shopeepay", name: "ShopeePay", number: "081234567890", owner: "Jane Market Admin", active: true, icon: "fa-solid fa-bag-shopping" },
-      { id: "bca", name: "Bank BCA", number: "8735091234", owner: "Jane Market Official", active: true, icon: "fa-solid fa-building-columns" },
-      { id: "mandiri", name: "Bank Mandiri", number: "137001928374", owner: "Jane Market Official", active: true, icon: "fa-solid fa-building-columns" },
-      { id: "seabank", name: "SeaBank", number: "90192837465", owner: "Jane Market Official", active: true, icon: "fa-solid fa-building-columns" }
+      { id: "dana", name: "DANA", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
+      { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" }
     ],
     promoBanner: {
       title: "🔥 FLASH SALE SPESIAL HARI INI!",

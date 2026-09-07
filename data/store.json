@@ -24,46 +24,6 @@
         "owner": "JaneMurphy Admin",
         "active": true,
         "icon": "fa-solid fa-mobile-screen"
-      },
-      {
-        "id": "ovo",
-        "name": "OVO",
-        "number": "083823567366",
-        "owner": "JaneMurphy Admin",
-        "active": true,
-        "icon": "fa-solid fa-coins"
-      },
-      {
-        "id": "shopeepay",
-        "name": "ShopeePay",
-        "number": "083823567366",
-        "owner": "JaneMurphy Admin",
-        "active": true,
-        "icon": "fa-solid fa-bag-shopping"
-      },
-      {
-        "id": "bca",
-        "name": "Bank BCA",
-        "number": "8735091234",
-        "owner": "JaneMurphy Official",
-        "active": true,
-        "icon": "fa-solid fa-building-columns"
-      },
-      {
-        "id": "mandiri",
-        "name": "Bank Mandiri",
-        "number": "137001928374",
-        "owner": "JaneMurphy Official",
-        "active": true,
-        "icon": "fa-solid fa-building-columns"
-      },
-      {
-        "id": "seabank",
-        "name": "SeaBank",
-        "number": "90192837465",
-        "owner": "JaneMurphy Official",
-        "active": true,
-        "icon": "fa-solid fa-building-columns"
       }
     ],
     "promoBanner": {
@@ -76,7 +36,7 @@
     "announcement": "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS & E-Wallet Lengkap"
   },
   "stats": {
-    "totalVisitors": 1860,
+    "totalVisitors": 1864,
     "totalRevenue": 4865000,
     "totalOrders": 143
   },
