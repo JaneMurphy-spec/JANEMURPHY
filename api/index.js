@@ -40,7 +40,7 @@ const DEFAULT_STORE = {
   settings: {
     storeName: "JaneMarket",
     storeTagline: "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
-    whatsappNumber: "6281234567890",
+    whatsappNumber: "6285139138997",
     adminPin: "123456",
     qrisImage: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
     qrisMerchantName: "JANEMARKET OFFICIAL (QRIS ALL PAYMENT)",
@@ -360,6 +360,55 @@ function saveStoreData(data) {
   return true;
 }
 
+// ----------------------------------------------------
+// LOGIKA BEST SELLER & REKAP TRANSAKSI OTOMATIS
+// ----------------------------------------------------
+function recalculateBestSellers(products, topCount = 5) {
+  if (!Array.isArray(products) || products.length === 0) return products;
+
+  // 1. Normalisasi field total_terjual, soldCount, stock, dan stockCount
+  products.forEach(p => {
+    const sold = Number(p.total_terjual !== undefined ? p.total_terjual : (p.soldCount !== undefined ? p.soldCount : 0)) || 0;
+    p.total_terjual = sold;
+    p.soldCount = sold;
+
+    const curStock = Number(p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : 50)) || 0;
+    p.stock = curStock;
+    p.stockCount = curStock;
+
+    if (p.stock <= 0) {
+      p.stockStatus = "soldout";
+    } else if (p.stock <= 5) {
+      p.stockStatus = "limited";
+    } else if (!p.stockStatus || p.stockStatus === "soldout") {
+      p.stockStatus = "ready";
+    }
+  });
+
+  // 2. Tentukan Top 5 produk dengan total_terjual terbanyak
+  const sorted = [...products].sort((a, b) => (Number(b.total_terjual) || 0) - (Number(a.total_terjual) || 0));
+  const topIds = new Set(
+    sorted.slice(0, topCount)
+      .filter(p => (Number(p.total_terjual) || 0) > 0)
+      .map(p => String(p.id))
+  );
+
+  // 3. Pasang flag is_best_seller & badge BEST SELLER otomatis
+  products.forEach(p => {
+    const isTop = topIds.has(String(p.id));
+    p.is_best_seller = isTop;
+    if (isTop) {
+      if (!p.badge || p.badge === "BARU" || p.badge === "POPULER" || p.badge.toLowerCase().includes("best seller")) {
+        p.badge = "BEST SELLER";
+      }
+    } else if (p.badge === "BEST SELLER") {
+      p.badge = "POPULER";
+    }
+  });
+
+  return products;
+}
+
 let inMemoryChats = [
   {
     id: "msg-101",
@@ -504,6 +553,7 @@ module.exports = async (req, res) => {
 
   // 1. GET /api/store-data
   if (pathname === "/api/store-data" || pathname === "/store-data") {
+    recalculateBestSellers(store.products, 5);
     return sendJson(res, 200, { success: true, ...store });
   }
 
@@ -514,6 +564,9 @@ module.exports = async (req, res) => {
       return sendJson(res, 400, { success: false, error: "Nama produk harus diisi" });
     }
 
+    const initialSold = Number(body.total_terjual !== undefined ? body.total_terjual : (body.soldCount || 0));
+    const initialStock = Number(body.stock !== undefined ? body.stock : (body.stockCount !== undefined ? body.stockCount : 50));
+
     const newProduct = {
       id: body.id || "prod-" + Date.now(),
       name: body.name.trim(),
@@ -521,9 +574,11 @@ module.exports = async (req, res) => {
       price: Number(body.price) || 0,
       originalPrice: Number(body.originalPrice) || (Number(body.price) ? Number(body.price) * 1.4 : 0),
       image: body.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
-      soldCount: Number(body.soldCount) || 0,
-      stockStatus: body.stockStatus || "ready",
-      stockCount: Number(body.stockCount || 0),
+      soldCount: initialSold,
+      total_terjual: initialSold,
+      stockStatus: initialStock <= 0 ? "soldout" : (initialStock <= 5 ? "limited" : (body.stockStatus || "ready")),
+      stockCount: initialStock,
+      stock: initialStock,
       rating: Number(body.rating) || 5.0,
       badge: body.badge || "BARU",
       warranty: body.warranty || "Garansi Penuh",
@@ -535,6 +590,7 @@ module.exports = async (req, res) => {
     };
 
     store.products.unshift(newProduct);
+    recalculateBestSellers(store.products, 5);
     saveStoreData(store);
     return sendJson(res, 201, { success: true, product: newProduct, message: "Produk berhasil ditambahkan!" });
   }
@@ -549,15 +605,24 @@ module.exports = async (req, res) => {
       return sendJson(res, 404, { success: false, error: "Produk tidak ditemukan" });
     }
 
+    const prev = store.products[index];
+    const updatedSold = body.total_terjual !== undefined ? Number(body.total_terjual) : (body.soldCount !== undefined ? Number(body.soldCount) : (prev.total_terjual !== undefined ? prev.total_terjual : prev.soldCount));
+    const updatedStock = body.stock !== undefined ? Number(body.stock) : (body.stockCount !== undefined ? Number(body.stockCount) : (prev.stock !== undefined ? prev.stock : prev.stockCount));
+
     store.products[index] = {
-      ...store.products[index],
+      ...prev,
       ...body,
-      id: store.products[index].id,
-      price: body.price !== undefined ? Number(body.price) : store.products[index].price,
-      soldCount: body.soldCount !== undefined ? Number(body.soldCount) : store.products[index].soldCount,
-      rating: body.rating !== undefined ? Number(body.rating) : store.products[index].rating
+      id: prev.id,
+      price: body.price !== undefined ? Number(body.price) : prev.price,
+      soldCount: updatedSold,
+      total_terjual: updatedSold,
+      stock: updatedStock,
+      stockCount: updatedStock,
+      stockStatus: updatedStock <= 0 ? "soldout" : (updatedStock <= 5 ? "limited" : (body.stockStatus || prev.stockStatus || "ready")),
+      rating: body.rating !== undefined ? Number(body.rating) : prev.rating
     };
 
+    recalculateBestSellers(store.products, 5);
     saveStoreData(store);
     return sendJson(res, 200, { success: true, product: store.products[index], message: "Produk berhasil diperbarui!" });
   }
@@ -591,17 +656,24 @@ module.exports = async (req, res) => {
     return sendJson(res, 200, { success: true, visitors: store.stats.totalVisitors });
   }
 
-  // 7. POST /api/orders
+  // 7. POST /api/orders (Record new order with auto stock reduction & sales counter)
   if ((pathname === "/api/orders" || pathname === "/orders") && method === "POST") {
     const body = await parseBody(req);
+    const isCartOrder = Array.isArray(body.items) && body.items.length > 0;
+
     const newOrder = {
-      id: "ORD-" + Math.floor(10000 + Math.random() * 90000),
-      customerName: body.customerName || "Customer",
+      id: body.id || ("ORD-" + Math.floor(10000 + Math.random() * 90000)),
+      customerName: body.customerName ? String(body.customerName).trim() : "Customer",
       customerPhone: body.customerPhone || "",
-      productName: body.productName || "-",
-      category: body.category || "-",
-      variant: body.variant || "-",
+      customerUid: body.customerUid || "",
+      productName: isCartOrder ? (body.items.map(i => `${i.productName || i.name || 'Produk'} (${i.variant || 'Standard'} x${i.quantity || 1})`).join(", ")) : (body.productName || "-"),
+      category: isCartOrder ? "Paket Keranjang (" + body.items.length + " item)" : (body.category || "-"),
+      variant: isCartOrder ? (body.items.length + " Produk Dipilih") : (body.variant || "-"),
+      items: isCartOrder ? body.items : (body.productId ? [{ id: body.productId, name: body.productName, variant: body.variant, price: body.price, quantity: (body.quantity || 1) }] : null),
       price: Number(body.price) || 0,
+      subtotal: Number(body.subtotal) || Number(body.price) || 0,
+      discountCode: body.discountCode || "",
+      discountAmount: Number(body.discountAmount) || 0,
       paymentMethod: body.paymentMethod || "QRIS",
       timestamp: new Date().toISOString(),
       status: "Selesai",
@@ -613,12 +685,44 @@ module.exports = async (req, res) => {
     store.stats.totalOrders = (store.stats.totalOrders || 0) + 1;
     store.stats.totalRevenue = (store.stats.totalRevenue || 0) + (newOrder.price || 0);
 
-    if (body.productId) {
-      const prod = store.products.find(p => String(p.id) === String(body.productId));
+    // ========================================================
+    // 1. PENGURANGAN STOK & 2. HITUNG TOTAL PENJUALAN (total_terjual)
+    // ========================================================
+    const processItemSale = (prodId, qty) => {
+      const prod = store.products.find(p => String(p.id) === String(prodId));
       if (prod) {
-        prod.soldCount = (Number(prod.soldCount) || 0) + 1;
+        const quantity = Math.max(1, Number(qty) || 1);
+
+        // 1. Pengurangan Stok Otomatis
+        const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+        const newStock = Math.max(0, curStock - quantity);
+        prod.stock = newStock;
+        prod.stockCount = newStock;
+        if (newStock <= 0) {
+          prod.stockStatus = "soldout";
+        } else if (newStock <= 5) {
+          prod.stockStatus = "limited";
+        } else {
+          prod.stockStatus = "ready";
+        }
+
+        // 2. Hitung Total Penjualan (total_terjual bertambah sebanyak jumlah yang dibeli)
+        const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount !== undefined ? prod.soldCount : 0));
+        prod.total_terjual = curSold + quantity;
+        prod.soldCount = prod.total_terjual;
       }
+    };
+
+    if (isCartOrder) {
+      body.items.forEach(it => {
+        processItemSale(it.id || it.productId, it.quantity);
+      });
+    } else if (body.productId) {
+      processItemSale(body.productId, body.quantity || 1);
     }
+
+    // 3. Logika Best Seller Otomatis (Top 5 produk berdasarkan total_terjual)
+    recalculateBestSellers(store.products, 5);
 
     saveStoreData(store);
     return sendJson(res, 201, { success: true, order: newOrder, products: store.products });
@@ -763,7 +867,7 @@ Berikut katalog produk lengkap yang tersedia:
 ${productCatalogText}
 
 Info Tambahan:
-- Nomor WhatsApp Resmi Admin: ${store.settings.whatsappNumber || '6281234567890'}
+- Nomor WhatsApp Resmi Admin: ${store.settings.whatsappNumber || '6285139138997'}
 - Metode Pembayaran: QRIS All Payment (BCA, Mandiri, DANA, GoPay, OVO, ShopeePay, SeaBank, dll.)
 - Keunggulan: Proses kilat 1-5 menit, Garansi akun/ganti baru jika bermasalah, Legal & Aman 100%.
 

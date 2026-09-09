@@ -140,6 +140,55 @@ function saveStoreData(data) {
   }
 }
 
+// ----------------------------------------------------
+// LOGIKA BEST SELLER & REKAP TRANSAKSI OTOMATIS
+// ----------------------------------------------------
+function recalculateBestSellers(products, topCount = 5) {
+  if (!Array.isArray(products) || products.length === 0) return products;
+
+  // 1. Normalisasi field total_terjual, soldCount, stock, dan stockCount
+  products.forEach(p => {
+    const sold = Number(p.total_terjual !== undefined ? p.total_terjual : (p.soldCount !== undefined ? p.soldCount : 0)) || 0;
+    p.total_terjual = sold;
+    p.soldCount = sold;
+
+    const curStock = Number(p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : 50)) || 0;
+    p.stock = curStock;
+    p.stockCount = curStock;
+
+    if (p.stock <= 0) {
+      p.stockStatus = "soldout";
+    } else if (p.stock <= 5) {
+      p.stockStatus = "limited";
+    } else if (!p.stockStatus || p.stockStatus === "soldout") {
+      p.stockStatus = "ready";
+    }
+  });
+
+  // 2. Tentukan Top 5 produk dengan total_terjual terbanyak (ambang batas > 0)
+  const sorted = [...products].sort((a, b) => (Number(b.total_terjual) || 0) - (Number(a.total_terjual) || 0));
+  const topIds = new Set(
+    sorted.slice(0, topCount)
+      .filter(p => (Number(p.total_terjual) || 0) > 0)
+      .map(p => String(p.id))
+  );
+
+  // 3. Pasang flag is_best_seller & badge BEST SELLER otomatis
+  products.forEach(p => {
+    const isTop = topIds.has(String(p.id));
+    p.is_best_seller = isTop;
+    if (isTop) {
+      if (!p.badge || p.badge === "BARU" || p.badge === "POPULER" || p.badge.toLowerCase().includes("best seller")) {
+        p.badge = "BEST SELLER";
+      }
+    } else if (p.badge === "BEST SELLER") {
+      p.badge = "POPULER";
+    }
+  });
+
+  return products;
+}
+
 // Lazy Gemini SDK loader
 let aiClient = null;
 function getAIClient() {
@@ -311,6 +360,7 @@ const appHandler = async (request, response) => {
 
     // 1. GET /api/store-data
     if (pathname === "/api/store-data" && method === "GET") {
+      recalculateBestSellers(store.products, 5);
       return sendJson(response, 200, { success: true, ...store });
     }
 
@@ -321,6 +371,9 @@ const appHandler = async (request, response) => {
         return sendJson(response, 400, { success: false, error: "Nama produk harus diisi" });
       }
 
+      const initialSold = Number(body.total_terjual !== undefined ? body.total_terjual : (body.soldCount || 0));
+      const initialStock = Number(body.stock !== undefined ? body.stock : (body.stockCount !== undefined ? body.stockCount : 50));
+
       const newProduct = {
         id: body.id || "prod-" + Date.now(),
         name: body.name.trim(),
@@ -328,9 +381,11 @@ const appHandler = async (request, response) => {
         price: Number(body.price) || 0,
         originalPrice: Number(body.originalPrice) || (Number(body.price) ? Number(body.price) * 1.4 : 0),
         image: body.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
-        soldCount: Number(body.soldCount) || 0,
-        stockStatus: body.stockStatus || "ready",
-        stockCount: Number(body.stockCount || 0),
+        soldCount: initialSold,
+        total_terjual: initialSold,
+        stockStatus: initialStock <= 0 ? "soldout" : (initialStock <= 5 ? "limited" : (body.stockStatus || "ready")),
+        stockCount: initialStock,
+        stock: initialStock,
         rating: Number(body.rating) || 5.0,
         badge: body.badge || "BARU",
         warranty: body.warranty || "Garansi Penuh",
@@ -342,6 +397,7 @@ const appHandler = async (request, response) => {
       };
 
       store.products.unshift(newProduct);
+      recalculateBestSellers(store.products, 5);
       saveStoreData(store);
       return sendJson(response, 201, { success: true, product: newProduct, message: "Produk berhasil ditambahkan!" });
     }
@@ -356,15 +412,24 @@ const appHandler = async (request, response) => {
         return sendJson(response, 404, { success: false, error: "Produk tidak ditemukan" });
       }
 
+      const prev = store.products[index];
+      const updatedSold = body.total_terjual !== undefined ? Number(body.total_terjual) : (body.soldCount !== undefined ? Number(body.soldCount) : (prev.total_terjual !== undefined ? prev.total_terjual : prev.soldCount));
+      const updatedStock = body.stock !== undefined ? Number(body.stock) : (body.stockCount !== undefined ? Number(body.stockCount) : (prev.stock !== undefined ? prev.stock : prev.stockCount));
+
       store.products[index] = {
-        ...store.products[index],
+        ...prev,
         ...body,
-        id: store.products[index].id,
-        price: body.price !== undefined ? Number(body.price) : store.products[index].price,
-        soldCount: body.soldCount !== undefined ? Number(body.soldCount) : store.products[index].soldCount,
-        rating: body.rating !== undefined ? Number(body.rating) : store.products[index].rating
+        id: prev.id,
+        price: body.price !== undefined ? Number(body.price) : prev.price,
+        soldCount: updatedSold,
+        total_terjual: updatedSold,
+        stock: updatedStock,
+        stockCount: updatedStock,
+        stockStatus: updatedStock <= 0 ? "soldout" : (updatedStock <= 5 ? "limited" : (body.stockStatus || prev.stockStatus || "ready")),
+        rating: body.rating !== undefined ? Number(body.rating) : prev.rating
       };
 
+      recalculateBestSellers(store.products, 5);
       saveStoreData(store);
       return sendJson(response, 200, { success: true, product: store.products[index], message: "Produk berhasil diperbarui!" });
     }
@@ -411,7 +476,7 @@ const appHandler = async (request, response) => {
         productName: isCartOrder ? (body.items.map(i => `${i.productName || i.name || 'Produk'} (${i.variant || 'Standard'} x${i.quantity || 1})`).join(", ")) : (body.productName || "-"),
         category: isCartOrder ? "Paket Keranjang (" + body.items.length + " item)" : (body.category || "-"),
         variant: isCartOrder ? (body.items.length + " Produk Dipilih") : (body.variant || "-"),
-        items: isCartOrder ? body.items : (body.productId ? [{ id: body.productId, name: body.productName, variant: body.variant, price: body.price, quantity: 1 }] : null),
+        items: isCartOrder ? body.items : (body.productId ? [{ id: body.productId, name: body.productName, variant: body.variant, price: body.price, quantity: (body.quantity || 1) }] : null),
         price: Number(body.price) || 0,
         subtotal: Number(body.subtotal) || Number(body.price) || 0,
         discountCode: body.discountCode || "",
@@ -427,36 +492,70 @@ const appHandler = async (request, response) => {
       store.stats.totalOrders = (store.stats.totalOrders || 0) + 1;
       store.stats.totalRevenue = (store.stats.totalRevenue || 0) + (newOrder.price || 0);
 
-      // Increment sold count automatically for matching products
+      // ========================================================
+      // 1. PENGURANGAN STOK & 2. HITUNG TOTAL PENJUALAN (total_terjual)
+      // ========================================================
+      const affectedProducts = [];
+      const processItemSale = (prodId, qty) => {
+        const prod = store.products.find(p => String(p.id) === String(prodId));
+        if (prod) {
+          const quantity = Math.max(1, Number(qty) || 1);
+
+          // 1. Pengurangan Stok Otomatis
+          const currentStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+          const newStock = Math.max(0, currentStock - quantity);
+          prod.stock = newStock;
+          prod.stockCount = newStock;
+          if (newStock <= 0) {
+            prod.stockStatus = "soldout";
+          } else if (newStock <= 5) {
+            prod.stockStatus = "limited";
+          } else {
+            prod.stockStatus = "ready";
+          }
+
+          // 2. Hitung Total Penjualan (total_terjual bertambah sebanyak jumlah yang dibeli)
+          const currentSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount !== undefined ? prod.soldCount : 0));
+          prod.total_terjual = currentSold + quantity;
+          prod.soldCount = prod.total_terjual;
+
+          affectedProducts.push(prod);
+        }
+      };
+
       if (isCartOrder) {
         body.items.forEach(it => {
-          const prod = store.products.find(p => String(p.id) === String(it.id || it.productId));
-          if (prod) {
-            prod.soldCount = (Number(prod.soldCount) || 0) + (Number(it.quantity) || 1);
-            if (prod.stockStatus === "limited" && prod.stockCount) {
-              prod.stockCount = Math.max(0, prod.stockCount - (Number(it.quantity) || 1));
-            }
-          }
+          processItemSale(it.id || it.productId, it.quantity);
         });
       } else if (body.productId) {
-        const prod = store.products.find(p => String(p.id) === String(body.productId));
-        if (prod) {
-          prod.soldCount = (Number(prod.soldCount) || 0) + 1;
-          if (prod.stockStatus === "limited" && prod.stockCount) {
-            prod.stockCount = Math.max(0, prod.stockCount - 1);
-          }
-        }
+        processItemSale(body.productId, body.quantity || 1);
       }
+
+      // ========================================================
+      // 3. LOGIKA BEST SELLER OTOMATIS (Top 5 penjualan terbanyak)
+      // ========================================================
+      recalculateBestSellers(store.products, 5);
 
       saveStoreData(store);
 
-      // Persist order in Firestore via Admin SDK
+      // Sinkronisasi data order dan produk ke Cloud Firestore (Admin SDK)
       const firestore = getAdminFirestore();
       if (firestore) {
         try {
           await firestore.collection("orders").doc(newOrder.id).set(newOrder, { merge: true });
+          for (const prod of affectedProducts) {
+            await firestore.collection("products").doc(String(prod.id)).set({
+              stock: prod.stock,
+              stockCount: prod.stockCount,
+              stockStatus: prod.stockStatus,
+              total_terjual: prod.total_terjual,
+              soldCount: prod.soldCount,
+              is_best_seller: prod.is_best_seller,
+              badge: prod.badge
+            }, { merge: true });
+          }
         } catch (fErr) {
-          console.warn("Firestore order sync notice:", fErr.message);
+          console.warn("Firestore order & product sync notice:", fErr.message);
         }
       }
 
@@ -856,7 +955,7 @@ Berikut katalog produk lengkap yang tersedia:
 ${productCatalogText}
 
 Info Tambahan:
-- Nomor WhatsApp Resmi Admin: ${store.settings.whatsappNumber || '6283823567366'}
+- Nomor WhatsApp Resmi Admin: ${store.settings.whatsappNumber || '6285139138997'}
 - Metode Pembayaran: QRIS All Payment (BCA, Mandiri, DANA, GoPay, OVO, ShopeePay, SeaBank, dll.)
 - Keunggulan: Proses kilat 1-5 menit, Garansi akun/ganti baru jika bermasalah, Legal & Aman 100%.
 

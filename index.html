@@ -756,6 +756,15 @@
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       box-shadow: 0 3px 8px rgba(99, 102, 241, 0.4);
     }
+    .card-badge.badge-bestseller {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.45);
+      border: 1px solid rgba(254, 240, 138, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 3.5px;
+    }
 
     .card-rating {
       position: absolute;
@@ -3582,6 +3591,12 @@
     [data-theme="light"] .card-badge.badge-general {
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
       color: #ffffff !important;
+    }
+    [data-theme="light"] .card-badge.badge-bestseller {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 3px 10px rgba(217, 119, 6, 0.35) !important;
+      border: 1px solid rgba(254, 240, 138, 0.6) !important;
     }
     [data-theme="light"] .card-cart-btn {
       color: #0284c7;
@@ -7516,7 +7531,7 @@
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                 <div class="form-group">
                   <label class="form-label">Nomor WhatsApp Admin (Format 628xxx)</label>
-                  <input type="text" id="settingWhatsapp" class="form-input" placeholder="6283823567366" required>
+                  <input type="text" id="settingWhatsapp" class="form-input" placeholder="6285139138997" required>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Email Google Owner Admin</label>
@@ -7922,50 +7937,20 @@
         <button class="modal-close" onclick="closeModal('paymentMethodsModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
-        <!-- QRIS Display (Stand Resmi Frantz) -->
-        <div class="qris-stand-card" id="qrisStandCard">
-          <!-- Stand Header -->
-          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #ea580c; padding-bottom: 8px; margin-bottom: 10px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="background: #dc2626; color: #fff; font-weight: 900; font-size: 14px; padding: 2px 7px; border-radius: 4px; letter-spacing: 1px;">QRIS</span>
-              <span style="font-size: 11px; font-weight: 800; color: #1e293b; letter-spacing: 0.5px;">PEMBAYARAN DIGITAL</span>
-            </div>
-            <div style="font-size: 10px; font-weight: 700; color: #64748b;">
-              <span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; border: 1px solid #e2e8f0;">GPN • ASPI</span>
-            </div>
+        <!-- QRIS Ditutup Sementara Notice -->
+        <div class="qris-stand-card" id="qrisStandCard" style="background: rgba(234, 88, 12, 0.05); border: 1.5px dashed #f97316; padding: 20px 16px; text-align: center; border-radius: 12px; margin-bottom: 18px;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(249, 115, 22, 0.15); color: #ea580c; font-size: 22px; margin-bottom: 10px;">
+            <i class="fa-solid fa-qrcode"></i>
           </div>
-
-          <div class="qris-merchant-title" id="qrisTitle" style="font-size: 16px; font-weight: 900; color: #0f172a; text-transform: uppercase; margin-bottom: 2px;">
-            FRANTZ
+          <div style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">
+            Pembayaran QRIS Ditutup Sementara
           </div>
-          <div style="font-size: 12px; color: #475569; font-weight: 600; margin-bottom: 8px;" id="qrisNmidSubtitle">
-            NMID: <strong style="font-family: monospace; color: #0f172a;">ID2025419027029</strong> • A01
-          </div>
-
-          <!-- Barcode QRIS Box -->
-          <div class="qris-stand-qr-box" id="qrisStandBarcodeBox">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=00020101021126640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI51640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI5204581253033605802ID5906Frantz6007JAKARTA61051234063044DF2&margin=12" alt="QRIS Frantz (NMID: ID2025419027029)" id="qrisImageModal" class="qris-image" style="max-width: 220px; width: 100%; height: auto; border-radius: 6px; display: block; margin: 0 auto;">
-          </div>
-
-          <!-- Stand Footer & Badges -->
-          <div style="margin-top: 8px; font-size: 11px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px;">
-            SATU QRIS UNTUK SEMUA
-          </div>
-          <p class="qris-hint" style="margin-top: 2px; font-size: 10.5px; color: #64748b;">
-            BCA • Mandiri • BRI • BNI • DANA • GoPay • OVO • ShopeePay
+          <p style="font-size: 13.5px; color: #475569; font-weight: 600; line-height: 1.5; margin-bottom: 14px; max-width: 360px; margin-left: auto; margin-right: auto;">
+            Jika ingin menggunakan QRIS, silakan lanjut ke WhatsApp admin.
           </p>
-          <div style="font-size: 9.5px; color: #94a3b8; margin-top: 6px; border-top: 1px dashed #e2e8f0; padding-top: 6px;">
-            Dicetak oleh: 93600503 (Uperpay / ASPI) • Versi Cetak: 1.0-2025.07.15
-          </div>
-
-          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-            <button type="button" id="qrisDownloadBtn" class="btn btn-dark btn-sm" onclick="downloadOfficialQrisStand()" style="font-weight: 700;">
-              <i class="fa-solid fa-download"></i> Unduh Stand QRIS
-            </button>
-            <button type="button" class="btn btn-outline btn-sm" onclick="copyToClipboard('ID2025419027029', 'NMID QRIS Frantz')" style="color: #0f172a; border-color: #cbd5e1; background: #f8fafc; font-weight: 600;">
-              <i class="fa-solid fa-copy"></i> Salin NMID
-            </button>
-          </div>
+          <a id="btnQrisWaDirect" href="https://wa.me/6285139138997?text=Halo%20admin%2C%20saya%20ingin%20menggunakan%20QRIS%20untuk%20pembayaran" target="_blank" class="btn btn-wa btn-sm" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 8px; margin: 0 auto; width: 100%; max-width: 320px;">
+            <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Lanjut ke WhatsApp Admin
+          </a>
         </div>
 
         <!-- Other Payment Numbers (DANA & GoPay) -->
@@ -8205,9 +8190,9 @@
             <div class="form-group">
               <label class="form-label">Metode Pembayaran</label>
               <select id="orderPaymentMethod" class="form-select" onchange="updateCheckoutPaymentInfo()">
-                <option value="QRIS All Payment">QRIS All Payment (Uperpay Dinamis)</option>
-                <option value="DANA">DANA (083823567366)</option>
+                <option value="DANA" selected>DANA (083823567366)</option>
                 <option value="GoPay">GoPay (083823567366)</option>
+                <option value="QRIS">QRIS (Lanjut ke WhatsApp Admin)</option>
               </select>
             </div>
           </div>
@@ -8588,7 +8573,7 @@
         storeName: "JaneMurphy",
         storeTagline: "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
         storeLogo: "https://files.catbox.moe/3tt0xl.png",
-        whatsappNumber: "6283823567366",
+        whatsappNumber: "6285139138997",
         adminPin: "123456",
         qrisImage: "",
         qrisMerchantName: "Frantz",
@@ -8899,8 +8884,9 @@
     if (!storeState.settings.whatsappNumber || 
         storeState.settings.whatsappNumber === '6281234567890' || 
         storeState.settings.whatsappNumber === '62895325602169' ||
+        storeState.settings.whatsappNumber === '6283823567366' ||
         storeState.settings.whatsappNumber.includes('1234567890')) {
-      storeState.settings.whatsappNumber = '6283823567366';
+      storeState.settings.whatsappNumber = '6285139138997';
     }
 
     // Pastikan QRIS Uperpay Frantz (NMID: ID2025419027029) tersambung
@@ -8958,20 +8944,20 @@
     }
 
     // ========================================================
-    // ENGINE WHATSAPP & DIRECT MESSAGING (NOMOR RESMI: +6283823567366)
+    // ENGINE WHATSAPP & DIRECT MESSAGING (NOMOR RESMI: +6285139138997)
     // ========================================================
     function getAdminWhatsAppNumber() {
       let num = (storeState && storeState.settings && storeState.settings.whatsappNumber) 
                 ? String(storeState.settings.whatsappNumber).trim() 
-                : '6283823567366';
+                : '6285139138997';
       num = num.replace(/[^0-9]/g, '');
       if (num.startsWith('0')) {
         num = '62' + num.slice(1);
       } else if (num.startsWith('8')) {
         num = '62' + num;
       }
-      if (num === '6281234567890' || num === '62895325602169' || !num) {
-        num = '6283823567366';
+      if (num === '6281234567890' || num === '62895325602169' || num === '6283823567366' || !num) {
+        num = '6285139138997';
       }
       return num;
     }
@@ -10204,6 +10190,53 @@
       }
     }
 
+    // ----------------------------------------------------
+    // LOGIKA FITUR BEST SELLER OTOMATIS & REKAP PENJUALAN
+    // ----------------------------------------------------
+    function recalculateBestSellersClient() {
+      if (!Array.isArray(storeState.products) || storeState.products.length === 0) return;
+
+      // 1. Normalisasi field total_terjual, soldCount, stock, dan stockCount
+      storeState.products.forEach(p => {
+        const sold = Number(p.total_terjual !== undefined ? p.total_terjual : (p.soldCount !== undefined ? p.soldCount : 0)) || 0;
+        p.total_terjual = sold;
+        p.soldCount = sold;
+
+        const curStock = Number(p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : 50)) || 0;
+        p.stock = curStock;
+        p.stockCount = curStock;
+
+        if (p.stock <= 0) {
+          p.stockStatus = 'soldout';
+        } else if (p.stock <= 5) {
+          p.stockStatus = 'limited';
+        } else if (!p.stockStatus || p.stockStatus === 'soldout') {
+          p.stockStatus = 'ready';
+        }
+      });
+
+      // 2. Tentukan Top 5 produk dengan total_terjual terbanyak (ambang batas > 0)
+      const sorted = [...storeState.products].sort((a, b) => (Number(b.total_terjual) || 0) - (Number(a.total_terjual) || 0));
+      const topIds = new Set(
+        sorted.slice(0, 5)
+          .filter(p => (Number(p.total_terjual) || 0) > 0)
+          .map(p => String(p.id))
+      );
+
+      // 3. Pasang flag is_best_seller & badge BEST SELLER
+      storeState.products.forEach(p => {
+        const isTop = topIds.has(String(p.id));
+        p.is_best_seller = isTop;
+        if (isTop) {
+          if (!p.badge || p.badge === 'BARU' || p.badge === 'POPULER' || p.badge.toLowerCase().includes('best seller')) {
+            p.badge = 'BEST SELLER';
+          }
+        } else if (p.badge === 'BEST SELLER') {
+          p.badge = 'POPULER';
+        }
+      });
+    }
+
     // Fetch data and attach real-time Firestore sync
     async function fetchStoreData() {
       // 1. Initial local/API fetch to populate instantly
@@ -10226,12 +10259,14 @@
                 ];
               }
             }
+            recalculateBestSellersClient();
             persistLocalState();
           }
         }
       } catch (e) {
         console.warn("Using local cache state:", e);
       }
+      recalculateBestSellersClient();
       applyStoreSettings();
       renderProducts();
       updateCategoryCounts();
@@ -10248,6 +10283,8 @@
               const liveProducts = [];
               snapshot.forEach((doc) => {
                 const pData = doc.data() || {};
+                const soldVal = Number(pData.total_terjual !== undefined ? pData.total_terjual : (pData.soldCount || 0));
+                const stockVal = Number(pData.stock !== undefined ? pData.stock : (pData.stockCount !== undefined ? pData.stockCount : 50));
                 liveProducts.push({
                   id: String(doc.id),
                   name: stripDangerousHTML(pData.name || 'Produk'),
@@ -10255,9 +10292,12 @@
                   badge: stripDangerousHTML(pData.badge || ''),
                   price: Number(pData.price || 0),
                   originalPrice: Number(pData.originalPrice || 0),
-                  soldCount: Number(pData.soldCount || 0),
-                  stockStatus: pData.stockStatus || 'ready',
-                  stockCount: Number(pData.stockCount || 0),
+                  soldCount: soldVal,
+                  total_terjual: soldVal,
+                  stockStatus: pData.stockStatus || (stockVal <= 0 ? 'soldout' : (stockVal <= 5 ? 'limited' : 'ready')),
+                  stockCount: stockVal,
+                  stock: stockVal,
+                  is_best_seller: Boolean(pData.is_best_seller),
                   rating: pData.rating ? Number(pData.rating) : 5.0,
                   image: pData.image || '',
                   warranty: stripDangerousHTML(pData.warranty || ''),
@@ -10272,6 +10312,7 @@
               });
               if (liveProducts.length > 0) {
                 storeState.products = liveProducts;
+                recalculateBestSellersClient();
                 persistLocalState();
                 renderProducts();
                 updateCategoryCounts();
@@ -10376,29 +10417,10 @@
         if (bBtnText && s.promoBanner.buttonText) bBtnText.textContent = s.promoBanner.buttonText;
       }
 
-      // QRIS Stand Resmi Frantz (NMID: ID2025419027029)
-      const qrisImg = document.getElementById('qrisImageModal');
-      const qrisDown = document.getElementById('qrisDownloadBtn');
-      const qrisTitle = document.getElementById('qrisTitle');
-      const qrisNmidSubtitle = document.getElementById('qrisNmidSubtitle');
-      const merchant = s.qrisMerchantName || 'Frantz';
-      const nmid = s.qrisNmid || 'ID2025419027029';
-      if (qrisTitle) qrisTitle.textContent = merchant.toUpperCase();
-      if (qrisNmidSubtitle) qrisNmidSubtitle.innerHTML = `NMID: <strong style="font-family: monospace; color: #0f172a;">${nmid}</strong> • A01`;
-
-      const officialQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(getDefaultUperpayQris())}&margin=12`;
-      if (qrisImg) {
-        if (s.qrisImage && !s.qrisImage.includes('unsplash')) {
-          qrisImg.src = s.qrisImage;
-        } else {
-          qrisImg.src = officialQrUrl;
-        }
-      }
-      if (qrisDown) {
-        qrisDown.onclick = (e) => {
-          e.preventDefault();
-          downloadOfficialQrisStand();
-        };
+      // Update WhatsApp link for QRIS notice
+      const qrisWaBtn = document.getElementById('btnQrisWaDirect');
+      if (qrisWaBtn) {
+        qrisWaBtn.href = `https://wa.me/${waAdminNum}?text=${encodeURIComponent('Halo admin, saya ingin menggunakan QRIS untuk pembayaran')}`;
       }
 
       renderPaymentMethodsList();
@@ -10551,15 +10573,29 @@
         const isTopup = product.category === 'Topup Game';
         const formattedPrice = `Rp ${Number(product.price || 0).toLocaleString('id-ID')}`;
         const formattedOrig = product.originalPrice ? `Rp ${Number(product.originalPrice).toLocaleString('id-ID')}` : '';
-        const soldText = product.soldCount !== undefined ? product.soldCount : 0;
+        const totalSold = Number(product.total_terjual !== undefined ? product.total_terjual : (product.soldCount || 0));
+        const isBestSeller = Boolean(product.is_best_seller || (product.badge && product.badge.toUpperCase().includes('BEST SELLER')));
+
+        // Dynamic Badge: Best Seller Priority
+        let badgeHtml = '';
+        if (isBestSeller) {
+          badgeHtml = `<span class="card-badge badge-bestseller"><i class="fa-solid fa-crown" style="font-size: 8.5px;"></i> BEST SELLER</span>`;
+        } else if (product.badge) {
+          let badgeClass = 'card-badge';
+          if (product.category === 'Topup Game') badgeClass += ' badge-game';
+          else if (product.category === 'Jasa Design Poster') badgeClass += ' badge-design';
+          else badgeClass += ' badge-app';
+          badgeHtml = `<span class="${badgeClass}">${escapeHTML(product.badge)}</span>`;
+        }
         
-        // Real-Time Stock Status Badge (Feature #4)
-        const stockStatus = product.stockStatus || 'ready';
+        // Real-Time Stock Status Badge (Pengurangan Stok & Status Otomatis)
+        const curStock = Number(product.stock !== undefined ? product.stock : (product.stockCount !== undefined ? product.stockCount : 50));
+        const stockStatus = curStock <= 0 ? 'soldout' : (curStock <= 5 ? 'limited' : (product.stockStatus || 'ready'));
         let stockBadgeHtml = '';
         if (stockStatus === 'ready') {
           stockBadgeHtml = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock</span>`;
         } else if (stockStatus === 'limited') {
-          const countLabel = product.stockCount ? `Sisa ${product.stockCount} Slot` : 'Slot Terbatas';
+          const countLabel = curStock > 0 ? `Sisa ${curStock} Slot` : 'Slot Terbatas';
           stockBadgeHtml = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> ${countLabel}</span>`;
         } else if (stockStatus === 'preorder') {
           stockBadgeHtml = `<span class="stock-pill stock-preorder"><span class="stock-dot"></span> Pre-Order</span>`;
@@ -10572,7 +10608,7 @@
           headerMedia = `
             <div class="card-image-wrap">
               <img src="${product.image}" alt="${escapeHTML(product.name)}" class="card-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
-              ${product.badge ? `<span class="card-badge">${escapeHTML(product.badge)}</span>` : ''}
+              ${badgeHtml}
               <span class="card-rating"><i class="fa-solid fa-star"></i> ${product.rating || '5.0'}</span>
             </div>
           `;
@@ -10582,7 +10618,7 @@
               <div class="topup-icon-circle">
                 <i class="fa-solid fa-gamepad"></i>
               </div>
-              ${product.badge ? `<span class="card-badge">${escapeHTML(product.badge)}</span>` : ''}
+              ${badgeHtml}
             </div>
           `;
         }
@@ -10595,8 +10631,8 @@
                 <h3 class="card-title">${escapeHTML(product.name)}</h3>
                 <div class="card-meta-compact">
                   ${stockBadgeHtml}
-                  <div class="card-sold">
-                    <i class="fa-solid fa-fire"></i> ${soldText} terjual
+                  <div class="card-sold" title="Total Terjual: ${totalSold}">
+                    <i class="fa-solid fa-fire" style="color: ${isBestSeller ? '#f59e0b' : '#f97316'};"></i> ${totalSold} terjual
                   </div>
                 </div>
               </div>
@@ -10767,11 +10803,16 @@
       } catch (e) {}
 
       // Media Box
+      const isBest = Boolean(prod.is_best_seller || (prod.badge && prod.badge.toUpperCase().includes('BEST SELLER')));
+      const detailBadgeHtml = isBest
+        ? `<span class="card-badge badge-bestseller" style="top:12px;left:12px;font-size:11px;padding:4px 10px;"><i class="fa-solid fa-crown" style="font-size: 9px;"></i> BEST SELLER</span>`
+        : (prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : '');
+
       const mediaBox = document.getElementById('detailMediaContainer');
       if (prod.image && (!isTopup || prod.image.startsWith('http'))) {
         mediaBox.innerHTML = `
           <img src="${prod.image}" alt="${escapeHTML(prod.name)}" class="detail-media-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
-          ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : ''}
+          ${detailBadgeHtml}
         `;
       } else {
         mediaBox.innerHTML = `
@@ -10779,23 +10820,34 @@
             <div class="topup-icon-circle" style="width:80px;height:80px;font-size:36px;">
               <i class="fa-solid fa-gamepad"></i>
             </div>
-            ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : ''}
+            ${detailBadgeHtml}
           </div>
         `;
       }
 
-      // Title & Tags & Stock Status (Feature #4)
-      document.getElementById('detailBadge').textContent = prod.badge || 'PROMO RESMI';
+      // Title & Tags & Stock Status (Feature #4 & Automatic Stock)
+      const detailBadgeEl = document.getElementById('detailBadge');
+      if (detailBadgeEl) {
+        if (isBest) {
+          detailBadgeEl.innerHTML = `<i class="fa-solid fa-crown" style="color:#f59e0b; margin-right:4px;"></i> BEST SELLER`;
+          detailBadgeEl.style.color = '#f59e0b';
+          detailBadgeEl.style.borderColor = 'rgba(245, 158, 11, 0.4)';
+        } else {
+          detailBadgeEl.textContent = prod.badge || 'PROMO RESMI';
+          detailBadgeEl.style.color = '';
+          detailBadgeEl.style.borderColor = '';
+        }
+      }
       document.getElementById('detailCategory').textContent = prod.category || 'Katalog';
       
       const stockBadgeBox = document.getElementById('detailStockBadge');
       if (stockBadgeBox) {
-        const sStatus = prod.stockStatus || 'ready';
+        const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+        const sStatus = curStock <= 0 ? 'soldout' : (curStock <= 5 ? 'limited' : (prod.stockStatus || 'ready'));
         if (sStatus === 'ready') {
-          stockBadgeBox.innerHTML = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock</span>`;
+          stockBadgeBox.innerHTML = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock (${curStock} Tersedia)</span>`;
         } else if (sStatus === 'limited') {
-          const sCount = prod.stockCount ? `Sisa ${prod.stockCount} Slot` : 'Slot Terbatas';
-          stockBadgeBox.innerHTML = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> ${sCount}</span>`;
+          stockBadgeBox.innerHTML = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> Sisa ${curStock} Slot</span>`;
         } else if (sStatus === 'preorder') {
           stockBadgeBox.innerHTML = `<span class="stock-pill stock-preorder"><span class="stock-dot"></span> Pre-Order</span>`;
         } else if (sStatus === 'soldout') {
@@ -10805,7 +10857,8 @@
 
       document.getElementById('detailName').textContent = prod.name;
       document.getElementById('detailRating').textContent = prod.rating || '5.0';
-      document.getElementById('detailSold').textContent = prod.soldCount !== undefined ? prod.soldCount : 0;
+      const totalSoldVal = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
+      document.getElementById('detailSold').textContent = totalSoldVal;
       document.getElementById('detailWarranty').textContent = prod.warranty || 'Garansi Resmi Penuh';
 
       // Price & Discount Calculation
@@ -11443,7 +11496,7 @@
         ctx.fillText('Nominal otomatis terkunci tanpa perlu input nominal manual.', w / 2, 625);
         ctx.font = '13px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = '#64748b';
-        ctx.fillText('Setelah bayar, konfirmasi via WhatsApp JaneMarket (+6283823567366)', w / 2, 650);
+        ctx.fillText('Setelah bayar, konfirmasi via WhatsApp JaneMarket (+6285139138997)', w / 2, 650);
 
         ctx.fillStyle = '#0284c7';
         ctx.font = 'bold 12px monospace';
@@ -11664,70 +11717,36 @@
       const isQris = info.type === 'qris';
 
       if (isQris) {
-        const rawQris = getDefaultUperpayQris();
-        const merchantName = (storeState.settings && storeState.settings.qrisMerchantName) || 'Frantz';
-        const nmid = (storeState.settings && storeState.settings.qrisNmid) || 'ID2025419027029';
-        const dynamicQris = convertStaticQrisToDynamic(rawQris, finalPrice);
+        const waNum = getAdminWhatsAppNumber();
+        const pName = document.getElementById('orderProductTitle')?.textContent?.trim() || 'produk';
+        const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(`Halo admin, saya ingin order ${pName} dan bayar via QRIS (Total: Rp ${Number(finalPrice).toLocaleString('id-ID')})`)}`;
 
         container.innerHTML = `
           <div class="checkout-payment-header">
             <span class="checkout-payment-title">
-              <i class="fa-solid fa-qrcode" style="color: #10b981;"></i>
-              QRIS All Payment (Uperpay Dinamis)
+              <i class="fa-solid fa-qrcode" style="color: #f97316;"></i>
+              Pembayaran QRIS
             </span>
-            <span style="font-size: 10px; font-weight: 800; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.35); padding: 3px 8px; border-radius: 6px;">
-              ⚡ NOMINAL TERKUNCI OTOMATIS
+            <span style="font-size: 10px; font-weight: 800; background: rgba(249, 115, 22, 0.15); color: #ea580c; border: 1px solid rgba(249, 115, 22, 0.35); padding: 3px 8px; border-radius: 6px;">
+              ⚠️ DITUTUP SEMENTARA
             </span>
           </div>
 
-          <div class="qris-dynamic-container">
-            <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 2px;">
-              ${merchantName}
+          <div style="background: rgba(249, 115, 22, 0.05); border: 1.5px dashed #f97316; border-radius: 10px; padding: 16px; text-align: center; margin-top: 10px;">
+            <div style="font-size: 24px; color: #ea580c; margin-bottom: 6px;">
+              <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">
-              NMID : <strong>${nmid}</strong> • A01
+            <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+              Pembayaran QRIS Ditutup Sementara
             </div>
-
-            <div class="qris-nominal-badge">
-              <i class="fa-solid fa-lock"></i>
-              Nominal Terkunci: Rp ${Number(finalPrice).toLocaleString('id-ID')}
-            </div>
-
-            <div class="qris-dynamic-qr-wrapper" id="checkoutQrisRenderArea">
-              <!-- Rendered via QRCode.js -->
-            </div>
-
-            <div style="font-size: 11px; font-weight: 600; color: #334155; margin-bottom: 8px;">
-              SATU QRIS UNTUK SEMUA (BCA, Mandiri, BRI, BNI, DANA, GoPay, OVO, ShopeePay)
-            </div>
-
-            <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
-              <button type="button" class="btn btn-outline btn-sm" onclick="downloadCheckoutQris(${finalPrice}, '${merchantName}')" style="color: #0f172a; border-color: #cbd5e1; background: #f8fafc; font-weight: 700;">
-                <i class="fa-solid fa-download"></i> Unduh QRIS (Rp ${Number(finalPrice).toLocaleString('id-ID')})
-              </button>
-              <button type="button" class="btn btn-outline btn-sm" onclick="copyToClipboard('Rp ${Number(finalPrice).toLocaleString('id-ID')}', 'Nominal Pembayaran')" style="color: #0f172a; border-color: #cbd5e1; background: #f8fafc; font-weight: 700;">
-                <i class="fa-solid fa-copy"></i> Salin Nominal
-              </button>
-            </div>
-
-            <div class="qris-uperpay-notice">
-              <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: #0284c7; margin-bottom: 4px;">
-                <i class="fa-solid fa-circle-info"></i> Petunjuk Pembayaran QRIS Uperpay:
-              </div>
-              <ol>
-                <li>Buka aplikasi m-Banking atau E-Wallet (BCA, Livin, BRI, DANA, GoPay, OVO).</li>
-                <li>Scan barcode QRIS di atas. Nominal <strong>Rp ${Number(finalPrice).toLocaleString('id-ID')}</strong> akan otomatis terkunci di layar HP Anda tanpa perlu diketik manual.</li>
-                <li>Selesaikan pembayaran dan simpan bukti transfer.</li>
-                <li>Klik tombol hijau <strong>"Pesan Sekarang via WhatsApp"</strong> di bawah untuk konfirmasi ke admin.</li>
-                <li>Penjual membuka aplikasi Uperpay untuk <strong>Confirm Saldo</strong> (estimasi 1–10 menit), lalu akun langsung dikirimkan!</li>
-              </ol>
-            </div>
+            <p style="font-size: 13px; color: #475569; font-weight: 600; margin-bottom: 12px; line-height: 1.4;">
+              Jika ingin menggunakan QRIS, silahkan lanjut ke WhatsApp admin.
+            </p>
+            <a href="${waUrl}" target="_blank" class="btn btn-wa btn-sm" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px;">
+              <i class="fa-brands fa-whatsapp"></i> Lanjut ke WhatsApp Admin
+            </a>
           </div>
         `;
-
-        setTimeout(() => {
-          renderDynamicQrCode('checkoutQrisRenderArea', dynamicQris, 190);
-        }, 50);
         return;
       }
 
@@ -12025,12 +12044,28 @@
         status: 'Diproses'
       };
 
-      // Auto-increment sold count & order statistics (Requirement #7)
+      // 1. Pengurangan Stok & 2. Hitung Total Penjualan (total_terjual)
       if (prod) {
-        prod.soldCount = (Number(prod.soldCount) || 0) + 1;
+        const qty = 1;
+        const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+        const newStock = Math.max(0, curStock - qty);
+        prod.stock = newStock;
+        prod.stockCount = newStock;
+        if (newStock <= 0) prod.stockStatus = 'soldout';
+        else if (newStock <= 5) prod.stockStatus = 'limited';
+        else prod.stockStatus = 'ready';
+
+        const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
+        prod.total_terjual = curSold + qty;
+        prod.soldCount = prod.total_terjual;
+
         const detailSold = document.getElementById('detailSold');
-        if (detailSold) detailSold.textContent = prod.soldCount;
+        if (detailSold) detailSold.textContent = prod.total_terjual;
       }
+
+      // 3. Logika Best Seller Otomatis (Top 5 penjualan terbanyak)
+      recalculateBestSellersClient();
+
       if (!storeState.stats) storeState.stats = {};
       storeState.stats.totalOrders = (Number(storeState.stats.totalOrders) || 0) + 1;
       storeState.stats.totalRevenue = (Number(storeState.stats.totalRevenue) || 0) + finalCalculatedPrice;
@@ -12056,11 +12091,7 @@
       waText += `💰 *Total Pembayaran:* Rp ${Number(finalCalculatedPrice).toLocaleString('id-ID')}\n`;
       waText += `💳 *Metode Bayar:* ${paymentMethod}\n`;
       if (paymentMethod.includes('QRIS')) {
-        const mName = (storeState.settings && storeState.settings.qrisMerchantName) || 'Frantz';
-        const nmid = (storeState.settings && storeState.settings.qrisNmid) || 'ID2025419027029';
-        waText += `⚡ *Info QRIS:* Nominal Terkunci Otomatis (Rp ${Number(finalCalculatedPrice).toLocaleString('id-ID')})\n`;
-        waText += `🏪 *Merchant QRIS:* ${mName} (${nmid})\n`;
-        waText += `ℹ️ *Status Saldo:* Sudah ditransfer via QRIS, silakan confirm saldo di aplikasi Uperpay ya min 🙏\n`;
+        waText += `ℹ️ *Metode QRIS:* Mohon kirimkan barcode / info pembayaran QRIS dari admin ya min 🙏\n`;
       }
       waText += `👤 *Nama Pembeli:* ${customerName}\n`;
       if (accountId) {
@@ -12082,9 +12113,6 @@
       }).catch(e => console.warn("Order log note:", e));
 
       closeModal('checkoutModal');
-
-      // Tampilkan struk digital langsung agar user punya bukti order lengkap
-      viewDigitalReceipt(newOrderId);
 
       // Buka WhatsApp langsung anti-blokir popup
       openWhatsAppDirect(waUrl, `Mengarahkan ke WhatsApp (${targetWa})...`);
@@ -12347,18 +12375,25 @@
       const emptyHtml = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:18px;">Belum ada produk.</td></tr>`;
       
       const rowsHtml = prods.length === 0 ? emptyHtml : prods.map(p => {
-        let stockLabel = 'Ready';
+        const curStock = Number(p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : 50));
+        let stockLabel = `Ready (${curStock})`;
         let stockStyle = 'background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3);';
-        if (p.stockStatus === 'limited') {
-          stockLabel = p.stockCount ? `Sisa ${p.stockCount} Slot` : 'Terbatas';
+        if (p.stockStatus === 'limited' || (curStock > 0 && curStock <= 5)) {
+          stockLabel = `Sisa ${curStock} Slot`;
           stockStyle = 'background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3);';
         } else if (p.stockStatus === 'preorder') {
           stockLabel = 'Pre-Order';
           stockStyle = 'background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3);';
-        } else if (p.stockStatus === 'soldout') {
-          stockLabel = 'Stok Habis';
+        } else if (p.stockStatus === 'soldout' || curStock <= 0) {
+          stockLabel = 'Habis (0)';
           stockStyle = 'background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);';
         }
+
+        const totalSold = Number(p.total_terjual !== undefined ? p.total_terjual : (p.soldCount || 0));
+        const isBest = Boolean(p.is_best_seller || (p.badge && p.badge.toUpperCase().includes('BEST SELLER')));
+        const badgeDisplay = isBest
+          ? `<span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-crown" style="font-size: 8px;"></i> BEST SELLER</span>`
+          : `<span style="background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px; font-size: 10.5px; border: 1px solid var(--border-color);">${escapeHTML(p.badge || '-')}</span>`;
 
         return `
         <tr>
@@ -12369,8 +12404,8 @@
           <td><span style="background: var(--bg-secondary); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 11px;">${escapeHTML(p.category)}</span></td>
           <td><span style="padding: 2px 7px; border-radius: 4px; font-size: 10.5px; font-weight: 700; display: inline-block; ${stockStyle}">${escapeHTML(stockLabel)}</span></td>
           <td><span style="font-weight: 700;">Rp ${Number(p.price || 0).toLocaleString('id-ID')}</span></td>
-          <td>${p.soldCount || 0}x</td>
-          <td>${escapeHTML(p.badge || '-')}</td>
+          <td><span style="font-weight: 700; color: #f97316;"><i class="fa-solid fa-fire" style="font-size: 10px;"></i> ${totalSold}x</span></td>
+          <td>${badgeDisplay}</td>
           <td>
             <div style="display: flex; gap: 6px;">
               <button class="btn btn-outline btn-sm" onclick="editProduct('${escapeHTML(p.id)}')" title="Edit Produk"><i class="fa-solid fa-pen"></i></button>
@@ -12697,9 +12732,6 @@
                 <span style="font-size: 14px; font-weight: 800; color: #38bdf8;">Rp ${Number(order.price || 0).toLocaleString('id-ID')}</span>
               </div>
               <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button type="button" class="btn btn-outline btn-sm" onclick="viewDigitalReceipt('${order.id}')" style="font-size: 11.5px; padding: 5px 10px; border-radius: 8px;" title="Lihat Struk Transaksi Digital">
-                  <i class="fa-solid fa-receipt" style="color: #38bdf8;"></i> Struk
-                </button>
                 <button type="button" class="btn btn-outline btn-sm" onclick="openWhatsAppInquiry('${encodeURIComponent(waCheckText)}')" style="font-size: 11.5px; padding: 5px 10px; border-radius: 8px;">
                   <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Cek WA
                 </button>
@@ -13105,11 +13137,34 @@
         status: 'Diproses'
       };
 
+      // 1. Pengurangan Stok & 2. Hitung Total Penjualan (total_terjual) untuk setiap item
+      items.forEach(it => {
+        const prod = storeState.products?.find(p => String(p.id) === String(it.productId || it.id));
+        if (prod) {
+          const qty = Math.max(1, Number(it.quantity) || 1);
+          const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+          const newStock = Math.max(0, curStock - qty);
+          prod.stock = newStock;
+          prod.stockCount = newStock;
+          if (newStock <= 0) prod.stockStatus = 'soldout';
+          else if (newStock <= 5) prod.stockStatus = 'limited';
+          else prod.stockStatus = 'ready';
+
+          const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
+          prod.total_terjual = curSold + qty;
+          prod.soldCount = prod.total_terjual;
+        }
+      });
+
+      // 3. Logika Best Seller Otomatis
+      recalculateBestSellersClient();
+
       // Add to storeState orders
       if (!storeState.orders) storeState.orders = [];
       storeState.orders.unshift(orderData);
       saveLocalOrderId(orderId);
       persistLocalState();
+      renderProducts();
       updateMyOrdersBadges();
 
       // Post to server orders API
@@ -13147,9 +13202,6 @@
 
       const targetWaNumber = getAdminWhatsAppNumber();
       const waUrl = `https://wa.me/${targetWaNumber}?text=${encodeURIComponent(waMessage)}`;
-
-      // Open digital receipt modal directly for user gratification
-      viewDigitalReceipt(orderId);
 
       // Trigger WhatsApp window directly
       openWhatsAppDirect(waUrl, `Mengarahkan ke WhatsApp (${targetWaNumber})...`);
@@ -13641,89 +13693,8 @@
     let currentReceiptOrderData = null;
 
     function viewDigitalReceipt(orderId) {
-      playBeep('pop');
-      const allOrders = storeState.orders || [];
-      const order = allOrders.find(o => String(o.id) === String(orderId)) || (currentUser && getMyOrdersList().find(o => String(o.id) === String(orderId)));
-
-      if (!order) {
-        showToast("Detail struk pesanan tidak ditemukan.");
-        return;
-      }
-
-      currentReceiptOrderData = order;
-      const paper = document.getElementById('digitalReceiptPaper');
-      if (!paper) return;
-
-      const dateFormatted = order.timestamp ? new Date(order.timestamp).toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' }) : 'Hari Ini';
-      const itemsList = Array.isArray(order.items) && order.items.length > 0 ? order.items : [
-        { productName: order.productName, variant: order.variant || 'Default', price: order.price, quantity: 1 }
-      ];
-
-      const storeTitle = (storeState.settings && storeState.settings.storeName) || 'JaneMarket Official';
-
-      paper.innerHTML = `
-        <div class="receipt-header">
-          <img src="https://files.catbox.moe/3tt0xl.png" alt="Logo" class="receipt-logo" onerror="this.src='/LogoJM.jpg'">
-          <h4 class="receipt-store-title">${escapeChatHTML(storeTitle)}</h4>
-          <p class="receipt-store-sub">Official Store • Garansi Penuh 100%</p>
-        </div>
-
-        <div class="receipt-divider"></div>
-
-        <div class="receipt-row">
-          <span>No. Transaksi:</span>
-          <strong>#${escapeChatHTML(order.id)}</strong>
-        </div>
-        <div class="receipt-row">
-          <span>Waktu:</span>
-          <span>${dateFormatted}</span>
-        </div>
-        <div class="receipt-row">
-          <span>Pelanggan:</span>
-          <span>${escapeChatHTML(order.customerName || 'Pembeli')}</span>
-        </div>
-        <div class="receipt-row">
-          <span>Metode Bayar:</span>
-          <span>${escapeChatHTML(order.paymentMethod || 'QRIS')}</span>
-        </div>
-        <div class="receipt-row">
-          <span>Status:</span>
-          <strong style="color: #16a34a;">${escapeChatHTML(order.status || 'Berhasil')}</strong>
-        </div>
-
-        <div class="receipt-divider"></div>
-
-        <div style="font-size: 11px; font-weight: 800; color: #475569; margin-bottom: 8px; text-transform: uppercase;">Rincian Produk</div>
-        ${itemsList.map(item => `
-          <div class="receipt-row" style="margin-bottom: 6px;">
-            <div style="max-width: 68%;">
-              <div style="font-weight: 700; color: #0f172a;">${escapeChatHTML(item.productName || item.name || '-')}</div>
-              <div style="font-size: 11px; color: #64748b;">${escapeChatHTML(item.variant || 'Standar')} x${item.quantity || 1}</div>
-            </div>
-            <div style="font-weight: 700; color: #0f172a;">
-              Rp ${Number(item.price || 0).toLocaleString('id-ID')}
-            </div>
-          </div>
-        `).join('')}
-
-        <div class="receipt-divider"></div>
-
-        <div class="receipt-row total">
-          <span>Total Dibayar:</span>
-          <span>Rp ${Number(order.price || 0).toLocaleString('id-ID')}</span>
-        </div>
-
-        <div class="receipt-barcode">
-          <div class="receipt-barcode-line"></div>
-          <div class="receipt-barcode-code">*${escapeChatHTML(order.id)}*</div>
-        </div>
-
-        <div style="text-align: center; margin-top: 14px; font-size: 11px; color: #64748b;">
-          Terima kasih telah berbelanja di JaneMarket! Simpan struk ini sebagai bukti transaksi resmi.
-        </div>
-      `;
-
-      openModal('digitalReceiptModal');
+      // Fitur struk dinonaktifkan sesuai permintaan admin
+      return;
     }
 
     function shareReceiptWhatsApp() {
@@ -13762,7 +13733,7 @@
         storeName: document.getElementById('settingStoreName').value.trim(),
         storeTagline: document.getElementById('settingStoreTagline').value.trim(),
         storeLogo: logoVal,
-        whatsappNumber: document.getElementById('settingWhatsapp').value.trim() || '6283823567366',
+        whatsappNumber: document.getElementById('settingWhatsapp').value.trim() || '6285139138997',
         ownerEmail: 'ererex4youu@gmail.com',
         announcement: document.getElementById('settingAnnouncement').value.trim(),
         qrisImage: document.getElementById('settingQrisImage').value.trim(),
@@ -14249,9 +14220,11 @@
       document.getElementById('prodFormCategory').value = p.category || 'Aplikasi Premium';
       document.getElementById('prodFormBadge').value = p.badge || '';
       document.getElementById('prodFormPrice').value = p.price || '';
-      document.getElementById('prodFormSold').value = p.soldCount || '0';
+      const soldVal = p.total_terjual !== undefined ? p.total_terjual : (p.soldCount || 0);
+      document.getElementById('prodFormSold').value = soldVal;
       document.getElementById('prodFormStockStatus').value = p.stockStatus || 'ready';
-      document.getElementById('prodFormStockCount').value = p.stockCount || '';
+      const stockVal = p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : '');
+      document.getElementById('prodFormStockCount').value = stockVal;
       toggleStockCountInput(p.stockStatus || 'ready');
       
       setProductImagePreview(p.image || '', p.image ? 'Foto Produk Saat Ini' : '');
@@ -14324,8 +14297,10 @@
         price,
         originalPrice: Math.round(price * 1.35),
         soldCount,
+        total_terjual: soldCount,
         stockStatus,
         stockCount,
+        stock: stockCount || (stockStatus === 'soldout' ? 0 : 50),
         image,
         warranty: stripDangerousHTML(warranty || 'Garansi Penuh'),
         description: stripDangerousHTML(desc),
@@ -14343,6 +14318,7 @@
         if (idx !== -1) {
           storeState.products[idx] = { ...storeState.products[idx], ...productPayload };
         }
+        recalculateBestSellersClient();
         persistLocalState();
 
         // 1. Sync directly to Firestore
@@ -14374,6 +14350,7 @@
         const newId = "prod-" + Date.now();
         const newProd = { id: newId, rating: 5.0, ...productPayload };
         storeState.products.unshift(newProd);
+        recalculateBestSellersClient();
         persistLocalState();
 
         // 1. Sync directly to Firestore
@@ -14435,6 +14412,7 @@
       } catch (e) { console.warn("Delete API notice:", e); }
 
       showToast("Produk berhasil dihapus dari Firebase!");
+      recalculateBestSellersClient();
       renderProducts();
       updateCategoryCounts();
       populateAdminProductsTable();

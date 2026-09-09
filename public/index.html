@@ -15,6 +15,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- QR Code Scanner & Dynamic Generator (Uperpay QRIS Engine) -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <style>
     :root {
       --bg-primary: #0a0b14;
@@ -651,10 +655,12 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
       gap: 16px;
+      width: 100%;
+      min-width: 0;
     }
     @media (max-width: 640px) {
       .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
       }
     }
@@ -845,30 +851,35 @@
       align-items: center;
       justify-content: space-between;
       gap: 6px;
+      flex-wrap: wrap;
+      min-width: 0;
     }
     .price-box {
       display: flex;
       flex-direction: column;
       min-width: 0;
-      flex: 1;
+      flex: 1 1 auto;
     }
     .original-price {
       font-size: 9.5px;
       color: var(--text-muted);
       text-decoration: line-through;
       line-height: 1.1;
+      white-space: nowrap;
     }
     .current-price {
       font-size: 14.5px;
       font-weight: 800;
       color: #38bdf8;
       line-height: 1.2;
+      white-space: nowrap;
     }
     .card-action-wrap {
       display: flex;
       gap: 6px;
       align-items: center;
       flex-shrink: 0;
+      flex-wrap: nowrap;
     }
     .card-cart-btn {
       padding: 6px 9px;
@@ -933,29 +944,38 @@
         font-size: 11px !important;
       }
       .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
+        width: 100%;
       }
       .product-card {
         border-radius: 12px;
+        min-width: 0;
+        width: 100%;
       }
       .card-body {
         padding: 8px 9px 10px;
         gap: 4px;
+        min-width: 0;
       }
       .card-title {
         font-size: 12px;
         line-height: 1.32;
         min-height: 32px;
         margin-bottom: 2px;
+        word-break: break-word;
+        overflow-wrap: break-word;
       }
       .card-meta-compact {
         gap: 4px;
         margin-bottom: 3px;
+        flex-wrap: wrap;
+        min-width: 0;
       }
       .card-sold {
         font-size: 9.5px;
         gap: 3px;
+        white-space: nowrap;
       }
       .card-sold i {
         font-size: 9px;
@@ -965,6 +985,7 @@
         padding: 1.5px 5.5px;
         border-radius: 4px;
         gap: 3.5px;
+        white-space: nowrap;
       }
       .stock-dot {
         width: 4.5px;
@@ -974,6 +995,8 @@
         padding-top: 7px;
         margin-top: 1px;
         gap: 4px;
+        flex-wrap: wrap;
+        min-width: 0;
       }
       .original-price {
         font-size: 8.5px;
@@ -1008,6 +1031,7 @@
       }
       .card-action-wrap {
         gap: 4px;
+        min-width: 0;
       }
       .card-cart-btn {
         padding: 4px 6px;
@@ -1026,8 +1050,37 @@
       }
     }
 
+    @media (max-width: 520px) {
+      .card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .price-box {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 4px;
+      }
+      .card-action-wrap {
+        width: 100%;
+        display: flex;
+        gap: 4px;
+      }
+      .card-cart-btn {
+        flex-shrink: 0;
+      }
+      .card-action-btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
     @media (max-width: 420px) {
       .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
       }
       .card-body {
@@ -1073,11 +1126,12 @@
 
     @media (max-width: 340px) {
       .product-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 10px;
       }
       .product-card {
         border-radius: 12px;
+        min-width: 0;
       }
       .card-body {
         padding: 10px 12px;
@@ -1088,6 +1142,21 @@
       }
       .current-price {
         font-size: 13.5px;
+      }
+      .card-footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .price-box {
+        width: auto;
+        flex-direction: column;
+      }
+      .card-action-wrap {
+        width: auto;
+      }
+      .card-action-btn {
+        flex: 0 0 auto;
       }
     }
 
@@ -1350,18 +1419,22 @@
       border: 1px solid var(--border-color);
       border-radius: 12px;
       overflow: hidden;
+      flex-shrink: 0 !important;
+      width: 100%;
+      box-sizing: border-box;
       transition: border-color 0.2s;
     }
     .prod-form-card:hover {
       border-color: var(--border-light);
     }
     .prod-form-card-header {
-      padding: 10px 14px;
+      padding: 11px 14px;
       background: rgba(255, 255, 255, 0.02);
       border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .prod-form-step-num {
       width: 22px;
@@ -1383,6 +1456,8 @@
     }
     .prod-form-card-body {
       padding: 14px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .prod-image-quick-wrapper {
       display: flex;
@@ -1706,14 +1781,19 @@
       bottom: 0;
       background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(8px);
-      z-index: 100;
+      z-index: 1050;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 16px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .modal-overlay.active {
       display: flex;
+    }
+    #productFormModal {
+      z-index: 1150;
     }
     .modal-box {
       background: var(--bg-secondary);
@@ -1722,11 +1802,15 @@
       width: 100%;
       max-width: 580px;
       max-height: 90vh;
+      max-height: 90dvh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
       animation: modalFade 0.2s ease-out;
+      margin: auto;
+      min-width: 0;
+      box-sizing: border-box;
     }
     .modal-box-large {
       max-width: 960px;
@@ -1741,9 +1825,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
       flex-shrink: 0;
       background: var(--bg-secondary);
       z-index: 5;
+      min-width: 0;
     }
     .modal-title {
       font-size: 16px;
@@ -1751,6 +1837,10 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex: 1;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .modal-close {
       background: transparent;
@@ -1761,6 +1851,7 @@
       padding: 4px;
       border-radius: 6px;
       transition: color 0.2s;
+      flex-shrink: 0;
     }
     .modal-close:hover {
       color: #ffffff;
@@ -1770,6 +1861,14 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       flex: 1;
+      min-height: 0;
+      overscroll-behavior: contain;
+      min-width: 0;
+    }
+    .modal-body > * {
+      flex-shrink: 0;
+      min-width: 0;
+      max-width: 100%;
     }
     .modal-footer {
       padding: 14px 20px;
@@ -1780,6 +1879,8 @@
       gap: 10px;
       background: var(--bg-secondary);
       flex-shrink: 0;
+      flex-wrap: wrap;
+      min-width: 0;
     }
 
     /* Form Controls */
@@ -1816,25 +1917,36 @@
     }
 
     /* Payment Methods Modal UI (Item #7) */
-    .qris-display-card {
+    .qris-display-card, .qris-stand-card {
       background: #ffffff;
-      border-radius: 12px;
-      padding: 18px;
+      border-radius: 14px;
+      padding: 16px 18px;
       text-align: center;
-      color: #000000;
+      color: #0f172a;
       margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+    }
+    .qris-stand-qr-box {
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
+      display: inline-block;
+      margin: 8px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
     .qris-image {
       max-width: 220px;
       width: 100%;
       height: auto;
       border-radius: 8px;
-      margin: 10px auto;
+      margin: 8px auto;
       display: block;
-      border: 1px solid #e4e4e7;
+      border: 1px solid #e2e8f0;
     }
     .qris-merchant-title {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 800;
       letter-spacing: 0.5px;
     }
@@ -1848,6 +1960,77 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    /* Dynamic QRIS Generator Styling (Uperpay Engine) */
+    .qris-dynamic-container {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 14px;
+      padding: 16px 14px;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+    }
+    .qris-dynamic-qr-wrapper {
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 10px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin: 8px auto;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      min-width: 180px;
+      min-height: 180px;
+    }
+    .qris-dynamic-qr-wrapper canvas,
+    .qris-dynamic-qr-wrapper img {
+      display: block !important;
+      max-width: 190px !important;
+      height: auto !important;
+      margin: 0 auto;
+    }
+    .qris-nominal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+    .qris-uperpay-notice {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: #334155;
+      text-align: left;
+      line-height: 1.55;
+      margin-top: 12px;
+    }
+    .qris-uperpay-notice ol {
+      margin: 4px 0 0 0;
+      padding-left: 18px;
+    }
+    .qris-uperpay-notice li {
+      margin-bottom: 3px;
+    }
+    [data-theme="light"] .qris-dynamic-container {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
     }
 
     /* Image Upload & Gallery Dropzone */
@@ -2167,10 +2350,12 @@
     }
     .admin-main-content {
       flex: 1;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       background: var(--bg-secondary);
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .admin-main-header {
       padding: 10px 18px;
@@ -2213,7 +2398,10 @@
     @media (max-width: 768px) {
       .admin-dashboard-container {
         flex-direction: column;
-        max-height: 92vh;
+        max-height: 90vh;
+        max-height: 90dvh;
+        min-height: 0;
+        flex: 1;
       }
       .admin-main-header {
         padding: 8px 12px;
@@ -2227,6 +2415,7 @@
         border-right: none;
         border-bottom: 1px solid var(--border-color);
         padding: 8px 10px;
+        flex-shrink: 0;
       }
       .admin-sidebar-header {
         display: none;
@@ -2234,8 +2423,13 @@
       .admin-sidebar-nav {
         flex-direction: row;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
         padding-bottom: 4px;
         gap: 6px;
+      }
+      .admin-sidebar-nav::-webkit-scrollbar {
+        display: none;
       }
       .admin-tab-btn {
         padding: 6px 10px;
@@ -2492,7 +2686,7 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 102, 241, 0.4);
-      z-index: 200;
+      z-index: 2500;
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .toast.show {
@@ -3096,18 +3290,53 @@
         grid-template-columns: 1fr;
       }
       .modal-box {
-        max-height: 92vh;
+        max-height: 94vh;
+        max-height: 94dvh;
         border-radius: 14px;
-        margin: 8px;
+        margin: auto;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      .modal-overlay {
+        padding: 8px;
       }
       .modal-body {
-        padding: 14px;
+        padding: 14px 12px;
+        min-width: 0;
       }
       .modal-header {
-        padding: 14px 16px;
+        padding: 12px 14px;
+        gap: 8px;
+        min-width: 0;
+      }
+      .modal-title {
+        font-size: 14.5px;
       }
       .modal-footer {
         padding: 12px 14px;
+        gap: 8px;
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+      .modal-footer .btn {
+        flex: 1 1 auto;
+        min-width: 100px;
+        justify-content: center;
+      }
+      .modal-footer > div {
+        flex: 1 1 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .modal-footer > div > .btn {
+        flex: 1 1 auto;
+        min-width: 90px;
+        justify-content: center;
+      }
+      .prod-form-card-body {
+        padding: 12px 10px;
       }
       .detail-perks-grid {
         grid-template-columns: 1fr 1fr;
@@ -3117,6 +3346,22 @@
         padding: 8px 10px;
         font-size: 11px;
       }
+    }
+
+    /* Clean Z-Index Stacking Architecture & Conflict Prevention */
+    /* Ensure all floating widgets, social proof toasts, and chat windows are suppressed when any modal overlay is active */
+    body.modal-open .floating-widgets-group,
+    body:has(.modal-overlay.active) .floating-widgets-group,
+    body.modal-open .live-sales-toast,
+    body:has(.modal-overlay.active) .live-sales-toast,
+    body.modal-open .customer-chat-window,
+    body:has(.modal-overlay.active) .customer-chat-window,
+    body.modal-open .ai-chat-window,
+    body:has(.modal-overlay.active) .ai-chat-window {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
     /* ========================================================
        LIGHT THEME STYLING ([data-theme="light"])
@@ -6566,7 +6811,7 @@
           <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-          Kami menyediakan <strong>QRIS All Payment</strong> yang dapat discan menggunakan semua aplikasi M-Banking (BCA, Mandiri, BRI, BNI, BSI, CIMB) dan E-Wallet (DANA, GoPay, OVO, ShopeePay, LinkAja, SeaBank) tanpa biaya admin tambahan.
+          Kami menyediakan <strong>QRIS Stand (Uperpay Dinamis)</strong> serta transfer E-Wallet resmi <strong>DANA</strong> dan <strong>GoPay</strong> tanpa biaya admin tambahan.
         </div>
       </div>
     </div>
@@ -7271,7 +7516,7 @@
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                 <div class="form-group">
                   <label class="form-label">Nomor WhatsApp Admin (Format 628xxx)</label>
-                  <input type="text" id="settingWhatsapp" class="form-input" placeholder="6283823567366" required>
+                  <input type="text" id="settingWhatsapp" class="form-input" placeholder="6285139138997" required>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Email Google Owner Admin</label>
@@ -7285,23 +7530,52 @@
               </div>
 
               <div style="border-top: 1px solid var(--border-color); padding-top: 16px; margin-top: 10px;">
-                <h6 style="font-size: 13px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase;">
-                  <i class="fa-solid fa-qrcode"></i> Pengaturan QRIS & Pembayaran
+                <h6 style="font-size: 13px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; color: #10b981; display: flex; align-items: center; justify-content: space-between;">
+                  <span><i class="fa-solid fa-qrcode"></i> Pengaturan QRIS & Uperpay Dinamis</span>
+                  <span style="font-size: 10px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 12px; color: #10b981; font-weight: 700;">AUTO GENERATOR AKTIF</span>
                 </h6>
-                <div class="form-group">
-                  <label class="form-label">Foto / Gambar QRIS (Galeri HP/Laptop atau URL)</label>
-                  <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">
-                    <input type="file" id="qrisFileInput" accept="image/*" style="display: none;" onchange="handleQrisFileSelect(event)">
-                    <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('qrisFileInput').click()">
-                      <i class="fa-solid fa-image"></i> Pilih QRIS dari Galeri
-                    </button>
-                    <span id="qrisFileStatus" style="font-size: 11px; color: var(--text-muted);">Atau ketik/paste link URL gambar</span>
+
+                <!-- Quick Connect Uperpay Box -->
+                <div style="background: rgba(16, 185, 129, 0.07); border: 1px dashed rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 12px; margin-bottom: 14px;">
+                  <div style="font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-bolt" style="color: #10b981;"></i> Hubungkan Screenshot QRIS Uperpay (Frantz)
                   </div>
-                  <input type="text" id="settingQrisImage" class="form-input" placeholder="https://... atau hasil galeri">
+                  <p style="font-size: 11px; color: var(--text-secondary); margin: 0 0 8px 0; line-height: 1.5;">
+                    Pilih screenshot QRIS Stand Uperpay dari galeri HP Anda. Sistem akan otomatis memindai barcode, mengekstrak NMID & nama merchant, dan mengaktifkan QRIS Dinamis dengan nominal pas otomatis!
+                  </p>
+                  <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <input type="file" id="qrisFileInput" accept="image/*" style="display: none;" onchange="handleQrisFileSelect(event)">
+                    <button type="button" class="btn btn-sm" onclick="document.getElementById('qrisFileInput').click()" style="background: #10b981; color: #ffffff; border: none; font-weight: 700;">
+                      <i class="fa-solid fa-image"></i> Pilih Screenshot QRIS dari Galeri
+                    </button>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="testDynamicQrisPreview(5000)">
+                      <i class="fa-solid fa-play"></i> Uji Coba QRIS Rp 5.000
+                    </button>
+                  </div>
+                  <div id="qrisFileStatus" style="font-size: 11px; margin-top: 6px; color: var(--text-muted);">
+                    Status: <strong style="color: #10b981;">Tersambung ke QRIS Frantz (NMID: ID2025419027029)</strong>
+                  </div>
                 </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Nama Merchant QRIS</label>
+                    <input type="text" id="settingQrisMerchant" class="form-input" placeholder="Frantz">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">NMID QRIS</label>
+                    <input type="text" id="settingQrisNmid" class="form-input" placeholder="ID2025419027029">
+                  </div>
+                </div>
+
                 <div class="form-group">
-                  <label class="form-label">Nama Merchant QRIS</label>
-                  <input type="text" id="settingQrisMerchant" class="form-input" placeholder="JANEMARKET OFFICIAL">
+                  <label class="form-label">Kode String Base QRIS (EMVCo)</label>
+                  <input type="text" id="settingQrisRawString" class="form-input" placeholder="000201010211..." style="font-family: monospace; font-size: 11px;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Foto / URL Gambar QRIS Toko (Opsional)</label>
+                  <input type="text" id="settingQrisImage" class="form-input" placeholder="https://... atau hasil galeri">
                 </div>
               </div>
 
@@ -7438,197 +7712,199 @@
 
   <!-- Modal 3: Add / Edit Product - Simple & Clean Design -->
   <div class="modal-overlay" id="productFormModal">
-    <div class="modal-box modal-box-large" style="max-width: 680px;">
+    <div class="modal-box modal-box-large" style="max-width: 680px; max-height: 90vh; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden;">
       <div class="modal-header">
         <h4 class="modal-title" id="productModalTitle"><i class="fa-solid fa-box"></i> Tambah Produk Baru</h4>
         <button class="modal-close" onclick="closeModal('productFormModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <form onsubmit="handleProductSubmit(event)" class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
-        <input type="hidden" id="prodFormId">
+      <form id="productEditForm" onsubmit="handleProductSubmit(event)" style="display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; margin: 0;">
+        <div class="modal-body" id="productFormModalBody" style="flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; gap: 16px; padding: 18px 20px;">
+          <input type="hidden" id="prodFormId">
 
-        <!-- Bagian 1: Data Pokok Produk -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header">
-            <span class="prod-form-step-num">1</span>
-            <span class="prod-form-step-title">Informasi Pokok Produk</span>
-          </div>
-          <div class="prod-form-card-body">
-            <div class="form-group" style="margin-bottom: 12px;">
-              <label class="form-label">Nama Produk *</label>
-              <input type="text" id="prodFormName" class="form-input" placeholder="Misal: Netflix Premium 4K / Mobile Legends 86 DM" required>
+          <!-- Bagian 1: Data Pokok Produk -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header">
+              <span class="prod-form-step-num">1</span>
+              <span class="prod-form-step-title">Informasi Pokok Produk</span>
             </div>
+            <div class="prod-form-card-body">
+              <div class="form-group" style="margin-bottom: 12px;">
+                <label class="form-label">Nama Produk *</label>
+                <input type="text" id="prodFormName" class="form-input" placeholder="Misal: Netflix Premium 4K / Mobile Legends 86 DM" required>
+              </div>
 
-            <div class="form-row" style="margin-bottom: 12px;">
-              <div class="form-group">
-                <label class="form-label">Kategori *</label>
-                <select id="prodFormCategory" class="form-select" required onchange="handleCategoryChangeInForm(this.value)">
-                  <option value="Aplikasi Premium">Aplikasi Premium</option>
-                  <option value="Topup Game">Topup Game</option>
-                  <option value="Jasa Design Poster">Jasa Design Poster</option>
-                </select>
+              <div class="form-row" style="margin-bottom: 12px;">
+                <div class="form-group">
+                  <label class="form-label">Kategori *</label>
+                  <select id="prodFormCategory" class="form-select" required onchange="handleCategoryChangeInForm(this.value)">
+                    <option value="Aplikasi Premium">Aplikasi Premium</option>
+                    <option value="Topup Game">Topup Game</option>
+                    <option value="Jasa Design Poster">Jasa Design Poster</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Harga Pokok (Rp) *</label>
+                  <input type="number" id="prodFormPrice" class="form-input" placeholder="Contoh: 35000" required oninput="syncDefaultVariantPrice(this.value)">
+                </div>
               </div>
-              <div class="form-group">
-                <label class="form-label">Harga Pokok (Rp) *</label>
-                <input type="number" id="prodFormPrice" class="form-input" placeholder="Contoh: 35000" required oninput="syncDefaultVariantPrice(this.value)">
-              </div>
-            </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Status Stok *</label>
-                <select id="prodFormStockStatus" class="form-select" onchange="toggleStockCountInput(this.value)">
-                  <option value="ready">🟢 Ready Stock (Tersedia)</option>
-                  <option value="limited">🟡 Slot Terbatas (Sisa Sedikit)</option>
-                  <option value="preorder">🔵 Pre-Order (PO)</option>
-                  <option value="soldout">🔴 Stok Habis (Sold Out)</option>
-                </select>
-              </div>
-              <div class="form-group" id="prodStockCountGroup" style="display: none;">
-                <label class="form-label">Jumlah Slot Tersisa</label>
-                <input type="number" id="prodFormStockCount" class="form-input" placeholder="Misal: 5 (slot)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Status Stok *</label>
+                  <select id="prodFormStockStatus" class="form-select" onchange="toggleStockCountInput(this.value)">
+                    <option value="ready">🟢 Ready Stock (Tersedia)</option>
+                    <option value="limited">🟡 Slot Terbatas (Sisa Sedikit)</option>
+                    <option value="preorder">🔵 Pre-Order (PO)</option>
+                    <option value="soldout">🔴 Stok Habis (Sold Out)</option>
+                  </select>
+                </div>
+                <div class="form-group" id="prodStockCountGroup" style="display: none;">
+                  <label class="form-label">Jumlah Slot Tersisa</label>
+                  <input type="number" id="prodFormStockCount" class="form-input" placeholder="Misal: 5 (slot)">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Bagian 2: Foto Produk -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header">
-            <span class="prod-form-step-num">2</span>
-            <span class="prod-form-step-title" id="prodImageLabel">Foto / Gambar Produk</span>
-          </div>
-          <div class="prod-form-card-body">
-            <input type="hidden" id="prodFormImage" value="">
-            
-            <div class="prod-image-quick-wrapper">
-              <!-- Thumbnail Preview Box -->
-              <div class="prod-thumb-box" id="prodImagePreviewContainer">
-                <img id="prodImagePreview" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Preview Foto">
-                <button type="button" class="prod-thumb-remove" onclick="clearProductImage()" title="Hapus Gambar">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-
-              <!-- Action Buttons -->
-              <div class="prod-image-actions">
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('prodFileInput').click()">
-                    <i class="fa-solid fa-image"></i> Pilih dari Galeri HP/PC
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="toggleProdImageUrlGroup()">
-                    <i class="fa-solid fa-link"></i> <span id="toggleUrlBtnText">Input Link URL</span>
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="useDefaultCategoryPhoto()" title="Pasang foto bawaan yang cocok">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> Foto Otomatis
+          <!-- Bagian 2: Foto Produk -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header">
+              <span class="prod-form-step-num">2</span>
+              <span class="prod-form-step-title" id="prodImageLabel">Foto / Gambar Produk</span>
+            </div>
+            <div class="prod-form-card-body">
+              <input type="hidden" id="prodFormImage" value="">
+              
+              <div class="prod-image-quick-wrapper">
+                <!-- Thumbnail Preview Box -->
+                <div class="prod-thumb-box" id="prodImagePreviewContainer">
+                  <img id="prodImagePreview" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Preview Foto">
+                  <button type="button" class="prod-thumb-remove" onclick="clearProductImage()" title="Hapus Gambar">
+                    <i class="fa-solid fa-xmark"></i>
                   </button>
                 </div>
-                <input type="file" id="prodFileInput" accept="image/*" style="display: none;" onchange="handleProductFileSelect(event)">
-                <div id="prodImageFileInfo" style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">
-                  Foto otomatis dikompresi agar loading toko tetap cepat & hemat kuota.
-                </div>
 
-                <!-- Hidden Dropzone target for drop events and code compatibility -->
-                <div id="prodImageDropzone" style="display: none;"></div>
+                <!-- Action Buttons -->
+                <div class="prod-image-actions">
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('prodFileInput').click()">
+                      <i class="fa-solid fa-image"></i> Pilih dari Galeri HP/PC
+                    </button>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="toggleProdImageUrlGroup()">
+                      <i class="fa-solid fa-link"></i> <span id="toggleUrlBtnText">Input Link URL</span>
+                    </button>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="useDefaultCategoryPhoto()" title="Pasang foto bawaan yang cocok">
+                      <i class="fa-solid fa-wand-magic-sparkles"></i> Foto Otomatis
+                    </button>
+                  </div>
+                  <input type="file" id="prodFileInput" accept="image/*" style="display: none;" onchange="handleProductFileSelect(event)">
+                  <div id="prodImageFileInfo" style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">
+                    Foto otomatis dikompresi agar loading toko tetap cepat & hemat kuota.
+                  </div>
 
-                <!-- URL Input Group -->
-                <div id="prodImageUrlGroup" style="display: none; margin-top: 8px;">
-                  <div style="display: flex; gap: 6px;">
-                    <input type="text" id="prodFormImageUrlInput" class="form-input" placeholder="Tempel URL gambar (https://...)" oninput="handleProdUrlInput(this.value)">
+                  <!-- Hidden Dropzone target for drop events and code compatibility -->
+                  <div id="prodImageDropzone" style="display: none;"></div>
+
+                  <!-- URL Input Group -->
+                  <div id="prodImageUrlGroup" style="display: none; margin-top: 8px;">
+                    <div style="display: flex; gap: 6px;">
+                      <input type="text" id="prodFormImageUrlInput" class="form-input" placeholder="Tempel URL gambar (https://...)" oninput="handleProdUrlInput(this.value)">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Bagian 3: Pilihan Paket / Durasi (Varian) -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header" style="justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="prod-form-step-num">3</span>
-              <span class="prod-form-step-title">Paket & Durasi Harga</span>
-            </div>
-            <div style="display: flex; gap: 6px;">
-              <button type="button" class="btn btn-outline btn-sm" onclick="applyQuickVariantPreset('standard')" style="font-size: 11px; padding: 3px 8px;">
-                <i class="fa-solid fa-bolt"></i> Contoh Paket
-              </button>
-              <button type="button" class="btn btn-white btn-sm" onclick="addNewVariantRow()" style="font-size: 11px; padding: 3px 8px;">
-                <i class="fa-solid fa-plus"></i> Tambah Paket
-              </button>
-            </div>
-          </div>
-          <div class="prod-form-card-body">
-            <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px;">
-              Tentukan pilihan paket yang bisa dipilih customer (misal: 1 Bulan, 3 Bulan, atau jumlah Diamond):
-            </p>
-            
-            <!-- Interactive Visual Variant List -->
-            <div id="variantListBuilder" class="variant-builder-list">
-              <!-- Dynamically populated rows -->
-            </div>
-
-            <!-- Hidden / Synchronized Textarea for Full Backward Compatibility -->
-            <textarea id="prodFormVariants" style="display: none;"></textarea>
-          </div>
-        </div>
-
-        <!-- Bagian 4: Deskripsi & Keunggulan Produk -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="prod-form-step-num">4</span>
-              <span class="prod-form-step-title">Deskripsi & Keunggulan</span>
-            </div>
-            <!-- Quick Helper Template Buttons -->
-            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('streaming')" title="Gunakan template streaming">
-                <i class="fa-solid fa-tv"></i> Template Streaming
-              </button>
-              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('software')" title="Gunakan template Canva/Tools">
-                <i class="fa-solid fa-pen-ruler"></i> Template Tools/Pro
-              </button>
-              <button type="button" class="template-pill-btn" onclick="applyDescTemplate('topup')" title="Gunakan template Game">
-                <i class="fa-solid fa-gamepad"></i> Template Topup
-              </button>
-            </div>
-          </div>
-          <div class="prod-form-card-body">
-            <textarea id="prodFormDesc" class="form-textarea" rows="3" placeholder="Tuliskan keunggulan produk (bisa poin-poin atau klik salah satu tombol template di atas)..." style="font-size: 12.5px; line-height: 1.5;"></textarea>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">
-              <i class="fa-solid fa-circle-info"></i> Tampilan di pembeli akan otomatis dirapikan menjadi daftar poin & checklist yang enak dilihat.
-            </div>
-          </div>
-        </div>
-
-        <!-- Bagian 5: Opsi Tambahan (Collapsible / Default Terlipat Rapi) -->
-        <div class="prod-form-card">
-          <div class="prod-form-card-header" onclick="toggleAdvancedProductOptions()" style="cursor: pointer; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="prod-form-step-num" style="background: rgba(255,255,255,0.1); color: var(--text-secondary);"><i class="fa-solid fa-gear"></i></span>
-              <span class="prod-form-step-title" style="color: var(--text-secondary);">Pengaturan Tambahan (Opsional)</span>
-            </div>
-            <span id="advancedOptionsChevron" style="font-size: 12px; color: var(--text-muted);"><i class="fa-solid fa-chevron-down"></i></span>
-          </div>
-          <div id="prodAdvancedOptionsBody" class="prod-form-card-body" style="display: none;">
-            <div class="form-row" style="margin-bottom: 12px;">
-              <div class="form-group">
-                <label class="form-label">Garansi / Jaminan</label>
-                <input type="text" id="prodFormWarranty" class="form-input" placeholder="Misal: Garansi 30 Hari / Full Periode">
+          <!-- Bagian 3: Pilihan Paket / Durasi (Varian) -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="prod-form-step-num">3</span>
+                <span class="prod-form-step-title">Paket & Durasi Harga</span>
               </div>
-              <div class="form-group">
-                <label class="form-label">Label Badge</label>
-                <input type="text" id="prodFormBadge" class="form-input" placeholder="Misal: BEST SELLER / PROMO">
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="applyQuickVariantPreset('standard')" style="font-size: 11px; padding: 3px 8px;">
+                  <i class="fa-solid fa-bolt"></i> Contoh Paket
+                </button>
+                <button type="button" class="btn btn-white btn-sm" onclick="addNewVariantRow()" style="font-size: 11px; padding: 3px 8px;">
+                  <i class="fa-solid fa-plus"></i> Tambah Paket
+                </button>
               </div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Angka Terjual (Sales Count Awal)</label>
-              <input type="number" id="prodFormSold" class="form-input" placeholder="0">
+            <div class="prod-form-card-body">
+              <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px;">
+                Tentukan pilihan paket yang bisa dipilih customer (misal: 1 Bulan, 3 Bulan, atau jumlah Diamond):
+              </p>
+              
+              <!-- Interactive Visual Variant List -->
+              <div id="variantListBuilder" class="variant-builder-list">
+                <!-- Dynamically populated rows -->
+              </div>
+
+              <!-- Hidden / Synchronized Textarea for Full Backward Compatibility -->
+              <textarea id="prodFormVariants" style="display: none;"></textarea>
+            </div>
+          </div>
+
+          <!-- Bagian 4: Deskripsi & Keunggulan Produk -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="prod-form-step-num">4</span>
+                <span class="prod-form-step-title">Deskripsi & Keunggulan</span>
+              </div>
+              <!-- Quick Helper Template Buttons -->
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button type="button" class="template-pill-btn" onclick="applyDescTemplate('streaming')" title="Gunakan template streaming">
+                  <i class="fa-solid fa-tv"></i> Template Streaming
+                </button>
+                <button type="button" class="template-pill-btn" onclick="applyDescTemplate('software')" title="Gunakan template Canva/Tools">
+                  <i class="fa-solid fa-pen-ruler"></i> Template Tools/Pro
+                </button>
+                <button type="button" class="template-pill-btn" onclick="applyDescTemplate('topup')" title="Gunakan template Game">
+                  <i class="fa-solid fa-gamepad"></i> Template Topup
+                </button>
+              </div>
+            </div>
+            <div class="prod-form-card-body">
+              <textarea id="prodFormDesc" class="form-textarea" rows="3" placeholder="Tuliskan keunggulan produk (bisa poin-poin atau klik salah satu tombol template di atas)..." style="font-size: 12.5px; line-height: 1.5;"></textarea>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">
+                <i class="fa-solid fa-circle-info"></i> Tampilan di pembeli akan otomatis dirapikan menjadi daftar poin & checklist yang enak dilihat.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian 5: Opsi Tambahan (Collapsible / Default Terlipat Rapi) -->
+          <div class="prod-form-card">
+            <div class="prod-form-card-header" onclick="toggleAdvancedProductOptions()" style="cursor: pointer; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="prod-form-step-num" style="background: rgba(255,255,255,0.1); color: var(--text-secondary);"><i class="fa-solid fa-gear"></i></span>
+                <span class="prod-form-step-title" style="color: var(--text-secondary);">Pengaturan Tambahan (Opsional)</span>
+              </div>
+              <span id="advancedOptionsChevron" style="font-size: 12px; color: var(--text-muted);"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div id="prodAdvancedOptionsBody" class="prod-form-card-body" style="display: none;">
+              <div class="form-row" style="margin-bottom: 12px;">
+                <div class="form-group">
+                  <label class="form-label">Garansi / Jaminan</label>
+                  <input type="text" id="prodFormWarranty" class="form-input" placeholder="Misal: Garansi 30 Hari / Full Periode">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Label Badge</label>
+                  <input type="text" id="prodFormBadge" class="form-input" placeholder="Misal: BEST SELLER / PROMO">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Angka Terjual (Sales Count Awal)</label>
+                <input type="number" id="prodFormSold" class="form-input" placeholder="0">
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Modal Footer -->
-        <div class="modal-footer" style="padding-left: 0; padding-right: 0; padding-bottom: 0; display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+        <!-- Modal Footer (Pinned at bottom, never crushed) -->
+        <div class="modal-footer" style="flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--bg-secondary); border-top: 1px solid var(--border-color); z-index: 10;">
           <button type="button" class="btn btn-outline" onclick="closeModal('productFormModal')">Batal</button>
           <button type="submit" class="btn btn-white" id="btnSaveProduct" style="font-weight: 700;">
             <i class="fa-solid fa-floppy-disk"></i> Simpan Produk
@@ -7646,21 +7922,25 @@
         <button class="modal-close" onclick="closeModal('paymentMethodsModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
-        <!-- QRIS Display -->
-        <div class="qris-display-card">
-          <div class="qris-merchant-title" id="qrisTitle">JANEMARKET OFFICIAL (QRIS ALL PAYMENT)</div>
-          <p class="qris-hint">Scan via BCA, Mandiri, BRI, BNI, GoPay, OVO, DANA, ShopeePay</p>
-          <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80" alt="QRIS JaneMarket" id="qrisImageModal" class="qris-image">
-          <div style="display: flex; justify-content: center; gap: 8px;">
-            <a id="qrisDownloadBtn" href="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80" target="_blank" class="btn btn-dark btn-sm">
-              <i class="fa-solid fa-expand"></i> Buka / Download QRIS
-            </a>
+        <!-- QRIS Ditutup Sementara Notice -->
+        <div class="qris-stand-card" id="qrisStandCard" style="background: rgba(234, 88, 12, 0.05); border: 1.5px dashed #f97316; padding: 20px 16px; text-align: center; border-radius: 12px; margin-bottom: 18px;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(249, 115, 22, 0.15); color: #ea580c; font-size: 22px; margin-bottom: 10px;">
+            <i class="fa-solid fa-qrcode"></i>
           </div>
+          <div style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">
+            Pembayaran QRIS Ditutup Sementara
+          </div>
+          <p style="font-size: 13.5px; color: #475569; font-weight: 600; line-height: 1.5; margin-bottom: 14px; max-width: 360px; margin-left: auto; margin-right: auto;">
+            Jika ingin menggunakan QRIS, silakan lanjut ke WhatsApp admin.
+          </p>
+          <a id="btnQrisWaDirect" href="https://wa.me/6285139138997?text=Halo%20admin%2C%20saya%20ingin%20menggunakan%20QRIS%20untuk%20pembayaran" target="_blank" class="btn btn-wa btn-sm" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 8px; margin: 0 auto; width: 100%; max-width: 320px;">
+            <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Lanjut ke WhatsApp Admin
+          </a>
         </div>
 
-        <!-- Other Payment Numbers (Dana, Gopay, Ovo, BCA, Mandiri, etc.) -->
+        <!-- Other Payment Numbers (DANA & GoPay) -->
         <h5 style="font-size: 13px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase;">
-          <i class="fa-solid fa-money-bill-transfer"></i> Transfer Bank & E-Wallet
+          <i class="fa-solid fa-wallet"></i> Transfer E-Wallet Resmi (DANA &amp; GoPay)
         </h5>
         <div class="payment-list" id="paymentListContainer">
           <!-- Injected via JS -->
@@ -7860,90 +8140,87 @@
 
   <!-- Modal 5: Checkout Order via WhatsApp (Requirement #8) -->
   <div class="modal-overlay" id="checkoutModal">
-    <div class="modal-box">
+    <div class="modal-box" style="max-height: 90vh; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden;">
       <div class="modal-header">
         <h4 class="modal-title"><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Form Pemesanan WhatsApp</h4>
         <button class="modal-close" onclick="closeModal('checkoutModal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <form onsubmit="submitWhatsAppOrder(event)" class="modal-body">
-        <input type="hidden" id="orderProductId">
-        <input type="hidden" id="orderProductCategory">
-        
-        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 14px;">
-          <h5 id="orderProductTitle" style="font-size: 15px; font-weight: 800;">-</h5>
-          <p id="orderProductDesc" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">-</p>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Pilih Varian / Paket / Durasi</label>
-          <div class="variant-selector" id="checkoutVariantSelector">
-            <!-- Injected via JS -->
+      <form id="checkoutOrderForm" onsubmit="submitWhatsAppOrder(event)" style="display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; margin: 0;">
+        <div class="modal-body" style="flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 18px 20px;">
+          <input type="hidden" id="orderProductId">
+          <input type="hidden" id="orderProductCategory">
+          
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 14px;">
+            <h5 id="orderProductTitle" style="font-size: 15px; font-weight: 800;">-</h5>
+            <p id="orderProductDesc" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">-</p>
           </div>
-        </div>
 
-        <div class="form-group" id="accountFieldContainer" style="display: none;">
-          <label class="form-label" id="accountFieldLabel">User ID / Player ID & Zone ID (Untuk Topup)</label>
-          <input type="text" id="orderAccountId" class="form-input" placeholder="contoh: 123456789 (2104)">
-        </div>
-
-        <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Nama Pembeli *</label>
-            <input type="text" id="orderCustomerName" class="form-input" placeholder="Nama Anda" required>
+            <label class="form-label">Pilih Varian / Paket / Durasi</label>
+            <div class="variant-selector" id="checkoutVariantSelector">
+              <!-- Injected via JS -->
+            </div>
           </div>
+
+          <div class="form-group" id="accountFieldContainer" style="display: none;">
+            <label class="form-label" id="accountFieldLabel">User ID / Player ID & Zone ID (Untuk Topup)</label>
+            <input type="text" id="orderAccountId" class="form-input" placeholder="contoh: 123456789 (2104)">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nama Pembeli *</label>
+              <input type="text" id="orderCustomerName" class="form-input" placeholder="Nama Anda" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Metode Pembayaran</label>
+              <select id="orderPaymentMethod" class="form-select" onchange="updateCheckoutPaymentInfo()">
+                <option value="DANA" selected>DANA (083823567366)</option>
+                <option value="GoPay">GoPay (083823567366)</option>
+                <option value="QRIS">QRIS (Lanjut ke WhatsApp Admin)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Quick Payment & Salin Rekening Box (Feature #3) -->
+          <div class="checkout-payment-box" id="checkoutPaymentBox">
+            <!-- Injected via JS based on selected payment method -->
+          </div>
+
           <div class="form-group">
-            <label class="form-label">Metode Pembayaran</label>
-            <select id="orderPaymentMethod" class="form-select" onchange="updateCheckoutPaymentInfo()">
-              <option value="QRIS All Payment">QRIS All Payment (BCA/Mandiri/E-Wallet)</option>
-              <option value="DANA">DANA</option>
-              <option value="GoPay">GoPay</option>
-              <option value="OVO">OVO</option>
-              <option value="ShopeePay">ShopeePay</option>
-              <option value="Bank BCA">Bank BCA</option>
-              <option value="Bank Mandiri">Bank Mandiri</option>
-              <option value="SeaBank">SeaBank</option>
-            </select>
+            <label class="form-label">Catatan Tambahan (Opsional)</label>
+            <input type="text" id="orderNotes" class="form-input" placeholder="contoh: email canva / konsep poster...">
+          </div>
+
+          <!-- Voucher Code Input Box -->
+          <div class="form-group" style="background: var(--bg-card); border: 1px dashed var(--border-light); padding: 12px; border-radius: 8px;">
+            <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+              <span><i class="fa-solid fa-ticket" style="color: #eab308;"></i> Punya Kode Voucher Promo?</span>
+              <span style="font-size: 10px; color: var(--text-muted);">Coba: JANEHEMAT / VIP10</span>
+            </label>
+            <div class="voucher-input-box">
+              <input type="text" id="voucherCodeInput" class="form-input" placeholder="Masukkan kode voucher..." style="text-transform: uppercase;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="applyVoucher()">Gunakan</button>
+            </div>
+            <div id="voucherActiveInfo" style="display: none;" class="voucher-active-badge">
+              <i class="fa-solid fa-circle-check"></i> <span id="voucherBadgeText">Voucher Aktif</span>
+              <button type="button" onclick="removeVoucher()" style="background: none; border: none; color: #ef4444; cursor: pointer; margin-left: 6px; font-size: 12px;">✕</button>
+            </div>
+          </div>
+
+          <div class="checkout-total-strip">
+            <div id="voucherDiscountRow" style="display: none; justify-content: space-between; font-size: 12px; color: #16a34a; font-weight: 700;">
+              <span>Potongan Diskon:</span>
+              <span id="orderDiscountAmount">-Rp 0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 13px; font-weight: 700;">Total Pembayaran:</span>
+              <span id="orderSummaryPrice" style="font-size: 16px; font-weight: 800;">Rp 0</span>
+            </div>
           </div>
         </div>
 
-        <!-- Dynamic Quick Payment & Salin Rekening Box (Feature #3) -->
-        <div class="checkout-payment-box" id="checkoutPaymentBox">
-          <!-- Injected via JS based on selected payment method -->
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Catatan Tambahan (Opsional)</label>
-          <input type="text" id="orderNotes" class="form-input" placeholder="contoh: email canva / konsep poster...">
-        </div>
-
-        <!-- Voucher Code Input Box -->
-        <div class="form-group" style="background: var(--bg-card); border: 1px dashed var(--border-light); padding: 12px; border-radius: 8px;">
-          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
-            <span><i class="fa-solid fa-ticket" style="color: #eab308;"></i> Punya Kode Voucher Promo?</span>
-            <span style="font-size: 10px; color: var(--text-muted);">Coba: JANEHEMAT / VIP10</span>
-          </label>
-          <div class="voucher-input-box">
-            <input type="text" id="voucherCodeInput" class="form-input" placeholder="Masukkan kode voucher..." style="text-transform: uppercase;">
-            <button type="button" class="btn btn-outline btn-sm" onclick="applyVoucher()">Gunakan</button>
-          </div>
-          <div id="voucherActiveInfo" style="display: none;" class="voucher-active-badge">
-            <i class="fa-solid fa-circle-check"></i> <span id="voucherBadgeText">Voucher Aktif</span>
-            <button type="button" onclick="removeVoucher()" style="background: none; border: none; color: #ef4444; cursor: pointer; margin-left: 6px; font-size: 12px;">✕</button>
-          </div>
-        </div>
-
-        <div class="checkout-total-strip">
-          <div id="voucherDiscountRow" style="display: none; justify-content: space-between; font-size: 12px; color: #16a34a; font-weight: 700;">
-            <span>Potongan Diskon:</span>
-            <span id="orderDiscountAmount">-Rp 0</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 13px; font-weight: 700;">Total Pembayaran:</span>
-            <span id="orderSummaryPrice" style="font-size: 16px; font-weight: 800;">Rp 0</span>
-          </div>
-        </div>
-
-        <div class="modal-footer" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
+        <div class="modal-footer" style="flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--bg-secondary); border-top: 1px solid var(--border-color); z-index: 10;">
           <button type="button" class="btn btn-outline" onclick="closeModal('checkoutModal')">Batal</button>
           <button type="submit" class="btn btn-wa">
             <i class="fa-brands fa-whatsapp"></i> Pesan Sekarang via WhatsApp
@@ -8012,11 +8289,9 @@
           <input type="tel" id="cartCustomerPhone" class="form-input" placeholder="Nomor WhatsApp (misal: 08123456789) *" required style="font-size: 12.5px;">
           <input type="text" id="cartCustomerNotes" class="form-input" placeholder="Catatan / Email Akun / ID Game (opsional)" style="font-size: 12.5px;">
           <select id="cartPaymentMethod" class="form-select" style="font-size: 12.5px;">
-            <option value="QRIS">QRIS (Semua E-Wallet & Mobile Banking)</option>
-            <option value="DANA">DANA (Konfirmasi Otomatis)</option>
-            <option value="GoPay">GoPay / ShopeePay</option>
-            <option value="BCA">Transfer Bank BCA</option>
-            <option value="Bank Mandiri">Transfer Bank Mandiri</option>
+            <option value="QRIS">QRIS (Semua E-Wallet &amp; Mobile Banking)</option>
+            <option value="DANA">DANA (083823567366)</option>
+            <option value="GoPay">GoPay (083823567366)</option>
           </select>
         </div>
 
@@ -8283,25 +8558,22 @@
         storeName: "JaneMurphy",
         storeTagline: "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
         storeLogo: "https://files.catbox.moe/3tt0xl.png",
-        whatsappNumber: "6283823567366",
+        whatsappNumber: "6285139138997",
         adminPin: "123456",
-        qrisImage: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
-        qrisMerchantName: "JANEMURPHY OFFICIAL (QRIS ALL PAYMENT)",
+        qrisImage: "",
+        qrisMerchantName: "Frantz",
+        qrisNmid: "ID2025419027029",
+        qrisString: "00020101021126640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI51640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI5204581253033605802ID5906Frantz6007JAKARTA61051234063044DF2",
         paymentMethods: [
           { id: "dana", name: "DANA", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
-          { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" },
-          { id: "ovo", name: "OVO", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-coins" },
-          { id: "shopeepay", name: "ShopeePay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-bag-shopping" },
-          { id: "bca", name: "Bank BCA", number: "8735091234", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
-          { id: "mandiri", name: "Bank Mandiri", number: "137001928374", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" },
-          { id: "seabank", name: "SeaBank", number: "90192837465", owner: "JaneMurphy Official", active: true, icon: "fa-solid fa-building-columns" }
+          { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" }
         ],
         promoBanner: {
           title: "🔥 FLASH SALE SPESIAL HARI INI!",
           subtitle: "Diskon hingga 50% untuk Semua Aplikasi Premium & Free Konsultasi Desain Poster!",
           buttonText: "Klaim Promo WhatsApp"
         },
-        announcement: "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS & E-Wallet Lengkap"
+        announcement: "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS, DANA & GoPay Resmi"
       },
       stats: { totalVisitors: 1846, totalRevenue: 4850000, totalOrders: 142 },
       orders: [
@@ -8592,13 +8864,62 @@
       }
     } catch (e) {}
 
-    // Pastikan nomor WhatsApp resmi admin selalu diarahkan ke nomor owner: 6283823567366
+    // Inisialisasi & validasi pengaturan toko
     if (!storeState.settings) storeState.settings = {};
     if (!storeState.settings.whatsappNumber || 
         storeState.settings.whatsappNumber === '6281234567890' || 
         storeState.settings.whatsappNumber === '62895325602169' ||
+        storeState.settings.whatsappNumber === '6283823567366' ||
         storeState.settings.whatsappNumber.includes('1234567890')) {
-      storeState.settings.whatsappNumber = '6283823567366';
+      storeState.settings.whatsappNumber = '6285139138997';
+    }
+
+    // Pastikan QRIS Uperpay Frantz (NMID: ID2025419027029) tersambung
+    if (!storeState.settings.qrisMerchantName || 
+        storeState.settings.qrisMerchantName.includes('JANEMARKET') || 
+        storeState.settings.qrisMerchantName.includes('JANEMURPHY')) {
+      storeState.settings.qrisMerchantName = 'Frantz';
+    }
+    if (!storeState.settings.qrisNmid) {
+      storeState.settings.qrisNmid = 'ID2025419027029';
+    }
+    if (!storeState.settings.qrisString) {
+      storeState.settings.qrisString = '00020101021126640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI51640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI5204581253033605802ID5906Frantz6007JAKARTA61051234063044DF2';
+    }
+
+    // Bersihkan URL gambar placeholder Unsplash lama yang tersimpan di browser user
+    if (storeState.settings.qrisImage && storeState.settings.qrisImage.includes('unsplash')) {
+      storeState.settings.qrisImage = '';
+    }
+
+    // Pastikan metode pembayaran hanya DANA dan GoPay (+ QRIS)
+    if (Array.isArray(storeState.settings.paymentMethods)) {
+      storeState.settings.paymentMethods = storeState.settings.paymentMethods.filter(
+        pm => pm && (pm.id === 'dana' || pm.id === 'gopay' || (pm.name && (pm.name.toLowerCase().includes('dana') || pm.name.toLowerCase().includes('gopay'))))
+      );
+    }
+    if (!storeState.settings.paymentMethods || storeState.settings.paymentMethods.length === 0) {
+      storeState.settings.paymentMethods = [
+        { id: "dana", name: "DANA", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
+        { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" }
+      ];
+    }
+    // Update cache directly to remove any legacy OVO, ShopeePay, BCA, Mandiri, SeaBank from localStorage
+    try {
+      localStorage.setItem('jm_store_data', JSON.stringify(storeState));
+    } catch (e) {}
+
+    // Pastikan produk CapCut memiliki opsi paket Rp 5.000
+    if (Array.isArray(storeState.products)) {
+      const capcut = storeState.products.find(p => p.id === 'prod-6');
+      if (capcut) {
+        capcut.price = 5000;
+        capcut.variants = [
+          { name: "Paket Hemat 1 Bulan (Sharing)", price: 5000 },
+          { name: "1 Bulan Private Full Akun", price: 15000 },
+          { name: "1 Tahun Pro Eksklusif", price: 65000 }
+        ];
+      }
     }
 
     function persistLocalState() {
@@ -8608,20 +8929,20 @@
     }
 
     // ========================================================
-    // ENGINE WHATSAPP & DIRECT MESSAGING (NOMOR RESMI: +6283823567366)
+    // ENGINE WHATSAPP & DIRECT MESSAGING (NOMOR RESMI: +6285139138997)
     // ========================================================
     function getAdminWhatsAppNumber() {
       let num = (storeState && storeState.settings && storeState.settings.whatsappNumber) 
                 ? String(storeState.settings.whatsappNumber).trim() 
-                : '6283823567366';
+                : '6285139138997';
       num = num.replace(/[^0-9]/g, '');
       if (num.startsWith('0')) {
         num = '62' + num.slice(1);
       } else if (num.startsWith('8')) {
         num = '62' + num;
       }
-      if (num === '6281234567890' || num === '62895325602169' || !num) {
-        num = '6283823567366';
+      if (num === '6281234567890' || num === '62895325602169' || num === '6283823567366' || !num) {
+        num = '6285139138997';
       }
       return num;
     }
@@ -9863,6 +10184,19 @@
           const data = await res.json();
           if (data.products && data.products.length > 0) {
             storeState = data;
+            if (storeState.settings) {
+              if (Array.isArray(storeState.settings.paymentMethods)) {
+                storeState.settings.paymentMethods = storeState.settings.paymentMethods.filter(
+                  pm => pm && (pm.id === 'dana' || pm.id === 'gopay' || (pm.name && (pm.name.toLowerCase().includes('dana') || pm.name.toLowerCase().includes('gopay'))))
+                );
+              }
+              if (!storeState.settings.paymentMethods || storeState.settings.paymentMethods.length === 0) {
+                storeState.settings.paymentMethods = [
+                  { id: "dana", name: "DANA", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
+                  { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" }
+                ];
+              }
+            }
             persistLocalState();
           }
         }
@@ -10013,13 +10347,11 @@
         if (bBtnText && s.promoBanner.buttonText) bBtnText.textContent = s.promoBanner.buttonText;
       }
 
-      // QRIS
-      const qrisImg = document.getElementById('qrisImageModal');
-      const qrisDown = document.getElementById('qrisDownloadBtn');
-      const qrisTitle = document.getElementById('qrisTitle');
-      if (qrisImg && s.qrisImage) qrisImg.src = s.qrisImage;
-      if (qrisDown && s.qrisImage) qrisDown.href = s.qrisImage;
-      if (qrisTitle && s.qrisMerchantName) qrisTitle.textContent = s.qrisMerchantName;
+      // Update WhatsApp link for QRIS notice
+      const qrisWaBtn = document.getElementById('btnQrisWaDirect');
+      if (qrisWaBtn) {
+        qrisWaBtn.href = `https://wa.me/${waAdminNum}?text=${encodeURIComponent('Halo admin, saya ingin menggunakan QRIS untuk pembayaran')}`;
+      }
 
       renderPaymentMethodsList();
     }
@@ -10029,10 +10361,22 @@
       const container = document.getElementById('paymentListContainer');
       if (!container) return;
 
-      const list = (storeState.settings && storeState.settings.paymentMethods) || [];
+      let list = (storeState.settings && storeState.settings.paymentMethods) || [];
+      // Filter out OVO, ShopeePay, Bank BCA, Mandiri, SeaBank strictly
+      list = list.filter(pm => {
+        if (!pm || !pm.name) return false;
+        const lower = (pm.name + ' ' + (pm.id || '')).toLowerCase();
+        if (lower.includes('ovo') || lower.includes('shopee') || lower.includes('bca') || lower.includes('mandiri') || lower.includes('seabank') || lower.includes('bank')) {
+          return false;
+        }
+        return lower.includes('dana') || lower.includes('gopay');
+      });
+
       if (list.length === 0) {
-        container.innerHTML = `<p style="font-size:12px;color:var(--text-muted);text-align:center;">Semua pembayaran aktif via QRIS</p>`;
-        return;
+        list = [
+          { id: "dana", name: "DANA", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
+          { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" }
+        ];
       }
 
       container.innerHTML = list.map(item => `
@@ -10884,63 +11228,366 @@
       }
     }
 
-    // Quick Payment Box Engine (Feature #3)
+    // ========================================================
+    // ENGINE QRIS DINAMIS OTOMATIS (UPERPAY GENERATOR)
+    // ========================================================
+    function crc16(str) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < str.length; i++) {
+        crc ^= (str.charCodeAt(i) << 8);
+        for (let j = 0; j < 8; j++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = ((crc << 1) ^ 0x1021) & 0xFFFF;
+          } else {
+            crc = (crc << 1) & 0xFFFF;
+          }
+        }
+      }
+      return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    function getDefaultUperpayQris() {
+      return (storeState && storeState.settings && storeState.settings.qrisString)
+        ? storeState.settings.qrisString
+        : '00020101021126640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI51640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI5204581253033605802ID5906Frantz6007JAKARTA61051234063044DF2';
+    }
+
+    function convertStaticQrisToDynamic(rawQris, nominal) {
+      if (!rawQris || typeof rawQris !== 'string') {
+        rawQris = getDefaultUperpayQris();
+      }
+      let str = rawQris.trim();
+      
+      // Hapus CRC lama (6304XXXX) jika ada
+      const crcIdx = str.lastIndexOf('6304');
+      if (crcIdx !== -1) {
+        str = str.substring(0, crcIdx);
+      }
+      
+      // Ubah metode inisiasi QR dari 010211 (Statis) menjadi 010212 (Dinamis)
+      str = str.replace('010211', '010212');
+      
+      // Bersihkan Tag 54 lama jika ada
+      str = str.replace(/54\d{2}\d+/, '');
+      
+      // Buat Tag 54 dengan nominal pas transaksi (contoh: 5000)
+      const amountStr = Math.round(Number(nominal) || 0).toString();
+      const lenStr = amountStr.length.toString().padStart(2, '0');
+      const tag54 = '54' + lenStr + amountStr;
+      
+      // Pada standar QRIS EMVCo, Tag 54 disisipkan sebelum Tag 58 (Kode Negara 5802ID)
+      const tag58Idx = str.indexOf('5802ID');
+      if (tag58Idx !== -1) {
+        str = str.substring(0, tag58Idx) + tag54 + str.substring(tag58Idx);
+      } else {
+        const tag59Idx = str.indexOf('59');
+        if (tag59Idx !== -1) {
+          str = str.substring(0, tag59Idx) + tag54 + str.substring(tag59Idx);
+        } else {
+          str += tag54;
+        }
+      }
+      
+      // Tambahkan Tag 63 untuk CRC16
+      str += '6304';
+      const crc = crc16(str);
+      return str + crc;
+    }
+
+    function renderDynamicQrCode(containerId, qrisText, size = 190) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+      if (typeof QRCode !== 'undefined') {
+        try {
+          new QRCode(container, {
+            text: qrisText,
+            width: size,
+            height: size,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        } catch (e) {
+          console.warn("QRCodeJS fallback:", e);
+          const img = document.createElement('img');
+          img.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(qrisText)}&margin=10`;
+          img.alt = "QRIS Dinamis";
+          container.appendChild(img);
+        }
+      } else {
+        const img = document.createElement('img');
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(qrisText)}&margin=10`;
+        img.alt = "QRIS Dinamis";
+        container.appendChild(img);
+      }
+    }
+
+    function downloadCheckoutQris(amount, merchantName) {
+      const area = document.getElementById('checkoutQrisRenderArea');
+      const canvasOrImg = area ? (area.querySelector('canvas') || area.querySelector('img')) : null;
+      if (!canvasOrImg) {
+        showToast("Gambar QRIS sedang dimuat...");
+        return;
+      }
+
+      const cardCanvas = document.createElement('canvas');
+      const w = 600;
+      const h = 760;
+      cardCanvas.width = w;
+      cardCanvas.height = h;
+      const ctx = cardCanvas.getContext('2d');
+
+      // Card Background
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+
+      // Top Header
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, w, 85);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('QRIS ALL PAYMENT • PEMBAYARAN RESMI', w / 2, 45);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '14px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('BCA • MANDIRI • BRI • DANA • GOPAY • OVO • SHOPEEPAY', w / 2, 70);
+
+      // Merchant Info
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 26px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(merchantName || 'Frantz', w / 2, 130);
+
+      ctx.fillStyle = '#64748b';
+      const nmid = (storeState.settings && storeState.settings.qrisNmid) || 'ID2025419027029';
+      ctx.font = '15px monospace';
+      ctx.fillText(`NMID: ${nmid} • A01`, w / 2, 155);
+
+      // Green Nominal Badge
+      ctx.fillStyle = '#10b981';
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(w / 2 - 190, 175, 380, 44, 22);
+      } else {
+        ctx.rect(w / 2 - 190, 175, 380, 44);
+      }
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 18px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`NOMINAL: Rp ${Number(amount).toLocaleString('id-ID')} (TERKUNCI)`, w / 2, 203);
+
+      // Draw QR Code
+      const qrSize = 340;
+      const qrX = (w - qrSize) / 2;
+      const qrY = 240;
+
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(qrX - 10, qrY - 10, qrSize + 20, qrSize + 20);
+
+      const finishExport = () => {
+        ctx.fillStyle = '#475569';
+        ctx.font = '14px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Nominal otomatis terkunci tanpa perlu input nominal manual.', w / 2, 625);
+        ctx.font = '13px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.fillText('Setelah bayar, konfirmasi via WhatsApp JaneMarket (+6285139138997)', w / 2, 650);
+
+        ctx.fillStyle = '#0284c7';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText('Uperpay Automatic Dynamic QRIS Engine', w / 2, 710);
+
+        const link = document.createElement('a');
+        link.download = `QRIS-${(merchantName || 'Frantz').replace(/\s+/g, '_')}-Rp${amount}.png`;
+        link.href = cardCanvas.toDataURL('image/png');
+        link.click();
+        showToast(`QRIS Rp ${Number(amount).toLocaleString('id-ID')} berhasil diunduh!`);
+      };
+
+      if (canvasOrImg.tagName === 'CANVAS') {
+        ctx.drawImage(canvasOrImg, qrX, qrY, qrSize, qrSize);
+        finishExport();
+      } else {
+        const qrImg = new Image();
+        qrImg.crossOrigin = 'anonymous';
+        qrImg.onload = () => {
+          ctx.drawImage(qrImg, qrX, qrY, qrSize, qrSize);
+          finishExport();
+        };
+        qrImg.src = canvasOrImg.src;
+      }
+    }
+
+    function downloadOfficialQrisStand() {
+      const merchant = (storeState.settings && storeState.settings.qrisMerchantName) || 'Frantz';
+      const nmid = (storeState.settings && storeState.settings.qrisNmid) || 'ID2025419027029';
+      const rawQris = getDefaultUperpayQris();
+      
+      showToast("Menyiapkan Stand QRIS resmi untuk diunduh...");
+
+      const cardCanvas = document.createElement('canvas');
+      const w = 600;
+      const h = 820;
+      cardCanvas.width = w;
+      cardCanvas.height = h;
+      const ctx = cardCanvas.getContext('2d');
+
+      // Background Card
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+
+      // Top Red Brand Stripe
+      ctx.fillStyle = '#dc2626';
+      ctx.fillRect(0, 0, w, 18);
+
+      // Header Brand
+      ctx.fillStyle = '#0f172a';
+      ctx.font = '900 32px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('QRIS', w / 2 - 80, 68);
+
+      ctx.fillStyle = '#dc2626';
+      ctx.font = 'bold 15px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('PEMBAYARAN DIGITAL', w / 2 + 55, 65);
+
+      // Subtle Divider
+      ctx.strokeStyle = '#ea580c';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(50, 90);
+      ctx.lineTo(w - 50, 90);
+      ctx.stroke();
+
+      // Merchant Name
+      ctx.fillStyle = '#0f172a';
+      ctx.font = '900 28px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(merchant.toUpperCase(), w / 2, 140);
+
+      // NMID
+      ctx.fillStyle = '#475569';
+      ctx.font = 'bold 16px monospace';
+      ctx.fillText(`NMID: ${nmid} • A01`, w / 2, 170);
+
+      // Barcode Box Frame
+      const qrSize = 360;
+      const qrX = (w - qrSize) / 2;
+      const qrY = 195;
+
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(qrX - 10, qrY - 10, qrSize + 20, qrSize + 20);
+
+      const finishDownload = () => {
+        // Tagline
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '900 18px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('SATU QRIS UNTUK SEMUA', w / 2, 615);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = 'bold 13px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('BCA • MANDIRI • BRI • BNI • DANA • GOPAY • OVO • SHOPEEPAY', w / 2, 642);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('Dicetak oleh: 93600503 (Uperpay / ASPI) • Versi Cetak: 1.0-2025.07.15', w / 2, 680);
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 13px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('JaneMurphy Official • Scan & Bayar Instan', w / 2, 725);
+
+        const link = document.createElement('a');
+        link.download = `QRIS_Stand_${merchant.replace(/\s+/g, '_')}_${nmid}.png`;
+        link.href = cardCanvas.toDataURL('image/png');
+        link.click();
+        showToast(`Stand QRIS ${merchant} (${nmid}) berhasil diunduh!`);
+      };
+
+      const qrImg = new Image();
+      qrImg.crossOrigin = 'anonymous';
+      qrImg.onload = () => {
+        ctx.drawImage(qrImg, qrX, qrY, qrSize, qrSize);
+        finishDownload();
+      };
+      qrImg.onerror = () => {
+        showToast("QRIS berhasil diunduh.");
+        finishDownload();
+      };
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=450x450&data=${encodeURIComponent(rawQris)}&margin=12`;
+    }
+
+    function decodeQrCodeFromDataUrl(dataUrl) {
+      return new Promise((resolve) => {
+        if (typeof jsQR === 'undefined') {
+          resolve(null);
+          return;
+        }
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            let code = jsQR(imgData.data, imgData.width, imgData.height, {
+              inversionAttempts: "dontInvert"
+            });
+            if (!code) {
+              code = jsQR(imgData.data, imgData.width, imgData.height, {
+                inversionAttempts: "onlyInvert"
+              });
+            }
+            resolve(code);
+          } catch (e) {
+            console.warn("QR decode error:", e);
+            resolve(null);
+          }
+        };
+        img.onerror = () => resolve(null);
+        img.src = dataUrl;
+      });
+    }
+
+    function testDynamicQrisPreview(amount = 5000) {
+      const merchant = (storeState.settings && storeState.settings.qrisMerchantName) || 'Frantz';
+      const nmid = (storeState.settings && storeState.settings.qrisNmid) || 'ID2025419027029';
+      const raw = getDefaultUperpayQris();
+      const dynamic = convertStaticQrisToDynamic(raw, amount);
+      openPaymentModal(true);
+      showToast(`Uji Coba QRIS Dinamis Rp ${Number(amount).toLocaleString('id-ID')} berhasil dibuat!`);
+    }
+
+    // Quick Payment Box Engine (Hanya QRIS, DANA, dan GoPay)
     const defaultPaymentDetails = {
       'QRIS All Payment': {
         type: 'qris',
-        title: 'QRIS All Payment & E-Wallet',
-        number: 'Scan QRIS JaneMarket',
-        owner: 'JaneMarket Official',
-        badge: 'INSTAN 1 DETIK',
-        note: 'Bisa di-scan via BCA Mobile, Livin, GoPay, OVO, DANA, ShopeePay & Semua Bank'
+        title: 'QRIS All Payment (Uperpay Dinamis)',
+        number: 'Scan Barcode Frantz (NMID: ID2025419027029)',
+        owner: 'Frantz',
+        badge: '⚡ NOMINAL TERKUNCI OTOMATIS',
+        note: 'Bisa di-scan via BCA, Mandiri, BRI, BNI, DANA, GoPay & Semua E-Wallet'
       },
       'DANA': {
         type: 'ewallet',
         title: 'DANA Official',
-        number: '081234567890',
-        owner: 'JaneMarket Official',
+        number: '083823567366',
+        owner: 'JaneMurphy Admin',
         badge: 'BEBAS ADMIN',
         note: 'Transfer saldo DANA ke nomor terdaftar di atas'
       },
       'GoPay': {
         type: 'ewallet',
         title: 'GoPay Official',
-        number: '081234567890',
-        owner: 'JaneMarket Official',
+        number: '083823567366',
+        owner: 'JaneMurphy Admin',
         badge: 'BEBAS ADMIN',
         note: 'Transfer saldo GoPay ke nomor terdaftar di atas'
-      },
-      'OVO': {
-        type: 'ewallet',
-        title: 'OVO Premier',
-        number: '081234567890',
-        owner: 'JaneMarket Official',
-        badge: 'PROSES KILAT',
-        note: 'Transfer OVO ke nomor terdaftar di atas'
-      },
-      'ShopeePay': {
-        type: 'ewallet',
-        title: 'ShopeePay',
-        number: '081234567890',
-        owner: 'JaneMarket Official',
-        badge: 'PROSES KILAT',
-        note: 'Transfer saldo ShopeePay ke nomor terdaftar di atas'
-      },
-      'Transfer BCA': {
-        type: 'bank',
-        title: 'Bank Central Asia (BCA)',
-        number: '8720192831',
-        owner: 'JaneMarket Official',
-        badge: 'VERIFIKASI OTOMATIS',
-        note: 'Transfer via BCA Mobile, ATM, atau KlikBCA'
-      },
-      'Transfer Mandiri': {
-        type: 'bank',
-        title: 'Bank Mandiri',
-        number: '1370019283741',
-        owner: 'JaneMarket Official',
-        badge: 'VERIFIKASI OTOMATIS',
-        note: 'Transfer via Livin by Mandiri atau ATM'
       }
     };
 
@@ -10962,20 +11609,50 @@
       let lookupKey = 'QRIS All Payment';
       if (rawMethod.includes('DANA')) lookupKey = 'DANA';
       else if (rawMethod.includes('GoPay')) lookupKey = 'GoPay';
-      else if (rawMethod.includes('OVO')) lookupKey = 'OVO';
-      else if (rawMethod.includes('ShopeePay')) lookupKey = 'ShopeePay';
-      else if (rawMethod.includes('BCA')) lookupKey = 'Transfer BCA';
-      else if (rawMethod.includes('Mandiri')) lookupKey = 'Transfer Mandiri';
       else lookupKey = 'QRIS All Payment';
 
       const info = defaultPaymentDetails[lookupKey] || defaultPaymentDetails['QRIS All Payment'];
       const finalPrice = getSelectedCheckoutPrice();
       const isQris = info.type === 'qris';
 
+      if (isQris) {
+        const waNum = getAdminWhatsAppNumber();
+        const pName = document.getElementById('orderProductTitle')?.textContent?.trim() || 'produk';
+        const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(`Halo admin, saya ingin order ${pName} dan bayar via QRIS (Total: Rp ${Number(finalPrice).toLocaleString('id-ID')})`)}`;
+
+        container.innerHTML = `
+          <div class="checkout-payment-header">
+            <span class="checkout-payment-title">
+              <i class="fa-solid fa-qrcode" style="color: #f97316;"></i>
+              Pembayaran QRIS
+            </span>
+            <span style="font-size: 10px; font-weight: 800; background: rgba(249, 115, 22, 0.15); color: #ea580c; border: 1px solid rgba(249, 115, 22, 0.35); padding: 3px 8px; border-radius: 6px;">
+              ⚠️ DITUTUP SEMENTARA
+            </span>
+          </div>
+
+          <div style="background: rgba(249, 115, 22, 0.05); border: 1.5px dashed #f97316; border-radius: 10px; padding: 16px; text-align: center; margin-top: 10px;">
+            <div style="font-size: 24px; color: #ea580c; margin-bottom: 6px;">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+              Pembayaran QRIS Ditutup Sementara
+            </div>
+            <p style="font-size: 13px; color: #475569; font-weight: 600; margin-bottom: 12px; line-height: 1.4;">
+              Jika ingin menggunakan QRIS, silahkan lanjut ke WhatsApp admin.
+            </p>
+            <a href="${waUrl}" target="_blank" class="btn btn-wa btn-sm" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px;">
+              <i class="fa-brands fa-whatsapp"></i> Lanjut ke WhatsApp Admin
+            </a>
+          </div>
+        `;
+        return;
+      }
+
       container.innerHTML = `
         <div class="checkout-payment-header">
           <span class="checkout-payment-title">
-            <i class="${isQris ? 'fa-solid fa-qrcode' : (info.type === 'bank' ? 'fa-solid fa-building-columns' : 'fa-solid fa-wallet')}" style="color: #60a5fa;"></i>
+            <i class="${info.type === 'bank' ? 'fa-solid fa-building-columns' : 'fa-solid fa-wallet'}" style="color: #60a5fa;"></i>
             ${info.title}
           </span>
           <span style="font-size: 10px; font-weight: 700; background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); padding: 2px 6px; border-radius: 4px;">
@@ -10984,22 +11661,16 @@
         </div>
         <div class="checkout-payment-detail">
           <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px;">
-            <span style="font-size: 11px; color: var(--text-muted);">${isQris ? 'Metode:' : 'No. Rekening / E-Wallet:'}</span>
+            <span style="font-size: 11px; color: var(--text-muted);">No. Rekening / E-Wallet:</span>
             <span class="checkout-acc-number">${info.number}</span>
           </div>
           <div class="checkout-acc-owner">
             Atas Nama: <strong style="color: var(--text-primary);">${info.owner}</strong> • <em>${info.note}</em>
           </div>
           <div class="checkout-pay-actions">
-            ${!isQris ? `
-              <button type="button" class="btn btn-outline btn-sm" onclick="copyToClipboard('${info.number}', '${info.title}')">
-                <i class="fa-solid fa-copy"></i> Salin Nomor
-              </button>
-            ` : `
-              <button type="button" class="btn btn-outline btn-sm" onclick="openPaymentModal(true)">
-                <i class="fa-solid fa-qrcode"></i> Lihat QRIS Toko
-              </button>
-            `}
+            <button type="button" class="btn btn-outline btn-sm" onclick="copyToClipboard('${info.number}', '${info.title}')">
+              <i class="fa-solid fa-copy"></i> Salin Nomor
+            </button>
             <button type="button" class="btn btn-outline btn-sm" onclick="copyToClipboard('Rp ${finalPrice.toLocaleString('id-ID')}', 'Total Tagihan')">
               <i class="fa-solid fa-receipt"></i> Salin Total (Rp ${finalPrice.toLocaleString('id-ID')})
             </button>
@@ -11023,6 +11694,7 @@
     // Modal Management (Prevent Stacking / Clean Transitions)
     function closeAllModals() {
       document.querySelectorAll('.modal-overlay').forEach(el => el.classList.remove('active'));
+      document.body.style.overflow = '';
     }
 
     function openModal(id, closeOthers = true) {
@@ -11030,13 +11702,24 @@
         closeAllModals();
       }
       const el = document.getElementById(id);
-      if (el) el.classList.add('active');
+      if (el) {
+        el.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (id === 'productFormModal') {
+          const body = document.getElementById('productFormModalBody');
+          if (body) body.scrollTop = 0;
+        }
+      }
       playBeep('modal_open');
     }
 
     function closeModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('active');
+      const anyActive = document.querySelector('.modal-overlay.active');
+      if (!anyActive) {
+        document.body.style.overflow = '';
+      }
       playBeep('modal_close');
     }
 
@@ -11062,7 +11745,7 @@
       document.querySelectorAll('.modal-overlay').forEach(overlay => {
         overlay.addEventListener('click', (e) => {
           if (e.target === overlay) {
-            overlay.classList.remove('active');
+            closeModal(overlay.id);
           }
         });
       });
@@ -11290,6 +11973,9 @@
       }
       waText += `💰 *Total Pembayaran:* Rp ${Number(finalCalculatedPrice).toLocaleString('id-ID')}\n`;
       waText += `💳 *Metode Bayar:* ${paymentMethod}\n`;
+      if (paymentMethod.includes('QRIS')) {
+        waText += `ℹ️ *Metode QRIS:* Mohon kirimkan barcode / info pembayaran QRIS dari admin ya min 🙏\n`;
+      }
       waText += `👤 *Nama Pembeli:* ${customerName}\n`;
       if (accountId) {
         waText += `🎮 *Data Akun / ID Game:* ${accountId}\n`;
@@ -11310,9 +11996,6 @@
       }).catch(e => console.warn("Order log note:", e));
 
       closeModal('checkoutModal');
-
-      // Tampilkan struk digital langsung agar user punya bukti order lengkap
-      viewDigitalReceipt(newOrderId);
 
       // Buka WhatsApp langsung anti-blokir popup
       openWhatsAppDirect(waUrl, `Mengarahkan ke WhatsApp (${targetWa})...`);
@@ -11635,9 +12318,13 @@
       const elAnn = document.getElementById('settingAnnouncement');
       if (elAnn) elAnn.value = s.announcement || '';
       const elQris = document.getElementById('settingQrisImage');
-      if (elQris) elQris.value = s.qrisImage || '';
+      if (elQris) elQris.value = (s.qrisImage && !s.qrisImage.includes('unsplash')) ? s.qrisImage : '';
       const elMerchant = document.getElementById('settingQrisMerchant');
-      if (elMerchant) elMerchant.value = s.qrisMerchantName || '';
+      if (elMerchant) elMerchant.value = s.qrisMerchantName || 'Frantz';
+      const elNmid = document.getElementById('settingQrisNmid');
+      if (elNmid) elNmid.value = s.qrisNmid || 'ID2025419027029';
+      const elRaw = document.getElementById('settingQrisRawString');
+      if (elRaw) elRaw.value = s.qrisString || getDefaultUperpayQris();
       const elBTitle = document.getElementById('settingBannerTitle');
       if (elBTitle) elBTitle.value = b.title || '';
       const elBSub = document.getElementById('settingBannerSubtitle');
@@ -11921,9 +12608,6 @@
                 <span style="font-size: 14px; font-weight: 800; color: #38bdf8;">Rp ${Number(order.price || 0).toLocaleString('id-ID')}</span>
               </div>
               <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button type="button" class="btn btn-outline btn-sm" onclick="viewDigitalReceipt('${order.id}')" style="font-size: 11.5px; padding: 5px 10px; border-radius: 8px;" title="Lihat Struk Transaksi Digital">
-                  <i class="fa-solid fa-receipt" style="color: #38bdf8;"></i> Struk
-                </button>
                 <button type="button" class="btn btn-outline btn-sm" onclick="openWhatsAppInquiry('${encodeURIComponent(waCheckText)}')" style="font-size: 11.5px; padding: 5px 10px; border-radius: 8px;">
                   <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Cek WA
                 </button>
@@ -12371,9 +13055,6 @@
 
       const targetWaNumber = getAdminWhatsAppNumber();
       const waUrl = `https://wa.me/${targetWaNumber}?text=${encodeURIComponent(waMessage)}`;
-
-      // Open digital receipt modal directly for user gratification
-      viewDigitalReceipt(orderId);
 
       // Trigger WhatsApp window directly
       openWhatsAppDirect(waUrl, `Mengarahkan ke WhatsApp (${targetWaNumber})...`);
@@ -12865,89 +13546,8 @@
     let currentReceiptOrderData = null;
 
     function viewDigitalReceipt(orderId) {
-      playBeep('pop');
-      const allOrders = storeState.orders || [];
-      const order = allOrders.find(o => String(o.id) === String(orderId)) || (currentUser && getMyOrdersList().find(o => String(o.id) === String(orderId)));
-
-      if (!order) {
-        showToast("Detail struk pesanan tidak ditemukan.");
-        return;
-      }
-
-      currentReceiptOrderData = order;
-      const paper = document.getElementById('digitalReceiptPaper');
-      if (!paper) return;
-
-      const dateFormatted = order.timestamp ? new Date(order.timestamp).toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' }) : 'Hari Ini';
-      const itemsList = Array.isArray(order.items) && order.items.length > 0 ? order.items : [
-        { productName: order.productName, variant: order.variant || 'Default', price: order.price, quantity: 1 }
-      ];
-
-      const storeTitle = (storeState.settings && storeState.settings.storeName) || 'JaneMarket Official';
-
-      paper.innerHTML = `
-        <div class="receipt-header">
-          <img src="https://files.catbox.moe/3tt0xl.png" alt="Logo" class="receipt-logo" onerror="this.src='/LogoJM.jpg'">
-          <h4 class="receipt-store-title">${escapeChatHTML(storeTitle)}</h4>
-          <p class="receipt-store-sub">Official Store • Garansi Penuh 100%</p>
-        </div>
-
-        <div class="receipt-divider"></div>
-
-        <div class="receipt-row">
-          <span>No. Transaksi:</span>
-          <strong>#${escapeChatHTML(order.id)}</strong>
-        </div>
-        <div class="receipt-row">
-          <span>Waktu:</span>
-          <span>${dateFormatted}</span>
-        </div>
-        <div class="receipt-row">
-          <span>Pelanggan:</span>
-          <span>${escapeChatHTML(order.customerName || 'Pembeli')}</span>
-        </div>
-        <div class="receipt-row">
-          <span>Metode Bayar:</span>
-          <span>${escapeChatHTML(order.paymentMethod || 'QRIS')}</span>
-        </div>
-        <div class="receipt-row">
-          <span>Status:</span>
-          <strong style="color: #16a34a;">${escapeChatHTML(order.status || 'Berhasil')}</strong>
-        </div>
-
-        <div class="receipt-divider"></div>
-
-        <div style="font-size: 11px; font-weight: 800; color: #475569; margin-bottom: 8px; text-transform: uppercase;">Rincian Produk</div>
-        ${itemsList.map(item => `
-          <div class="receipt-row" style="margin-bottom: 6px;">
-            <div style="max-width: 68%;">
-              <div style="font-weight: 700; color: #0f172a;">${escapeChatHTML(item.productName || item.name || '-')}</div>
-              <div style="font-size: 11px; color: #64748b;">${escapeChatHTML(item.variant || 'Standar')} x${item.quantity || 1}</div>
-            </div>
-            <div style="font-weight: 700; color: #0f172a;">
-              Rp ${Number(item.price || 0).toLocaleString('id-ID')}
-            </div>
-          </div>
-        `).join('')}
-
-        <div class="receipt-divider"></div>
-
-        <div class="receipt-row total">
-          <span>Total Dibayar:</span>
-          <span>Rp ${Number(order.price || 0).toLocaleString('id-ID')}</span>
-        </div>
-
-        <div class="receipt-barcode">
-          <div class="receipt-barcode-line"></div>
-          <div class="receipt-barcode-code">*${escapeChatHTML(order.id)}*</div>
-        </div>
-
-        <div style="text-align: center; margin-top: 14px; font-size: 11px; color: #64748b;">
-          Terima kasih telah berbelanja di JaneMarket! Simpan struk ini sebagai bukti transaksi resmi.
-        </div>
-      `;
-
-      openModal('digitalReceiptModal');
+      // Fitur struk dinonaktifkan sesuai permintaan admin
+      return;
     }
 
     function shareReceiptWhatsApp() {
@@ -12986,11 +13586,13 @@
         storeName: document.getElementById('settingStoreName').value.trim(),
         storeTagline: document.getElementById('settingStoreTagline').value.trim(),
         storeLogo: logoVal,
-        whatsappNumber: document.getElementById('settingWhatsapp').value.trim() || '6283823567366',
+        whatsappNumber: document.getElementById('settingWhatsapp').value.trim() || '6285139138997',
         ownerEmail: 'ererex4youu@gmail.com',
         announcement: document.getElementById('settingAnnouncement').value.trim(),
         qrisImage: document.getElementById('settingQrisImage').value.trim(),
-        qrisMerchantName: document.getElementById('settingQrisMerchant').value.trim(),
+        qrisMerchantName: document.getElementById('settingQrisMerchant').value.trim() || 'Frantz',
+        qrisNmid: (document.getElementById('settingQrisNmid')?.value || '').trim() || 'ID2025419027029',
+        qrisString: (document.getElementById('settingQrisRawString')?.value || '').trim() || getDefaultUperpayQris(),
         promoBanner: {
           title: document.getElementById('settingBannerTitle').value.trim(),
           subtitle: document.getElementById('settingBannerSubtitle').value.trim(),
@@ -13197,13 +13799,63 @@
       const file = event.target.files && event.target.files[0];
       if (!file) return;
       try {
-        showToast("Mengompres foto QRIS dari galeri...");
-        const result = await compressImageFile(file, 800, 800, 0.85);
+        showToast("Memindai barcode QRIS & mengompres foto...");
+        const result = await compressImageFile(file, 1200, 1200, 0.95);
         const qrisInput = document.getElementById('settingQrisImage');
         if (qrisInput) qrisInput.value = result.dataUrl;
+
+        // Pindai barcode QRIS secara otomatis
+        const scanResult = await decodeQrCodeFromDataUrl(result.dataUrl);
         const status = document.getElementById('qrisFileStatus');
-        if (status) status.innerHTML = `<span style="color:#4ade80;"><i class="fa-solid fa-circle-check"></i> Foto QRIS dimuat (${file.name})</span>`;
-        showToast("Foto QRIS berhasil dipilih dari galeri!");
+
+        if (scanResult && scanResult.data) {
+          const rawQris = scanResult.data;
+          const qrisStrInput = document.getElementById('settingQrisRawString');
+          if (qrisStrInput) qrisStrInput.value = rawQris;
+
+          // Parsing merchant & NMID jika tersedia
+          let merchant = 'Frantz';
+          let nmid = 'ID2025419027029';
+
+          const tag59Match = rawQris.match(/59(\d{2})([A-Za-z0-9\s._\-]+)/);
+          if (tag59Match) {
+            const len = parseInt(tag59Match[1], 10);
+            merchant = tag59Match[2].substring(0, len).trim();
+          }
+
+          const nmidMatch = rawQris.match(/(ID\d{13,17})/);
+          if (nmidMatch) {
+            nmid = nmidMatch[1];
+          }
+
+          const elMerchant = document.getElementById('settingQrisMerchant');
+          if (elMerchant) elMerchant.value = merchant;
+          const elNmid = document.getElementById('settingQrisNmid');
+          if (elNmid) elNmid.value = nmid;
+
+          if (storeState && storeState.settings) {
+            storeState.settings.qrisString = rawQris;
+            storeState.settings.qrisMerchantName = merchant;
+            storeState.settings.qrisNmid = nmid;
+            storeState.settings.qrisImage = result.dataUrl;
+            persistLocalState();
+          }
+
+          if (status) {
+            status.innerHTML = `<span style="color:#10b981; font-weight:800;"><i class="fa-solid fa-circle-check"></i> QRIS Berhasil Terbaca: ${merchant} (${nmid}) - Generator Dinamis Aktif!</span>`;
+          }
+          showToast(`QRIS Berhasil Terhubung: ${merchant} (${nmid})!`);
+        } else {
+          // Tetap simpan foto dan gunakan default generator Frantz
+          if (storeState && storeState.settings) {
+            storeState.settings.qrisImage = result.dataUrl;
+            persistLocalState();
+          }
+          if (status) {
+            status.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-circle-check"></i> Foto QRIS tersimpan (${file.name}). Generator Frantz aktif!</span>`;
+          }
+          showToast("Foto QRIS disimpan!");
+        }
       } catch (err) {
         showToast("Gagal memuat QRIS: " + err.message);
       }
@@ -13393,7 +14045,8 @@
       if (chevron) chevron.style.transform = 'rotate(0deg)';
 
       toggleImageRequirement('Aplikasi Premium');
-      openModal('productFormModal');
+      const isAdminOpen = document.getElementById('adminDashboardModal')?.classList.contains('active');
+      openModal('productFormModal', !isAdminOpen);
     }
 
     function toggleStockCountInput(status) {
@@ -13440,7 +14093,8 @@
       if (chevron) chevron.style.transform = 'rotate(0deg)';
 
       toggleImageRequirement(p.category);
-      openModal('productFormModal');
+      const isAdminOpen = document.getElementById('adminDashboardModal')?.classList.contains('active');
+      openModal('productFormModal', !isAdminOpen);
     }
 
     async function handleProductSubmit(event) {
