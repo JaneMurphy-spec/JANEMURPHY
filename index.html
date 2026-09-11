@@ -8007,6 +8007,16 @@
               <div style="color: #22c55e;"><i class="fa-solid fa-shield-halved"></i> <span id="detailWarranty">Garansi Penuh</span></div>
             </div>
 
+            <!-- Alert Banner jika Stok Habis -->
+            <div id="detailStockHabisBanner" style="display:none; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 13.5px;">
+                <i class="fa-solid fa-triangle-exclamation"></i> Stok Produk Ini Sedang Habis!
+              </div>
+              <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0; line-height: 1.45;">
+                Kuota akun saat ini sedang kosong di sistem. Silakan klik tombol <strong>Chat Admin untuk Restock</strong> di bawah untuk meminta admin mengisi kembali kuota produk ini.
+              </p>
+            </div>
+
             <!-- Price Card -->
             <div class="detail-price-card">
               <div>
@@ -8170,7 +8180,27 @@
             <p id="orderProductDesc" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">-</p>
           </div>
 
-          <div class="form-group">
+          <!-- Confirmed Selected Package Card (Anti-Duplikasi: Paket sudah dipilih di Detail tidak ditanyakan ulang) -->
+          <div id="checkoutSelectedPackageDisplay" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(99, 102, 241, 0.06) 100%); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 38px; height: 38px; border-radius: 9px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; color: #38bdf8; font-size: 16px;">
+                <i class="fa-solid fa-cube"></i>
+              </div>
+              <div>
+                <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 700;">Paket Pilihan Anda</div>
+                <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);" id="checkoutConfirmedVariantName">-</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 15px; font-weight: 800; color: #38bdf8;" id="checkoutConfirmedVariantPrice">Rp 0</div>
+              <button type="button" onclick="backToProductDetail()" style="background: none; border: none; color: #38bdf8; font-size: 11px; cursor: pointer; text-decoration: underline; padding: 0; margin-top: 2px;">
+                <i class="fa-solid fa-pen-to-square"></i> Ganti Paket
+              </button>
+            </div>
+          </div>
+
+          <!-- Hidden redundant selector (preserved in DOM for form compatibility) -->
+          <div class="form-group" id="checkoutVariantGroup" style="display: none;">
             <label class="form-label">Pilih Varian / Paket / Durasi</label>
             <div class="variant-selector" id="checkoutVariantSelector">
               <!-- Injected via JS -->
@@ -8495,6 +8525,41 @@
           <i class="fa-brands fa-whatsapp" style="color: #22c55e;"></i> Kirim ke WhatsApp
         </button>
         <button type="button" class="btn btn-dark btn-sm" onclick="closeModal('digitalReceiptModal')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Peringatan Stok Habis & Arahkan Chat Admin -->
+  <div class="modal-overlay" id="stockHabisModal">
+    <div class="modal-box" style="max-width: 440px; text-align: center; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.5);">
+      <div class="modal-header" style="border-bottom: none; padding: 16px 20px 0; justify-content: flex-end;">
+        <button class="modal-close" onclick="closeModal('stockHabisModal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div style="padding: 6px 24px 24px;">
+        <div style="width: 68px; height: 68px; margin: 0 auto 16px; border-radius: 50%; background: rgba(239, 68, 68, 0.12); border: 2px solid rgba(239, 68, 68, 0.35); display: flex; align-items: center; justify-content: center; color: #ef4444; font-size: 30px;">
+          <i class="fa-solid fa-box-open"></i>
+        </div>
+        <div style="display: inline-block; font-size: 11px; font-weight: 800; color: #ef4444; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.28); border-radius: 20px; padding: 4px 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+          ⚠️ Stok Sedang Habis
+        </div>
+        <h4 style="font-size: 19px; font-weight: 800; margin-bottom: 8px; color: var(--text-primary);" id="stockHabisProductName">Nama Produk</h4>
+        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 22px;">
+          Mohon maaf, kuota/stok untuk produk ini saat ini sedang kosong. Silakan langsung <strong>chat Admin di WhatsApp</strong> untuk request restock agar kuota akun segera kami sediakan kembali untuk Anda!
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <button type="button" class="btn btn-wa" id="stockHabisChatAdminBtn" style="width: 100%; justify-content: center; font-size: 14px; font-weight: 700; padding: 13px 18px; border-radius: 10px;">
+            <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Chat Admin untuk Request Restock
+          </button>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn btn-outline" id="stockHabisDetailBtn" style="flex: 1; justify-content: center; font-size: 12px; font-weight: 600; padding: 9px;">
+              <i class="fa-solid fa-circle-info"></i> Lihat Info Produk
+            </button>
+            <button type="button" class="btn btn-dark" onclick="closeModal('stockHabisModal')" style="flex: 1; justify-content: center; font-size: 12px; font-weight: 600; padding: 9px;">
+              Tutup
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -10661,8 +10726,64 @@
     // Product Detail Engine (Click on Product Card)
     let currentDetailProductId = null;
 
+    function isProductSoldOut(prod) {
+      if (!prod) return false;
+      const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+      return curStock <= 0 || prod.stockStatus === 'soldout';
+    }
+
+    function openStockHabisModal(prod) {
+      if (!prod) return;
+      playBeep('pop');
+
+      const titleEl = document.getElementById('stockHabisProductName');
+      if (titleEl) titleEl.textContent = prod.name;
+
+      const chatBtn = document.getElementById('stockHabisChatAdminBtn');
+      if (chatBtn) {
+        chatBtn.onclick = () => {
+          contactAdminRestock(prod.id);
+          closeModal('stockHabisModal');
+        };
+      }
+
+      const detailBtn = document.getElementById('stockHabisDetailBtn');
+      if (detailBtn) {
+        detailBtn.onclick = () => {
+          closeModal('stockHabisModal');
+          openProductDetailModal(prod.id);
+        };
+      }
+
+      openModal('stockHabisModal');
+    }
+
+    function contactAdminRestock(productId) {
+      playBeep('click');
+      const prod = (storeState.products || []).find(p => String(p.id) === String(productId));
+      const pName = prod ? prod.name : 'Produk';
+      let waNum = (storeState && storeState.settings && storeState.settings.whatsappNumber) 
+        ? String(storeState.settings.whatsappNumber).trim() 
+        : '6285139138997';
+      waNum = waNum.replace(/\D/g, '');
+      if (waNum.startsWith('0')) waNum = '62' + waNum.slice(1);
+
+      const storeName = (storeState.settings && storeState.settings.storeName) || 'JaneMurphy';
+      const msg = `Halo Admin ${storeName},\n\nSaya ingin memesan produk *${pName}*, tetapi stok di website saat ini sedang kosong/habis.\n\nApakah bisa dibantu untuk *Request Restock* produk ini? Mohon infonya ya admin, terima kasih! 🙏`;
+      const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
+
+      showToast(`Membuka WhatsApp Admin untuk request restock ${pName}...`);
+      window.open(waUrl, '_blank');
+    }
+
     function handleProductCardClick(event, productId, cardElement) {
       if (isSoundEnabled) playBeep('tap');
+
+      const prod = (storeState.products || []).find(p => String(p.id) === String(productId));
+      if (prod && isProductSoldOut(prod)) {
+        openStockHabisModal(prod);
+        return;
+      }
 
       // Add visual ripple and micro-bounce ONLY to clicked product card
       if (cardElement && event) {
@@ -10904,6 +11025,31 @@
           <span class="detail-variant-chip-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
         </div>
       `).join('');
+
+      // Handle Sold Out state in Detail Modal
+      const isSoldOut = isProductSoldOut(prod);
+      const habisBanner = document.getElementById('detailStockHabisBanner');
+      if (habisBanner) {
+        habisBanner.style.display = isSoldOut ? 'block' : 'none';
+      }
+
+      const addToCartBtn = document.getElementById('detailAddToCartBtn');
+      if (addToCartBtn) {
+        addToCartBtn.style.display = isSoldOut ? 'none' : 'inline-flex';
+      }
+
+      const orderBtn = document.getElementById('detailOrderBtn');
+      if (orderBtn) {
+        if (isSoldOut) {
+          orderBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Chat Admin untuk Restock';
+          orderBtn.className = 'btn btn-wa';
+          orderBtn.onclick = () => contactAdminRestock(prod.id);
+        } else {
+          orderBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Beli Sekarang';
+          orderBtn.className = 'btn btn-wa';
+          orderBtn.onclick = proceedOrderFromDetail;
+        }
+      }
 
       // Initialize Reviews & Tab
       switchProductDetailTab('desc');
@@ -11240,6 +11386,11 @@
 
     function proceedOrderFromDetail() {
       if (!currentDetailProductId) return;
+      const prod = (storeState.products || []).find(p => String(p.id) === String(currentDetailProductId));
+      if (prod && isProductSoldOut(prod)) {
+        contactAdminRestock(currentDetailProductId);
+        return;
+      }
       closeModal('productDetailModal');
       openCheckoutModal(currentDetailProductId);
     }
@@ -11836,8 +11987,9 @@
 
     function backToProductDetail() {
       closeAllModals();
-      if (currentDetailProductId) {
-        openProductDetailModal(currentDetailProductId);
+      const pId = currentDetailProductId || document.getElementById('orderProductId')?.value;
+      if (pId) {
+        openProductDetailModal(pId);
       }
     }
 
@@ -11955,6 +12107,11 @@
       const prod = storeState.products.find(p => String(p.id) === String(productId));
       if (!prod) return;
 
+      if (isProductSoldOut(prod)) {
+        contactAdminRestock(productId);
+        return;
+      }
+
       playBeep('click');
       removeVoucher();
 
@@ -11978,19 +12135,40 @@
         { name: "Paket Standar", price: prod.price || 0 }
       ];
 
-      const variantContainer = document.getElementById('checkoutVariantSelector');
-      variantContainer.innerHTML = variants.map((v, idx) => `
-        <label class="variant-radio-label ${idx === 0 ? 'selected' : ''}" onclick="selectVariant('${v.name}', ${v.price}, this)">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="radio" class="variant-radio-input" name="order_variant" value="${v.name}" ${idx === 0 ? 'checked' : ''}>
-            <span class="variant-name">${v.name}</span>
-          </div>
-          <span class="variant-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
-        </label>
-      `).join('');
+      // Keep user's chosen variant from Detail Produk if valid (Anti-Duplikasi: Jangan suruh pilih paket lagi)
+      const matched = variants.find(v => v.name === selectedVariantName);
+      if (matched) {
+        selectedVariantPrice = matched.price;
+      } else if (!selectedVariantName || !variants.some(v => v.name === selectedVariantName)) {
+        selectedVariantName = variants[0].name;
+        selectedVariantPrice = variants[0].price;
+      }
 
-      selectedVariantName = variants[0].name;
-      selectedVariantPrice = variants[0].price;
+      // Display confirmed chosen variant cleanly
+      const confirmedDisplay = document.getElementById('checkoutSelectedPackageDisplay');
+      const confirmedName = document.getElementById('checkoutConfirmedVariantName');
+      const confirmedPrice = document.getElementById('checkoutConfirmedVariantPrice');
+      if (confirmedName) confirmedName.textContent = selectedVariantName;
+      if (confirmedPrice) confirmedPrice.textContent = `Rp ${Number(selectedVariantPrice).toLocaleString('id-ID')}`;
+      if (confirmedDisplay) confirmedDisplay.style.display = 'flex';
+
+      // Always HIDE the redundant variant picker so the user is NEVER asked to choose package again!
+      const variantGroup = document.getElementById('checkoutVariantGroup');
+      if (variantGroup) variantGroup.style.display = 'none';
+
+      const variantContainer = document.getElementById('checkoutVariantSelector');
+      if (variantContainer) {
+        variantContainer.innerHTML = variants.map((v) => `
+          <label class="variant-radio-label ${v.name === selectedVariantName ? 'selected' : ''}" onclick="selectVariant('${v.name}', ${v.price}, this)">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" class="variant-radio-input" name="order_variant" value="${v.name}" ${v.name === selectedVariantName ? 'checked' : ''}>
+              <span class="variant-name">${v.name}</span>
+            </div>
+            <span class="variant-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
+          </label>
+        `).join('');
+      }
+
       recalculateCheckoutPrice();
 
       openModal('checkoutModal');
@@ -12110,7 +12288,21 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
+      }).then(res => res.json()).then(resData => {
+        if (resData && resData.products) {
+          storeState.products = resData.products;
+          recalculateBestSellersClient();
+          renderProducts();
+          populateAdminProductsTable();
+          populateAdminStats();
+        }
       }).catch(e => console.warn("Order log note:", e));
+
+      if (isFirebaseReady && db) {
+        try {
+          db.collection('orders').doc(newOrderId).set(orderData, { merge: true }).catch(() => {});
+        } catch (e) {}
+      }
 
       closeModal('checkoutModal');
 
@@ -12474,12 +12666,17 @@
           <td style="font-weight:700;color:#38bdf8;">Rp ${Number(o.price || 0).toLocaleString('id-ID')}</td>
           <td style="font-size:11px;color:var(--text-muted);">${o.timestamp ? new Date(o.timestamp).toLocaleString('id-ID') : '-'}</td>
           <td>
-            <select class="form-input" style="padding:4px 8px;font-size:11px;border-radius:6px;width:auto;min-width:125px;font-weight:700;" onchange="updateOrderStatus('${o.id}', this.value)">
-              <option value="Diproses" ${currentStatus === 'Diproses' ? 'selected' : ''}>⚡ Diproses</option>
-              <option value="Selesai" ${currentStatus === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
-              <option value="Pending" ${currentStatus === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
-              <option value="Dibatalkan" ${currentStatus === 'Dibatalkan' ? 'selected' : ''}>❌ Dibatalkan</option>
-            </select>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <select class="form-input" style="padding:4px 8px;font-size:11px;border-radius:6px;width:auto;min-width:115px;font-weight:700;" onchange="updateOrderStatus('${o.id}', this.value)">
+                <option value="Diproses" ${currentStatus === 'Diproses' ? 'selected' : ''}>⚡ Diproses</option>
+                <option value="Selesai" ${currentStatus === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
+                <option value="Pending" ${currentStatus === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
+                <option value="Dibatalkan" ${currentStatus === 'Dibatalkan' ? 'selected' : ''}>❌ Dibatalkan</option>
+              </select>
+              <button class="btn btn-outline btn-sm" onclick="deleteOrder('${o.id}')" title="Hapus Riwayat Pesanan" style="padding:4px 7px;font-size:11px;color:#ef4444;border-color:rgba(239,68,68,0.3);">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
           </td>
         </tr>
       `;
@@ -12501,17 +12698,59 @@
         updateMyOrdersBadges();
 
         try {
-          await fetch(`/api/orders/${orderId}`, {
+          const res = await fetch(`/api/orders/${orderId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus })
           });
+          const resData = await res.json();
+          if (resData && resData.products) {
+            storeState.products = resData.products;
+            recalculateBestSellersClient();
+            renderProducts();
+            populateAdminProductsTable();
+          }
         } catch (e) {
           console.warn("Update status note:", e);
         }
 
+        if (isFirebaseReady && db) {
+          try {
+            await db.collection('orders').doc(orderId).set({ status: newStatus }, { merge: true });
+          } catch (e) {}
+        }
+
         playBeep('success');
         showToast(`Status pesanan ${orderId} diubah menjadi: ${newStatus}`);
+      }
+    }
+
+    async function deleteOrder(orderId) {
+      if (!confirm(`Yakin ingin menghapus riwayat pesanan #${orderId}? Tindakan ini tidak dapat dibatalkan.`)) return;
+
+      const idx = (storeState.orders || []).findIndex(o => String(o.id) === String(orderId));
+      if (idx !== -1) {
+        storeState.orders.splice(idx, 1);
+        persistLocalState();
+        populateAdminOrdersTable();
+        populateAdminStats();
+        if (document.getElementById('myOrdersModal')?.classList.contains('active')) {
+          renderMyOrders();
+        }
+        updateMyOrdersBadges();
+
+        try {
+          await fetch(`/api/orders/${orderId}`, { method: 'DELETE' });
+        } catch (e) {}
+
+        if (isFirebaseReady && db) {
+          try {
+            await db.collection('orders').doc(orderId).delete();
+          } catch (e) {}
+        }
+
+        playBeep('success');
+        showToast(`Pesanan #${orderId} berhasil dihapus.`);
       }
     }
 
@@ -12840,18 +13079,18 @@
     }
 
     function quickAddToCart(productId) {
-      playBeep('pop');
       const prod = (storeState.products || []).find(p => String(p.id) === String(productId));
       if (!prod) {
         showToast("Produk tidak ditemukan.");
         return;
       }
 
-      if (prod.stockStatus === 'soldout') {
-        showToast("Maaf, stok produk ini sedang habis.");
+      if (isProductSoldOut(prod)) {
+        openStockHabisModal(prod);
         return;
       }
 
+      playBeep('pop');
       const items = getCartItems();
       const defaultVariant = (Array.isArray(prod.variants) && prod.variants[0]) ? prod.variants[0].name : 'Standar';
       const itemPrice = (Array.isArray(prod.variants) && prod.variants[0]) ? Number(prod.variants[0].price) : Number(prod.price || 0);
@@ -12876,17 +13115,17 @@
     }
 
     function addCurrentProductToCart() {
-      playBeep('pop');
       if (!currentDetailProductId) return;
 
       const prod = (storeState.products || []).find(p => String(p.id) === String(currentDetailProductId));
       if (!prod) return;
 
-      if (prod.stockStatus === 'soldout') {
-        showToast("Maaf, stok produk ini sedang habis.");
+      if (isProductSoldOut(prod)) {
+        openStockHabisModal(prod);
         return;
       }
 
+      playBeep('pop');
       const items = getCartItems();
       const variantName = selectedVariantName || 'Standar';
       const variantPrice = Number(selectedVariantPrice || prod.price || 0);
@@ -13094,6 +13333,18 @@
         return;
       }
 
+      // Guard: Cek apakah ada item di keranjang yang stoknya sudah habis
+      const soldOutItem = items.find(it => {
+        const prod = storeState.products?.find(p => String(p.id) === String(it.productId || it.id));
+        return prod && isProductSoldOut(prod);
+      });
+      if (soldOutItem) {
+        const prod = storeState.products?.find(p => String(p.id) === String(soldOutItem.productId || soldOutItem.id));
+        closeModal('cartModal');
+        openStockHabisModal(prod || { name: soldOutItem.name, id: soldOutItem.productId });
+        return;
+      }
+
       const custName = (document.getElementById('cartCustomerName')?.value || '').trim();
       const custPhone = (document.getElementById('cartCustomerPhone')?.value || '').trim();
       const custNotes = (document.getElementById('cartCustomerNotes')?.value || '').trim();
@@ -13159,23 +13410,42 @@
       // 3. Logika Best Seller Otomatis
       recalculateBestSellersClient();
 
-      // Add to storeState orders
-      if (!storeState.orders) storeState.orders = [];
+      // Add to storeState orders & update stats
+      if (!storeState.stats) storeState.stats = {};
+      storeState.stats.totalOrders = (Number(storeState.stats.totalOrders) || 0) + 1;
+      storeState.stats.totalRevenue = (Number(storeState.stats.totalRevenue) || 0) + finalPrice;
+
+      if (!Array.isArray(storeState.orders)) storeState.orders = [];
       storeState.orders.unshift(orderData);
       saveLocalOrderId(orderId);
       persistLocalState();
       renderProducts();
       updateMyOrdersBadges();
+      populateAdminStats();
 
       // Post to server orders API
       try {
-        await fetch('/api/orders', {
+        const res = await fetch('/api/orders', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(orderData)
         });
+        const resData = await res.json();
+        if (resData && resData.products) {
+          storeState.products = resData.products;
+          recalculateBestSellersClient();
+          renderProducts();
+          populateAdminProductsTable();
+          populateAdminStats();
+        }
       } catch (e) {
         console.warn('API sync warn:', e);
+      }
+
+      if (isFirebaseReady && db) {
+        try {
+          db.collection('orders').doc(orderId).set(orderData, { merge: true }).catch(() => {});
+        } catch (e) {}
       }
 
       // Empty cart

@@ -592,6 +592,14 @@ module.exports = async (req, res) => {
     store.products.unshift(newProduct);
     recalculateBestSellers(store.products, 5);
     saveStoreData(store);
+
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        firestore.collection("products").doc(String(newProduct.id)).set(newProduct, { merge: true }).catch(() => {});
+      } catch (e) {}
+    }
+
     return sendJson(res, 201, { success: true, product: newProduct, message: "Produk berhasil ditambahkan!" });
   }
 
@@ -624,6 +632,14 @@ module.exports = async (req, res) => {
 
     recalculateBestSellers(store.products, 5);
     saveStoreData(store);
+
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        firestore.collection("products").doc(String(id)).set(store.products[index], { merge: true }).catch(() => {});
+      } catch (e) {}
+    }
+
     return sendJson(res, 200, { success: true, product: store.products[index], message: "Produk berhasil diperbarui!" });
   }
 
@@ -638,6 +654,14 @@ module.exports = async (req, res) => {
     }
 
     saveStoreData(store);
+
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        firestore.collection("products").doc(String(id)).delete().catch(() => {});
+      } catch (e) {}
+    }
+
     return sendJson(res, 200, { success: true, message: "Produk berhasil dihapus!" });
   }
 
@@ -646,6 +670,14 @@ module.exports = async (req, res) => {
     const body = await parseBody(req);
     store.settings = { ...store.settings, ...body };
     saveStoreData(store);
+
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        firestore.collection("settings").doc("store_settings").set(store.settings, { merge: true }).catch(() => {});
+      } catch (e) {}
+    }
+
     return sendJson(res, 200, { success: true, settings: store.settings, message: "Pengaturan berhasil disimpan!" });
   }
 
@@ -666,6 +698,7 @@ module.exports = async (req, res) => {
       customerName: body.customerName ? String(body.customerName).trim() : "Customer",
       customerPhone: body.customerPhone || "",
       customerUid: body.customerUid || "",
+      userEmail: body.userEmail || "",
       productName: isCartOrder ? (body.items.map(i => `${i.productName || i.name || 'Produk'} (${i.variant || 'Standard'} x${i.quantity || 1})`).join(", ")) : (body.productName || "-"),
       category: isCartOrder ? "Paket Keranjang (" + body.items.length + " item)" : (body.category || "-"),
       variant: isCartOrder ? (body.items.length + " Produk Dipilih") : (body.variant || "-"),
@@ -675,8 +708,8 @@ module.exports = async (req, res) => {
       discountCode: body.discountCode || "",
       discountAmount: Number(body.discountAmount) || 0,
       paymentMethod: body.paymentMethod || "QRIS",
-      timestamp: new Date().toISOString(),
-      status: "Selesai",
+      timestamp: body.timestamp || new Date().toISOString(),
+      status: body.status || "Diproses",
       accountId: body.accountId || "",
       notes: body.notes || ""
     };
@@ -688,6 +721,7 @@ module.exports = async (req, res) => {
     // ========================================================
     // 1. PENGURANGAN STOK & 2. HITUNG TOTAL PENJUALAN (total_terjual)
     // ========================================================
+    const affectedProducts = [];
     const processItemSale = (prodId, qty) => {
       const prod = store.products.find(p => String(p.id) === String(prodId));
       if (prod) {
@@ -710,6 +744,7 @@ module.exports = async (req, res) => {
         const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount !== undefined ? prod.soldCount : 0));
         prod.total_terjual = curSold + quantity;
         prod.soldCount = prod.total_terjual;
+        affectedProducts.push(prod);
       }
     };
 
@@ -723,8 +758,26 @@ module.exports = async (req, res) => {
 
     // 3. Logika Best Seller Otomatis (Top 5 produk berdasarkan total_terjual)
     recalculateBestSellers(store.products, 5);
-
     saveStoreData(store);
+
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        firestore.collection("orders").doc(newOrder.id).set(newOrder, { merge: true }).catch(() => {});
+        for (const p of affectedProducts) {
+          firestore.collection("products").doc(String(p.id)).set({
+            stock: p.stock,
+            stockCount: p.stockCount,
+            stockStatus: p.stockStatus,
+            total_terjual: p.total_terjual,
+            soldCount: p.soldCount,
+            is_best_seller: p.is_best_seller,
+            badge: p.badge
+          }, { merge: true }).catch(() => {});
+        }
+      } catch (e) {}
+    }
+
     return sendJson(res, 201, { success: true, order: newOrder, products: store.products });
   }
 
@@ -733,13 +786,101 @@ module.exports = async (req, res) => {
     const orderId = pathname.replace(/^\/(api\/)?orders\//, "");
     const body = await parseBody(req);
     const target = store.orders.find(o => String(o.id) === String(orderId));
-    if (target) {
-      if (body.status) target.status = body.status;
-      if (body.notes) target.notes = body.notes;
-      saveStoreData(store);
-      return sendJson(res, 200, { success: true, order: target });
+    if (!target) {
+      return sendJson(res, 404, { success: false, error: "Pesanan tidak ditemukan" });
     }
-    return sendJson(res, 404, { success: false, error: "Pesanan tidak ditemukan" });
+
+    const prevStatus = target.status;
+    const newStatus = body.status || prevStatus;
+    if (body.status) target.status = body.status;
+    if (body.notes !== undefined) target.notes = body.notes;
+
+    const affectedProducts = [];
+    if (prevStatus !== "Dibatalkan" && newStatus === "Dibatalkan") {
+      const items = Array.isArray(target.items) && target.items.length > 0 ? target.items : (target.productId ? [{ id: target.productId, quantity: target.quantity || 1 }] : []);
+      items.forEach(it => {
+        const prod = store.products.find(p => String(p.id) === String(it.id || it.productId));
+        if (prod) {
+          const qty = Math.max(1, Number(it.quantity) || 1);
+          const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+          prod.stock = curStock + qty;
+          prod.stockCount = prod.stock;
+          if (prod.stock > 5) prod.stockStatus = "ready";
+          else if (prod.stock > 0) prod.stockStatus = "limited";
+
+          const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
+          prod.total_terjual = Math.max(0, curSold - qty);
+          prod.soldCount = prod.total_terjual;
+          affectedProducts.push(prod);
+        }
+      });
+      recalculateBestSellers(store.products, 5);
+    } else if (prevStatus === "Dibatalkan" && newStatus !== "Dibatalkan") {
+      const items = Array.isArray(target.items) && target.items.length > 0 ? target.items : (target.productId ? [{ id: target.productId, quantity: target.quantity || 1 }] : []);
+      items.forEach(it => {
+        const prod = store.products.find(p => String(p.id) === String(it.id || it.productId));
+        if (prod) {
+          const qty = Math.max(1, Number(it.quantity) || 1);
+          const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+          prod.stock = Math.max(0, curStock - qty);
+          prod.stockCount = prod.stock;
+          if (prod.stock <= 0) prod.stockStatus = "soldout";
+          else if (prod.stock <= 5) prod.stockStatus = "limited";
+          else prod.stockStatus = "ready";
+
+          const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
+          prod.total_terjual = curSold + qty;
+          prod.soldCount = prod.total_terjual;
+          affectedProducts.push(prod);
+        }
+      });
+      recalculateBestSellers(store.products, 5);
+    }
+
+    saveStoreData(store);
+
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        firestore.collection("orders").doc(String(target.id)).set(target, { merge: true }).catch(() => {});
+        for (const p of affectedProducts) {
+          firestore.collection("products").doc(String(p.id)).set({
+            stock: p.stock,
+            stockCount: p.stockCount,
+            stockStatus: p.stockStatus,
+            total_terjual: p.total_terjual,
+            soldCount: p.soldCount,
+            is_best_seller: p.is_best_seller,
+            badge: p.badge
+          }, { merge: true }).catch(() => {});
+        }
+      } catch (e) {}
+    }
+
+    return sendJson(res, 200, { success: true, order: target, products: store.products });
+  }
+
+  // 7d. DELETE /api/orders/:id
+  if ((pathname.startsWith("/api/orders/") || pathname.startsWith("/orders/")) && method === "DELETE") {
+    const orderId = pathname.replace(/^\/(api\/)?orders\//, "");
+    const index = store.orders.findIndex(o => String(o.id) === String(orderId));
+    if (index === -1) {
+      return sendJson(res, 404, { success: false, error: "Pesanan tidak ditemukan" });
+    }
+
+    const deleted = store.orders.splice(index, 1)[0];
+    store.stats.totalOrders = Math.max(0, (store.stats.totalOrders || 1) - 1);
+    store.stats.totalRevenue = Math.max(0, (store.stats.totalRevenue || 0) - (Number(deleted.price) || 0));
+    saveStoreData(store);
+
+    const firestore = getAdminFirestore();
+    if (firestore) {
+      try {
+        firestore.collection("orders").doc(String(orderId)).delete().catch(() => {});
+      } catch (e) {}
+    }
+
+    return sendJson(res, 200, { success: true, message: "Pesanan berhasil dihapus" });
   }
 
   // 7b. POST /api/reviews

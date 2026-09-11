@@ -399,6 +399,16 @@ const appHandler = async (request, response) => {
       store.products.unshift(newProduct);
       recalculateBestSellers(store.products, 5);
       saveStoreData(store);
+
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("products").doc(String(newProduct.id)).set(newProduct, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore product create sync notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 201, { success: true, product: newProduct, message: "Produk berhasil ditambahkan!" });
     }
 
@@ -431,6 +441,16 @@ const appHandler = async (request, response) => {
 
       recalculateBestSellers(store.products, 5);
       saveStoreData(store);
+
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("products").doc(String(id)).set(store.products[index], { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore product update sync notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 200, { success: true, product: store.products[index], message: "Produk berhasil diperbarui!" });
     }
 
@@ -445,6 +465,16 @@ const appHandler = async (request, response) => {
       }
 
       saveStoreData(store);
+
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("products").doc(String(id)).delete();
+        } catch (fErr) {
+          console.warn("Firestore product delete sync notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 200, { success: true, message: "Produk berhasil dihapus!" });
     }
 
@@ -453,6 +483,16 @@ const appHandler = async (request, response) => {
       const body = await parseBody(request);
       store.settings = { ...store.settings, ...body };
       saveStoreData(store);
+
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("settings").doc("store_settings").set(store.settings, { merge: true });
+        } catch (fErr) {
+          console.warn("Firestore settings update sync notice:", fErr.message);
+        }
+      }
+
       return sendJson(response, 200, { success: true, settings: store.settings, message: "Pengaturan berhasil disimpan!" });
     }
 
@@ -473,6 +513,7 @@ const appHandler = async (request, response) => {
         customerName: body.customerName ? String(body.customerName).trim() : "Customer",
         customerPhone: body.customerPhone || "",
         customerUid: body.customerUid || "",
+        userEmail: body.userEmail || "",
         productName: isCartOrder ? (body.items.map(i => `${i.productName || i.name || 'Produk'} (${i.variant || 'Standard'} x${i.quantity || 1})`).join(", ")) : (body.productName || "-"),
         category: isCartOrder ? "Paket Keranjang (" + body.items.length + " item)" : (body.category || "-"),
         variant: isCartOrder ? (body.items.length + " Produk Dipilih") : (body.variant || "-"),
@@ -482,8 +523,8 @@ const appHandler = async (request, response) => {
         discountCode: body.discountCode || "",
         discountAmount: Number(body.discountAmount) || 0,
         paymentMethod: body.paymentMethod || "QRIS",
-        timestamp: new Date().toISOString(),
-        status: "Selesai",
+        timestamp: body.timestamp || new Date().toISOString(),
+        status: body.status || "Diproses",
         accountId: body.accountId || "",
         notes: body.notes || ""
       };
@@ -820,13 +861,116 @@ const appHandler = async (request, response) => {
       const orderId = pathname.replace("/api/orders/", "");
       const body = await parseBody(request);
       const target = store.orders.find(o => String(o.id) === String(orderId));
-      if (target) {
-        if (body.status) target.status = body.status;
-        if (body.notes) target.notes = body.notes;
-        saveStoreData(store);
-        return sendJson(response, 200, { success: true, order: target });
+      if (!target) {
+        return sendJson(response, 404, { success: false, error: "Pesanan tidak ditemukan" });
       }
-      return sendJson(response, 404, { success: false, error: "Pesanan tidak ditemukan" });
+
+      const prevStatus = target.status;
+      const newStatus = body.status || prevStatus;
+      if (body.status) target.status = body.status;
+      if (body.notes !== undefined) target.notes = body.notes;
+
+      // Handle Stock Rollback if order is cancelled, or Re-deduct if uncancelled
+      const affectedProducts = [];
+      if (prevStatus !== "Dibatalkan" && newStatus === "Dibatalkan") {
+        // Rollback stock & total_terjual
+        const items = Array.isArray(target.items) && target.items.length > 0 
+          ? target.items 
+          : (target.productId ? [{ id: target.productId, quantity: target.quantity || 1 }] : []);
+        
+        items.forEach(it => {
+          const prodId = it.id || it.productId;
+          const prod = store.products.find(p => String(p.id) === String(prodId));
+          if (prod) {
+            const qty = Math.max(1, Number(it.quantity) || 1);
+            const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+            prod.stock = curStock + qty;
+            prod.stockCount = prod.stock;
+            if (prod.stock > 5) prod.stockStatus = "ready";
+            else if (prod.stock > 0) prod.stockStatus = "limited";
+
+            const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
+            prod.total_terjual = Math.max(0, curSold - qty);
+            prod.soldCount = prod.total_terjual;
+            affectedProducts.push(prod);
+          }
+        });
+        recalculateBestSellers(store.products, 5);
+      } else if (prevStatus === "Dibatalkan" && newStatus !== "Dibatalkan") {
+        // Re-deduct stock & total_terjual
+        const items = Array.isArray(target.items) && target.items.length > 0 
+          ? target.items 
+          : (target.productId ? [{ id: target.productId, quantity: target.quantity || 1 }] : []);
+        
+        items.forEach(it => {
+          const prodId = it.id || it.productId;
+          const prod = store.products.find(p => String(p.id) === String(prodId));
+          if (prod) {
+            const qty = Math.max(1, Number(it.quantity) || 1);
+            const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
+            prod.stock = Math.max(0, curStock - qty);
+            prod.stockCount = prod.stock;
+            if (prod.stock <= 0) prod.stockStatus = "soldout";
+            else if (prod.stock <= 5) prod.stockStatus = "limited";
+            else prod.stockStatus = "ready";
+
+            const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
+            prod.total_terjual = curSold + qty;
+            prod.soldCount = prod.total_terjual;
+            affectedProducts.push(prod);
+          }
+        });
+        recalculateBestSellers(store.products, 5);
+      }
+
+      saveStoreData(store);
+
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("orders").doc(String(target.id)).set(target, { merge: true });
+          for (const p of affectedProducts) {
+            await firestore.collection("products").doc(String(p.id)).set({
+              stock: p.stock,
+              stockCount: p.stockCount,
+              stockStatus: p.stockStatus,
+              total_terjual: p.total_terjual,
+              soldCount: p.soldCount,
+              is_best_seller: p.is_best_seller,
+              badge: p.badge
+            }, { merge: true });
+          }
+        } catch (fErr) {
+          console.warn("Firestore order update sync notice:", fErr.message);
+        }
+      }
+
+      return sendJson(response, 200, { success: true, order: target, products: store.products });
+    }
+
+    // 7g. DELETE /api/orders/:id (Delete order record)
+    if (pathname.startsWith("/api/orders/") && method === "DELETE") {
+      const orderId = pathname.replace("/api/orders/", "");
+      const index = store.orders.findIndex(o => String(o.id) === String(orderId));
+      if (index === -1) {
+        return sendJson(response, 404, { success: false, error: "Pesanan tidak ditemukan" });
+      }
+
+      const deleted = store.orders.splice(index, 1)[0];
+      store.stats.totalOrders = Math.max(0, (store.stats.totalOrders || 1) - 1);
+      store.stats.totalRevenue = Math.max(0, (store.stats.totalRevenue || 0) - (Number(deleted.price) || 0));
+      saveStoreData(store);
+
+      const firestore = getAdminFirestore();
+      if (firestore) {
+        try {
+          await firestore.collection("orders").doc(String(orderId)).delete();
+        } catch (fErr) {
+          console.warn("Firestore order delete sync notice:", fErr.message);
+        }
+      }
+
+      return sendJson(response, 200, { success: true, message: "Pesanan berhasil dihapus" });
     }
 
     // 7b. POST /api/reviews (Add product review)
@@ -847,9 +991,11 @@ const appHandler = async (request, response) => {
         prod.reviews = [];
       }
 
+      const authorName = (name && name.trim()) ? name.trim() : "Pembeli Terverifikasi";
       const newReview = {
         id: "rev-" + Date.now(),
-        name: (name && name.trim()) ? name.trim() : "Pembeli Terverifikasi",
+        name: authorName,
+        userName: authorName,
         rating: Math.max(1, Math.min(5, Number(rating) || 5)),
         date: "Baru saja",
         comment: comment.trim(),
@@ -945,8 +1091,9 @@ const appHandler = async (request, response) => {
         `- ${p.name} [Kategori: ${p.category}]: Harga mulai Rp ${p.price.toLocaleString('id-ID')}, Terjual ${p.soldCount || 0}x, Garansi: ${p.warranty || 'Garansi Resmi'}. ${p.description}`
       ).join("\n");
 
-      const systemPrompt = `Kamu adalah JaneMarket AI Assistant, asisten cerdas, ramah, dan profesional dari toko JaneMarket.
-JaneMarket menjual:
+      const storeTitle = store.settings.storeName || "JaneMurphy";
+      const systemPrompt = `Kamu adalah ${storeTitle} AI Assistant, asisten cerdas, ramah, dan profesional dari toko ${storeTitle}.
+${storeTitle} menjual:
 1. Aplikasi Premium (Netflix 4K, Spotify, Canva Pro, YouTube Premium, ChatGPT Plus, CapCut Pro, dll.)
 2. Topup Game Instan (Mobile Legends, Free Fire, Valorant, dll.)
 3. Jasa Desain Poster & Banner (Poster Event, Spanduk Promosi, Feed Instagram, dll.)
@@ -964,14 +1111,14 @@ Instruksi:
 - Berikan rekomendasi produk yang tepat sesuai kebutuhan pembeli.
 - Berikan info harga dan keuntungan.
 - Arahkan pembeli untuk klik tombol 'Beli Sekarang' atau hubungi WhatsApp Admin untuk proses order cepat.
-- Jangan mengarang produk yang tidak relevan dengan JaneMarket.`;
+- Jangan mengarang produk yang tidak relevan dengan ${storeTitle}.`;
 
       let reply = "";
       const client = getAIClient();
       if (client) {
         try {
           const aiResponse = await client.models.generateContent({
-            model: "gemini-3.7-flash",
+            model: "gemini-2.5-flash",
             contents: userMessage,
             config: {
               systemInstruction: systemPrompt
