@@ -756,15 +756,6 @@
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       box-shadow: 0 3px 8px rgba(99, 102, 241, 0.4);
     }
-    .card-badge.badge-bestseller {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.45);
-      border: 1px solid rgba(254, 240, 138, 0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 3.5px;
-    }
 
     .card-rating {
       position: absolute;
@@ -3591,12 +3582,6 @@
     [data-theme="light"] .card-badge.badge-general {
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
       color: #ffffff !important;
-    }
-    [data-theme="light"] .card-badge.badge-bestseller {
-      background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
-      color: #ffffff !important;
-      box-shadow: 0 3px 10px rgba(217, 119, 6, 0.35) !important;
-      border: 1px solid rgba(254, 240, 138, 0.6) !important;
     }
     [data-theme="light"] .card-cart-btn {
       color: #0284c7;
@@ -8007,16 +7992,6 @@
               <div style="color: #22c55e;"><i class="fa-solid fa-shield-halved"></i> <span id="detailWarranty">Garansi Penuh</span></div>
             </div>
 
-            <!-- Alert Banner jika Stok Habis -->
-            <div id="detailStockHabisBanner" style="display:none; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px;">
-              <div style="display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 13.5px;">
-                <i class="fa-solid fa-triangle-exclamation"></i> Stok Produk Ini Sedang Habis!
-              </div>
-              <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0; line-height: 1.45;">
-                Kuota akun saat ini sedang kosong di sistem. Silakan klik tombol <strong>Chat Admin untuk Restock</strong> di bawah untuk meminta admin mengisi kembali kuota produk ini.
-              </p>
-            </div>
-
             <!-- Price Card -->
             <div class="detail-price-card">
               <div>
@@ -8180,27 +8155,7 @@
             <p id="orderProductDesc" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">-</p>
           </div>
 
-          <!-- Confirmed Selected Package Card (Anti-Duplikasi: Paket sudah dipilih di Detail tidak ditanyakan ulang) -->
-          <div id="checkoutSelectedPackageDisplay" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(99, 102, 241, 0.06) 100%); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 38px; height: 38px; border-radius: 9px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; color: #38bdf8; font-size: 16px;">
-                <i class="fa-solid fa-cube"></i>
-              </div>
-              <div>
-                <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 700;">Paket Pilihan Anda</div>
-                <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);" id="checkoutConfirmedVariantName">-</div>
-              </div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 15px; font-weight: 800; color: #38bdf8;" id="checkoutConfirmedVariantPrice">Rp 0</div>
-              <button type="button" onclick="backToProductDetail()" style="background: none; border: none; color: #38bdf8; font-size: 11px; cursor: pointer; text-decoration: underline; padding: 0; margin-top: 2px;">
-                <i class="fa-solid fa-pen-to-square"></i> Ganti Paket
-              </button>
-            </div>
-          </div>
-
-          <!-- Hidden redundant selector (preserved in DOM for form compatibility) -->
-          <div class="form-group" id="checkoutVariantGroup" style="display: none;">
+          <div class="form-group">
             <label class="form-label">Pilih Varian / Paket / Durasi</label>
             <div class="variant-selector" id="checkoutVariantSelector">
               <!-- Injected via JS -->
@@ -8529,41 +8484,6 @@
     </div>
   </div>
 
-  <!-- Modal Peringatan Stok Habis & Arahkan Chat Admin -->
-  <div class="modal-overlay" id="stockHabisModal">
-    <div class="modal-box" style="max-width: 440px; text-align: center; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.5);">
-      <div class="modal-header" style="border-bottom: none; padding: 16px 20px 0; justify-content: flex-end;">
-        <button class="modal-close" onclick="closeModal('stockHabisModal')"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div style="padding: 6px 24px 24px;">
-        <div style="width: 68px; height: 68px; margin: 0 auto 16px; border-radius: 50%; background: rgba(239, 68, 68, 0.12); border: 2px solid rgba(239, 68, 68, 0.35); display: flex; align-items: center; justify-content: center; color: #ef4444; font-size: 30px;">
-          <i class="fa-solid fa-box-open"></i>
-        </div>
-        <div style="display: inline-block; font-size: 11px; font-weight: 800; color: #ef4444; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.28); border-radius: 20px; padding: 4px 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
-          ⚠️ Stok Sedang Habis
-        </div>
-        <h4 style="font-size: 19px; font-weight: 800; margin-bottom: 8px; color: var(--text-primary);" id="stockHabisProductName">Nama Produk</h4>
-        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 22px;">
-          Mohon maaf, kuota/stok untuk produk ini saat ini sedang kosong. Silakan langsung <strong>chat Admin di WhatsApp</strong> untuk request restock agar kuota akun segera kami sediakan kembali untuk Anda!
-        </p>
-
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-          <button type="button" class="btn btn-wa" id="stockHabisChatAdminBtn" style="width: 100%; justify-content: center; font-size: 14px; font-weight: 700; padding: 13px 18px; border-radius: 10px;">
-            <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Chat Admin untuk Request Restock
-          </button>
-          <div style="display: flex; gap: 8px;">
-            <button type="button" class="btn btn-outline" id="stockHabisDetailBtn" style="flex: 1; justify-content: center; font-size: 12px; font-weight: 600; padding: 9px;">
-              <i class="fa-solid fa-circle-info"></i> Lihat Info Produk
-            </button>
-            <button type="button" class="btn btn-dark" onclick="closeModal('stockHabisModal')" style="flex: 1; justify-content: center; font-size: 12px; font-weight: 600; padding: 9px;">
-              Tutup
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
@@ -8634,305 +8554,762 @@
 
     // State Store & Default Data
     const DEFAULT_STORE_DATA = {
-      settings: {
-        storeName: "JaneMurphy",
-        storeTagline: "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
-        storeLogo: "https://files.catbox.moe/3tt0xl.png",
-        whatsappNumber: "6285139138997",
-        adminPin: "123456",
-        qrisImage: "",
-        qrisMerchantName: "Frantz",
-        qrisNmid: "ID2025419027029",
-        qrisString: "00020101021126640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI51640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI5204581253033605802ID5906Frantz6007JAKARTA61051234063044DF2",
-        paymentMethods: [
-          { id: "dana", name: "DANA", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-wallet" },
-          { id: "gopay", name: "GoPay", number: "083823567366", owner: "JaneMurphy Admin", active: true, icon: "fa-solid fa-mobile-screen" }
-        ],
-        promoBanner: {
-          title: "🔥 FLASH SALE SPESIAL HARI INI!",
-          subtitle: "Diskon hingga 50% untuk Semua Aplikasi Premium & Free Konsultasi Desain Poster!",
-          buttonText: "Klaim Promo WhatsApp"
-        },
-        announcement: "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS, DANA & GoPay Resmi"
+  "settings": {
+    "storeName": "JaneMurphy",
+    "storeTagline": "Platform Aplikasi Premium, Topup Game & Jasa Desain Terpercaya",
+    "storeLogo": "https://files.catbox.moe/3tt0xl.png",
+    "whatsappNumber": "6285139138997",
+    "adminPin": "123456",
+    "qrisImage": "",
+    "qrisMerchantName": "Frantz",
+    "qrisNmid": "ID2025419027029",
+    "qrisString": "00020101021126640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI51640015IDS.CO.QRIS.WWW0115ID202541902702902150000000000000000303UMI5204581253033605802ID5906Frantz6007JAKARTA61051234063044DF2",
+    "paymentMethods": [
+      {
+        "id": "dana",
+        "name": "DANA",
+        "number": "083823567366",
+        "owner": "JaneMurphy Admin",
+        "active": true,
+        "icon": "fa-solid fa-wallet"
       },
-      stats: { totalVisitors: 1846, totalRevenue: 4850000, totalOrders: 142 },
-      orders: [
+      {
+        "id": "gopay",
+        "name": "GoPay",
+        "number": "083823567366",
+        "owner": "JaneMurphy Admin",
+        "active": true,
+        "icon": "fa-solid fa-mobile-screen"
+      }
+    ],
+    "promoBanner": {
+      "title": "🔥 FLASH SALE SPESIAL HARI INI!",
+      "subtitle": "Diskon hingga 50% untuk Semua Aplikasi Premium & Free Konsultasi Desain Poster!",
+      "buttonText": "Klaim Promo WhatsApp"
+    },
+    "announcement": "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran QRIS, DANA & GoPay Resmi"
+  },
+  "stats": {
+    "totalVisitors": 1848,
+    "totalRevenue": 4850000,
+    "totalOrders": 142
+  },
+  "orders": [
+    {
+      "id": "ORD-17081",
+      "customerName": "Rian Pratama",
+      "productName": "Netflix Premium 4K UHD",
+      "category": "Aplikasi Premium",
+      "variant": "1 Bulan (1 Profil Private)",
+      "price": 35000,
+      "paymentMethod": "QRIS",
+      "timestamp": "2026-08-17T11:20:00Z",
+      "status": "Selesai"
+    },
+    {
+      "id": "ORD-17080",
+      "customerName": "Dimas Setiawan",
+      "productName": "Mobile Legends: Bang Bang",
+      "category": "Topup Game",
+      "variant": "296 Diamonds (Fast)",
+      "price": 78000,
+      "paymentMethod": "DANA",
+      "timestamp": "2026-08-17T10:45:00Z",
+      "status": "Selesai"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-netflix-indo",
+      "name": "Netflix Premium (Bill Indo - Khusus Indo)",
+      "category": "Aplikasi Premium",
+      "price": 11000,
+      "originalPrice": 65000,
+      "image": "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 540,
+      "rating": 4.9,
+      "badge": "BEST SELLER",
+      "stockStatus": "ready",
+      "stockCount": 15,
+      "warranty": "Garansi Sesuai Durasi",
+      "description": "Akun Netflix Premium Billing Indonesia khusus pemakaian di jaringan Indonesia. Kualitas 4K Ultra HD, anti screen limit, support HP, Tablet, Smart TV & Laptop/PC.",
+      "variants": [
         {
-          id: "ORD-17081",
-          customerName: "Rian Pratama",
-          productName: "Netflix Premium 4K UHD",
-          category: "Aplikasi Premium",
-          variant: "1 Bulan (1 Profil Private)",
-          price: 35000,
-          paymentMethod: "QRIS",
-          timestamp: "2026-08-17T11:20:00Z",
-          status: "Selesai"
+          "name": "1 User 3 Hari",
+          "price": 11000
         },
         {
-          id: "ORD-17080",
-          customerName: "Dimas Setiawan",
-          productName: "Mobile Legends: Bang Bang",
-          category: "Topup Game",
-          variant: "296 Diamonds (Fast)",
-          price: 78000,
-          paymentMethod: "DANA",
-          timestamp: "2026-08-17T10:45:00Z",
-          status: "Selesai"
+          "name": "1 User 7 Hari",
+          "price": 15000
+        },
+        {
+          "name": "2 User 1 Bulan",
+          "price": 17500
+        },
+        {
+          "name": "1 User 1 Bulan 🔥 (Best Seller)",
+          "price": 30000
+        },
+        {
+          "name": "Semi Private 1 Bulan",
+          "price": 32000
+        },
+        {
+          "name": "Private 1 Bulan (21+7)",
+          "price": 150000
         }
       ],
-      products: [
-        {
-          id: "prod-1",
-          name: "Netflix Premium 4K Ultra HD",
-          category: "Aplikasi Premium",
-          price: 35000,
-          originalPrice: 65000,
-          image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600&auto=format&fit=crop&q=80",
-          soldCount: 428,
-          rating: 4.9,
-          badge: "BEST SELLER",
-          stockStatus: "limited",
-          stockCount: 4,
-          warranty: "Garansi 30 Hari",
-          description: "Akun Netflix Premium kualitas Ultra HD 4K. Anti on-hold, anti screen limit. Support Android, iOS, Smart TV, Laptop/PC.",
-          variants: [
-            { name: "1 Bulan (1 Profil Private - 1 Device)", price: 35000 },
-            { name: "3 Bulan (1 Profil Private - 1 Device)", price: 95000 },
-            { name: "1 Bulan (Akun Full 5 Profil)", price: 140000 }
-          ],
-          features: ["Resolusi 4K HDR", "Bisa Smart TV / HP / PC", "Private PIN Profil", "Full Garansi"]
-        },
-        {
-          id: "prod-2",
-          name: "Spotify Premium Individual",
-          category: "Aplikasi Premium",
-          price: 20000,
-          originalPrice: 55000,
-          image: "https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=600&auto=format&fit=crop&q=80",
-          soldCount: 356,
-          rating: 4.9,
-          badge: "POPULER",
-          stockStatus: "ready",
-          warranty: "Garansi Full",
-          description: "Dengarkan musik tanpa iklan, download lagu offline unlimited, kualitas audio tertinggi (320kbps). Bisa di akun pribadi atau akun baru.",
-          variants: [
-            { name: "1 Bulan (Plan Famhead/Indv)", price: 20000 },
-            { name: "3 Bulan (Plan Indv)", price: 55000 },
-            { name: "1 Tahun (Garansi 1 Tahun)", price: 180000 }
-          ],
-          features: ["Bebas Iklan", "Download Offline", "Audio HQ 320kbps", "Bisa Akun Pribadi"]
-        },
-        {
-          id: "prod-3",
-          name: "Canva Pro Edu & Lifetime",
-          category: "Aplikasi Premium",
-          price: 15000,
-          originalPrice: 45000,
-          image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80",
-          soldCount: 512,
-          rating: 5,
-          badge: "HOT PROMO",
-          stockStatus: "ready",
-          warranty: "Garansi 1 Tahun / Lifetime",
-          description: "Upgrade Canva Pro langsung di email pribadi. Akses 100+ juta foto, template, hapus background 1-klik, Brand Kit, magic resize.",
-          variants: [
-            { name: "1 Tahun (Email Pribadi)", price: 15000 },
-            { name: "Lifetime Edu (Email Pribadi)", price: 30000 },
-            { name: "1 Bulan Canva Pro Team", price: 10000 }
-          ],
-          features: ["100M+ Aset Premium", "Hapus Background 1 Klik", "Magic Studio AI", "Gunakan Email Sendiri"]
-        },
-        {
-          id: "prod-4",
-          name: "YouTube Premium + Music",
-          category: "Aplikasi Premium",
-          price: 18000,
-          originalPrice: 49000,
-          image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&auto=format&fit=crop&q=80",
-          soldCount: 289,
-          rating: 4.8,
-          badge: "GARANSI",
-          stockStatus: "ready",
-          warranty: "Garansi Full",
-          description: "Nonton video YouTube tanpa jeda iklan, pemutaran di latar belakang saat layar mati, serta akses gratis YouTube Music Premium.",
-          variants: [
-            { name: "1 Bulan (Invite Fam/Indv)", price: 18000 },
-            { name: "3 Bulan (Invite Fam)", price: 48000 },
-            { name: "6 Bulan (Invite Fam)", price: 90000 }
-          ],
-          features: ["Bebas Iklan Video", "Background Play", "Termasuk YouTube Music", "Legal & Aman"]
-        },
-        {
-          id: "prod-5",
-          name: "ChatGPT Plus / OpenAI Pro",
-          category: "Aplikasi Premium",
-          price: 45000,
-          originalPrice: 320000,
-          image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80",
-          soldCount: 194,
-          rating: 4.9,
-          badge: "AI PRO",
-          stockStatus: "limited",
-          stockCount: 2,
-          warranty: "Garansi 30 Hari",
-          description: "Akses GPT-4o, DALL-E 3, Browsing, Advanced Data Analysis, pembuatan Custom GPTs tanpa batas kuota gratis.",
-          variants: [
-            { name: "1 Bulan (Shared Akun)", price: 45000 },
-            { name: "1 Bulan (Semi-Private)", price: 85000 },
-            { name: "1 Bulan (Private Full)", price: 275000 }
-          ],
-          features: ["Akses GPT-4o & DALL-E", "Voice Mode & Canvas", "Kecepatan Respon Tinggi", "Bisa Analisis File"]
-        },
-        {
-          id: "prod-6",
-          name: "CapCut Pro Video Editor",
-          category: "Aplikasi Premium",
-          price: 25000,
-          originalPrice: 79000,
-          image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&auto=format&fit=crop&q=80",
-          soldCount: 220,
-          rating: 4.9,
-          badge: "EDITOR CHOICE",
-          stockStatus: "ready",
-          warranty: "Garansi Full",
-          description: "Buka semua efek pro, transisi viral, auto-caption AI, cloud storage 100GB, dan ekspor 4K 60FPS tanpa watermark.",
-          variants: [
-            { name: "1 Bulan (Akun Pro)", price: 25000 },
-            { name: "1 Tahun (Akun Pro)", price: 95000 }
-          ],
-          features: ["Semua Efek & Filter Pro", "AI Auto-Caption", "Cloud Storage 100GB", "Export 4K 60fps"]
-        },
-        {
-          id: "prod-7",
-          name: "Mobile Legends: Bang Bang",
-          category: "Topup Game",
-          price: 19000,
-          originalPrice: 25000,
-          image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80",
-          soldCount: 840,
-          rating: 5,
-          badge: "INSTAN 1 MENIT",
-          stockStatus: "ready",
-          warranty: "100% Legal & Aman",
-          description: "Top Up Diamond Mobile Legends Resmi, Cukup Masukkan User ID dan Zone ID. Proses kilat 1-5 menit langsung masuk!",
-          variants: [
-            { name: "86 Diamonds", price: 19000 },
-            { name: "172 Diamonds", price: 38000 },
-            { name: "257 Diamonds", price: 57000 },
-            { name: "706 Diamonds (Best Deal)", price: 155000 },
-            { name: "Weekly Diamond Pass (WDP)", price: 28000 },
-            { name: "Twilight Pass", price: 145000 }
-          ],
-          features: ["Hanya Butuh User ID & Zone ID", "Proses Cepat 1-3 Menit", "100% Aman Anti Minus", "Bisa Request Jumlah"]
-        },
-        {
-          id: "prod-8",
-          name: "Free Fire (FF)",
-          category: "Topup Game",
-          price: 10000,
-          originalPrice: 15000,
-          image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
-          soldCount: 670,
-          rating: 4.9,
-          badge: "MURAH",
-          stockStatus: "ready",
-          warranty: "100% Legal",
-          description: "Top Up Diamond Free Fire termurah & terpercaya. Cukup cantumkan Player ID Free Fire Anda.",
-          variants: [
-            { name: "70 Diamonds", price: 10000 },
-            { name: "140 Diamonds", price: 20000 },
-            { name: "355 Diamonds", price: 48000 },
-            { name: "720 Diamonds", price: 95000 },
-            { name: "Membership Mingguan", price: 30000 },
-            { name: "Membership Bulanan", price: 120000 }
-          ],
-          features: ["Hanya Player ID", "Instant Masuk", "Legal & Aman", "Bonus Event Aktif"]
-        },
-        {
-          id: "prod-9",
-          name: "Valorant Points (VP)",
-          category: "Topup Game",
-          price: 45000,
-          originalPrice: 55000,
-          image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80",
-          soldCount: 310,
-          rating: 4.9,
-          badge: "RIOT OFFICIAL",
-          stockStatus: "ready",
-          warranty: "100% Legal",
-          description: "Topup Valorant Points (Riot ID: Username#TAG) region Indonesia/Asia Pacific. Siap borong Night Market!",
-          variants: [
-            { name: "475 VP", price: 45000 },
-            { name: "1000 VP", price: 95000 },
-            { name: "2050 VP", price: 185000 },
-            { name: "3650 VP", price: 320000 }
-          ],
-          features: ["Riot ID + Tagline", "Region ID/SEA", "Langsung Masuk", "Aman 100%"]
-        },
-        {
-          id: "prod-10",
-          name: "Jasa Desain Poster Event & Musik",
-          category: "Jasa Design Poster",
-          price: 50000,
-          originalPrice: 100000,
-          image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80",
-          soldCount: 165,
-          rating: 5,
-          badge: "KREATIF",
-          stockStatus: "ready",
-          warranty: "Revisi Sampai Puas",
-          description: "Desain poster profesional untuk konser, festival kampus, seminar, workshop, webinar, dan acara komersial.",
-          variants: [
-            { name: "Paket Basic (1 Konsep, Revisi 2x, JPEG/PNG)", price: 50000 },
-            { name: "Paket Pro (2 Konsep, Revisi 5x, File Cetak PDF High-Res)", price: 90000 },
-            { name: "Paket Ultimate (Konsep Bebas, Master File PSD/AI + Banner IG)", price: 150000 }
-          ],
-          features: ["Desain Modern & Eye-Catching", "Resolusi Siap Cetak (300 DPI)", "Pengerjaan 1x24 Jam", "Garansi Revisi"]
-        },
-        {
-          id: "prod-11",
-          name: "Jasa Desain Banner Promosi & Usaha",
-          category: "Jasa Design Poster",
-          price: 40000,
-          originalPrice: 80000,
-          image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format&fit=crop&q=80",
-          soldCount: 210,
-          rating: 4.9,
-          badge: "BRANDING",
-          stockStatus: "ready",
-          warranty: "Revisi Cepat",
-          description: "Desain banner jualan, spanduk toko, flyer brosur, menu makanan/minuman, banner marketplace Tokopedia/Shopee.",
-          variants: [
-            { name: "Single Banner Jualan (JPEG/PNG)", price: 40000 },
-            { name: "Banner Toko + Spanduk Cetak (File PDF/TIFF)", price: 75000 },
-            { name: "Branding Kit Paket Lengkap (Banner + Feed + Story)", price: 130000 }
-          ],
-          features: ["Meningkatkan Penjualan", "Format Sesuai Kebutuhan", "Pengerjaan Cepat", "Free Mockup Visual"]
-        },
-        {
-          id: "prod-12",
-          name: "Jasa Desain Feed & Story Instagram",
-          category: "Jasa Design Poster",
-          price: 35000,
-          originalPrice: 70000,
-          image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
-          soldCount: 180,
-          rating: 5,
-          badge: "ESTETIK",
-          stockStatus: "ready",
-          warranty: "Revisi Siap",
-          description: "Desain konten media sosial aesthetic & profesional. Meningkatkan engagement dan kepercayaan customer olshop/personal branding.",
-          variants: [
-            { name: "1 Post Feed / Story (Single Image)", price: 35000 },
-            { name: "Paket Carousel 5 Slide (Microblog/Edu)", price: 85000 },
-            { name: "Paket Mingguan (6 Feed + 6 Story)", price: 175000 }
-          ],
-          features: ["Warna Selaras Brand", "Copywriting Menarik", "Format HD 1080x1080 / 1080x1920", "Template Canva / PSD"]
-        }
+      "features": [
+        "Khusus Jaringan Indonesia",
+        "Kualitas 4K Ultra HD & HDR",
+        "Anti Screen Limit & On-Hold",
+        "Support Smart TV, HP, Laptop"
       ]
-    };
+    },
+    {
+      "id": "prod-netflix-luar",
+      "name": "Netflix Premium (Bill Rvisa - Luar Negeri)",
+      "category": "Aplikasi Premium",
+      "price": 21000,
+      "originalPrice": 75000,
+      "image": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 382,
+      "rating": 4.9,
+      "badge": "SUPPORT LUAR NEGERI",
+      "stockStatus": "ready",
+      "stockCount": 12,
+      "warranty": "Garansi Penuh",
+      "description": "Akun Netflix Premium Billing Rvisa yang support digunakan di luar negeri maupun Indonesia tanpa kendala household/region lock. Kualitas 4K Ultra HD.",
+      "variants": [
+        {
+          "name": "2 User 1 Bulan",
+          "price": 21000
+        },
+        {
+          "name": "1 User 1 Bulan",
+          "price": 35000
+        },
+        {
+          "name": "Semi Private 1 Bulan",
+          "price": 38000
+        },
+        {
+          "name": "Private 1 Bulan",
+          "price": 165000
+        }
+      ],
+      "features": [
+        "Support Luar Negeri & Indonesia",
+        "Resolusi 4K Ultra HD",
+        "Bebas VPN / Tanpa VPN",
+        "Full Garansi 30 Hari"
+      ]
+    },
+    {
+      "id": "prod-vidio",
+      "name": "Vidio Premier Platinum & Mobile",
+      "category": "Aplikasi Premium",
+      "price": 17000,
+      "originalPrice": 49000,
+      "image": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 295,
+      "rating": 4.8,
+      "badge": "POPULER",
+      "stockStatus": "ready",
+      "stockCount": 20,
+      "warranty": "Garansi 30 Hari",
+      "description": "Langganan Vidio Premier Platinum untuk nonton live streaming BRI Liga 1, UCL, Serie A, Vidio Original Series, dan tayangan film tanpa jeda iklan.",
+      "variants": [
+        {
+          "name": "Mobile 2U (1 Bulan)",
+          "price": 17000
+        },
+        {
+          "name": "Mobile Private (1 Bulan)",
+          "price": 29000
+        },
+        {
+          "name": "Platinum 2U (1 Bulan)",
+          "price": 25000
+        },
+        {
+          "name": "Platinum Private (1 Bulan)",
+          "price": 40000
+        }
+      ],
+      "features": [
+        "Live Streaming Bola & Olahraga",
+        "Vidio Original Series Lengkap",
+        "Kualitas Jernih Full HD",
+        "Full Garansi 30 Hari"
+      ]
+    },
+    {
+      "id": "prod-viu",
+      "name": "Viu Premium Unlimited",
+      "category": "Aplikasi Premium",
+      "price": 450,
+      "originalPrice": 39000,
+      "image": "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 610,
+      "rating": 4.9,
+      "badge": "TERMURAH",
+      "stockStatus": "ready",
+      "stockCount": 50,
+      "warranty": "Garansi Penuh",
+      "description": "Nonton ribuan drama Korea terbaru, anime populer, dan serial Asia tanpa jeda iklan dengan subtitle Indonesia resmi.",
+      "variants": [
+        {
+          "name": "Viu Unlim 1 Bulan",
+          "price": 450
+        },
+        {
+          "name": "Viu Unlim 3 Bulan",
+          "price": 700
+        },
+        {
+          "name": "Viu Unlim 6 Bulan",
+          "price": 1000
+        },
+        {
+          "name": "Viu Unlim 1 Tahun",
+          "price": 1150
+        }
+      ],
+      "features": [
+        "Drakor & Serial Asia Terlengkap",
+        "Bebas Gangguan Iklan",
+        "Download Nonton Offline",
+        "Full Garansi Masa Aktif"
+      ]
+    },
+    {
+      "id": "prod-loklok",
+      "name": "Loklok VIP",
+      "category": "Aplikasi Premium",
+      "price": 16000,
+      "originalPrice": 45000,
+      "image": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 215,
+      "rating": 4.8,
+      "badge": "POPULER",
+      "stockStatus": "ready",
+      "stockCount": 18,
+      "warranty": "Garansi 30 Hari",
+      "description": "Streaming film box office, anime, drama China dan Korea terlengkap tanpa iklan dengan kualitas jernih dan subtitle Indonesia.",
+      "variants": [
+        {
+          "name": "Loklok Basic (3U 1 Bulan)",
+          "price": 16000
+        },
+        {
+          "name": "Loklok Standard (5U 1 Bulan)",
+          "price": 18000
+        },
+        {
+          "name": "Loklok Private Basic (1 Bulan)",
+          "price": 47000
+        },
+        {
+          "name": "Loklok Private Standard (1 Bulan)",
+          "price": 67000
+        }
+      ],
+      "features": [
+        "Streaming Film & Series VIP",
+        "Bebas Iklan Resolusi HD",
+        "Subtitle Bahasa Indonesia",
+        "Support Android & iOS"
+      ]
+    },
+    {
+      "id": "prod-bstation",
+      "name": "Bstation Premium VIP",
+      "category": "Aplikasi Premium",
+      "price": 7000,
+      "originalPrice": 35000,
+      "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 340,
+      "rating": 4.9,
+      "badge": "ANIME LOVER",
+      "stockStatus": "ready",
+      "stockCount": 25,
+      "warranty": "Garansi Penuh",
+      "description": "Platform streaming anime resmi terbesar dengan kualitas 1080p/4K dan audio Dolby tanpa gangguan iklan.",
+      "variants": [
+        {
+          "name": "Bstation Sharing (1 Bulan)",
+          "price": 7000
+        },
+        {
+          "name": "Bstation Sharing (3 Bulan)",
+          "price": 9000
+        },
+        {
+          "name": "Bstation Sharing (1 Tahun)",
+          "price": 11000
+        },
+        {
+          "name": "Bstation Private (1 Bulan)",
+          "price": 32000
+        }
+      ],
+      "features": [
+        "Simulcast Anime Season Terbaru",
+        "Resolusi Full HD 1080p / 4K",
+        "Audio Jernih Dolby Atmos",
+        "Full Garansi Sesuai Durasi"
+      ]
+    },
+    {
+      "id": "prod-4",
+      "name": "YouTube Premium + Music",
+      "category": "Aplikasi Premium",
+      "price": 7000,
+      "originalPrice": 49000,
+      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 489,
+      "rating": 4.9,
+      "badge": "BEST SELLER",
+      "stockStatus": "ready",
+      "stockCount": 30,
+      "warranty": "Garansi Penuh",
+      "description": "Nonton YouTube bebas jeda iklan tanpa gangguan, putar video di latar belakang (background play), dan nikmati jutaan musik di YouTube Music Premium.",
+      "variants": [
+        {
+          "name": "YT Famplan 1 Bulan",
+          "price": 7000
+        },
+        {
+          "name": "YT Indplan 1 Bulan (Acc Buyer)",
+          "price": 7000
+        },
+        {
+          "name": "YT Indplan 3 Bulan (Garansi)",
+          "price": 44000
+        }
+      ],
+      "features": [
+        "Bebas Iklan Video",
+        "Background Play (Layar Mati)",
+        "YouTube Music Premium",
+        "Bisa Pakai Email Pribadi"
+      ]
+    },
+    {
+      "id": "prod-2",
+      "name": "Spotify Premium (Full Garansi)",
+      "category": "Aplikasi Premium",
+      "price": 17000,
+      "originalPrice": 55000,
+      "image": "https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 412,
+      "rating": 4.9,
+      "badge": "FULL GARANSI",
+      "stockStatus": "ready",
+      "stockCount": 22,
+      "warranty": "Full Garansi",
+      "description": "Dengarkan jutaan lagu tanpa iklan, download lagu offline unlimited, kualitas audio tertinggi (320kbps). Garansi replace aman.",
+      "variants": [
+        {
+          "name": "Indplan 1 Bulan",
+          "price": 17000
+        },
+        {
+          "name": "Famplan 1 Bulan 🔥",
+          "price": 19000
+        },
+        {
+          "name": "Indplan 3 Bulan",
+          "price": 32000
+        }
+      ],
+      "features": [
+        "Bebas Iklan Unlimited Skip",
+        "Download Musik Offline HQ",
+        "Audio Tertinggi 320kbps",
+        "Bisa Akun Pribadi / Garansi Penuh"
+      ]
+    },
+    {
+      "id": "prod-3",
+      "name": "Canva Pro Edu & Lifetime",
+      "category": "Aplikasi Premium",
+      "price": 650,
+      "originalPrice": 45000,
+      "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 780,
+      "rating": 5,
+      "badge": "TERMURAH",
+      "stockStatus": "ready",
+      "stockCount": 40,
+      "warranty": "Garansi Sesuai Durasi",
+      "description": "Upgrade Canva Pro langsung di email pribadi. Akses 100+ juta foto, template, hapus background 1-klik, Brand Kit, magic resize.",
+      "variants": [
+        {
+          "name": "Member 1 Bulan",
+          "price": 650
+        },
+        {
+          "name": "Member 3 Bulan",
+          "price": 1150
+        },
+        {
+          "name": "Member 1 Tahun",
+          "price": 2400
+        },
+        {
+          "name": "Member Edu Lifetime 🔥",
+          "price": 6500
+        },
+        {
+          "name": "Member Edu Lifetime (+Designer)",
+          "price": 6600
+        }
+      ],
+      "features": [
+        "100M+ Aset & Elemen Premium",
+        "Hapus Background 1-Klik",
+        "Magic Studio AI & Brand Kit",
+        "Gunakan Email Pribadi Sendiri"
+      ]
+    },
+    {
+      "id": "prod-6",
+      "name": "CapCut Pro Video Editor",
+      "category": "Aplikasi Premium",
+      "price": 8000,
+      "originalPrice": 79000,
+      "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 310,
+      "rating": 4.9,
+      "badge": "POPULER",
+      "stockStatus": "ready",
+      "stockCount": 16,
+      "warranty": "Garansi Penuh",
+      "description": "Buka semua efek pro, transisi viral, auto-caption AI, cloud storage 100GB, dan ekspor 4K 60FPS tanpa watermark.",
+      "variants": [
+        {
+          "name": "Capcut Sharing (3U 7 Hari)",
+          "price": 8000
+        },
+        {
+          "name": "Capcut Private 7 Hari",
+          "price": 17000
+        },
+        {
+          "name": "Capcut Sharing (3U 1 Bulan)",
+          "price": 19000
+        },
+        {
+          "name": "Capcut Private 1 Bulan",
+          "price": 37000
+        }
+      ],
+      "features": [
+        "Semua Efek & Filter Pro VIP",
+        "Auto-Caption AI Bahasa Indonesia",
+        "Cloud Storage Tambahan",
+        "Ekspor 4K 60fps Tanpa Watermark"
+      ]
+    },
+    {
+      "id": "prod-wink",
+      "name": "Wink VIP Video Retouch HD",
+      "category": "Aplikasi Premium",
+      "price": 9500,
+      "originalPrice": 25000,
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 168,
+      "rating": 4.8,
+      "badge": "RETOUCH & HD",
+      "stockStatus": "ready",
+      "stockCount": 15,
+      "warranty": "Garansi 7 Hari",
+      "description": "Aplikasi retouch dan peningkatan kualitas video AI terbaik. Mengubah video blur menjadi jernih Full HD/4K dan filter estetik khusus Android.",
+      "variants": [
+        {
+          "name": "Wink Private 7 Hari (Android)",
+          "price": 9500
+        }
+      ],
+      "features": [
+        "Video Retouching & AI Repair",
+        "Tingkatkan Kualitas ke Ultra HD",
+        "Filter Estetik VIP Terbuka",
+        "Khusus Pengguna Android"
+      ]
+    },
+    {
+      "id": "prod-5",
+      "name": "ChatGPT Plus / OpenAI Pro",
+      "category": "Aplikasi Premium",
+      "price": 45000,
+      "originalPrice": 320000,
+      "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 194,
+      "rating": 4.9,
+      "badge": "AI PRO",
+      "stockStatus": "limited",
+      "stockCount": 2,
+      "warranty": "Garansi 30 Hari",
+      "description": "Akses GPT-4o, DALL-E 3, Browsing, Advanced Data Analysis, pembuatan Custom GPTs tanpa batas kuota gratis.",
+      "variants": [
+        {
+          "name": "1 Bulan (Shared Akun)",
+          "price": 45000
+        },
+        {
+          "name": "1 Bulan (Semi-Private)",
+          "price": 85000
+        },
+        {
+          "name": "1 Bulan (Private Full)",
+          "price": 275000
+        }
+      ],
+      "features": [
+        "Akses GPT-4o & DALL-E",
+        "Voice Mode & Canvas",
+        "Kecepatan Respon Tinggi",
+        "Bisa Analisis File"
+      ]
+    },
+    {
+      "id": "prod-7",
+      "name": "Mobile Legends: Bang Bang",
+      "category": "Topup Game",
+      "price": 19000,
+      "originalPrice": 25000,
+      "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 840,
+      "rating": 5,
+      "badge": "INSTAN 1 MENIT",
+      "stockStatus": "ready",
+      "warranty": "100% Legal & Aman",
+      "description": "Top Up Diamond Mobile Legends Resmi, Cukup Masukkan User ID dan Zone ID. Proses kilat 1-5 menit langsung masuk!",
+      "variants": [
+        {
+          "name": "86 Diamonds",
+          "price": 19000
+        },
+        {
+          "name": "172 Diamonds",
+          "price": 38000
+        },
+        {
+          "name": "257 Diamonds",
+          "price": 57000
+        },
+        {
+          "name": "706 Diamonds (Best Deal)",
+          "price": 155000
+        },
+        {
+          "name": "Weekly Diamond Pass (WDP)",
+          "price": 28000
+        },
+        {
+          "name": "Twilight Pass",
+          "price": 145000
+        }
+      ],
+      "features": [
+        "Hanya Butuh User ID & Zone ID",
+        "Proses Cepat 1-3 Menit",
+        "100% Aman Anti Minus",
+        "Bisa Request Jumlah"
+      ]
+    },
+    {
+      "id": "prod-8",
+      "name": "Free Fire (FF)",
+      "category": "Topup Game",
+      "price": 10000,
+      "originalPrice": 15000,
+      "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 670,
+      "rating": 4.9,
+      "badge": "MURAH",
+      "stockStatus": "ready",
+      "warranty": "100% Legal",
+      "description": "Top Up Diamond Free Fire termurah & terpercaya. Cukup cantumkan Player ID Free Fire Anda.",
+      "variants": [
+        {
+          "name": "70 Diamonds",
+          "price": 10000
+        },
+        {
+          "name": "140 Diamonds",
+          "price": 20000
+        },
+        {
+          "name": "355 Diamonds",
+          "price": 48000
+        },
+        {
+          "name": "720 Diamonds",
+          "price": 95000
+        },
+        {
+          "name": "Membership Mingguan",
+          "price": 30000
+        },
+        {
+          "name": "Membership Bulanan",
+          "price": 120000
+        }
+      ],
+      "features": [
+        "Hanya Player ID",
+        "Instant Masuk",
+        "Legal & Aman",
+        "Bonus Event Aktif"
+      ]
+    },
+    {
+      "id": "prod-9",
+      "name": "Valorant Points (VP)",
+      "category": "Topup Game",
+      "price": 45000,
+      "originalPrice": 55000,
+      "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 310,
+      "rating": 4.9,
+      "badge": "RIOT OFFICIAL",
+      "stockStatus": "ready",
+      "warranty": "100% Legal",
+      "description": "Topup Valorant Points (Riot ID: Username#TAG) region Indonesia/Asia Pacific. Siap borong Night Market!",
+      "variants": [
+        {
+          "name": "475 VP",
+          "price": 45000
+        },
+        {
+          "name": "1000 VP",
+          "price": 95000
+        },
+        {
+          "name": "2050 VP",
+          "price": 185000
+        },
+        {
+          "name": "3650 VP",
+          "price": 320000
+        }
+      ],
+      "features": [
+        "Riot ID + Tagline",
+        "Region ID/SEA",
+        "Langsung Masuk",
+        "Aman 100%"
+      ]
+    },
+    {
+      "id": "prod-10",
+      "name": "Jasa Desain Poster Event & Musik",
+      "category": "Jasa Design Poster",
+      "price": 50000,
+      "originalPrice": 100000,
+      "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 165,
+      "rating": 5,
+      "badge": "KREATIF",
+      "stockStatus": "ready",
+      "warranty": "Revisi Sampai Puas",
+      "description": "Desain poster profesional untuk konser, festival kampus, seminar, workshop, webinar, dan acara komersial.",
+      "variants": [
+        {
+          "name": "Paket Basic (1 Konsep, Revisi 2x, JPEG/PNG)",
+          "price": 50000
+        },
+        {
+          "name": "Paket Pro (2 Konsep, Revisi 5x, File Cetak PDF High-Res)",
+          "price": 90000
+        },
+        {
+          "name": "Paket Ultimate (Konsep Bebas, Master File PSD/AI + Banner IG)",
+          "price": 150000
+        }
+      ],
+      "features": [
+        "Desain Modern & Eye-Catching",
+        "Resolusi Siap Cetak (300 DPI)",
+        "Pengerjaan 1x24 Jam",
+        "Garansi Revisi"
+      ]
+    },
+    {
+      "id": "prod-11",
+      "name": "Jasa Desain Banner Promosi & Usaha",
+      "category": "Jasa Design Poster",
+      "price": 40000,
+      "originalPrice": 80000,
+      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 210,
+      "rating": 4.9,
+      "badge": "BRANDING",
+      "stockStatus": "ready",
+      "warranty": "Revisi Cepat",
+      "description": "Desain banner jualan, spanduk toko, flyer brosur, menu makanan/minuman, banner marketplace Tokopedia/Shopee.",
+      "variants": [
+        {
+          "name": "Single Banner Jualan (JPEG/PNG)",
+          "price": 40000
+        },
+        {
+          "name": "Banner Toko + Spanduk Cetak (File PDF/TIFF)",
+          "price": 75000
+        },
+        {
+          "name": "Branding Kit Paket Lengkap (Banner + Feed + Story)",
+          "price": 130000
+        }
+      ],
+      "features": [
+        "Meningkatkan Penjualan",
+        "Format Sesuai Kebutuhan",
+        "Pengerjaan Cepat",
+        "Free Mockup Visual"
+      ]
+    },
+    {
+      "id": "prod-12",
+      "name": "Jasa Desain Feed & Story Instagram",
+      "category": "Jasa Design Poster",
+      "price": 35000,
+      "originalPrice": 70000,
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 180,
+      "rating": 5,
+      "badge": "ESTETIK",
+      "stockStatus": "ready",
+      "warranty": "Revisi Siap",
+      "description": "Desain konten media sosial aesthetic & profesional. Meningkatkan engagement dan kepercayaan customer olshop/personal branding.",
+      "variants": [
+        {
+          "name": "1 Post Feed / Story (Single Image)",
+          "price": 35000
+        },
+        {
+          "name": "Paket Carousel 5 Slide (Microblog/Edu)",
+          "price": 85000
+        },
+        {
+          "name": "Paket Mingguan (6 Feed + 6 Story)",
+          "price": 175000
+        }
+      ],
+      "features": [
+        "Warna Selaras Brand",
+        "Copywriting Menarik",
+        "Format HD 1080x1080 / 1080x1920",
+        "Template Canva / PSD"
+      ]
+    }
+  ]
+};
 
-    // Load initial cached state from localStorage if exists
     let storeState = JSON.parse(JSON.stringify(DEFAULT_STORE_DATA));
     try {
       const cached = localStorage.getItem('jm_store_data');
@@ -10255,53 +10632,6 @@
       }
     }
 
-    // ----------------------------------------------------
-    // LOGIKA FITUR BEST SELLER OTOMATIS & REKAP PENJUALAN
-    // ----------------------------------------------------
-    function recalculateBestSellersClient() {
-      if (!Array.isArray(storeState.products) || storeState.products.length === 0) return;
-
-      // 1. Normalisasi field total_terjual, soldCount, stock, dan stockCount
-      storeState.products.forEach(p => {
-        const sold = Number(p.total_terjual !== undefined ? p.total_terjual : (p.soldCount !== undefined ? p.soldCount : 0)) || 0;
-        p.total_terjual = sold;
-        p.soldCount = sold;
-
-        const curStock = Number(p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : 50)) || 0;
-        p.stock = curStock;
-        p.stockCount = curStock;
-
-        if (p.stock <= 0) {
-          p.stockStatus = 'soldout';
-        } else if (p.stock <= 5) {
-          p.stockStatus = 'limited';
-        } else if (!p.stockStatus || p.stockStatus === 'soldout') {
-          p.stockStatus = 'ready';
-        }
-      });
-
-      // 2. Tentukan Top 5 produk dengan total_terjual terbanyak (ambang batas > 0)
-      const sorted = [...storeState.products].sort((a, b) => (Number(b.total_terjual) || 0) - (Number(a.total_terjual) || 0));
-      const topIds = new Set(
-        sorted.slice(0, 5)
-          .filter(p => (Number(p.total_terjual) || 0) > 0)
-          .map(p => String(p.id))
-      );
-
-      // 3. Pasang flag is_best_seller & badge BEST SELLER
-      storeState.products.forEach(p => {
-        const isTop = topIds.has(String(p.id));
-        p.is_best_seller = isTop;
-        if (isTop) {
-          if (!p.badge || p.badge === 'BARU' || p.badge === 'POPULER' || p.badge.toLowerCase().includes('best seller')) {
-            p.badge = 'BEST SELLER';
-          }
-        } else if (p.badge === 'BEST SELLER') {
-          p.badge = 'POPULER';
-        }
-      });
-    }
-
     // Fetch data and attach real-time Firestore sync
     async function fetchStoreData() {
       // 1. Initial local/API fetch to populate instantly
@@ -10324,14 +10654,12 @@
                 ];
               }
             }
-            recalculateBestSellersClient();
             persistLocalState();
           }
         }
       } catch (e) {
         console.warn("Using local cache state:", e);
       }
-      recalculateBestSellersClient();
       applyStoreSettings();
       renderProducts();
       updateCategoryCounts();
@@ -10348,8 +10676,6 @@
               const liveProducts = [];
               snapshot.forEach((doc) => {
                 const pData = doc.data() || {};
-                const soldVal = Number(pData.total_terjual !== undefined ? pData.total_terjual : (pData.soldCount || 0));
-                const stockVal = Number(pData.stock !== undefined ? pData.stock : (pData.stockCount !== undefined ? pData.stockCount : 50));
                 liveProducts.push({
                   id: String(doc.id),
                   name: stripDangerousHTML(pData.name || 'Produk'),
@@ -10357,12 +10683,9 @@
                   badge: stripDangerousHTML(pData.badge || ''),
                   price: Number(pData.price || 0),
                   originalPrice: Number(pData.originalPrice || 0),
-                  soldCount: soldVal,
-                  total_terjual: soldVal,
-                  stockStatus: pData.stockStatus || (stockVal <= 0 ? 'soldout' : (stockVal <= 5 ? 'limited' : 'ready')),
-                  stockCount: stockVal,
-                  stock: stockVal,
-                  is_best_seller: Boolean(pData.is_best_seller),
+                  soldCount: Number(pData.soldCount || 0),
+                  stockStatus: pData.stockStatus || 'ready',
+                  stockCount: Number(pData.stockCount || 0),
                   rating: pData.rating ? Number(pData.rating) : 5.0,
                   image: pData.image || '',
                   warranty: stripDangerousHTML(pData.warranty || ''),
@@ -10377,7 +10700,6 @@
               });
               if (liveProducts.length > 0) {
                 storeState.products = liveProducts;
-                recalculateBestSellersClient();
                 persistLocalState();
                 renderProducts();
                 updateCategoryCounts();
@@ -10638,29 +10960,15 @@
         const isTopup = product.category === 'Topup Game';
         const formattedPrice = `Rp ${Number(product.price || 0).toLocaleString('id-ID')}`;
         const formattedOrig = product.originalPrice ? `Rp ${Number(product.originalPrice).toLocaleString('id-ID')}` : '';
-        const totalSold = Number(product.total_terjual !== undefined ? product.total_terjual : (product.soldCount || 0));
-        const isBestSeller = Boolean(product.is_best_seller || (product.badge && product.badge.toUpperCase().includes('BEST SELLER')));
-
-        // Dynamic Badge: Best Seller Priority
-        let badgeHtml = '';
-        if (isBestSeller) {
-          badgeHtml = `<span class="card-badge badge-bestseller"><i class="fa-solid fa-crown" style="font-size: 8.5px;"></i> BEST SELLER</span>`;
-        } else if (product.badge) {
-          let badgeClass = 'card-badge';
-          if (product.category === 'Topup Game') badgeClass += ' badge-game';
-          else if (product.category === 'Jasa Design Poster') badgeClass += ' badge-design';
-          else badgeClass += ' badge-app';
-          badgeHtml = `<span class="${badgeClass}">${escapeHTML(product.badge)}</span>`;
-        }
+        const soldText = product.soldCount !== undefined ? product.soldCount : 0;
         
-        // Real-Time Stock Status Badge (Pengurangan Stok & Status Otomatis)
-        const curStock = Number(product.stock !== undefined ? product.stock : (product.stockCount !== undefined ? product.stockCount : 50));
-        const stockStatus = curStock <= 0 ? 'soldout' : (curStock <= 5 ? 'limited' : (product.stockStatus || 'ready'));
+        // Real-Time Stock Status Badge (Feature #4)
+        const stockStatus = product.stockStatus || 'ready';
         let stockBadgeHtml = '';
         if (stockStatus === 'ready') {
           stockBadgeHtml = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock</span>`;
         } else if (stockStatus === 'limited') {
-          const countLabel = curStock > 0 ? `Sisa ${curStock} Slot` : 'Slot Terbatas';
+          const countLabel = product.stockCount ? `Sisa ${product.stockCount} Slot` : 'Slot Terbatas';
           stockBadgeHtml = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> ${countLabel}</span>`;
         } else if (stockStatus === 'preorder') {
           stockBadgeHtml = `<span class="stock-pill stock-preorder"><span class="stock-dot"></span> Pre-Order</span>`;
@@ -10673,7 +10981,7 @@
           headerMedia = `
             <div class="card-image-wrap">
               <img src="${product.image}" alt="${escapeHTML(product.name)}" class="card-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
-              ${badgeHtml}
+              ${product.badge ? `<span class="card-badge">${escapeHTML(product.badge)}</span>` : ''}
               <span class="card-rating"><i class="fa-solid fa-star"></i> ${product.rating || '5.0'}</span>
             </div>
           `;
@@ -10683,7 +10991,7 @@
               <div class="topup-icon-circle">
                 <i class="fa-solid fa-gamepad"></i>
               </div>
-              ${badgeHtml}
+              ${product.badge ? `<span class="card-badge">${escapeHTML(product.badge)}</span>` : ''}
             </div>
           `;
         }
@@ -10696,8 +11004,8 @@
                 <h3 class="card-title">${escapeHTML(product.name)}</h3>
                 <div class="card-meta-compact">
                   ${stockBadgeHtml}
-                  <div class="card-sold" title="Total Terjual: ${totalSold}">
-                    <i class="fa-solid fa-fire" style="color: ${isBestSeller ? '#f59e0b' : '#f97316'};"></i> ${totalSold} terjual
+                  <div class="card-sold">
+                    <i class="fa-solid fa-fire"></i> ${soldText} terjual
                   </div>
                 </div>
               </div>
@@ -10726,64 +11034,8 @@
     // Product Detail Engine (Click on Product Card)
     let currentDetailProductId = null;
 
-    function isProductSoldOut(prod) {
-      if (!prod) return false;
-      const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
-      return curStock <= 0 || prod.stockStatus === 'soldout';
-    }
-
-    function openStockHabisModal(prod) {
-      if (!prod) return;
-      playBeep('pop');
-
-      const titleEl = document.getElementById('stockHabisProductName');
-      if (titleEl) titleEl.textContent = prod.name;
-
-      const chatBtn = document.getElementById('stockHabisChatAdminBtn');
-      if (chatBtn) {
-        chatBtn.onclick = () => {
-          contactAdminRestock(prod.id);
-          closeModal('stockHabisModal');
-        };
-      }
-
-      const detailBtn = document.getElementById('stockHabisDetailBtn');
-      if (detailBtn) {
-        detailBtn.onclick = () => {
-          closeModal('stockHabisModal');
-          openProductDetailModal(prod.id);
-        };
-      }
-
-      openModal('stockHabisModal');
-    }
-
-    function contactAdminRestock(productId) {
-      playBeep('click');
-      const prod = (storeState.products || []).find(p => String(p.id) === String(productId));
-      const pName = prod ? prod.name : 'Produk';
-      let waNum = (storeState && storeState.settings && storeState.settings.whatsappNumber) 
-        ? String(storeState.settings.whatsappNumber).trim() 
-        : '6285139138997';
-      waNum = waNum.replace(/\D/g, '');
-      if (waNum.startsWith('0')) waNum = '62' + waNum.slice(1);
-
-      const storeName = (storeState.settings && storeState.settings.storeName) || 'JaneMurphy';
-      const msg = `Halo Admin ${storeName},\n\nSaya ingin memesan produk *${pName}*, tetapi stok di website saat ini sedang kosong/habis.\n\nApakah bisa dibantu untuk *Request Restock* produk ini? Mohon infonya ya admin, terima kasih! 🙏`;
-      const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
-
-      showToast(`Membuka WhatsApp Admin untuk request restock ${pName}...`);
-      window.open(waUrl, '_blank');
-    }
-
     function handleProductCardClick(event, productId, cardElement) {
       if (isSoundEnabled) playBeep('tap');
-
-      const prod = (storeState.products || []).find(p => String(p.id) === String(productId));
-      if (prod && isProductSoldOut(prod)) {
-        openStockHabisModal(prod);
-        return;
-      }
 
       // Add visual ripple and micro-bounce ONLY to clicked product card
       if (cardElement && event) {
@@ -10924,16 +11176,11 @@
       } catch (e) {}
 
       // Media Box
-      const isBest = Boolean(prod.is_best_seller || (prod.badge && prod.badge.toUpperCase().includes('BEST SELLER')));
-      const detailBadgeHtml = isBest
-        ? `<span class="card-badge badge-bestseller" style="top:12px;left:12px;font-size:11px;padding:4px 10px;"><i class="fa-solid fa-crown" style="font-size: 9px;"></i> BEST SELLER</span>`
-        : (prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : '');
-
       const mediaBox = document.getElementById('detailMediaContainer');
       if (prod.image && (!isTopup || prod.image.startsWith('http'))) {
         mediaBox.innerHTML = `
           <img src="${prod.image}" alt="${escapeHTML(prod.name)}" class="detail-media-img" loading="lazy" decoding="async" onload="this.classList.add('lazy-loaded')" onerror="this.onerror=null;this.src='/LogoJM.jpg'">
-          ${detailBadgeHtml}
+          ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : ''}
         `;
       } else {
         mediaBox.innerHTML = `
@@ -10941,34 +11188,23 @@
             <div class="topup-icon-circle" style="width:80px;height:80px;font-size:36px;">
               <i class="fa-solid fa-gamepad"></i>
             </div>
-            ${detailBadgeHtml}
+            ${prod.badge ? `<span class="card-badge" style="top:12px;left:12px;font-size:11px;padding:4px 10px;">${escapeHTML(prod.badge)}</span>` : ''}
           </div>
         `;
       }
 
-      // Title & Tags & Stock Status (Feature #4 & Automatic Stock)
-      const detailBadgeEl = document.getElementById('detailBadge');
-      if (detailBadgeEl) {
-        if (isBest) {
-          detailBadgeEl.innerHTML = `<i class="fa-solid fa-crown" style="color:#f59e0b; margin-right:4px;"></i> BEST SELLER`;
-          detailBadgeEl.style.color = '#f59e0b';
-          detailBadgeEl.style.borderColor = 'rgba(245, 158, 11, 0.4)';
-        } else {
-          detailBadgeEl.textContent = prod.badge || 'PROMO RESMI';
-          detailBadgeEl.style.color = '';
-          detailBadgeEl.style.borderColor = '';
-        }
-      }
+      // Title & Tags & Stock Status (Feature #4)
+      document.getElementById('detailBadge').textContent = prod.badge || 'PROMO RESMI';
       document.getElementById('detailCategory').textContent = prod.category || 'Katalog';
       
       const stockBadgeBox = document.getElementById('detailStockBadge');
       if (stockBadgeBox) {
-        const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
-        const sStatus = curStock <= 0 ? 'soldout' : (curStock <= 5 ? 'limited' : (prod.stockStatus || 'ready'));
+        const sStatus = prod.stockStatus || 'ready';
         if (sStatus === 'ready') {
-          stockBadgeBox.innerHTML = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock (${curStock} Tersedia)</span>`;
+          stockBadgeBox.innerHTML = `<span class="stock-pill stock-ready"><span class="stock-dot"></span> Ready Stock</span>`;
         } else if (sStatus === 'limited') {
-          stockBadgeBox.innerHTML = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> Sisa ${curStock} Slot</span>`;
+          const sCount = prod.stockCount ? `Sisa ${prod.stockCount} Slot` : 'Slot Terbatas';
+          stockBadgeBox.innerHTML = `<span class="stock-pill stock-limited"><span class="stock-dot"></span> ${sCount}</span>`;
         } else if (sStatus === 'preorder') {
           stockBadgeBox.innerHTML = `<span class="stock-pill stock-preorder"><span class="stock-dot"></span> Pre-Order</span>`;
         } else if (sStatus === 'soldout') {
@@ -10978,8 +11214,7 @@
 
       document.getElementById('detailName').textContent = prod.name;
       document.getElementById('detailRating').textContent = prod.rating || '5.0';
-      const totalSoldVal = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
-      document.getElementById('detailSold').textContent = totalSoldVal;
+      document.getElementById('detailSold').textContent = prod.soldCount !== undefined ? prod.soldCount : 0;
       document.getElementById('detailWarranty').textContent = prod.warranty || 'Garansi Resmi Penuh';
 
       // Price & Discount Calculation
@@ -11025,31 +11260,6 @@
           <span class="detail-variant-chip-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
         </div>
       `).join('');
-
-      // Handle Sold Out state in Detail Modal
-      const isSoldOut = isProductSoldOut(prod);
-      const habisBanner = document.getElementById('detailStockHabisBanner');
-      if (habisBanner) {
-        habisBanner.style.display = isSoldOut ? 'block' : 'none';
-      }
-
-      const addToCartBtn = document.getElementById('detailAddToCartBtn');
-      if (addToCartBtn) {
-        addToCartBtn.style.display = isSoldOut ? 'none' : 'inline-flex';
-      }
-
-      const orderBtn = document.getElementById('detailOrderBtn');
-      if (orderBtn) {
-        if (isSoldOut) {
-          orderBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Chat Admin untuk Restock';
-          orderBtn.className = 'btn btn-wa';
-          orderBtn.onclick = () => contactAdminRestock(prod.id);
-        } else {
-          orderBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Beli Sekarang';
-          orderBtn.className = 'btn btn-wa';
-          orderBtn.onclick = proceedOrderFromDetail;
-        }
-      }
 
       // Initialize Reviews & Tab
       switchProductDetailTab('desc');
@@ -11386,11 +11596,6 @@
 
     function proceedOrderFromDetail() {
       if (!currentDetailProductId) return;
-      const prod = (storeState.products || []).find(p => String(p.id) === String(currentDetailProductId));
-      if (prod && isProductSoldOut(prod)) {
-        contactAdminRestock(currentDetailProductId);
-        return;
-      }
       closeModal('productDetailModal');
       openCheckoutModal(currentDetailProductId);
     }
@@ -11987,9 +12192,8 @@
 
     function backToProductDetail() {
       closeAllModals();
-      const pId = currentDetailProductId || document.getElementById('orderProductId')?.value;
-      if (pId) {
-        openProductDetailModal(pId);
+      if (currentDetailProductId) {
+        openProductDetailModal(currentDetailProductId);
       }
     }
 
@@ -12107,11 +12311,6 @@
       const prod = storeState.products.find(p => String(p.id) === String(productId));
       if (!prod) return;
 
-      if (isProductSoldOut(prod)) {
-        contactAdminRestock(productId);
-        return;
-      }
-
       playBeep('click');
       removeVoucher();
 
@@ -12135,40 +12334,26 @@
         { name: "Paket Standar", price: prod.price || 0 }
       ];
 
-      // Keep user's chosen variant from Detail Produk if valid (Anti-Duplikasi: Jangan suruh pilih paket lagi)
-      const matched = variants.find(v => v.name === selectedVariantName);
-      if (matched) {
-        selectedVariantPrice = matched.price;
-      } else if (!selectedVariantName || !variants.some(v => v.name === selectedVariantName)) {
-        selectedVariantName = variants[0].name;
-        selectedVariantPrice = variants[0].price;
+      // Preserve previously selected variant if valid for this product
+      let defaultIdx = 0;
+      if (selectedVariantName) {
+        const foundIdx = variants.findIndex(v => v.name === selectedVariantName);
+        if (foundIdx !== -1) defaultIdx = foundIdx;
       }
-
-      // Display confirmed chosen variant cleanly
-      const confirmedDisplay = document.getElementById('checkoutSelectedPackageDisplay');
-      const confirmedName = document.getElementById('checkoutConfirmedVariantName');
-      const confirmedPrice = document.getElementById('checkoutConfirmedVariantPrice');
-      if (confirmedName) confirmedName.textContent = selectedVariantName;
-      if (confirmedPrice) confirmedPrice.textContent = `Rp ${Number(selectedVariantPrice).toLocaleString('id-ID')}`;
-      if (confirmedDisplay) confirmedDisplay.style.display = 'flex';
-
-      // Always HIDE the redundant variant picker so the user is NEVER asked to choose package again!
-      const variantGroup = document.getElementById('checkoutVariantGroup');
-      if (variantGroup) variantGroup.style.display = 'none';
 
       const variantContainer = document.getElementById('checkoutVariantSelector');
-      if (variantContainer) {
-        variantContainer.innerHTML = variants.map((v) => `
-          <label class="variant-radio-label ${v.name === selectedVariantName ? 'selected' : ''}" onclick="selectVariant('${v.name}', ${v.price}, this)">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <input type="radio" class="variant-radio-input" name="order_variant" value="${v.name}" ${v.name === selectedVariantName ? 'checked' : ''}>
-              <span class="variant-name">${v.name}</span>
-            </div>
-            <span class="variant-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
-          </label>
-        `).join('');
-      }
+      variantContainer.innerHTML = variants.map((v, idx) => `
+        <label class="variant-radio-label ${idx === defaultIdx ? 'selected' : ''}" onclick="selectVariant('${escapeChatHTML(v.name)}', ${v.price}, this)">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" class="variant-radio-input" name="order_variant" value="${escapeChatHTML(v.name)}" ${idx === defaultIdx ? 'checked' : ''}>
+            <span class="variant-name">${escapeChatHTML(v.name)}</span>
+          </div>
+          <span class="variant-price">Rp ${Number(v.price).toLocaleString('id-ID')}</span>
+        </label>
+      `).join('');
 
+      selectedVariantName = variants[defaultIdx].name;
+      selectedVariantPrice = variants[defaultIdx].price;
       recalculateCheckoutPrice();
 
       openModal('checkoutModal');
@@ -12222,28 +12407,12 @@
         status: 'Diproses'
       };
 
-      // 1. Pengurangan Stok & 2. Hitung Total Penjualan (total_terjual)
+      // Auto-increment sold count & order statistics (Requirement #7)
       if (prod) {
-        const qty = 1;
-        const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
-        const newStock = Math.max(0, curStock - qty);
-        prod.stock = newStock;
-        prod.stockCount = newStock;
-        if (newStock <= 0) prod.stockStatus = 'soldout';
-        else if (newStock <= 5) prod.stockStatus = 'limited';
-        else prod.stockStatus = 'ready';
-
-        const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
-        prod.total_terjual = curSold + qty;
-        prod.soldCount = prod.total_terjual;
-
+        prod.soldCount = (Number(prod.soldCount) || 0) + 1;
         const detailSold = document.getElementById('detailSold');
-        if (detailSold) detailSold.textContent = prod.total_terjual;
+        if (detailSold) detailSold.textContent = prod.soldCount;
       }
-
-      // 3. Logika Best Seller Otomatis (Top 5 penjualan terbanyak)
-      recalculateBestSellersClient();
-
       if (!storeState.stats) storeState.stats = {};
       storeState.stats.totalOrders = (Number(storeState.stats.totalOrders) || 0) + 1;
       storeState.stats.totalRevenue = (Number(storeState.stats.totalRevenue) || 0) + finalCalculatedPrice;
@@ -12288,21 +12457,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
-      }).then(res => res.json()).then(resData => {
-        if (resData && resData.products) {
-          storeState.products = resData.products;
-          recalculateBestSellersClient();
-          renderProducts();
-          populateAdminProductsTable();
-          populateAdminStats();
-        }
       }).catch(e => console.warn("Order log note:", e));
-
-      if (isFirebaseReady && db) {
-        try {
-          db.collection('orders').doc(newOrderId).set(orderData, { merge: true }).catch(() => {});
-        } catch (e) {}
-      }
 
       closeModal('checkoutModal');
 
@@ -12567,25 +12722,18 @@
       const emptyHtml = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:18px;">Belum ada produk.</td></tr>`;
       
       const rowsHtml = prods.length === 0 ? emptyHtml : prods.map(p => {
-        const curStock = Number(p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : 50));
-        let stockLabel = `Ready (${curStock})`;
+        let stockLabel = 'Ready';
         let stockStyle = 'background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3);';
-        if (p.stockStatus === 'limited' || (curStock > 0 && curStock <= 5)) {
-          stockLabel = `Sisa ${curStock} Slot`;
+        if (p.stockStatus === 'limited') {
+          stockLabel = p.stockCount ? `Sisa ${p.stockCount} Slot` : 'Terbatas';
           stockStyle = 'background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3);';
         } else if (p.stockStatus === 'preorder') {
           stockLabel = 'Pre-Order';
           stockStyle = 'background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3);';
-        } else if (p.stockStatus === 'soldout' || curStock <= 0) {
-          stockLabel = 'Habis (0)';
+        } else if (p.stockStatus === 'soldout') {
+          stockLabel = 'Stok Habis';
           stockStyle = 'background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);';
         }
-
-        const totalSold = Number(p.total_terjual !== undefined ? p.total_terjual : (p.soldCount || 0));
-        const isBest = Boolean(p.is_best_seller || (p.badge && p.badge.toUpperCase().includes('BEST SELLER')));
-        const badgeDisplay = isBest
-          ? `<span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-crown" style="font-size: 8px;"></i> BEST SELLER</span>`
-          : `<span style="background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px; font-size: 10.5px; border: 1px solid var(--border-color);">${escapeHTML(p.badge || '-')}</span>`;
 
         return `
         <tr>
@@ -12596,8 +12744,8 @@
           <td><span style="background: var(--bg-secondary); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 11px;">${escapeHTML(p.category)}</span></td>
           <td><span style="padding: 2px 7px; border-radius: 4px; font-size: 10.5px; font-weight: 700; display: inline-block; ${stockStyle}">${escapeHTML(stockLabel)}</span></td>
           <td><span style="font-weight: 700;">Rp ${Number(p.price || 0).toLocaleString('id-ID')}</span></td>
-          <td><span style="font-weight: 700; color: #f97316;"><i class="fa-solid fa-fire" style="font-size: 10px;"></i> ${totalSold}x</span></td>
-          <td>${badgeDisplay}</td>
+          <td>${p.soldCount || 0}x</td>
+          <td>${escapeHTML(p.badge || '-')}</td>
           <td>
             <div style="display: flex; gap: 6px;">
               <button class="btn btn-outline btn-sm" onclick="editProduct('${escapeHTML(p.id)}')" title="Edit Produk"><i class="fa-solid fa-pen"></i></button>
@@ -12666,17 +12814,12 @@
           <td style="font-weight:700;color:#38bdf8;">Rp ${Number(o.price || 0).toLocaleString('id-ID')}</td>
           <td style="font-size:11px;color:var(--text-muted);">${o.timestamp ? new Date(o.timestamp).toLocaleString('id-ID') : '-'}</td>
           <td>
-            <div style="display:flex;align-items:center;gap:6px;">
-              <select class="form-input" style="padding:4px 8px;font-size:11px;border-radius:6px;width:auto;min-width:115px;font-weight:700;" onchange="updateOrderStatus('${o.id}', this.value)">
-                <option value="Diproses" ${currentStatus === 'Diproses' ? 'selected' : ''}>⚡ Diproses</option>
-                <option value="Selesai" ${currentStatus === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
-                <option value="Pending" ${currentStatus === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
-                <option value="Dibatalkan" ${currentStatus === 'Dibatalkan' ? 'selected' : ''}>❌ Dibatalkan</option>
-              </select>
-              <button class="btn btn-outline btn-sm" onclick="deleteOrder('${o.id}')" title="Hapus Riwayat Pesanan" style="padding:4px 7px;font-size:11px;color:#ef4444;border-color:rgba(239,68,68,0.3);">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
+            <select class="form-input" style="padding:4px 8px;font-size:11px;border-radius:6px;width:auto;min-width:125px;font-weight:700;" onchange="updateOrderStatus('${o.id}', this.value)">
+              <option value="Diproses" ${currentStatus === 'Diproses' ? 'selected' : ''}>⚡ Diproses</option>
+              <option value="Selesai" ${currentStatus === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
+              <option value="Pending" ${currentStatus === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
+              <option value="Dibatalkan" ${currentStatus === 'Dibatalkan' ? 'selected' : ''}>❌ Dibatalkan</option>
+            </select>
           </td>
         </tr>
       `;
@@ -12698,59 +12841,17 @@
         updateMyOrdersBadges();
 
         try {
-          const res = await fetch(`/api/orders/${orderId}`, {
+          await fetch(`/api/orders/${orderId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus })
           });
-          const resData = await res.json();
-          if (resData && resData.products) {
-            storeState.products = resData.products;
-            recalculateBestSellersClient();
-            renderProducts();
-            populateAdminProductsTable();
-          }
         } catch (e) {
           console.warn("Update status note:", e);
         }
 
-        if (isFirebaseReady && db) {
-          try {
-            await db.collection('orders').doc(orderId).set({ status: newStatus }, { merge: true });
-          } catch (e) {}
-        }
-
         playBeep('success');
         showToast(`Status pesanan ${orderId} diubah menjadi: ${newStatus}`);
-      }
-    }
-
-    async function deleteOrder(orderId) {
-      if (!confirm(`Yakin ingin menghapus riwayat pesanan #${orderId}? Tindakan ini tidak dapat dibatalkan.`)) return;
-
-      const idx = (storeState.orders || []).findIndex(o => String(o.id) === String(orderId));
-      if (idx !== -1) {
-        storeState.orders.splice(idx, 1);
-        persistLocalState();
-        populateAdminOrdersTable();
-        populateAdminStats();
-        if (document.getElementById('myOrdersModal')?.classList.contains('active')) {
-          renderMyOrders();
-        }
-        updateMyOrdersBadges();
-
-        try {
-          await fetch(`/api/orders/${orderId}`, { method: 'DELETE' });
-        } catch (e) {}
-
-        if (isFirebaseReady && db) {
-          try {
-            await db.collection('orders').doc(orderId).delete();
-          } catch (e) {}
-        }
-
-        playBeep('success');
-        showToast(`Pesanan #${orderId} berhasil dihapus.`);
       }
     }
 
@@ -13079,18 +13180,18 @@
     }
 
     function quickAddToCart(productId) {
+      playBeep('pop');
       const prod = (storeState.products || []).find(p => String(p.id) === String(productId));
       if (!prod) {
         showToast("Produk tidak ditemukan.");
         return;
       }
 
-      if (isProductSoldOut(prod)) {
-        openStockHabisModal(prod);
+      if (prod.stockStatus === 'soldout') {
+        showToast("Maaf, stok produk ini sedang habis.");
         return;
       }
 
-      playBeep('pop');
       const items = getCartItems();
       const defaultVariant = (Array.isArray(prod.variants) && prod.variants[0]) ? prod.variants[0].name : 'Standar';
       const itemPrice = (Array.isArray(prod.variants) && prod.variants[0]) ? Number(prod.variants[0].price) : Number(prod.price || 0);
@@ -13115,17 +13216,17 @@
     }
 
     function addCurrentProductToCart() {
+      playBeep('pop');
       if (!currentDetailProductId) return;
 
       const prod = (storeState.products || []).find(p => String(p.id) === String(currentDetailProductId));
       if (!prod) return;
 
-      if (isProductSoldOut(prod)) {
-        openStockHabisModal(prod);
+      if (prod.stockStatus === 'soldout') {
+        showToast("Maaf, stok produk ini sedang habis.");
         return;
       }
 
-      playBeep('pop');
       const items = getCartItems();
       const variantName = selectedVariantName || 'Standar';
       const variantPrice = Number(selectedVariantPrice || prod.price || 0);
@@ -13333,18 +13434,6 @@
         return;
       }
 
-      // Guard: Cek apakah ada item di keranjang yang stoknya sudah habis
-      const soldOutItem = items.find(it => {
-        const prod = storeState.products?.find(p => String(p.id) === String(it.productId || it.id));
-        return prod && isProductSoldOut(prod);
-      });
-      if (soldOutItem) {
-        const prod = storeState.products?.find(p => String(p.id) === String(soldOutItem.productId || soldOutItem.id));
-        closeModal('cartModal');
-        openStockHabisModal(prod || { name: soldOutItem.name, id: soldOutItem.productId });
-        return;
-      }
-
       const custName = (document.getElementById('cartCustomerName')?.value || '').trim();
       const custPhone = (document.getElementById('cartCustomerPhone')?.value || '').trim();
       const custNotes = (document.getElementById('cartCustomerNotes')?.value || '').trim();
@@ -13388,64 +13477,22 @@
         status: 'Diproses'
       };
 
-      // 1. Pengurangan Stok & 2. Hitung Total Penjualan (total_terjual) untuk setiap item
-      items.forEach(it => {
-        const prod = storeState.products?.find(p => String(p.id) === String(it.productId || it.id));
-        if (prod) {
-          const qty = Math.max(1, Number(it.quantity) || 1);
-          const curStock = Number(prod.stock !== undefined ? prod.stock : (prod.stockCount !== undefined ? prod.stockCount : 50));
-          const newStock = Math.max(0, curStock - qty);
-          prod.stock = newStock;
-          prod.stockCount = newStock;
-          if (newStock <= 0) prod.stockStatus = 'soldout';
-          else if (newStock <= 5) prod.stockStatus = 'limited';
-          else prod.stockStatus = 'ready';
-
-          const curSold = Number(prod.total_terjual !== undefined ? prod.total_terjual : (prod.soldCount || 0));
-          prod.total_terjual = curSold + qty;
-          prod.soldCount = prod.total_terjual;
-        }
-      });
-
-      // 3. Logika Best Seller Otomatis
-      recalculateBestSellersClient();
-
-      // Add to storeState orders & update stats
-      if (!storeState.stats) storeState.stats = {};
-      storeState.stats.totalOrders = (Number(storeState.stats.totalOrders) || 0) + 1;
-      storeState.stats.totalRevenue = (Number(storeState.stats.totalRevenue) || 0) + finalPrice;
-
-      if (!Array.isArray(storeState.orders)) storeState.orders = [];
+      // Add to storeState orders
+      if (!storeState.orders) storeState.orders = [];
       storeState.orders.unshift(orderData);
       saveLocalOrderId(orderId);
       persistLocalState();
-      renderProducts();
       updateMyOrdersBadges();
-      populateAdminStats();
 
       // Post to server orders API
       try {
-        const res = await fetch('/api/orders', {
+        await fetch('/api/orders', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(orderData)
         });
-        const resData = await res.json();
-        if (resData && resData.products) {
-          storeState.products = resData.products;
-          recalculateBestSellersClient();
-          renderProducts();
-          populateAdminProductsTable();
-          populateAdminStats();
-        }
       } catch (e) {
         console.warn('API sync warn:', e);
-      }
-
-      if (isFirebaseReady && db) {
-        try {
-          db.collection('orders').doc(orderId).set(orderData, { merge: true }).catch(() => {});
-        } catch (e) {}
       }
 
       // Empty cart
@@ -14490,11 +14537,9 @@
       document.getElementById('prodFormCategory').value = p.category || 'Aplikasi Premium';
       document.getElementById('prodFormBadge').value = p.badge || '';
       document.getElementById('prodFormPrice').value = p.price || '';
-      const soldVal = p.total_terjual !== undefined ? p.total_terjual : (p.soldCount || 0);
-      document.getElementById('prodFormSold').value = soldVal;
+      document.getElementById('prodFormSold').value = p.soldCount || '0';
       document.getElementById('prodFormStockStatus').value = p.stockStatus || 'ready';
-      const stockVal = p.stock !== undefined ? p.stock : (p.stockCount !== undefined ? p.stockCount : '');
-      document.getElementById('prodFormStockCount').value = stockVal;
+      document.getElementById('prodFormStockCount').value = p.stockCount || '';
       toggleStockCountInput(p.stockStatus || 'ready');
       
       setProductImagePreview(p.image || '', p.image ? 'Foto Produk Saat Ini' : '');
@@ -14567,10 +14612,8 @@
         price,
         originalPrice: Math.round(price * 1.35),
         soldCount,
-        total_terjual: soldCount,
         stockStatus,
         stockCount,
-        stock: stockCount || (stockStatus === 'soldout' ? 0 : 50),
         image,
         warranty: stripDangerousHTML(warranty || 'Garansi Penuh'),
         description: stripDangerousHTML(desc),
@@ -14588,7 +14631,6 @@
         if (idx !== -1) {
           storeState.products[idx] = { ...storeState.products[idx], ...productPayload };
         }
-        recalculateBestSellersClient();
         persistLocalState();
 
         // 1. Sync directly to Firestore
@@ -14620,7 +14662,6 @@
         const newId = "prod-" + Date.now();
         const newProd = { id: newId, rating: 5.0, ...productPayload };
         storeState.products.unshift(newProd);
-        recalculateBestSellersClient();
         persistLocalState();
 
         // 1. Sync directly to Firestore
@@ -14682,7 +14723,6 @@
       } catch (e) { console.warn("Delete API notice:", e); }
 
       showToast("Produk berhasil dihapus dari Firebase!");
-      recalculateBestSellersClient();
       renderProducts();
       updateCategoryCounts();
       populateAdminProductsTable();

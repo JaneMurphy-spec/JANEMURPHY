@@ -8,8 +8,6 @@ try {
   console.warn("firebase-admin import notice:", e.message);
 }
 
-const PORT = 3000;
-const HOST = "0.0.0.0";
 const root = path.resolve(process.cwd());
 const dataDir = path.join(root, "data");
 const storeFile = path.join(dataDir, "store.json");
@@ -352,6 +350,15 @@ const appHandler = async (request, response) => {
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
     });
     return response.end();
+  }
+
+  // Health check endpoint for Cloud Run and container probes
+  if (pathname === "/health" || pathname === "/healthz" || pathname === "/_health" || pathname === "/ping" || pathname === "/api/health") {
+    response.writeHead(200, {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store"
+    });
+    return response.end("OK");
   }
 
   // --- API ROUTES ---
@@ -1443,9 +1450,38 @@ Instruksi:
 
 const server = http.createServer(appHandler);
 
-if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+// Port 3000 is hardcoded by the Google AI Studio Cloud Run infrastructure and reverse proxy
+const PORT = 3000;
+const HOST = "0.0.0.0";
+
+if (!process.env.VERCEL) {
+  server.on("error", (err) => {
+    console.error("JaneMarket Server error:", err);
+  });
+
   server.listen(PORT, HOST, () => {
     console.log(`JaneMarket Server running on http://${HOST}:${PORT}`);
+  });
+
+  // Graceful shutdown handlers for Cloud Run revisions
+  process.on("SIGTERM", () => {
+    console.log("SIGTERM received, closing HTTP server...");
+    server.close(() => {
+      console.log("HTTP server closed.");
+      process.exit(0);
+    });
+  });
+
+  process.on("SIGINT", () => {
+    server.close(() => process.exit(0));
+  });
+
+  process.on("unhandledRejection", (reason) => {
+    console.error("Unhandled Promise Rejection:", reason);
+  });
+
+  process.on("uncaughtException", (err) => {
+    console.error("Uncaught Exception:", err);
   });
 }
 

@@ -15,18 +15,22 @@ function copyToDir(dirName) {
     'public',
     'api',
     'server.js',
+    'server.ts',
     'serve-local.js',
     'build.js',
     'bun.lock',
     'vercel.json',
     'metadata.json',
     '.env',
-    '.env.example'
+    '.env.example',
+    'cloudsql',
+    'control-plane-api',
+    'cloud_sql_proxy'
   ];
 
   const items = fs.readdirSync(__dirname);
   for (const item of items) {
-    if (ignored.includes(item)) {
+    if (ignored.includes(item) || item.startsWith('.')) {
       continue;
     }
     const srcPath = path.join(__dirname, item);

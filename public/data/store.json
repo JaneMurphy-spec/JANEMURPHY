@@ -1,7 +1,7 @@
 {
   "settings": {
     "storeName": "JaneMurphy",
-    "storeTagline": "Premium Applications & Official Store",
+    "storeTagline": "Platform Aplikasi Premium Terlengkap & Bergaransi Resmi",
     "storeLogo": "https://files.catbox.moe/3tt0xl.png",
     "ownerEmail": "ererex4youu@gmail.com",
     "whatsappNumber": "6285139138997",
@@ -28,7 +28,7 @@
     ],
     "promoBanner": {
       "title": "🔥 FLASH SALE SPESIAL HARI INI!",
-      "subtitle": "Diskon hingga 50% untuk Semua Aplikasi Premium & Free Konsultasi Desain Poster!",
+      "subtitle": "Diskon hingga 50% untuk Seluruh Aplikasi Premium Terpopuler!",
       "badge": "GARANSI RESMI FULL PERIODE",
       "buttonText": "Klaim Promo WhatsApp",
       "active": true
@@ -36,72 +36,18 @@
     "announcement": "⚡ Proses Cepat 1-5 Menit • Garansi Ganti Akun Baru Jika Bermasalah • Pembayaran DANA, GoPay & QRIS via WhatsApp Admin"
   },
   "stats": {
-    "totalVisitors": 1870,
+    "totalVisitors": 1877,
     "totalRevenue": 4865650,
     "totalOrders": 144
   },
   "orders": [
     {
-      "id": "ORD-201857",
-      "customerName": "bakaa",
-      "customerPhone": "",
-      "customerUid": "",
-      "productName": "Canva",
-      "category": "Aplikasi Premium",
-      "variant": "member 1 bulan",
-      "items": [
-        {
-          "id": "3",
-          "name": "Canva",
-          "variant": "member 1 bulan",
-          "price": 650,
-          "quantity": 1
-        }
-      ],
-      "price": 650,
-      "subtotal": 650,
-      "discountCode": "",
-      "discountAmount": 0,
-      "paymentMethod": "DANA",
-      "timestamp": "2026-09-08T01:00:02.548Z",
-      "status": "Selesai",
-      "accountId": "",
-      "notes": ""
-    },
-    {
-      "id": "JM-TEST01",
-      "customerName": "Budi",
-      "customerPhone": "08123456789",
-      "customerUid": "",
-      "productName": "undefined (1 Bulan x1)",
-      "category": "Paket Keranjang (1 item)",
-      "variant": "1 Produk Dipilih",
-      "items": [
-        {
-          "productId": "prod-canva-1",
-          "productName": "Canva Pro",
-          "variant": "1 Bulan",
-          "price": 15000,
-          "quantity": 1
-        }
-      ],
-      "price": 15000,
-      "subtotal": 15000,
-      "discountCode": "",
-      "discountAmount": 0,
-      "paymentMethod": "QRIS",
-      "timestamp": "2026-09-03T01:42:19.575Z",
-      "status": "Selesai",
-      "accountId": "",
-      "notes": ""
-    },
-    {
       "id": "ORD-17081",
       "customerName": "Rian Pratama",
-      "productName": "Netflix Premium 4K UHD",
+      "productName": "iQiyi VIP",
       "category": "Aplikasi Premium",
-      "variant": "1 Bulan (1 Profil Private)",
-      "price": 35000,
+      "variant": "iQiyi Standard (1 Bulan)",
+      "price": 6000,
       "paymentMethod": "QRIS",
       "timestamp": "2026-08-17T11:20:00Z",
       "status": "Selesai"
@@ -109,205 +55,632 @@
     {
       "id": "ORD-17080",
       "customerName": "Dimas Setiawan",
-      "productName": "Mobile Legends: Bang Bang",
-      "category": "Topup Game",
-      "variant": "296 Diamonds (Fast)",
-      "price": 78000,
+      "productName": "Disney+ Hotstar",
+      "category": "Aplikasi Premium",
+      "variant": "Disney+ Premium (6 User, 1 Bulan)",
+      "price": 29000,
       "paymentMethod": "DANA",
       "timestamp": "2026-08-17T10:45:00Z",
-      "status": "Selesai"
-    },
-    {
-      "id": "ORD-17079",
-      "customerName": "Siti Nurhaliza",
-      "productName": "Desain Poster Acara Musik & Seminar",
-      "category": "Jasa Design Poster",
-      "variant": "Paket Pro (Revisi 3x + File Master)",
-      "price": 120000,
-      "paymentMethod": "Bank BCA",
-      "timestamp": "2026-08-17T09:15:00Z",
       "status": "Selesai"
     }
   ],
   "products": [
     {
-      "id": "prod-1",
-      "name": "Netflix Premium 4K Ultra HD",
+      "id": "prod-iqiyi",
+      "name": "iQiyi VIP",
       "category": "Aplikasi Premium",
-      "price": 35000,
-      "originalPrice": 65000,
-      "image": "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 428,
-      "rating": 4.9,
-      "badge": "BEST SELLER",
+      "price": 6000,
+      "originalPrice": 15000,
+      "image": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 780,
+      "rating": 5,
+      "badge": "SELALU READY",
       "stockStatus": "ready",
-      "warranty": "Garansi 30 Hari",
-      "description": "Akun Netflix Premium kualitas Ultra HD 4K. Anti on-hold, anti screen limit. Support Android, iOS, Smart TV, Laptop/PC.",
+      "stockCount": 99,
+      "stock": 99,
+      "warranty": "Garansi Penuh",
+      "description": "Aplikasi streaming khusus Drama China (Drachin) terpopuler, Anime ongoing, dan Variety Show Asia lengkap dengan subtitle Indonesia.",
       "variants": [
         {
-          "name": "1 Bulan (1 Profil Private - 1 Device)",
-          "price": 35000
+          "name": "iQiyi Standard (1 Bulan)",
+          "price": 6000
         },
         {
-          "name": "3 Bulan (1 Profil Private - 1 Device)",
-          "price": 95000
+          "name": "iQiyi Premium (1 Bulan)",
+          "price": 7000
         },
         {
-          "name": "1 Bulan (Akun Full 5 Profil)",
-          "price": 140000
+          "name": "iQiyi Premium (1 Tahun)",
+          "price": 10000
+        },
+        {
+          "name": "iQiyi Unlimited (1 Bulan)",
+          "price": 16000
+        },
+        {
+          "name": "iQiyi Standard Private Indo (1 Bulan)",
+          "price": 26000
+        },
+        {
+          "name": "iQiyi Premium Private Indo (1 Bulan)",
+          "price": 34000
         }
       ],
       "features": [
-        "Resolusi 4K HDR",
-        "Bisa Smart TV / HP / PC",
-        "Private PIN Profil",
-        "Full Garansi"
+        "Drachin & Anime Ongoing Terlengkap",
+        "Subtitle Bahasa Indonesia Resmi",
+        "Kualitas 1080p / Dolby Atmos",
+        "Stok Selalu Tersedia (Fast Process)"
       ],
-      "total_terjual": 428,
-      "stockCount": 50,
-      "stock": 50,
+      "total_terjual": 780,
       "is_best_seller": true
     },
     {
-      "id": "prod-2",
-      "name": "Spotify Premium Individual",
+      "id": "prod-alight-motion",
+      "name": "Alight Motion Pro",
       "category": "Aplikasi Premium",
-      "price": 20000,
-      "originalPrice": 55000,
-      "image": "https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 356,
+      "price": 5000,
+      "originalPrice": 25000,
+      "image": "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 920,
+      "rating": 5,
+      "badge": "SELALU READY",
+      "stockStatus": "ready",
+      "stockCount": 99,
+      "stock": 99,
+      "warranty": "Garansi 1 Tahun Penuh",
+      "description": "Aplikasi motion design dan video editing terbaik di HP untuk bikin preset, efek visual, animasi, dan video AMV tanpa watermark.",
+      "variants": [
+        {
+          "name": "Alight Motion Sharing (1 Tahun)",
+          "price": 5000
+        },
+        {
+          "name": "Alight Motion Private Acc Seller (1 Tahun)",
+          "price": 6000
+        },
+        {
+          "name": "Alight Motion Private Acc Buyer (1 Tahun)",
+          "price": 7000
+        }
+      ],
+      "features": [
+        "Tanpa Watermark Alight Motion",
+        "Buka Semua Efek & Preset Pro",
+        "Import / Export Preset XML & 5MB+",
+        "Stok Selalu Tersedia (Fast Process)"
+      ],
+      "total_terjual": 920,
+      "is_best_seller": true
+    },
+    {
+      "id": "prod-disney-hotstar",
+      "name": "Disney+ Hotstar",
+      "category": "Aplikasi Premium",
+      "price": 16000,
+      "originalPrice": 39000,
+      "image": "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 320,
       "rating": 4.9,
-      "badge": "BEST SELLER",
+      "badge": "KADANG READY",
       "stockStatus": "limited",
       "stockCount": 4,
-      "warranty": "Garansi Full",
-      "description": "Dengarkan musik tanpa iklan, download lagu offline unlimited, kualitas audio tertinggi (320kbps). Bisa di akun pribadi atau akun baru.",
+      "stock": 4,
+      "warranty": "Garansi Full Periode",
+      "description": "Platform streaming film dan serial eksklusif dari Marvel, Disney, Pixar, hingga film/series lokal berkualitas HD-4K tanpa iklan.",
       "variants": [
         {
-          "name": "1 Bulan (Plan Famhead/Indv)",
-          "price": 20000
+          "name": "Disney+ Premium (6 User, 7 Hari)",
+          "price": 16000
         },
         {
-          "name": "3 Bulan (Plan Indv)",
-          "price": 55000
-        },
-        {
-          "name": "1 Tahun (Garansi 1 Tahun)",
-          "price": 180000
+          "name": "Disney+ Premium (6 User, 1 Bulan)",
+          "price": 29000
         }
       ],
       "features": [
-        "Bebas Iklan",
-        "Download Offline",
-        "Audio HQ 320kbps",
-        "Bisa Akun Pribadi"
+        "Marvel, Disney & Pixar",
+        "Kualitas HD - 4K Tanpa Iklan",
+        "Subtitle & Dubbing Indonesia",
+        "Stok Terbatas / Kadang Ready"
       ],
-      "total_terjual": 356,
-      "stock": 4,
-      "is_best_seller": true
+      "total_terjual": 320,
+      "is_best_seller": false
     },
     {
-      "id": "prod-3",
-      "name": "Canva Pro Edu & Lifetime",
+      "id": "prod-wetv-vip",
+      "name": "WeTV VIP",
       "category": "Aplikasi Premium",
-      "price": 15000,
-      "originalPrice": 45000,
-      "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 512,
-      "rating": 5,
-      "badge": "BEST SELLER",
-      "stockStatus": "ready",
-      "warranty": "Garansi 1 Tahun / Lifetime",
-      "description": "Upgrade Canva Pro langsung di email pribadi. Akses 100+ juta foto, template, hapus background 1-klik, Brand Kit, magic resize.",
+      "price": 7000,
+      "originalPrice": 20000,
+      "image": "https://images.unsplash.com/photo-1578022761797-b8636ac1773c?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 410,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 30 Hari",
+      "description": "Tempat nonton series lokal Indonesia yang lagi viral, sinetron hits, serta drama Asia eksklusif dengan pilihan kualitas video tinggi.",
       "variants": [
         {
-          "name": "1 Tahun (Email Pribadi)",
+          "name": "WeTV VIP (Up 6 User, 1 Bulan)",
+          "price": 7000
+        },
+        {
+          "name": "WeTV VIP (3 User, 1 Bulan)",
+          "price": 16000
+        },
+        {
+          "name": "WeTV VIP Private (1 Bulan)",
+          "price": 32000
+        }
+      ],
+      "features": [
+        "Series Lokal & Sinetron Viral",
+        "Akses VIP Lebih Awal",
+        "Kualitas Full HD Bebas Iklan",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 410,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-youku",
+      "name": "Youku VIP",
+      "category": "Aplikasi Premium",
+      "price": 6000,
+      "originalPrice": 18000,
+      "image": "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 195,
+      "rating": 4.8,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 3,
+      "stock": 3,
+      "warranty": "Garansi Periode Penuh",
+      "description": "Layanan streaming drama Asia, drama pendek viral, dan acara hiburan Asia pilihan dengan update cepat.",
+      "variants": [
+        {
+          "name": "Youku Sharing (1 Bulan)",
+          "price": 6000
+        },
+        {
+          "name": "Youku Sharing (3 Bulan)",
+          "price": 8000
+        },
+        {
+          "name": "Youku Sharing (1 Tahun)",
+          "price": 10000
+        },
+        {
+          "name": "Youku Private (1 Bulan)",
+          "price": 28000
+        }
+      ],
+      "features": [
+        "Drama Pendek Viral & Asia Hits",
+        "Update Episode Tercepat",
+        "Sub Indo & HD Playback",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 195,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-prime-video",
+      "name": "Prime Video",
+      "category": "Aplikasi Premium",
+      "price": 6000,
+      "originalPrice": 25000,
+      "image": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 290,
+      "rating": 4.8,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 30 Hari",
+      "description": "Platform nonton tayangan Hollywood eksklusif, Amazon Originals, dan film aksi mancanegara kelas dunia.",
+      "variants": [
+        {
+          "name": "Prime Video Sharing (1 Bulan)",
+          "price": 6000
+        },
+        {
+          "name": "Prime Video Private Full Garansi (1 Bulan)",
+          "price": 14000
+        }
+      ],
+      "features": [
+        "Amazon Originals Eksklusif",
+        "Kualitas Video 4K UHD & HDR",
+        "Bisa Download Offline",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 290,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-vision-plus",
+      "name": "Vision+ Sport",
+      "category": "Aplikasi Premium",
+      "price": 15000,
+      "originalPrice": 35000,
+      "image": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 240,
+      "rating": 4.9,
+      "badge": "LIVE MATCH",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 30 Hari",
+      "description": "Aplikasi streaming siaran langsung olahraga (live match bola, badminton, dll.) serta channel TV lokal & internasional lengkap.",
+      "variants": [
+        {
+          "name": "Vision+ Sport Sharing (1 Bulan)",
           "price": 15000
         },
         {
-          "name": "Lifetime Edu (Email Pribadi)",
-          "price": 30000
+          "name": "Vision+ Sport Private (1 Bulan)",
+          "price": 25000
+        }
+      ],
+      "features": [
+        "Siaran Langsung Bola & Badminton",
+        "Channel TV Lokal & Internasional",
+        "Kualitas Streaming Jernih",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 240,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-hbo-max",
+      "name": "HBO Max",
+      "category": "Aplikasi Premium",
+      "price": 9000,
+      "originalPrice": 30000,
+      "image": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 210,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 3,
+      "stock": 3,
+      "warranty": "Garansi 30 Hari",
+      "description": "Pusat film blockbuster layar lebar, tayangan DC Universe, dunia Harry Potter, dan serial eksklusif produksi HBO.",
+      "variants": [
+        {
+          "name": "HBO Max Standard Sharing (1 Bulan)",
+          "price": 9000
         },
         {
-          "name": "1 Bulan Canva Pro Team",
+          "name": "HBO Max Ultimate Sharing (1 Bulan)",
+          "price": 11000
+        }
+      ],
+      "features": [
+        "DC Universe & Harry Potter",
+        "Original Blockbuster Series HBO",
+        "Audio & Video Kualitas Tinggi",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 210,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-zoom-pro",
+      "name": "Zoom Pro",
+      "category": "Aplikasi Premium",
+      "price": 6000,
+      "originalPrice": 25000,
+      "image": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 380,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 5,
+      "stock": 5,
+      "warranty": "Garansi Durasi",
+      "description": "Aplikasi meeting online tanpa batas durasi 40 menit, sangat cocok untuk keperluan sekolah, kuliah, web meeting, atau kerja kelompok.",
+      "variants": [
+        {
+          "name": "Zoom 100 Peserta (7 Hari)",
+          "price": 6000
+        },
+        {
+          "name": "Zoom 100 Peserta (14 Hari)",
+          "price": 8000
+        }
+      ],
+      "features": [
+        "Bebas Batas Waktu 40 Menit",
+        "Kapasitas Hingga 100 Peserta",
+        "Fitur Co-host & Polling Aktif",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 380,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-apple-music",
+      "name": "Apple Music",
+      "category": "Aplikasi Premium",
+      "price": 6000,
+      "originalPrice": 20000,
+      "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 340,
+      "rating": 4.9,
+      "badge": "LOSSLESS AUDIO",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi Durasi Penuh",
+      "description": "Layanan pemutar musik digital dengan puluhan juta lagu kualitas tinggi (Lossless Audio), lirik live sinkron, dan bebas iklan.",
+      "variants": [
+        {
+          "name": "Apple Music (1 Bulan)",
+          "price": 6000
+        },
+        {
+          "name": "Apple Music (2 Bulan)",
           "price": 10000
         }
       ],
       "features": [
-        "100M+ Aset Premium",
-        "Hapus Background 1 Klik",
-        "Magic Studio AI",
-        "Gunakan Email Sendiri"
+        "Kualitas Studio Lossless Audio",
+        "Spatial Audio with Dolby Atmos",
+        "Lirik Interaktif Real-time",
+        "Stok Dinamis (Kadang Ready)"
       ],
-      "total_terjual": 512,
-      "stockCount": 50,
-      "stock": 50,
-      "is_best_seller": true
+      "total_terjual": 340,
+      "is_best_seller": false
     },
     {
-      "id": "prod-4",
-      "name": "YouTube Premium + Music",
+      "id": "prod-picsart-gold",
+      "name": "Picsart Gold",
       "category": "Aplikasi Premium",
-      "price": 18000,
-      "originalPrice": 49000,
-      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 289,
+      "price": 4000,
+      "originalPrice": 15000,
+      "image": "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 310,
       "rating": 4.8,
-      "badge": "GARANSI",
-      "stockStatus": "ready",
-      "warranty": "Garansi Full",
-      "description": "Nonton video YouTube tanpa jeda iklan, pemutaran di latar belakang saat layar mati, serta akses gratis YouTube Music Premium.",
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 1 Bulan",
+      "description": "Aplikasi edit foto dan desain grafis terlengkap untuk akses ribuan stiker premium, font aesthetic, hapus background, dan filter VIP.",
       "variants": [
         {
-          "name": "1 Bulan (Invite Fam/Indv)",
-          "price": 18000
+          "name": "Picsart Sharing (1 Bulan)",
+          "price": 4000
         },
         {
-          "name": "3 Bulan (Invite Fam)",
-          "price": 48000
-        },
-        {
-          "name": "6 Bulan (Invite Fam)",
-          "price": 90000
+          "name": "Picsart Private (1 Bulan)",
+          "price": 8000
         }
       ],
       "features": [
-        "Bebas Iklan Video",
-        "Background Play",
-        "Termasuk YouTube Music",
-        "Legal & Aman"
+        "Buka Semua Font & Stiker Gold",
+        "Hapus Background AI Otomatis",
+        "Tanpa Iklan Mengganggu",
+        "Stok Dinamis (Kadang Ready)"
       ],
-      "total_terjual": 289,
-      "stockCount": 50,
-      "stock": 50,
+      "total_terjual": 310,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-remini-web",
+      "name": "Remini Web Pro",
+      "category": "Aplikasi Premium",
+      "price": 5000,
+      "originalPrice": 18000,
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 260,
+      "rating": 4.8,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 3,
+      "stock": 3,
+      "warranty": "Garansi 30 Hari",
+      "description": "Tool penjernih foto berbasis AI lewat browser web untuk mengubah foto buram/pecah jadi tajam dan HD secara otomatis.",
+      "variants": [
+        {
+          "name": "Remini Web Sharing (1 Bulan)",
+          "price": 5000
+        }
+      ],
+      "features": [
+        "AI Enhancer Super Jernih",
+        "Akses Mudah via Browser Web",
+        "Perbaiki Foto Jadul & Blur",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 260,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-meitu-vip",
+      "name": "Meitu VIP",
+      "category": "Aplikasi Premium",
+      "price": 9000,
+      "originalPrice": 25000,
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 215,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi Sesuai Durasi",
+      "description": "Aplikasi retouch dan editing foto/video aesthetic dengan filter kecantikan AI, perbaikan muka, dan template desain modern.",
+      "variants": [
+        {
+          "name": "Meitu Private All Device (7 Hari)",
+          "price": 9000
+        },
+        {
+          "name": "Meitu Sharing All Device (1 Bulan)",
+          "price": 13000
+        },
+        {
+          "name": "Meitu Private (1 Bulan)",
+          "price": 20000
+        }
+      ],
+      "features": [
+        "AI Beauty Retouch & Filter VIP",
+        "Edit Video Aesthetic Terkini",
+        "Template Desain Eksklusif",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 215,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-wink-vip",
+      "name": "Wink VIP",
+      "category": "Aplikasi Premium",
+      "price": 8000,
+      "originalPrice": 20000,
+      "image": "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 180,
+      "rating": 4.8,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 3,
+      "stock": 3,
+      "warranty": "Garansi 7 Hari",
+      "description": "Aplikasi penyesuai kualitas video khusus untuk meningkatkan resolusi video jadi Ultra HD dan retouch detail wajah otomatis.",
+      "variants": [
+        {
+          "name": "Wink Private Android Only (7 Hari)",
+          "price": 8000
+        }
+      ],
+      "features": [
+        "Ultra HD Video Quality Enhancer",
+        "Face Retouching AI di Video",
+        "Khusus Android Device",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 180,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-polarr-pro",
+      "name": "Polarr Pro",
+      "category": "Aplikasi Premium",
+      "price": 10000,
+      "originalPrice": 30000,
+      "image": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 140,
+      "rating": 4.8,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 3,
+      "stock": 3,
+      "warranty": "Garansi 1 Tahun",
+      "description": "Platform editor warna profesional untuk menerapkan dan mengedit preset warna kustom foto secara mendalam.",
+      "variants": [
+        {
+          "name": "Polarr Sharing (1 Tahun)",
+          "price": 10000
+        }
+      ],
+      "features": [
+        "Buka Semua Filter Kustom & Preset",
+        "Color Grading Profesional",
+        "Sync Kode QR Filter Polarr",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 140,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-vsco-fullpack",
+      "name": "VSCO Fullpack",
+      "category": "Aplikasi Premium",
+      "price": 10000,
+      "originalPrice": 35000,
+      "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 275,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 1 Tahun",
+      "description": "Aplikasi fotografi populer dengan koleksi filter aesthetic/vintage terlengkap dan alat pengeditan video minimalis.",
+      "variants": [
+        {
+          "name": "VSCO Fullpack Sharing (1 Tahun)",
+          "price": 10000
+        }
+      ],
+      "features": [
+        "200+ Filter Aesthetic Eksklusif",
+        "Fitur Edit Video Vintage Film",
+        "Alat HSL & Split Tone Lanjutan",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 275,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-dazz-cam",
+      "name": "Dazz Cam Lifetime",
+      "category": "Aplikasi Premium",
+      "price": 8000,
+      "originalPrice": 28000,
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 310,
+      "rating": 4.9,
+      "badge": "iOS ONLY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Lifetime iOS",
+      "description": "Kamera efek retro analog khusus iOS/iPhone untuk menghasilkan jepretan bergaya kamera film vintage secara instan.",
+      "variants": [
+        {
+          "name": "Dazz Cam Lifetime (iOS)",
+          "price": 8000
+        }
+      ],
+      "features": [
+        "Efek Kamera Analog Film Klasik",
+        "Filter Kamera CCD & Prism",
+        "Akses Lifetime Selamanya di iOS",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 310,
       "is_best_seller": false
     },
     {
       "id": "prod-5",
-      "name": "ChatGPT Plus / OpenAI Pro",
+      "name": "ChatGPT Pro & Plus",
       "category": "Aplikasi Premium",
-      "price": 45000,
+      "price": 9000,
       "originalPrice": 320000,
       "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80",
       "soldCount": 194,
       "rating": 4.9,
-      "badge": "AI PRO",
+      "badge": "KADANG READY",
       "stockStatus": "limited",
-      "stockCount": 2,
+      "stockCount": 3,
       "warranty": "Garansi 30 Hari",
-      "description": "Akses GPT-4o, DALL-E 3, Browsing, Advanced Data Analysis, pembuatan Custom GPTs tanpa batas kuota gratis.",
+      "description": "Asisten AI cerdas untuk bantu jawab pertanyaan, pengerjaan tugas, ide kreatif, pembuatan teks, hingga kodingan otomatis.",
       "variants": [
         {
-          "name": "1 Bulan (Shared Akun)",
-          "price": 45000
+          "name": "ChatGPT GO Sharing 8 User (1 Bulan, No Garansi)",
+          "price": 9000
         },
         {
-          "name": "1 Bulan (Semi-Private)",
-          "price": 85000
-        },
-        {
-          "name": "1 Bulan (Private Full)",
-          "price": 275000
+          "name": "ChatGPT Plus Sharing 8 User (1 Bulan, Full Garansi)",
+          "price": 17000
         }
       ],
       "features": [
@@ -317,297 +690,165 @@
         "Bisa Analisis File"
       ],
       "total_terjual": 194,
-      "stock": 2,
-      "is_best_seller": false
-    },
-    {
-      "id": "prod-6",
-      "name": "CapCut Pro Video Editor",
-      "category": "Aplikasi Premium",
-      "price": 25000,
-      "originalPrice": 79000,
-      "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 220,
-      "rating": 4.9,
-      "badge": "EDITOR CHOICE",
-      "stockStatus": "ready",
-      "warranty": "Garansi Full",
-      "description": "Buka semua efek pro, transisi viral, auto-caption AI, cloud storage 100GB, dan ekspor 4K 60FPS tanpa watermark.",
-      "variants": [
-        {
-          "name": "1 Bulan (Akun Pro)",
-          "price": 25000
-        },
-        {
-          "name": "1 Tahun (Akun Pro)",
-          "price": 95000
-        }
-      ],
-      "features": [
-        "Semua Efek & Filter Pro",
-        "AI Auto-Caption",
-        "Cloud Storage 100GB",
-        "Export 4K 60fps"
-      ],
-      "total_terjual": 220,
-      "stockCount": 50,
-      "stock": 50,
-      "is_best_seller": false
-    },
-    {
-      "id": "prod-7",
-      "name": "Mobile Legends: Bang Bang",
-      "category": "Topup Game",
-      "price": 19000,
-      "originalPrice": 25000,
-      "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 840,
-      "rating": 5,
-      "badge": "BEST SELLER",
-      "stockStatus": "ready",
-      "warranty": "100% Legal & Aman",
-      "description": "Top Up Diamond Mobile Legends Resmi, Cukup Masukkan User ID dan Zone ID. Proses kilat 1-5 menit langsung masuk!",
-      "variants": [
-        {
-          "name": "86 Diamonds",
-          "price": 19000
-        },
-        {
-          "name": "172 Diamonds",
-          "price": 38000
-        },
-        {
-          "name": "257 Diamonds",
-          "price": 57000
-        },
-        {
-          "name": "706 Diamonds (Best Deal)",
-          "price": 155000
-        },
-        {
-          "name": "Weekly Diamond Pass (WDP)",
-          "price": 28000
-        },
-        {
-          "name": "Twilight Pass",
-          "price": 145000
-        }
-      ],
-      "features": [
-        "Hanya Butuh User ID & Zone ID",
-        "Proses Cepat 1-3 Menit",
-        "100% Aman Anti Minus",
-        "Bisa Request Jumlah"
-      ],
-      "total_terjual": 840,
-      "stockCount": 50,
-      "stock": 50,
-      "is_best_seller": true
-    },
-    {
-      "id": "prod-8",
-      "name": "Free Fire (FF)",
-      "category": "Topup Game",
-      "price": 10000,
-      "originalPrice": 15000,
-      "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 670,
-      "rating": 4.9,
-      "badge": "BEST SELLER",
-      "stockStatus": "ready",
-      "warranty": "100% Legal",
-      "description": "Top Up Diamond Free Fire termurah & terpercaya. Cukup cantumkan Player ID Free Fire Anda.",
-      "variants": [
-        {
-          "name": "70 Diamonds",
-          "price": 10000
-        },
-        {
-          "name": "140 Diamonds",
-          "price": 20000
-        },
-        {
-          "name": "355 Diamonds",
-          "price": 48000
-        },
-        {
-          "name": "720 Diamonds",
-          "price": 95000
-        },
-        {
-          "name": "Membership Mingguan",
-          "price": 30000
-        },
-        {
-          "name": "Membership Bulanan",
-          "price": 120000
-        }
-      ],
-      "features": [
-        "Hanya Player ID",
-        "Instant Masuk",
-        "Legal & Aman",
-        "Bonus Event Aktif"
-      ],
-      "total_terjual": 670,
-      "stockCount": 50,
-      "stock": 50,
-      "is_best_seller": true
-    },
-    {
-      "id": "prod-9",
-      "name": "Valorant Points (VP)",
-      "category": "Topup Game",
-      "price": 45000,
-      "originalPrice": 55000,
-      "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 310,
-      "rating": 4.9,
-      "badge": "RIOT OFFICIAL",
-      "stockStatus": "preorder",
-      "warranty": "100% Legal",
-      "description": "Topup Valorant Points (Riot ID: Username#TAG) region Indonesia/Asia Pacific. Siap borong Night Market!",
-      "variants": [
-        {
-          "name": "475 VP",
-          "price": 45000
-        },
-        {
-          "name": "1000 VP",
-          "price": 95000
-        },
-        {
-          "name": "2050 VP",
-          "price": 185000
-        },
-        {
-          "name": "3650 VP",
-          "price": 320000
-        }
-      ],
-      "features": [
-        "Riot ID + Tagline",
-        "Region ID/SEA",
-        "Langsung Masuk",
-        "Aman 100%"
-      ],
-      "total_terjual": 310,
-      "stockCount": 20,
-      "stock": 20,
-      "is_best_seller": false
-    },
-    {
-      "id": "prod-10",
-      "name": "Jasa Desain Poster Event & Musik",
-      "category": "Jasa Design Poster",
-      "price": 50000,
-      "originalPrice": 100000,
-      "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 165,
-      "rating": 5,
-      "badge": "KREATIF",
-      "stockStatus": "ready",
-      "warranty": "Revisi Sampai Puas",
-      "description": "Desain poster profesional untuk konser, festival kampus, seminar, workshop, webinar, dan acara komersial.",
-      "variants": [
-        {
-          "name": "Paket Basic (1 Konsep, Revisi 2x, JPEG/PNG)",
-          "price": 50000
-        },
-        {
-          "name": "Paket Pro (2 Konsep, Revisi 5x, File Cetak PDF High-Res)",
-          "price": 90000
-        },
-        {
-          "name": "Paket Ultimate (Konsep Bebas, Master File PSD/AI + Banner IG)",
-          "price": 150000
-        }
-      ],
-      "features": [
-        "Desain Modern & Eye-Catching",
-        "Resolusi Siap Cetak (300 DPI)",
-        "Pengerjaan 1x24 Jam",
-        "Garansi Revisi"
-      ],
-      "total_terjual": 165,
-      "stockCount": 50,
-      "stock": 50,
-      "is_best_seller": false
-    },
-    {
-      "id": "prod-11",
-      "name": "Jasa Desain Banner Promosi & Usaha",
-      "category": "Jasa Design Poster",
-      "price": 40000,
-      "originalPrice": 80000,
-      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 210,
-      "rating": 4.9,
-      "badge": "BRANDING",
-      "stockStatus": "limited",
-      "stockCount": 3,
-      "warranty": "Revisi Cepat",
-      "description": "Desain banner jualan, spanduk toko, flyer brosur, menu makanan/minuman, banner marketplace Tokopedia/Shopee.",
-      "variants": [
-        {
-          "name": "Single Banner Jualan (JPEG/PNG)",
-          "price": 40000
-        },
-        {
-          "name": "Banner Toko + Spanduk Cetak (File PDF/TIFF)",
-          "price": 75000
-        },
-        {
-          "name": "Branding Kit Paket Lengkap (Banner + Feed + Story)",
-          "price": 130000
-        }
-      ],
-      "features": [
-        "Meningkatkan Penjualan",
-        "Format Sesuai Kebutuhan",
-        "Pengerjaan Cepat",
-        "Free Mockup Visual"
-      ],
-      "total_terjual": 210,
       "stock": 3,
       "is_best_seller": false
     },
     {
-      "id": "prod-12",
-      "name": "Jasa Desain Feed & Story Instagram",
-      "category": "Jasa Design Poster",
-      "price": 35000,
-      "originalPrice": 70000,
-      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
-      "soldCount": 180,
+      "id": "prod-gemini-advanced",
+      "name": "Gemini Advanced AI",
+      "category": "Aplikasi Premium",
+      "price": 11000,
+      "originalPrice": 40000,
+      "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 390,
       "rating": 5,
-      "badge": "ESTETIK",
-      "stockStatus": "ready",
-      "warranty": "Revisi Siap",
-      "description": "Desain konten media sosial aesthetic & profesional. Meningkatkan engagement dan kepercayaan customer olshop/personal branding.",
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi Sesuai Paket",
+      "description": "AI super canggih besutan Google untuk analisis data, ringkas dokumen panjang, dan terintegrasi langsung dengan ekosistem Google.",
       "variants": [
         {
-          "name": "1 Post Feed / Story (Single Image)",
-          "price": 35000
+          "name": "Gemini Advanced Invite (1 Bulan, Full Garansi)",
+          "price": 11000
         },
         {
-          "name": "Paket Carousel 5 Slide (Microblog/Edu)",
-          "price": 85000
-        },
-        {
-          "name": "Paket Mingguan (6 Feed + 6 Story)",
-          "price": 175000
+          "name": "Gemini Advanced Invite (1 Tahun, No Garansi)",
+          "price": 21000
         }
       ],
       "features": [
-        "Warna Selaras Brand",
-        "Copywriting Menarik",
-        "Format HD 1080x1080 / 1080x1920",
-        "Template Canva / PSD"
+        "Model 1.5 Pro / Ultra Google AI",
+        "Konteks Dokumen & File Sangat Panjang",
+        "Integrasi Docs, Drive & Gmail",
+        "Stok Dinamis (Kadang Ready)"
       ],
-      "total_terjual": 180,
-      "stockCount": 50,
-      "stock": 50,
+      "total_terjual": 390,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-grammarly-premium",
+      "name": "Grammarly Premium",
+      "category": "Aplikasi Premium",
+      "price": 13000,
+      "originalPrice": 45000,
+      "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 230,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 3,
+      "stock": 3,
+      "warranty": "Garansi 30 Hari",
+      "description": "Tool pengecek tata bahasa (grammar), ejaan bahasa Inggris, dan gaya penulisan artikel agar lebih profesional.",
+      "variants": [
+        {
+          "name": "Grammarly Sharing (1 Bulan)",
+          "price": 13000
+        }
+      ],
+      "features": [
+        "Koreksi Grammar & Vocabulary Canggih",
+        "Deteksi Nada & Style Kalimat",
+        "Plagiarism Checker Terintegrasi",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 230,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-quillbot-premium",
+      "name": "QuillBot Premium",
+      "category": "Aplikasi Premium",
+      "price": 13000,
+      "originalPrice": 40000,
+      "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 290,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 30 Hari",
+      "description": "Tool parafrase kalimat canggih untuk mengubah susunan kata pada teks/esai agar lebih rapi dan bebas dari plagiarism.",
+      "variants": [
+        {
+          "name": "QuillBot Premium Sharing (1 Bulan)",
+          "price": 13000
+        }
+      ],
+      "features": [
+        "Parafrase Tanpa Batas Kata",
+        "Semua Mode (Formal, Creative, Simple)",
+        "Plagiarism Checker & Summarizer",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 290,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-scribd",
+      "name": "Scribd Premium",
+      "category": "Aplikasi Premium",
+      "price": 7000,
+      "originalPrice": 25000,
+      "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 245,
+      "rating": 4.8,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 30 Hari",
+      "description": "Perpustakaan digital global berisi jutaan ebook, dokumen materi kuliah, buku audio, dan jurnal penelitian.",
+      "variants": [
+        {
+          "name": "Scribd Sharing (1 Bulan)",
+          "price": 7000
+        },
+        {
+          "name": "Scribd Private (1 Bulan)",
+          "price": 10000
+        }
+      ],
+      "features": [
+        "Jutaan E-Book & Audiobook Populer",
+        "Download Dokumen & Skripsi Kuliah",
+        "Bebas Baca Tanpa Batas",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 245,
+      "is_best_seller": false
+    },
+    {
+      "id": "prod-duolingo-super",
+      "name": "Duolingo Super",
+      "category": "Aplikasi Premium",
+      "price": 11000,
+      "originalPrice": 35000,
+      "image": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&auto=format&fit=crop&q=80",
+      "soldCount": 360,
+      "rating": 4.9,
+      "badge": "KADANG READY",
+      "stockStatus": "limited",
+      "stockCount": 4,
+      "stock": 4,
+      "warranty": "Garansi 30 Hari",
+      "description": "Aplikasi belajar bahasa asing seru tanpa gangguan iklan, dilengkapi nyawa tak terbatas dan latihan soal interaktif.",
+      "variants": [
+        {
+          "name": "Duolingo Super Family Plan (1 Bulan)",
+          "price": 11000
+        }
+      ],
+      "features": [
+        "Nyawa / Hearts Tanpa Batas",
+        "Bebas Gangguan Iklan",
+        "Latihan Pengucapan & Mendengar",
+        "Stok Dinamis (Kadang Ready)"
+      ],
+      "total_terjual": 360,
       "is_best_seller": false
     }
   ],
