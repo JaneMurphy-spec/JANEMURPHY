@@ -11168,10 +11168,10 @@
       currentDetailProductId = prod.id;
       const isTopup = prod.category === 'Topup Game';
 
-      // Update URL hash without jumping page (Feature #5)
+      // Ensure URL stays completely clean without any hash
       try {
-        if (history.replaceState) {
-          history.replaceState(null, null, `#prod-${prod.id}`);
+        if (window.location.hash && history.replaceState) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
         }
       } catch (e) {}
 
@@ -11636,23 +11636,20 @@
       });
     }
 
-    // Share & Copy Product Link (Feature #5)
+    // Share & Copy Clean Web Link
     function copyCurrentProductLink() {
-      if (!currentDetailProductId) return;
-      const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : '';
-      const path = window.location.pathname || '';
-      const shareUrl = `${origin}${path}#prod-${currentDetailProductId}`;
-      copyToClipboard(shareUrl, "Link Produk");
+      const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : 'https://janemurphy.vercel.app';
+      const cleanUrl = origin.replace(/\/+$/, '') + '/';
+      copyToClipboard(cleanUrl, "Link Web");
     }
 
     function shareCurrentProduct() {
       if (!currentDetailProductId) return;
       const prod = storeState.products.find(p => String(p.id) === String(currentDetailProductId));
       if (!prod) return;
-      const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : '';
-      const path = window.location.pathname || '';
-      const shareUrl = `${origin}${path}#prod-${currentDetailProductId}`;
-      const shareText = `Halo! Cek produk *${prod.name}* (Mulai Rp ${Number(prod.price || 0).toLocaleString('id-ID')}) di JaneMarket:\n${shareUrl}`;
+      const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : 'https://janemurphy.vercel.app';
+      const cleanUrl = origin.replace(/\/+$/, '') + '/';
+      const shareText = `Halo! Cek produk *${prod.name}* (Mulai Rp ${Number(prod.price || 0).toLocaleString('id-ID')}) di JaneMarket:\n${cleanUrl}`;
       const waUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
       window.open(waUrl, '_blank');
     }
@@ -11661,10 +11658,12 @@
       try {
         let targetId = null;
         const hash = window.location.hash;
-        if (hash && hash.startsWith('#prod-')) {
-          targetId = hash.replace('#prod-', '');
-        } else if (hash && hash.startsWith('#product=')) {
-          targetId = hash.replace('#product=', '');
+        if (hash && (hash.startsWith('#prod-') || hash.startsWith('#product='))) {
+          targetId = hash.replace('#prod-', '').replace('#product=', '').replace(/^prod-/, '');
+          // Instantly clean hash from address bar so URL remains clean
+          if (history.replaceState) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          }
         } else {
           const params = new URLSearchParams(window.location.search);
           if (params.get('product')) {
@@ -11674,9 +11673,9 @@
 
         if (targetId) {
           setTimeout(() => {
-            const exists = storeState.products.some(p => String(p.id) === String(targetId));
+            const exists = storeState.products.find(p => String(p.id) === String(targetId) || String(p.id) === 'prod-' + String(targetId));
             if (exists) {
-              openProductDetailModal(targetId);
+              openProductDetailModal(exists.id);
             }
           }, 350);
         }
